@@ -35,10 +35,13 @@
 }
 .celular .tela { border-radius: 34px; overflow: hidden; background: #fff; aspect-ratio: 9 / 19.2; position: relative; }
 .celular.mini .tela { overflow: hidden; }
-.celular .zoom { width: 390px; zoom: var(--k, 1); pointer-events: none; }
-.celular.grande .zoom { pointer-events: auto; }
-.celular.grande .tela { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
-.celular.grande .tela::-webkit-scrollbar { display: none; }
+/* A prévia é desenhada com 390px de largura e encolhida com transform (funciona em
+   todos os navegadores, inclusive Safari do iPhone). O JS define --k (escala) e
+   --alt (altura da tela em px "de 390"). Na grande, quem rola é o próprio .zoom. */
+.celular .zoom { position: absolute; top: 0; left: 0; width: 390px; height: var(--alt, 832px); transform: scale(var(--k, 1)); transform-origin: 0 0; overflow: hidden; pointer-events: none; }
+.celular.grande .zoom { pointer-events: auto; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.celular.grande .zoom::-webkit-scrollbar { display: none; }
+.celular.grande .zoom:focus-visible { outline: none; }
 .ilha { position: absolute; top: calc(var(--borda) + 10px); left: 50%; transform: translateX(-50%); width: 30%; height: 22px; background: #0B0C0E; border-radius: var(--r-pill); z-index: 5; pointer-events: none; }
 
 /* ---------- Montador ---------- */
@@ -152,7 +155,7 @@
     .palco { position: relative; top: auto; order: -1; padding: 20px 0 16px; gap: 10px; }
     .celular.grande { --h: clamp(280px, 40svh, 400px); --borda: 7px; height: var(--h); width: calc(var(--h) * 0.48); border-radius: 34px; }
     .celular.grande .tela { height: 100%; aspect-ratio: auto; border-radius: 27px; }
-    .ilha { height: 16px; top: 14px; }
+    .ilha { height: 13px; top: 12px; width: 26%; }
     .painel { margin: 0 12px; padding: 22px 18px; border-radius: var(--r-xl); gap: 18px; position: relative; z-index: 3; }
     .passo-m h2 { font-size: 26px; }
     .ajuda { font-size: 15px; line-height: 1.45; }

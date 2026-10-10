@@ -228,8 +228,12 @@
     // ---------- Escala das telas ----------
     const escala = new ResizeObserver((itens) => {
         itens.forEach((item) => {
-            const largura = item.contentRect.width;
-            if (largura) item.target.querySelector('.zoom')?.style.setProperty('--k', String(largura / L));
+            const { width: largura, height: altura } = item.contentRect;
+            const zoom = item.target.querySelector('.zoom');
+            if (!largura || !zoom) return;
+            const k = largura / L;
+            zoom.style.setProperty('--k', String(k));
+            zoom.style.setProperty('--alt', `${Math.ceil(altura / k)}px`);
         });
     });
     document.querySelectorAll('.celular .tela').forEach((tela) => escala.observe(tela));
@@ -315,8 +319,7 @@
             else if (rolarPara) {
                 const alvo = preview.querySelectorAll('.pv-sec')[Object.keys(SECOES).indexOf(rolarPara)];
                 if (alvo && !alvo.classList.contains('oculta')) {
-                    const k = parseFloat(getComputedStyle(preview).getPropertyValue('--k')) || 1;
-                    rolagem.scrollTo({ top: Math.max(0, alvo.offsetTop * k - 40), behavior: 'smooth' });
+                    rolagem.scrollTo({ top: Math.max(0, alvo.offsetTop - 70), behavior: 'smooth' });
                 }
             }
         }, 120);
