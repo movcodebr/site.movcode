@@ -67,7 +67,7 @@
                 <div class="hero-texto">
                     <span class="selo"><b>Prévia grátis</b> <span data-saudacao>sem cadastro</span></span>
                     <h1 data-titulo>A página do seu negócio, montada <span class="tamanho">por você</span>.</h1>
-                    <p class="hero-sub">Escolha o tipo do negócio, a cor e o estilo. A página muda na hora, do jeito que vai ficar no celular do seu cliente.</p>
+                    <p class="hero-sub">Escolha o tipo do negócio, a cor e o estilo. A página muda na hora, do jeito que vai ficar no celular e no computador do seu cliente.</p>
                     <div class="hero-acoes">
                         <a href="#montador" class="btn btn-acao" data-cta="sp_hero">Montar a minha página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                     </div>
@@ -159,12 +159,27 @@
                 </div>
 
                 <div class="palco">
-                    <div class="celular grande" data-preview-frame>
-                        <div class="tela">
-                            <div class="zoom" data-preview data-preview-scroll tabindex="0" aria-label="Prévia da sua página. Role para ver tudo."></div>
+                    <div class="modo" role="group" aria-label="Ver a prévia como">
+                        <button type="button" data-modo-btn="cel" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>Celular</button>
+                        <button type="button" data-modo-btn="pc" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="11" rx="2"/><path d="M2 19h20"/></svg>Computador</button>
+                    </div>
+                    <div class="celular grande" data-aparelho="cel">
+                        <div class="tela" data-largura="390">
+                            <div class="zoom" data-preview="cel" tabindex="0" aria-label="Prévia da sua página no celular. Role para ver tudo."></div>
                         </div>
                     </div>
-                    <p class="palco-legenda"><span class="ao-vivo" aria-hidden="true"></span> Prévia ao vivo · toque e role a página</p>
+                    <div class="notebook" data-aparelho="pc" hidden>
+                        <div class="tampa">
+                            <div class="tela" data-largura="1200">
+                                <div class="zoom" data-preview="pc" tabindex="0" aria-label="Prévia da sua página no computador. Role para ver tudo."></div>
+                            </div>
+                        </div>
+                        <div class="base" aria-hidden="true"></div>
+                    </div>
+                    <div class="palco-rodape">
+                        <p class="palco-legenda"><span class="ao-vivo" aria-hidden="true"></span> Prévia ao vivo</p>
+                        <button type="button" class="btn-cheia" data-abrir-cheia><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Ver em tela cheia</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -251,6 +266,20 @@
             </div>
         </div>
     </footer>
+
+    <!-- Prévia em tela cheia: a página do cliente no tamanho de verdade -->
+    <div class="tela-cheia" data-tela-cheia role="dialog" aria-modal="true" aria-label="Prévia da sua página em tela cheia" hidden>
+        <div class="tc-barra">
+            <div class="modo" role="group" aria-label="Ver a prévia como">
+                <button type="button" data-modo-btn="cel" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>Celular</button>
+                <button type="button" data-modo-btn="pc" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="11" rx="2"/><path d="M2 19h20"/></svg>Computador</button>
+            </div>
+            <button type="button" class="tc-fechar" data-fechar-cheia><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Fechar</button>
+        </div>
+        <div class="tc-tela" data-largura="390">
+            <div class="zoom" data-preview="cheia" tabindex="0" aria-label="Sua página. Role para ver tudo."></div>
+        </div>
+    </div>
 
     <script src="assets/js/site.js"></script>
     <script src="assets/js/sua-pagina.js"></script>

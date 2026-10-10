@@ -165,33 +165,47 @@
     const veioPersonalizado = Boolean(q.get('nome'));
 
     // ---------- A página do cliente ----------
-    function pagina(e) {
+    // Endereço de exemplo na barra do navegador: "Barbearia do João" -> barbeariadojoao.com.br
+    const dominio = (nome) => `${nome.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 28) || 'seunegocio'}.com.br`;
+    const CADEADO = '<svg width="12" height="13" viewBox="0 0 12 13" aria-hidden="true"><rect x="1" y="5.5" width="10" height="7.5" rx="2" fill="currentColor"/><path d="M3.5 5.5V4a2.5 2.5 0 0 1 5 0v1.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
+    const LINKS = { precos: 'Serviços', galeria: 'Fotos', diferenciais: 'Sobre', local: 'Onde estamos' };
+
+    // modo 'cel' = página no celular (390px); 'pc' = a mesma página no computador (1200px)
+    function pagina(e, modo = 'cel') {
         const N = NICHOS[e.nicho];
         const C = CORES[e.cor];
+        const pc = modo === 'pc';
         const nome = e.nome.trim() || N.exemplo;
         const local = e.bairro.trim() ? `${e.bairro.trim()}, Ribeirão Preto` : 'Ribeirão Preto';
         const tem = (s) => (e.sec.has(s) ? '' : ' oculta');
         const arteClara = e.estilo === 'elegante' ? ' clara' : '';
         const arte = (legenda, cls = '') => `<div class="pv-arte${arteClara}${cls}">${ic(e.nicho)}<em>${legenda}</em></div>`;
         const estilo = `--ac:${C[0]};--ac-on:${sobre(C[0])};--ac-soft:${C[2]};--ac-ink:${C[3]}`;
+        const navegador = pc ? `<div class="pv-navegador" aria-hidden="true"><span class="pv-janela"><i></i><i></i><i></i></span><span class="pv-url">${CADEADO}${esc(dominio(nome))}</span></div>` : '';
+        const topoDireita = pc
+            ? `<nav class="pv-links">${Object.keys(LINKS).filter((s) => e.sec.has(s)).map((s) => `<span>${LINKS[s]}</span>`).join('')}</nav><button class="pv-btn pv-btn-topo" data-pv-acao type="button">${WHATS}${esc(N.cta)}</button>`
+            : `<span class="pv-menu">${ic('menu')}</span>`;
 
-        return `<div class="pv ${e.estilo}" style="${estilo}">
+        return `<div class="pv ${e.estilo}${pc ? ' pc' : ''}" style="${estilo}">
+            ${navegador}
             <header class="pv-top">
-                ${STATUS}
+                ${pc ? '' : STATUS}
                 <div class="pv-logo"><i>${esc(iniciais(nome))}</i><span class="pv-nome">${esc(nome)}</span></div>
-                <span class="pv-menu">${ic('menu')}</span>
+                ${topoDireita}
             </header>
             <section class="pv-hero">
-                <span class="pv-eyebrow">${esc(N.rotulo)}</span>
-                <h3 class="pv-h1">${esc(N.titulo)}</h3>
-                <p>${esc(N.texto)}</p>
-                <div class="pv-acoes">
-                    <button class="pv-btn" data-pv-acao type="button">${WHATS}${esc(N.cta)}</button>
-                    <button class="pv-btn sec" data-pv-acao type="button">${e.sec.has('precos') ? 'Ver serviços e preços' : 'Como chegar'}</button>
-                </div>
-                <div class="pv-chips">
-                    <span class="pv-chip"><span class="on"></span>Aberto hoje até ${N.ate}</span>
-                    <span class="pv-chip">${ic('pin')}${esc(local)}</span>
+                <div class="pv-hero-tx">
+                    <span class="pv-eyebrow">${esc(N.rotulo)}</span>
+                    <h3 class="pv-h1">${esc(N.titulo)}</h3>
+                    <p>${esc(N.texto)}</p>
+                    <div class="pv-acoes">
+                        <button class="pv-btn" data-pv-acao type="button">${WHATS}${esc(N.cta)}</button>
+                        <button class="pv-btn sec" data-pv-acao type="button">${e.sec.has('precos') ? 'Ver serviços e preços' : 'Como chegar'}</button>
+                    </div>
+                    <div class="pv-chips">
+                        <span class="pv-chip"><span class="on"></span>Aberto hoje até ${N.ate}</span>
+                        <span class="pv-chip">${ic('pin')}${esc(local)}</span>
+                    </div>
                 </div>
                 ${arte('Sua foto aqui', ' pv-capa')}
             </section>
@@ -233,18 +247,17 @@
     }
 
     // ---------- Escala das telas ----------
-    const escala = new ResizeObserver((itens) => {
-        itens.forEach((item) => {
-            const { width: largura, height: altura } = item.contentRect;
-            const zoom = item.target.querySelector('.zoom');
-            if (!largura || !zoom) return;
-            const k = largura / L;
-            // no aparelho todo: a tela, os cantos e os botões usam a mesma escala
-            (item.target.closest('.celular') || zoom).style.setProperty('--k', String(k));
-            zoom.style.setProperty('--alt', `${Math.ceil(altura / k)}px`);
-        });
-    });
-    document.querySelectorAll('.celular .tela').forEach((tela) => escala.observe(tela));
+    // Cada tela diz a largura "real" da página em data-largura (390 no celular, 1200 no computador).
+    function escalar(tela, largura = tela.clientWidth, altura = tela.clientHeight) {
+        const zoom = tela.querySelector('.zoom');
+        if (!largura || !zoom) return;
+        const k = largura / (Number(tela.dataset.largura) || L);
+        // no aparelho todo: a tela, os cantos e os botões usam a mesma escala
+        (tela.closest('.celular, .notebook') || zoom).style.setProperty('--k', String(k));
+        zoom.style.setProperty('--alt', `${Math.ceil(altura / k)}px`);
+    }
+    const escala = new ResizeObserver((itens) => itens.forEach((item) => escalar(item.target, item.contentRect.width, item.contentRect.height)));
+    document.querySelectorAll('.celular .tela, .notebook .tela, .tc-tela').forEach((tela) => escala.observe(tela));
 
     // ---------- Leque da abertura: o mesmo negócio em 3 estilos (ou 3 negócios) ----------
     const leque = veioPersonalizado || q.get('nicho')
@@ -265,8 +278,14 @@
     }
 
     // ---------- Montador ----------
-    const preview = document.querySelector('[data-preview]');
-    const rolagem = document.querySelector('[data-preview-scroll]');
+    // A mesma página aparece no celular e no notebook; a tela cheia mostra o modo escolhido.
+    const telas = { cel: document.querySelector('[data-preview="cel"]'), pc: document.querySelector('[data-preview="pc"]') };
+    const cheia = document.querySelector('[data-preview="cheia"]');
+    const telaCheia = document.querySelector('[data-tela-cheia]');
+    const tcTela = telaCheia.querySelector('.tc-tela');
+    const montador = document.getElementById('montador');
+    const celularPequeno = window.matchMedia('(max-width: 900px)');
+    let modo = 'cel';
     const passos = [...document.querySelectorAll('.passo-m')];
     const total = 5;
     let passo = 1;
@@ -303,9 +322,11 @@
     }
 
     function desenhar() {
-        const topo = rolagem.scrollTop;
-        preview.innerHTML = pagina(estado);
-        rolagem.scrollTop = topo;
+        Object.entries(telas).forEach(([m, el]) => {
+            const topo = el.scrollTop;
+            el.innerHTML = pagina(estado, m);
+            el.scrollTop = topo;
+        });
 
         document.querySelectorAll('[data-opcoes="nicho"] [data-v]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === estado.nicho)));
         document.querySelectorAll('[data-opcoes="cor"] [data-v]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === estado.cor)));
@@ -313,21 +334,21 @@
         amostras();
         nomeInput.placeholder = `Ex.: ${NICHOS[estado.nicho].exemplo}`;
 
-        try { history.replaceState(null, '', `?${linkMontagem().toString()}`); } catch { /* segue */ }
+        try { history.replaceState(history.state, '', `?${linkMontagem().toString()}`); } catch { /* segue */ }
     }
 
     // Pisca a prévia para o olho perceber a mudança
     function trocar(fn, rolarPara) {
-        const pv = preview.querySelector('.pv');
-        pv?.classList.add('trocando');
+        const tela = telas[modo];
+        tela.querySelector('.pv')?.classList.add('trocando');
         setTimeout(() => {
             fn();
             desenhar();
-            if (rolarPara === 'topo') rolagem.scrollTo({ top: 0, behavior: 'smooth' });
+            if (rolarPara === 'topo') tela.scrollTo({ top: 0, behavior: 'smooth' });
             else if (rolarPara) {
-                const alvo = preview.querySelectorAll('.pv-sec')[Object.keys(SECOES).indexOf(rolarPara)];
+                const alvo = tela.querySelectorAll('.pv-sec')[Object.keys(SECOES).indexOf(rolarPara)];
                 if (alvo && !alvo.classList.contains('oculta')) {
-                    rolagem.scrollTo({ top: Math.max(0, alvo.offsetTop - 82), behavior: 'smooth' });
+                    tela.scrollTo({ top: Math.max(0, alvo.offsetTop - (modo === 'pc' ? 56 : 82)), behavior: 'smooth' });
                 }
             }
         }, 120);
@@ -363,19 +384,65 @@
     aviso.setAttribute('role', 'status');
     document.body.appendChild(aviso);
     let avisoTempo;
-    preview.addEventListener('click', (ev) => {
-        if (!ev.target.closest('[data-pv-acao]')) return;
+    function mostrarAviso() {
         aviso.innerHTML = `<b>Na sua página, esse botão abre o seu WhatsApp</b>com a mensagem: “${esc(NICHOS[estado.nicho].msg)}”`;
         aviso.classList.add('on');
         clearTimeout(avisoTempo);
         avisoTempo = setTimeout(() => aviso.classList.remove('on'), 3600);
-    });
+    }
+    Object.values(telas).forEach((tela) => tela.addEventListener('click', (ev) => {
+        // no celular a prévia é pequena: um toque abre a página em tela cheia
+        if (celularPequeno.matches) { abrirCheia(tela); return; }
+        if (ev.target.closest('[data-pv-acao]')) mostrarAviso();
+    }));
+    cheia.addEventListener('click', (ev) => { if (ev.target.closest('[data-pv-acao]')) mostrarAviso(); });
+
+    // ---------- Ver como: celular ou computador ----------
+    function mudarModo(m) {
+        if (!telas[m] || m === modo) return;
+        modo = m;
+        montador.dataset.modo = m;
+        document.querySelectorAll('[data-aparelho]').forEach((el) => { el.hidden = el.dataset.aparelho !== m; });
+        document.querySelectorAll('[data-modo-btn]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.modoBtn === m)));
+        if (!telaCheia.hidden) mostrarCheia();
+        if (typeof window.rastrear === 'function') window.rastrear('sp_modo', { modo: m });
+    }
+    document.querySelectorAll('[data-modo-btn]').forEach((b) => b.addEventListener('click', () => mudarModo(b.dataset.modoBtn)));
+
+    // ---------- Tela cheia: a página no tamanho de verdade ----------
+    let voltarFoco = null;
+    function mostrarCheia() {
+        tcTela.dataset.largura = modo === 'pc' ? '1200' : String(L);
+        cheia.innerHTML = pagina(estado, modo);
+        cheia.scrollTop = 0;
+        escalar(tcTela);
+    }
+    function abrirCheia(origem) {
+        if (!telaCheia.hidden) return;
+        voltarFoco = origem || document.activeElement;
+        telaCheia.hidden = false;
+        document.documentElement.classList.add('sp-travado');
+        mostrarCheia();
+        // o botão "voltar" do celular fecha a tela cheia em vez de sair da página
+        try { history.pushState({ spCheia: true }, ''); } catch { /* segue */ }
+        telaCheia.querySelector('[data-fechar-cheia]').focus({ preventScroll: true });
+        if (typeof window.rastrear === 'function') window.rastrear('sp_tela_cheia', { modo });
+    }
+    function fecharCheia(peloHistorico = false) {
+        if (telaCheia.hidden) return;
+        telaCheia.hidden = true;
+        document.documentElement.classList.remove('sp-travado');
+        if (!peloHistorico && history.state && history.state.spCheia) history.back();
+        if (voltarFoco && typeof voltarFoco.focus === 'function') voltarFoco.focus({ preventScroll: true });
+    }
+    document.querySelectorAll('[data-abrir-cheia]').forEach((b) => b.addEventListener('click', () => abrirCheia(b)));
+    telaCheia.querySelector('[data-fechar-cheia]').addEventListener('click', () => fecharCheia());
+    window.addEventListener('popstate', () => fecharCheia(true));
+    document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') fecharCheia(); });
 
     // Navegação entre os passos
     const btnVoltar = document.querySelector('[data-voltar]');
     const btnAvancar = document.querySelector('[data-avancar]');
-    const montador = document.getElementById('montador');
-    const celularPequeno = window.matchMedia('(max-width: 900px)');
 
     function irPara(n, rolar = true) {
         passo = Math.max(1, Math.min(total + 1, n));
