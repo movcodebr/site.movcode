@@ -25,16 +25,35 @@
 }
 
 /* ---------- Celular (moldura) ---------- */
+/* Aparelho: aro de metal (borda com degradê), vidro preto fino em volta da tela,
+   botões laterais e reflexo. Os cantos e os botões seguem a escala --k da tela,
+   então o celular mantém a proporção de um aparelho real em qualquer tamanho. */
 .celular {
-    --borda: 10px;
-    background: #0B0C0E;
-    border-radius: 44px;
-    padding: var(--borda);
-    box-shadow: 0 40px 80px -30px rgba(17, 18, 20, .55), 0 0 0 1px rgba(255, 255, 255, .06) inset;
+    --borda: 9px;  /* vidro preto em volta da tela */
+    --aro: 2.5px;  /* moldura de metal */
+    --k: .55;
+    --raio-tela: calc(55px * var(--k));
+    --botao: linear-gradient(90deg, #6A6D74, #2A2C31);
     position: relative;
+    padding: var(--borda);
+    border: var(--aro) solid transparent;
+    border-radius: calc(var(--raio-tela) + var(--borda) + var(--aro));
+    background:
+        linear-gradient(#060607, #060607) padding-box,
+        linear-gradient(145deg, #8A8D94 0%, #34363B 18%, #55585E 42%, #232428 66%, #3F4247 84%, #7C7F86 100%) border-box;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, .07),
+        0 50px 80px -34px rgba(17, 18, 20, .6),
+        0 18px 36px -18px rgba(17, 18, 20, .35);
 }
-.celular .tela { border-radius: 34px; overflow: hidden; background: #fff; aspect-ratio: 9 / 19.2; position: relative; }
+/* volume (esquerda) e liga/desliga (direita) */
+.celular::before, .celular::after { content: ""; position: absolute; width: calc(var(--aro) + 1.5px); background: var(--botao); pointer-events: none; }
+.celular::before { left: calc(-2 * var(--aro) - 1.5px); top: calc(150px * var(--k)); height: calc(58px * var(--k)); border-radius: 2px 0 0 2px; box-shadow: 0 calc(74px * var(--k)) 0 #3E4046; }
+.celular::after { right: calc(-2 * var(--aro) - 1.5px); top: calc(205px * var(--k)); height: calc(96px * var(--k)); border-radius: 0 2px 2px 0; background: linear-gradient(270deg, #6A6D74, #2A2C31); }
+.celular .tela { border-radius: var(--raio-tela); overflow: hidden; background: #fff; aspect-ratio: 9 / 19.2; position: relative; }
 .celular.mini .tela { overflow: hidden; }
+/* reflexo do vidro e borda interna da tela */
+.celular .tela::after { content: ""; position: absolute; inset: 0; z-index: 2; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .28); background: linear-gradient(118deg, rgba(255, 255, 255, .16) 0%, rgba(255, 255, 255, .05) 20%, rgba(255, 255, 255, 0) 36%); }
 /* A prévia é desenhada com 390px de largura e encolhida com transform (funciona em
    todos os navegadores, inclusive Safari do iPhone). O JS define --k (escala) e
    --alt (altura da tela em px "de 390"). Na grande, quem rola é o próprio .zoom. */
@@ -42,7 +61,6 @@
 .celular.grande .zoom { pointer-events: auto; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .celular.grande .zoom::-webkit-scrollbar { display: none; }
 .celular.grande .zoom:focus-visible { outline: none; }
-.ilha { position: absolute; top: calc(var(--borda) + 10px); left: 50%; transform: translateX(-50%); width: 30%; height: 22px; background: #0B0C0E; border-radius: var(--r-pill); z-index: 5; pointer-events: none; }
 
 /* ---------- Montador ---------- */
 .montador { padding: 24px 0 var(--secao); background: var(--realce); scroll-margin-top: 0; }
@@ -153,9 +171,8 @@
     .montador { padding: 0 0 56px; }
     .montador .wrap { grid-template-columns: 1fr; gap: 0; padding-inline: 0; }
     .palco { position: relative; top: auto; order: -1; padding: 20px 0 16px; gap: 10px; }
-    .celular.grande { --h: clamp(280px, 40svh, 400px); --borda: 7px; height: var(--h); width: calc(var(--h) * 0.48); border-radius: 34px; }
-    .celular.grande .tela { height: 100%; aspect-ratio: auto; border-radius: 27px; }
-    .ilha { height: 13px; top: 12px; width: 26%; }
+    .celular.grande { --h: clamp(280px, 40svh, 400px); --borda: 6px; --aro: 2px; height: var(--h); width: calc(var(--h) * 0.48); }
+    .celular.grande .tela { height: 100%; aspect-ratio: auto; }
     .painel { margin: 0 12px; padding: 22px 18px; border-radius: var(--r-xl); gap: 18px; position: relative; z-index: 3; }
     .passo-m h2 { font-size: 26px; }
     .ajuda { font-size: 15px; line-height: 1.45; }
@@ -171,8 +188,7 @@
     .sp-hero { padding: 16px 0 24px; }
     .sp-hero .hero-acoes .btn { width: 100%; }
     .leque { height: 300px; margin-top: 4px; }
-    .leque .celular { width: 136px; --borda: 6px; border-radius: 26px; }
-    .leque .celular .tela { border-radius: 21px; }
+    .leque .celular { width: 136px; --borda: 5px; --aro: 1.5px; }
     .cores { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .cor-op { padding: 10px 4px; font-size: 13px; }
     .cor-op i { width: 34px; height: 34px; }
@@ -208,7 +224,12 @@
 .pv svg { display: block; }
 
 /* topo */
-.pv-top { position: sticky; top: 0; z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 46px 18px 12px; background: color-mix(in srgb, var(--pv-bg) 88%, transparent); backdrop-filter: blur(10px); }
+.pv-top { position: sticky; top: 0; z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 58px 18px 12px; background: color-mix(in srgb, var(--pv-bg) 88%, transparent); backdrop-filter: blur(10px); }
+/* barra de status do aparelho: hora, ilha da câmera, sinal, Wi-Fi e bateria */
+.pv-status { position: absolute; top: 11px; left: 0; right: 0; height: 36px; display: grid; grid-template-columns: 1fr 124px 1fr; align-items: center; pointer-events: none; }
+.pv-hora { justify-self: center; padding-left: 10px; font: 600 16px/1 -apple-system, BlinkMacSystemFont, "Figtree", system-ui, sans-serif; letter-spacing: -0.01em; }
+.pv-ilha { height: 36px; border-radius: 999px; background: #000; }
+.pv-sinais { justify-self: center; display: flex; align-items: center; gap: 6px; padding-right: 8px; }
 .pv-logo { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .pv-logo i { width: 34px; height: 34px; border-radius: 11px; background: var(--ac); color: var(--ac-on); display: grid; place-items: center; font: 800 16px var(--pv-title); font-style: normal; flex-shrink: 0; }
 .pv-nome { font-size: 18px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

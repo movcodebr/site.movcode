@@ -35,6 +35,12 @@
     };
     const WHATS = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg>';
     const ic = (k, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ${extra}>${P[k]}</svg>`;
+    // Barra de status do aparelho (hora, ilha da câmera, sinal, Wi-Fi e bateria)
+    const STATUS = '<div class="pv-status" aria-hidden="true"><span class="pv-hora">9:41</span><span class="pv-ilha"></span><span class="pv-sinais">'
+        + '<svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7.5" width="3" height="4.5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>'
+        + '<svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.6 4.4a9.2 9.2 0 0 1 12.8 0"/><path d="M4.4 7.3a5.2 5.2 0 0 1 7.2 0"/><circle cx="8" cy="10.2" r="1.3" fill="currentColor" stroke="none"/></svg>'
+        + '<svg width="27" height="13" viewBox="0 0 27 13" fill="currentColor"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2.4"/><path d="M25 4.4v4.2a2.2 2.2 0 0 0 0-4.2z" opacity=".45"/></svg>'
+        + '</span></div>';
 
     // ---------- Conteúdo por tipo de negócio ----------
     const NICHOS = {
@@ -171,6 +177,7 @@
 
         return `<div class="pv ${e.estilo}" style="${estilo}">
             <header class="pv-top">
+                ${STATUS}
                 <div class="pv-logo"><i>${esc(iniciais(nome))}</i><span class="pv-nome">${esc(nome)}</span></div>
                 <span class="pv-menu">${ic('menu')}</span>
             </header>
@@ -232,7 +239,8 @@
             const zoom = item.target.querySelector('.zoom');
             if (!largura || !zoom) return;
             const k = largura / L;
-            zoom.style.setProperty('--k', String(k));
+            // no aparelho todo: a tela, os cantos e os botões usam a mesma escala
+            (item.target.closest('.celular') || zoom).style.setProperty('--k', String(k));
             zoom.style.setProperty('--alt', `${Math.ceil(altura / k)}px`);
         });
     });
@@ -319,7 +327,7 @@
             else if (rolarPara) {
                 const alvo = preview.querySelectorAll('.pv-sec')[Object.keys(SECOES).indexOf(rolarPara)];
                 if (alvo && !alvo.classList.contains('oculta')) {
-                    rolagem.scrollTo({ top: Math.max(0, alvo.offsetTop - 70), behavior: 'smooth' });
+                    rolagem.scrollTo({ top: Math.max(0, alvo.offsetTop - 82), behavior: 'smooth' });
                 }
             }
         }, 120);
