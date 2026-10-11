@@ -1,15 +1,17 @@
 /* -------------------------------------------------------------------------
    MovCode — /sua-pagina
-   Montador de landing page. O cliente escolhe tipo, nome, cor, estilo e
-   seções numa tela só; a prévia (celular ou notebook) muda na hora.
-   "Quero a minha assim" abre o WhatsApp com as escolhas e o link da montagem.
+   Editor de landing page. A prévia é a própria página do cliente: ele toca
+   num texto e edita ali mesmo; tipo, nome, cor, estilo e seções ficam nas
+   ferramentas (gaveta no celular, painel no computador).
+   "Quero a minha assim" abre o WhatsApp com as escolhas e o link da montagem,
+   que reabre a página exatamente como ficou (textos editados vão no "t").
 
    Link pronto para mandar a um lead (todos os parâmetros são opcionais):
    movcode.com.br/sua-pagina?nome=Box%2004%20Barbershop&nicho=barbearia&bairro=Centro
    nicho:  barbearia | estetica | pilates | oficina | construcao | contabilidade | petshop | outro
    cor:    laranja | vermelho | rosa | roxo | azul | verde | dourado | grafite
    estilo: moderno | elegante | vibrante
-   sec:    precos,galeria,diferenciais,local  (separados por vírgula)
+   sec:    precos,galeria,diferenciais,local  (as visíveis, na ordem em que aparecem)
 ------------------------------------------------------------------------- */
 (() => {
     const L = 390; // largura "real" da prévia, em px
@@ -36,7 +38,7 @@
     const WHATS = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg>';
     const ic = (k, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ${extra}>${P[k]}</svg>`;
     // Barra de status do aparelho (hora, ilha da câmera, sinal, Wi-Fi e bateria)
-    const STATUS = '<div class="pv-status" aria-hidden="true"><span class="pv-hora">9:41</span><span class="pv-ilha"></span><span class="pv-sinais">'
+    const STATUS = '<div class="pv-status" aria-hidden="true"><span class="pv-relogio">9:41</span><span class="pv-ilha"></span><span class="pv-sinais">'
         + '<svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7.5" width="3" height="4.5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>'
         + '<svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.6 4.4a9.2 9.2 0 0 1 12.8 0"/><path d="M4.4 7.3a5.2 5.2 0 0 1 7.2 0"/><circle cx="8" cy="10.2" r="1.3" fill="currentColor" stroke="none"/></svg>'
         + '<svg width="27" height="13" viewBox="0 0 27 13" fill="currentColor"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2.4"/><path d="M25 4.4v4.2a2.2 2.2 0 0 0 0-4.2z" opacity=".45"/></svg>'
@@ -150,18 +152,54 @@
     // texto escuro ou branco sobre a cor, o que tiver mais contraste
     const sobre = (hex) => ((1.05) / (lum(hex) + 0.05) >= (lum(hex) + 0.05) / (0.0129 + 0.05) ? '#FFFFFF' : '#16181D');
     const iniciais = (nome) => (nome.trim().match(/[A-Za-zÀ-ú]/) || ['M'])[0].toUpperCase();
+    const rastrear = (evento, dados) => { if (typeof window.rastrear === 'function') window.rastrear(evento, dados); };
+    const guardado = {
+        ler() { try { return JSON.parse(localStorage.getItem('sp-textos') || '{}') || {}; } catch { return {}; } },
+        gravar(v) { try { localStorage.setItem('sp-textos', JSON.stringify(v)); } catch { /* segue sem guardar */ } }
+    };
+
+    // ---------- Textos editáveis ----------
+    // Cada texto da página tem uma chave. O que a pessoa digita fica em estado.textos[nicho][chave].
+    function padroes(N) {
+        const t = {
+            rotulo: N.rotulo, titulo: N.titulo, texto: N.texto, cta: N.cta,
+            precosT: N.precosT, precosS: N.precosS,
+            galeriaT: N.galeriaT, galeriaS: 'As fotos de vocês entram aqui.',
+            difsT: 'Por que escolher a gente',
+            localT: 'Onde estamos', endereco: 'Endereço completo de vocês',
+            fimT: N.fimT, fimS: 'Resposta rápida pelo WhatsApp.'
+        };
+        N.precos.forEach((linha, i) => linha.forEach((v, j) => { t[`precos.${i}.${j}`] = v; }));
+        N.difs.forEach(([, titulo, desc], i) => { t[`difs.${i}.1`] = titulo; t[`difs.${i}.2`] = desc; });
+        N.hora.forEach((linha, i) => linha.forEach((v, j) => { t[`hora.${i}.${j}`] = v; }));
+        return t;
+    }
+    const LIMITE = { nome: 36, titulo: 70, texto: 180, rotulo: 30, cta: 32, precosS: 110, galeriaS: 110, fimS: 110 };
+    const limite = (k) => LIMITE[k] || (/^(precos|hora)\./.test(k) ? 40 : 90);
 
     // ---------- Estado (aceita link pré-preenchido) ----------
     const q = new URLSearchParams(window.location.search);
-    const lerSec = (v) => new Set((v || 'precos,galeria,diferenciais,local').split(',').filter((s) => SECOES[s]));
+    const TODAS = Object.keys(SECOES);
+    const visiveis = (q.get('sec') ?? 'precos,galeria,diferenciais,local').split(',').filter((s, i, a) => SECOES[s] && a.indexOf(s) === i);
     const estado = {
         nome: (q.get('nome') || '').slice(0, 36),
         bairro: (q.get('bairro') || '').slice(0, 28),
         nicho: NICHOS[q.get('nicho')] ? q.get('nicho') : 'barbearia',
         cor: CORES[q.get('cor')] ? q.get('cor') : 'laranja',
         estilo: ESTILOS[q.get('estilo')] ? q.get('estilo') : 'moderno',
-        sec: lerSec(q.get('sec'))
+        ordem: [...visiveis, ...TODAS.filter((s) => !visiveis.includes(s))],
+        sec: new Set(visiveis),
+        textos: guardado.ler()
     };
+    try {
+        const t = q.get('t') && JSON.parse(q.get('t'));
+        if (t && typeof t === 'object') {
+            const limpo = {};
+            Object.entries(t).forEach(([k, v]) => { if (typeof v === 'string') limpo[k] = v.slice(0, limite(k)); });
+            estado.textos[estado.nicho] = limpo;
+        }
+    } catch { /* link quebrado: segue com os textos padrão */ }
+    const meus = () => (estado.textos[estado.nicho] ||= {});
     const veioPersonalizado = Boolean(q.get('nome'));
 
     // ---------- A página do cliente ----------
@@ -169,38 +207,74 @@
     const dominio = (nome) => `${nome.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 28) || 'seunegocio'}.com.br`;
     const CADEADO = '<svg width="12" height="13" viewBox="0 0 12 13" aria-hidden="true"><rect x="1" y="5.5" width="10" height="7.5" rx="2" fill="currentColor"/><path d="M3.5 5.5V4a2.5 2.5 0 0 1 5 0v1.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
     const LINKS = { precos: 'Serviços', galeria: 'Fotos', diferenciais: 'Sobre', local: 'Onde estamos' };
+    const SETA = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d > 0 ? 'M12 5v14M6 13l6 6 6-6' : 'M12 19V5M6 11l6-6 6 6'}"/></svg>`;
+    const OLHO_FECHADO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.9 4.24A9 9 0 0 1 12 4c6.5 0 10 8 10 8a17 17 0 0 1-2.16 3.19M6.6 6.6A17 17 0 0 0 2 12s3.5 8 10 8a9.7 9.7 0 0 0 5.4-1.6"/><path d="m2 2 20 20"/></svg>';
 
     // modo 'cel' = página no celular (390px); 'pc' = a mesma página no computador (1200px)
-    function pagina(e, modo = 'cel') {
+    // editavel = mostra as ferramentas de cada seção e deixa os textos com data-e prontos para editar
+    function pagina(e, modo, editavel) {
         const N = NICHOS[e.nicho];
         const C = CORES[e.cor];
         const pc = modo === 'pc';
+        const base = padroes(N);
+        const ov = e.textos[e.nicho] || {};
         const nome = e.nome.trim() || N.exemplo;
         const local = e.bairro.trim() ? `${e.bairro.trim()}, Ribeirão Preto` : 'Ribeirão Preto';
-        const tem = (s) => (e.sec.has(s) ? '' : ' oculta');
+        // texto editável: <tag data-e="chave">texto</tag>
+        const t = (k, tag = 'span', cls = '') => `<${tag}${cls ? ` class="${cls}"` : ''} data-e="${k}">${esc(ov[k] ?? base[k])}</${tag}>`;
         const arteClara = e.estilo === 'elegante' ? ' clara' : '';
         const arte = (legenda, cls = '') => `<div class="pv-arte${arteClara}${cls}">${ic(e.nicho)}<em>${legenda}</em></div>`;
         const estilo = `--ac:${C[0]};--ac-on:${sobre(C[0])};--ac-soft:${C[2]};--ac-ink:${C[3]}`;
+        const botao = (cls = '') => `<span class="pv-btn${cls}" data-pv-acao>${WHATS}${t('cta')}</span>`;
+        const vis = e.ordem.filter((s) => e.sec.has(s));
         const navegador = pc ? `<div class="pv-navegador" aria-hidden="true"><span class="pv-janela"><i></i><i></i><i></i></span><span class="pv-url">${CADEADO}${esc(dominio(nome))}</span></div>` : '';
         const topoDireita = pc
-            ? `<nav class="pv-links">${Object.keys(LINKS).filter((s) => e.sec.has(s)).map((s) => `<span>${LINKS[s]}</span>`).join('')}</nav><button class="pv-btn pv-btn-topo" data-pv-acao type="button">${WHATS}${esc(N.cta)}</button>`
+            ? `<nav class="pv-links">${vis.map((s) => `<span>${LINKS[s]}</span>`).join('')}</nav>${botao(' pv-btn-topo')}`
             : `<span class="pv-menu">${ic('menu')}</span>`;
+        const nomeEd = (cls) => `<span class="${cls}" data-e="nome">${esc(nome)}</span>`;
 
-        return `<div class="pv ${e.estilo}${pc ? ' pc' : ''}" style="${estilo}">
+        const ferramenta = (s, i) => (editavel ? `<div class="pv-ed" data-ed="${s}">
+                <span class="pv-ed-nome">${SECOES[s][0]}</span>
+                <button type="button" data-mover="-1" aria-label="Subir a seção ${SECOES[s][0]}"${i === 0 ? ' disabled' : ''}>${SETA(-1)}</button>
+                <button type="button" data-mover="1" aria-label="Descer a seção ${SECOES[s][0]}"${i === vis.length - 1 ? ' disabled' : ''}>${SETA(1)}</button>
+                <button type="button" data-ocultar aria-label="Ocultar a seção ${SECOES[s][0]}">${OLHO_FECHADO}</button>
+            </div>` : '');
+        const SEC = {
+            precos: () => `${t('precosT', 'h3')}${t('precosS', 'p', 'pv-sub')}
+                <div class="pv-lista">${N.precos.map((_, i) => `<div class="pv-item"><div>${t(`precos.${i}.0`, 'b')}${t(`precos.${i}.1`, 'small')}</div>${t(`precos.${i}.2`, 'span', 'pv-preco')}</div>`).join('')}</div>
+                <p class="pv-nota">Preços de exemplo. Na sua página entram os seus.</p>`,
+            galeria: () => `${t('galeriaT', 'h3')}${t('galeriaS', 'p', 'pv-sub')}
+                <div class="pv-galeria">${arte('Foto 1')}${arte('Foto 2')}${arte('Foto 3')}</div>`,
+            diferenciais: () => `${t('difsT', 'h3')}
+                <div class="pv-difs">${N.difs.map(([i], n) => `<div class="pv-dif"><i>${ic(i)}</i><div>${t(`difs.${n}.1`, 'b')}${t(`difs.${n}.2`)}</div></div>`).join('')}</div>`,
+            local: () => `${t('localT', 'h3')}
+                <div class="pv-local">
+                    <div class="pv-mapa"></div>
+                    <div class="pv-local-tx"><b>${esc(local)}</b>${t('endereco')}
+                        ${N.hora.map((_, i) => `<div class="pv-hora">${t(`hora.${i}.0`)}${t(`hora.${i}.1`, 'strong')}</div>`).join('')}
+                    </div>
+                </div>`
+        };
+        const ocultas = TODAS.filter((s) => !e.sec.has(s));
+        const adicionar = editavel && ocultas.length
+            ? `<div class="pv-add"><span>Seções ocultas</span>${ocultas.map((s) => `<button type="button" data-mostrar="${s}">+ ${SECOES[s][0]}</button>`).join('')}</div>`
+            : '';
+
+        return `<div class="pv ${e.estilo}${pc ? ' pc' : ''}${editavel ? ' editando' : ''}" style="${estilo}">
             ${navegador}
             <header class="pv-top">
                 ${pc ? '' : STATUS}
-                <div class="pv-logo"><i>${esc(iniciais(nome))}</i><span class="pv-nome">${esc(nome)}</span></div>
+                <div class="pv-logo"><i>${esc(iniciais(nome))}</i>${nomeEd('pv-nome')}</div>
                 ${topoDireita}
             </header>
             <section class="pv-hero">
                 <div class="pv-hero-tx">
-                    <span class="pv-eyebrow">${esc(N.rotulo)}</span>
-                    <h3 class="pv-h1">${esc(N.titulo)}</h3>
-                    <p>${esc(N.texto)}</p>
+                    ${t('rotulo', 'span', 'pv-eyebrow')}
+                    ${t('titulo', 'h3', 'pv-h1')}
+                    ${t('texto', 'p')}
                     <div class="pv-acoes">
-                        <button class="pv-btn" data-pv-acao type="button">${WHATS}${esc(N.cta)}</button>
-                        <button class="pv-btn sec" data-pv-acao type="button">${e.sec.has('precos') ? 'Ver serviços e preços' : 'Como chegar'}</button>
+                        ${botao()}
+                        <span class="pv-btn sec" data-pv-acao>${vis.includes('precos') ? 'Ver serviços e preços' : 'Como chegar'}</span>
                     </div>
                     <div class="pv-chips">
                         <span class="pv-chip"><span class="on"></span>Aberto hoje até ${N.ate}</span>
@@ -209,80 +283,67 @@
                 </div>
                 ${arte('Sua foto aqui', ' pv-capa')}
             </section>
-            <section class="pv-sec${tem('precos')}">
-                <h3>${esc(N.precosT)}</h3>
-                <p class="pv-sub">${esc(N.precosS)}</p>
-                <div class="pv-lista">${N.precos.map(([t, d, p]) => `<div class="pv-item"><div><b>${esc(t)}</b><small>${esc(d)}</small></div><span class="pv-preco">${esc(p)}</span></div>`).join('')}</div>
-                <p class="pv-nota">Preços de exemplo. Na sua página entram os seus.</p>
-            </section>
-            <section class="pv-sec${tem('galeria')}">
-                <h3>${esc(N.galeriaT)}</h3>
-                <p class="pv-sub">As fotos de vocês entram aqui.</p>
-                <div class="pv-galeria">${arte('Foto 1')}${arte('Foto 2')}${arte('Foto 3')}</div>
-            </section>
-            <section class="pv-sec${tem('diferenciais')}">
-                <h3>Por que escolher a gente</h3>
-                <div class="pv-difs">${N.difs.map(([i, t, d]) => `<div class="pv-dif"><i>${ic(i)}</i><div><b>${esc(t)}</b><span>${esc(d)}</span></div></div>`).join('')}</div>
-            </section>
-            <section class="pv-sec${tem('local')}">
-                <h3>Onde estamos</h3>
-                <div class="pv-local">
-                    <div class="pv-mapa"></div>
-                    <div class="pv-local-tx"><b>${esc(local)}</b><span>Endereço completo de vocês</span>
-                        ${N.hora.map(([d, h]) => `<div class="pv-hora"><span>${d}</span><strong>${h}</strong></div>`).join('')}
-                    </div>
-                </div>
-            </section>
+            ${vis.map((s, i) => `<section class="pv-sec" data-sec="${s}">${ferramenta(s, i)}${SEC[s]()}</section>`).join('')}
+            ${adicionar}
             <section class="pv-final">
-                <h4>${esc(N.fimT)}</h4>
-                <p>Resposta rápida pelo WhatsApp.</p>
-                <button class="pv-btn" data-pv-acao type="button">${WHATS}${esc(N.cta)}</button>
+                ${t('fimT', 'h4')}
+                ${t('fimS', 'p')}
+                ${botao()}
             </section>
             <footer class="pv-rodape">
-                <b>${esc(nome)}</b><span>${esc(local)}</span>
+                ${nomeEd('pv-rodape-nome')}<span>${esc(local)}</span>
                 <span class="pv-feito"><span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>Página feita pela MovCode</span>
             </footer>
-            <button class="pv-whats" data-pv-acao type="button" aria-label="WhatsApp">${WHATS}</button>
+            <span class="pv-whats" data-pv-acao aria-hidden="true">${WHATS}</span>
         </div>`;
     }
 
-    // ---------- Escala das telas ----------
-    // Cada tela diz a largura "real" da página em data-largura (390 no celular, 1200 no computador).
-    function escalar(tela, largura = tela.clientWidth, altura = tela.clientHeight) {
-        const zoom = tela.querySelector('.zoom');
-        if (!largura || !zoom) return;
-        const k = largura / (Number(tela.dataset.largura) || L);
-        // no aparelho todo: a tela, os cantos e os botões usam a mesma escala
-        (tela.closest('.celular, .notebook') || zoom).style.setProperty('--k', String(k));
-        zoom.style.setProperty('--alt', `${Math.ceil(altura / k)}px`);
-    }
-    const escala = new ResizeObserver((itens) => itens.forEach((item) => escalar(item.target, item.contentRect.width, item.contentRect.height)));
-    document.querySelectorAll('.celular .tela, .notebook .tela, .tc-tela').forEach((tela) => escala.observe(tela));
+    // ---------- Elementos ----------
+    const montador = document.getElementById('montador');
+    const tela = document.querySelector('[data-tela]');
+    const escalaEl = tela.querySelector('[data-escala]');
+    const preview = tela.querySelector('[data-preview]');
+    const dica = document.querySelector('[data-dica]');
+    const ferramentas = document.querySelector('[data-ferramentas]');
+    const doca = document.querySelector('[data-doca]');
+    const gavetaTitulo = document.querySelector('[data-gaveta-titulo]');
+    const nomeInput = document.getElementById('spNome');
+    const bairroInput = document.getElementById('spBairro');
+    const corNome = document.querySelector('[data-cor-nome]');
+    const restaurar = document.querySelector('[data-restaurar]');
+    const telaGrande = window.matchMedia('(min-width: 1024px)');
+    const cx = (sel) => document.querySelector(`[data-opcoes="${sel}"]`);
+    let modo = 'cel';
+    let editando = true;
+
+    // contenteditable="plaintext-only" evita colar formatação; nem todo navegador aceita
+    const SO_TEXTO = (() => { try { const d = document.createElement('div'); d.contentEditable = 'plaintext-only'; return d.contentEditable === 'plaintext-only'; } catch { return false; } })();
 
     // ---------- Título com o nome do negócio (link personalizado) ----------
     if (veioPersonalizado) {
         const titulo = document.querySelector('[data-titulo]');
-        if (titulo) titulo.textContent = `${estado.nome}, veja como pode ficar a página de vocês`;
+        if (titulo) titulo.textContent = `${estado.nome}, monte a página de vocês.`;
     }
 
-    // ---------- Montador (tudo numa tela só) ----------
-    // A mesma página aparece no celular e no notebook; a tela cheia mostra o modo escolhido.
-    const telas = { cel: document.querySelector('[data-preview="cel"]'), pc: document.querySelector('[data-preview="pc"]') };
-    const cheia = document.querySelector('[data-preview="cheia"]');
-    const telaCheia = document.querySelector('[data-tela-cheia]');
-    const tcTela = telaCheia.querySelector('.tc-tela');
-    const montador = document.getElementById('montador');
-    const celularPequeno = window.matchMedia('(max-width: 860px)');
-    const rastrear = (evento, dados) => { if (typeof window.rastrear === 'function') window.rastrear(evento, dados); };
-    let modo = 'cel';
+    // ---------- Escala ----------
+    // Celular: a página no tamanho real. Computador: a página de 1200px encolhida para caber na largura.
+    const escalaPc = () => Math.min(1, tela.clientWidth / 1200);
+    function escalar() {
+        if (modo !== 'pc') { tela.style.removeProperty('--k'); escalaEl.style.removeProperty('height'); return; }
+        const k = escalaPc();
+        tela.style.setProperty('--k', String(k));
+        escalaEl.style.height = `${Math.ceil(preview.offsetHeight * k)}px`;
+    }
+    new ResizeObserver(escalar).observe(tela);
+    new ResizeObserver(escalar).observe(preview);
+    // no computador pequeno (ex.: celular no modo Computador) a página fica miúda demais para editar
+    const podeEditar = () => editando && (modo === 'cel' || escalaPc() >= 0.6);
 
-    // Opções
+    // ---------- Opções das ferramentas ----------
     const CURTO = { estetica: 'Estética', pilates: 'Pilates', oficina: 'Oficina', construcao: 'Construção', outro: 'Outro' };
-    const cx = (sel) => document.querySelector(`[data-opcoes="${sel}"]`);
     cx('nicho').innerHTML = Object.entries(NICHOS).map(([k, n]) => `<button type="button" class="tipo" data-v="${k}" aria-pressed="false">${ic(k)}${CURTO[k] || n.rotulo}</button>`).join('');
     cx('cor').innerHTML = Object.entries(CORES).map(([k, c]) => `<button type="button" class="cor-op" data-v="${k}" aria-pressed="false" aria-label="${c[1]}" title="${c[1]}" style="background:${c[0]};color:${sobre(c[0])}">${ic('check')}</button>`).join('');
-    cx('sec').innerHTML = Object.entries(SECOES).map(([k, s]) => `<button type="button" class="sec-op" data-v="${k}" aria-pressed="false"><span>${s[0]}<small>${s[1]}</small></span><span class="chave" aria-hidden="true"></span></button>`).join('');
-    const amostras = () => {
+    function opcoes() {
         const C = CORES[estado.cor];
         const on = sobre(C[0]);
         cx('estilo').innerHTML = Object.entries(ESTILOS).map(([k, s]) => {
@@ -294,33 +355,46 @@
             const borda = k === 'elegante' ? 'border:1px solid #E9E2D6;' : '';
             return `<button type="button" class="estilo-op" data-v="${k}" aria-pressed="${estado.estilo === k}"><span class="amostra" style="background:${fundo};${borda}"><b style="color:${letra};font-family:${fonte};font-weight:${peso}">Aa</b><span style="background:${botao};border-radius:${k === 'elegante' ? '3px' : '999px'}"></span></span><strong>${s[0]}</strong><small>${s[1]}</small></button>`;
         }).join('');
-    };
-
-    const nomeInput = document.getElementById('spNome');
-    const bairroInput = document.getElementById('spBairro');
-    const corNome = document.querySelector('[data-cor-nome]');
+        const vis = estado.ordem.filter((s) => estado.sec.has(s));
+        cx('sec').innerHTML = estado.ordem.map((s) => {
+            const on2 = estado.sec.has(s);
+            const i = vis.indexOf(s);
+            return `<div class="sec-linha${on2 ? '' : ' desligada'}" data-v="${s}">
+                <button type="button" class="sec-op" data-alternar aria-pressed="${on2}"><span>${SECOES[s][0]}<small>${SECOES[s][1]}</small></span><span class="chave" aria-hidden="true"></span></button>
+                <button type="button" class="sec-mover" data-mover="-1" aria-label="Subir ${SECOES[s][0]}"${!on2 || i === 0 ? ' disabled' : ''}>${SETA(-1)}</button>
+                <button type="button" class="sec-mover" data-mover="1" aria-label="Descer ${SECOES[s][0]}"${!on2 || i === vis.length - 1 ? ' disabled' : ''}>${SETA(1)}</button>
+            </div>`;
+        }).join('');
+        document.querySelectorAll('[data-opcoes="nicho"] [data-v]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === estado.nicho)));
+        document.querySelectorAll('[data-opcoes="cor"] [data-v]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === estado.cor)));
+        if (corNome) corNome.textContent = `· ${C[1]}`;
+        nomeInput.placeholder = `Ex.: ${NICHOS[estado.nicho].exemplo}`;
+        restaurar.hidden = !Object.keys(meus()).length;
+    }
     nomeInput.value = estado.nome;
     bairroInput.value = estado.bairro;
 
+    // ---------- Link da montagem e WhatsApp ----------
     function linkMontagem() {
-        const p = new URLSearchParams({ nicho: estado.nicho, cor: estado.cor, estilo: estado.estilo, sec: [...estado.sec].join(',') });
+        const p = new URLSearchParams({ nicho: estado.nicho, cor: estado.cor, estilo: estado.estilo, sec: estado.ordem.filter((s) => estado.sec.has(s)).join(',') });
         if (estado.nome.trim()) p.set('nome', estado.nome.trim());
         if (estado.bairro.trim()) p.set('bairro', estado.bairro.trim());
+        if (Object.keys(meus()).length) p.set('t', JSON.stringify(meus()));
         return p;
     }
-
-    // "Quero a minha assim": WhatsApp com as escolhas e o link desta montagem
     function atualizarPedido() {
         const N = NICHOS[estado.nicho];
         const C = CORES[estado.cor];
         const nome = estado.nome.trim();
+        const editados = Object.keys(meus()).length;
         const texto = [
             'Oi Kaique! Montei a minha página na prévia da MovCode:',
             `• Negócio: ${nome || '(ainda sem nome)'}${estado.bairro.trim() ? ` (${estado.bairro.trim()})` : ''}`,
             `• Tipo: ${N.rotulo}`,
             `• Cor: ${C[1]}`,
             `• Estilo: ${ESTILOS[estado.estilo][0]}`,
-            `• Seções: ${[...estado.sec].map((s) => SECOES[s][0]).join(', ') || 'só o topo'}`,
+            `• Seções: ${estado.ordem.filter((s) => estado.sec.has(s)).map((s) => SECOES[s][0]).join(', ') || 'só o topo'}`,
+            ...(editados ? [`• Textos que mudei: ${editados}`] : []),
             '',
             'Quero a minha assim!',
             `${window.location.origin}${window.location.pathname}?${linkMontagem().toString()}`
@@ -334,77 +408,175 @@
             a.rel = 'noopener noreferrer';
         });
     }
-
-    function desenhar() {
-        Object.entries(telas).forEach(([m, el]) => {
-            const topo = el.scrollTop;
-            el.innerHTML = pagina(estado, m);
-            el.scrollTop = topo;
-        });
-
-        document.querySelectorAll('[data-opcoes="nicho"] [data-v]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === estado.nicho)));
-        document.querySelectorAll('[data-opcoes="cor"] [data-v]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === estado.cor)));
-        document.querySelectorAll('[data-opcoes="sec"] [data-v]').forEach((b) => b.setAttribute('aria-pressed', String(estado.sec.has(b.dataset.v))));
-        amostras();
-        if (corNome) corNome.textContent = `· ${CORES[estado.cor][1]}`;
-        nomeInput.placeholder = `Ex.: ${NICHOS[estado.nicho].exemplo}`;
-        atualizarPedido();
-
-        try { history.replaceState(history.state, '', `?${linkMontagem().toString()}`); } catch { /* segue */ }
+    let salvarTempo;
+    function salvar() {
+        clearTimeout(salvarTempo);
+        salvarTempo = setTimeout(() => {
+            guardado.gravar(estado.textos);
+            atualizarPedido();
+            try { history.replaceState(history.state, '', `?${linkMontagem().toString()}`); } catch { /* segue */ }
+        }, 250);
     }
 
-    // Pisca a prévia para o olho perceber a mudança
-    function trocar(fn, rolarPara) {
-        const tela = telas[modo];
-        tela.querySelector('.pv')?.classList.add('trocando');
+    // ---------- Desenho ----------
+    function desenhar() {
+        const ed = podeEditar();
+        preview.innerHTML = pagina(estado, modo, ed);
+        if (ed) {
+            preview.querySelectorAll('[data-e]').forEach((el) => {
+                el.contentEditable = SO_TEXTO ? 'plaintext-only' : 'true';
+                el.spellcheck = false;
+                el.setAttribute('role', 'textbox');
+                el.setAttribute('aria-label', 'Texto da página (toque para editar)');
+            });
+        }
+        tela.dataset.modo = modo;
+        dica.textContent = !editando
+            ? 'Assim o seu cliente vê a página. Toque nos botões para ver o que acontece.'
+            : ed ? (telaGrande.matches ? 'Clique em qualquer texto para editar. Nas seções, use as setas para mudar a ordem.' : 'Toque em qualquer texto para editar. Nas seções, use as setas para mudar a ordem.')
+                : 'No computador a página fica assim. Para editar os textos, volte para Celular.';
+        opcoes();
+        escalar();
+        salvar();
+    }
+
+    // Pisca a prévia para o olho perceber a mudança; com "foco", rola até a seção que mudou
+    function trocar(fn, foco) {
+        preview.querySelector('.pv')?.classList.add('trocando');
         setTimeout(() => {
             fn();
             desenhar();
-            if (rolarPara === 'topo') tela.scrollTo({ top: 0, behavior: 'smooth' });
-            else if (rolarPara) {
-                const alvo = tela.querySelectorAll('.pv-sec')[Object.keys(SECOES).indexOf(rolarPara)];
-                if (alvo && !alvo.classList.contains('oculta')) {
-                    tela.scrollTo({ top: Math.max(0, alvo.offsetTop - (modo === 'pc' ? 56 : 82)), behavior: 'smooth' });
+            if (foco) {
+                const alvo = preview.querySelector(`[data-sec="${foco}"]`);
+                if (alvo) {
+                    alvo.classList.add('destaque');
+                    if (!ferramentas.dataset.ativo || telaGrande.matches) alvo.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
             }
         }, 120);
     }
 
-    document.querySelector('[data-opcoes="nicho"]').addEventListener('click', (ev) => {
+    // ---------- Seções: mostrar, ocultar e mudar a ordem ----------
+    function mover(s, d) {
+        const vis = estado.ordem.filter((x) => estado.sec.has(x));
+        const i = vis.indexOf(s);
+        const j = i + d;
+        if (i < 0 || j < 0 || j >= vis.length) return;
+        [vis[i], vis[j]] = [vis[j], vis[i]];
+        estado.ordem = [...vis, ...estado.ordem.filter((x) => !estado.sec.has(x))];
+        trocar(() => {}, s);
+        rastrear('sp_secao', { acao: 'mover', secao: s });
+    }
+    function alternar(s, ligar) {
+        trocar(() => {
+            if (ligar) {
+                estado.sec.add(s);
+                // a seção religada volta para o fim da lista de visíveis
+                estado.ordem = [...estado.ordem.filter((x) => estado.sec.has(x) && x !== s), s, ...estado.ordem.filter((x) => !estado.sec.has(x))];
+            } else estado.sec.delete(s);
+        }, ligar ? s : null);
+        rastrear('sp_secao', { acao: ligar ? 'mostrar' : 'ocultar', secao: s });
+    }
+
+    // ---------- Ferramentas ----------
+    cx('nicho').addEventListener('click', (ev) => {
         const b = ev.target.closest('[data-v]');
         if (!b || b.dataset.v === estado.nicho) return;
-        trocar(() => { estado.nicho = b.dataset.v; }, 'topo');
+        trocar(() => { estado.nicho = b.dataset.v; });
         rastrear('sp_escolha', { campo: 'nicho', valor: b.dataset.v });
     });
-    document.querySelector('[data-opcoes="cor"]').addEventListener('click', (ev) => {
+    cx('cor').addEventListener('click', (ev) => {
         const b = ev.target.closest('[data-v]');
         if (!b || b.dataset.v === estado.cor) return;
         trocar(() => { estado.cor = b.dataset.v; });
         rastrear('sp_escolha', { campo: 'cor', valor: b.dataset.v });
     });
-    document.querySelector('[data-opcoes="estilo"]').addEventListener('click', (ev) => {
+    cx('estilo').addEventListener('click', (ev) => {
         const b = ev.target.closest('[data-v]');
         if (!b || b.dataset.v === estado.estilo) return;
-        trocar(() => { estado.estilo = b.dataset.v; }, 'topo');
+        trocar(() => { estado.estilo = b.dataset.v; });
         rastrear('sp_escolha', { campo: 'estilo', valor: b.dataset.v });
     });
-    document.querySelector('[data-opcoes="sec"]').addEventListener('click', (ev) => {
-        const b = ev.target.closest('[data-v]');
-        if (!b) return;
-        const v = b.dataset.v;
-        const ligando = !estado.sec.has(v);
-        trocar(() => { if (ligando) estado.sec.add(v); else estado.sec.delete(v); }, ligando ? v : null);
+    cx('sec').addEventListener('click', (ev) => {
+        const linha = ev.target.closest('[data-v]');
+        if (!linha) return;
+        if (ev.target.closest('[data-alternar]')) alternar(linha.dataset.v, !estado.sec.has(linha.dataset.v));
+        const m = ev.target.closest('[data-mover]');
+        if (m && !m.disabled) mover(linha.dataset.v, Number(m.dataset.mover));
     });
     nomeInput.addEventListener('input', () => { estado.nome = nomeInput.value.slice(0, 36); desenhar(); });
     bairroInput.addEventListener('input', () => { estado.bairro = bairroInput.value.slice(0, 28); desenhar(); });
-    [nomeInput, bairroInput].forEach((campo) => {
-        campo.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); campo.blur(); } });
-        // no celular, a prévia encolhe enquanto o teclado está aberto
-        campo.addEventListener('focus', () => { if (celularPequeno.matches) montador.classList.add('digitando'); });
-        campo.addEventListener('blur', () => montador.classList.remove('digitando'));
+    [nomeInput, bairroInput].forEach((campo) => campo.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Enter') { ev.preventDefault(); campo.blur(); }
+    }));
+    restaurar.addEventListener('click', () => {
+        trocar(() => { delete estado.textos[estado.nicho]; });
+        rastrear('sp_restaurar', { nicho: estado.nicho });
     });
 
-    // Toque nos botões da prévia: explica o que acontece na página de verdade
+    // ---------- Edição direto na página ----------
+    const editado = new Set();
+    function sincronizar(origem, k, v) {
+        preview.querySelectorAll(`[data-e="${k}"]`).forEach((el) => { if (el !== origem) el.textContent = v; });
+    }
+    function cursorNoFim(el) {
+        const r = document.createRange();
+        r.selectNodeContents(el);
+        r.collapse(false);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(r);
+    }
+    preview.addEventListener('input', (ev) => {
+        const el = ev.target.closest('[data-e]');
+        if (!el) return;
+        const k = el.dataset.e;
+        let v = el.textContent.replace(/\s*\n\s*/g, ' ');
+        if (v.length > limite(k)) { v = v.slice(0, limite(k)); el.textContent = v; cursorNoFim(el); }
+        sincronizar(el, k, v);
+        if (k === 'nome') {
+            estado.nome = v.slice(0, 36);
+            nomeInput.value = estado.nome;
+            const letra = preview.querySelector('.pv-logo i');
+            if (letra) letra.textContent = iniciais(estado.nome || NICHOS[estado.nicho].exemplo);
+        } else {
+            meus()[k] = v;
+            restaurar.hidden = false;
+        }
+        if (!editado.has(k)) { editado.add(k); rastrear('sp_edicao_texto', { campo: k.split('.')[0] }); }
+        salvar();
+    });
+    preview.addEventListener('focusout', (ev) => {
+        const el = ev.target.closest('[data-e]');
+        if (!el) return;
+        const k = el.dataset.e;
+        const v = el.textContent.replace(/\s+/g, ' ').trim();
+        // texto apagado volta ao padrão
+        if (k === 'nome') {
+            estado.nome = v;
+            if (!v) { el.textContent = NICHOS[estado.nicho].exemplo; sincronizar(el, k, el.textContent); }
+        } else if (!v || v === padroes(NICHOS[estado.nicho])[k]) {
+            delete meus()[k];
+            el.textContent = padroes(NICHOS[estado.nicho])[k];
+            sincronizar(el, k, el.textContent);
+            restaurar.hidden = !Object.keys(meus()).length;
+        } else {
+            meus()[k] = v;
+            if (v !== el.textContent) { el.textContent = v; sincronizar(el, k, v); }
+        }
+        salvar();
+    });
+    preview.addEventListener('keydown', (ev) => {
+        if (!ev.target.closest('[data-e]')) return;
+        if (ev.key === 'Enter' || ev.key === 'Escape') { ev.preventDefault(); ev.target.blur(); }
+    });
+    preview.addEventListener('paste', (ev) => {
+        if (SO_TEXTO || !ev.target.closest('[data-e]')) return;
+        ev.preventDefault();
+        document.execCommand('insertText', false, (ev.clipboardData?.getData('text/plain') || '').replace(/\s+/g, ' '));
+    });
+
+    // Toque nos botões da prévia: no modo Ver, explica o que acontece na página de verdade
     const aviso = document.createElement('div');
     aviso.className = 'sp-aviso';
     aviso.setAttribute('role', 'status');
@@ -416,55 +588,71 @@
         clearTimeout(avisoTempo);
         avisoTempo = setTimeout(() => aviso.classList.remove('on'), 3600);
     }
-    Object.values(telas).forEach((tela) => tela.addEventListener('click', (ev) => {
-        // no celular a prévia é pequena: um toque abre a página em tela cheia
-        if (celularPequeno.matches) { abrirCheia(tela); return; }
-        if (ev.target.closest('[data-pv-acao]')) mostrarAviso();
+    preview.addEventListener('click', (ev) => {
+        const sec = ev.target.closest('[data-ed]');
+        if (sec) {
+            const m = ev.target.closest('[data-mover]');
+            if (m && !m.disabled) mover(sec.dataset.ed, Number(m.dataset.mover));
+            if (ev.target.closest('[data-ocultar]')) alternar(sec.dataset.ed, false);
+            return;
+        }
+        const mais = ev.target.closest('[data-mostrar]');
+        if (mais) { alternar(mais.dataset.mostrar, true); return; }
+        const acao = ev.target.closest('[data-pv-acao]');
+        if (!acao) return;
+        if (!podeEditar()) { mostrarAviso(); return; }
+        // editando: tocar no botão (fora do texto) já leva para o texto dele
+        const texto = acao.querySelector('[data-e]');
+        if (texto && !ev.target.closest('[data-e]')) { texto.focus(); cursorNoFim(texto); }
+    });
+
+    // ---------- Celular / Computador e Editar / Ver ----------
+    function marcar(sel, attr, valor) {
+        document.querySelectorAll(sel).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset[attr] === valor)));
+    }
+    document.querySelectorAll('[data-modo-btn]').forEach((b) => b.addEventListener('click', () => {
+        if (b.dataset.modoBtn === modo) return;
+        modo = b.dataset.modoBtn;
+        marcar('[data-modo-btn]', 'modoBtn', modo);
+        trocar(() => {});
+        rastrear('sp_modo', { modo });
     }));
-    cheia.addEventListener('click', (ev) => { if (ev.target.closest('[data-pv-acao]')) mostrarAviso(); });
+    document.querySelectorAll('[data-edicao-btn]').forEach((b) => b.addEventListener('click', () => {
+        const on = b.dataset.edicaoBtn === 'on';
+        if (on === editando) return;
+        editando = on;
+        marcar('[data-edicao-btn]', 'edicaoBtn', on ? 'on' : 'off');
+        montador.classList.toggle('vendo', !on);
+        desenhar();
+        rastrear('sp_edicao', { editando: on });
+    }));
 
-    // ---------- Ver como: celular ou computador ----------
-    function mudarModo(m) {
-        if (!telas[m] || m === modo) return;
-        modo = m;
-        montador.dataset.modo = m;
-        document.querySelectorAll('[data-aparelho]').forEach((el) => { el.hidden = el.dataset.aparelho !== m; });
-        document.querySelectorAll('[data-modo-btn]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.modoBtn === m)));
-        if (!telaCheia.hidden) mostrarCheia();
-        rastrear('sp_modo', { modo: m });
+    // ---------- Gaveta (celular) ----------
+    const TITULOS = { negocio: 'Seu negócio', cor: 'Cor', estilo: 'Estilo', secoes: 'Seções' };
+    function abrirGaveta(qual) {
+        const atual = ferramentas.dataset.ativo;
+        if (!qual || atual === qual) { delete ferramentas.dataset.ativo; }
+        else {
+            ferramentas.dataset.ativo = qual;
+            gavetaTitulo.textContent = TITULOS[qual];
+            rastrear('sp_ferramenta', { ferramenta: qual });
+        }
+        doca.querySelectorAll('[data-abrir]').forEach((b) => b.setAttribute('aria-expanded', String(b.dataset.abrir === ferramentas.dataset.ativo)));
+        document.documentElement.classList.toggle('sp-gaveta', Boolean(ferramentas.dataset.ativo));
     }
-    document.querySelectorAll('[data-modo-btn]').forEach((b) => b.addEventListener('click', () => mudarModo(b.dataset.modoBtn)));
-
-    // ---------- Tela cheia: a página no tamanho de verdade ----------
-    let voltarFoco = null;
-    function mostrarCheia() {
-        tcTela.dataset.largura = modo === 'pc' ? '1200' : String(L);
-        cheia.innerHTML = pagina(estado, modo);
-        cheia.scrollTop = 0;
-        escalar(tcTela);
-    }
-    function abrirCheia(origem) {
-        if (!telaCheia.hidden) return;
-        voltarFoco = origem || document.activeElement;
-        telaCheia.hidden = false;
-        document.documentElement.classList.add('sp-travado');
-        mostrarCheia();
-        // o botão "voltar" do celular fecha a tela cheia em vez de sair da página
-        try { history.pushState({ spCheia: true }, ''); } catch { /* segue */ }
-        telaCheia.querySelector('[data-fechar-cheia]').focus({ preventScroll: true });
-        rastrear('sp_tela_cheia', { modo });
-    }
-    function fecharCheia(peloHistorico = false) {
-        if (telaCheia.hidden) return;
-        telaCheia.hidden = true;
-        document.documentElement.classList.remove('sp-travado');
-        if (!peloHistorico && history.state && history.state.spCheia) history.back();
-        if (voltarFoco && typeof voltarFoco.focus === 'function') voltarFoco.focus({ preventScroll: true });
-    }
-    document.querySelectorAll('[data-abrir-cheia]').forEach((b) => b.addEventListener('click', () => abrirCheia(b)));
-    telaCheia.querySelector('[data-fechar-cheia]').addEventListener('click', () => fecharCheia());
-    window.addEventListener('popstate', () => fecharCheia(true));
-    document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') fecharCheia(); });
+    doca.querySelectorAll('[data-abrir]').forEach((b) => b.addEventListener('click', () => abrirGaveta(b.dataset.abrir)));
+    document.querySelector('[data-fechar-gaveta]').addEventListener('click', () => abrirGaveta(null));
+    document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && ferramentas.dataset.ativo) abrirGaveta(null); });
+    // tocar na página fecha a gaveta (menos nas ferramentas de seção, que mexem nela)
+    preview.addEventListener('pointerdown', (ev) => {
+        if (!telaGrande.matches && ferramentas.dataset.ativo && !ev.target.closest('[data-ed], [data-mostrar]')) abrirGaveta(null);
+    });
+    // a barra de baixo só aparece enquanto o editor está na tela
+    new IntersectionObserver(([item]) => {
+        doca.classList.toggle('on', item.isIntersecting);
+        if (!item.isIntersecting && ferramentas.dataset.ativo) abrirGaveta(null);
+    }, { rootMargin: '-80px 0px -40% 0px' }).observe(montador);
+    telaGrande.addEventListener('change', () => { abrirGaveta(null); desenhar(); });
 
     document.querySelectorAll('[data-quero]').forEach((a) => a.addEventListener('click', () => {
         rastrear('generate_lead', { servico: 'Landing page (sua-pagina)', nicho: estado.nicho, estilo: estado.estilo, pagina: window.location.pathname });
