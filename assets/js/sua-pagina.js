@@ -1,8 +1,8 @@
 /* -------------------------------------------------------------------------
    MovCode — /sua-pagina
    Montador de landing page. O cliente escolhe tipo, nome, cor, estilo e
-   seções; a prévia (dentro do celular) muda na hora. No fim, "Quero a minha
-   assim" abre o WhatsApp com as escolhas e o link da montagem.
+   seções numa tela só; a prévia (celular ou notebook) muda na hora.
+   "Quero a minha assim" abre o WhatsApp com as escolhas e o link da montagem.
 
    Link pronto para mandar a um lead (todos os parâmetros são opcionais):
    movcode.com.br/sua-pagina?nome=Box%2004%20Barbershop&nicho=barbearia&bairro=Centro
@@ -259,42 +259,29 @@
     const escala = new ResizeObserver((itens) => itens.forEach((item) => escalar(item.target, item.contentRect.width, item.contentRect.height)));
     document.querySelectorAll('.celular .tela, .notebook .tela, .tc-tela').forEach((tela) => escala.observe(tela));
 
-    // ---------- Leque da abertura: o mesmo negócio em 3 estilos (ou 3 negócios) ----------
-    const leque = veioPersonalizado || q.get('nicho')
-        ? [{ ...estado, estilo: 'elegante', cor: estado.cor === 'laranja' ? 'dourado' : estado.cor }, { ...estado, estilo: 'moderno' }, { ...estado, estilo: 'vibrante', cor: estado.cor === 'laranja' ? 'azul' : estado.cor }]
-        : [
-            { nome: 'Clínica Bem Estar', bairro: '', nicho: 'estetica', cor: 'rosa', estilo: 'elegante', sec: lerSec() },
-            { nome: 'Barbearia do João', bairro: '', nicho: 'barbearia', cor: 'laranja', estilo: 'moderno', sec: lerSec() },
-            { nome: 'Pet Feliz', bairro: '', nicho: 'petshop', cor: 'azul', estilo: 'vibrante', sec: lerSec() }
-        ];
-    document.querySelectorAll('[data-mostra]').forEach((cel) => {
-        cel.querySelector('.zoom').innerHTML = pagina(leque[Number(cel.dataset.mostra)]);
-    });
-
-    // Abertura personalizada quando o link vem com nome
+    // ---------- Título com o nome do negócio (link personalizado) ----------
     if (veioPersonalizado) {
-        const saudacao = document.querySelector('[data-saudacao]');
-        if (saudacao) saudacao.textContent = `feita pra ${estado.nome}`;
+        const titulo = document.querySelector('[data-titulo]');
+        if (titulo) titulo.textContent = `${estado.nome}, veja como pode ficar a página de vocês`;
     }
 
-    // ---------- Montador ----------
+    // ---------- Montador (tudo numa tela só) ----------
     // A mesma página aparece no celular e no notebook; a tela cheia mostra o modo escolhido.
     const telas = { cel: document.querySelector('[data-preview="cel"]'), pc: document.querySelector('[data-preview="pc"]') };
     const cheia = document.querySelector('[data-preview="cheia"]');
     const telaCheia = document.querySelector('[data-tela-cheia]');
     const tcTela = telaCheia.querySelector('.tc-tela');
     const montador = document.getElementById('montador');
-    const celularPequeno = window.matchMedia('(max-width: 900px)');
+    const celularPequeno = window.matchMedia('(max-width: 860px)');
+    const rastrear = (evento, dados) => { if (typeof window.rastrear === 'function') window.rastrear(evento, dados); };
     let modo = 'cel';
-    const passos = [...document.querySelectorAll('.passo-m')];
-    const total = 5;
-    let passo = 1;
 
     // Opções
+    const CURTO = { estetica: 'Estética', pilates: 'Pilates', oficina: 'Oficina', construcao: 'Construção', outro: 'Outro' };
     const cx = (sel) => document.querySelector(`[data-opcoes="${sel}"]`);
-    cx('nicho').innerHTML = Object.entries(NICHOS).map(([k, n]) => `<button type="button" class="tipo" data-v="${k}"><span class="ic">${ic(k)}</span>${n.rotulo.replace('Clínica de estética', 'Estética').replace('Material de construção', 'Construção').replace('Estúdio de pilates', 'Pilates').replace('Oficina mecânica', 'Oficina').replace('Comércio e serviços', 'Outro')}</button>`).join('');
-    cx('cor').innerHTML = Object.entries(CORES).map(([k, c]) => `<button type="button" class="cor-op" data-v="${k}"><i style="background:${c[0]};color:${sobre(c[0])}">${ic('check')}</i>${c[1]}</button>`).join('');
-    cx('sec').innerHTML = Object.entries(SECOES).map(([k, s]) => `<button type="button" class="sec-op" data-v="${k}"><span>${s[0]}<small>${s[1]}</small></span><span class="chave" aria-hidden="true"></span></button>`).join('');
+    cx('nicho').innerHTML = Object.entries(NICHOS).map(([k, n]) => `<button type="button" class="tipo" data-v="${k}" aria-pressed="false">${ic(k)}${CURTO[k] || n.rotulo}</button>`).join('');
+    cx('cor').innerHTML = Object.entries(CORES).map(([k, c]) => `<button type="button" class="cor-op" data-v="${k}" aria-pressed="false" aria-label="${c[1]}" title="${c[1]}" style="background:${c[0]};color:${sobre(c[0])}">${ic('check')}</button>`).join('');
+    cx('sec').innerHTML = Object.entries(SECOES).map(([k, s]) => `<button type="button" class="sec-op" data-v="${k}" aria-pressed="false"><span>${s[0]}<small>${s[1]}</small></span><span class="chave" aria-hidden="true"></span></button>`).join('');
     const amostras = () => {
         const C = CORES[estado.cor];
         const on = sobre(C[0]);
@@ -311,6 +298,7 @@
 
     const nomeInput = document.getElementById('spNome');
     const bairroInput = document.getElementById('spBairro');
+    const corNome = document.querySelector('[data-cor-nome]');
     nomeInput.value = estado.nome;
     bairroInput.value = estado.bairro;
 
@@ -319,6 +307,32 @@
         if (estado.nome.trim()) p.set('nome', estado.nome.trim());
         if (estado.bairro.trim()) p.set('bairro', estado.bairro.trim());
         return p;
+    }
+
+    // "Quero a minha assim": WhatsApp com as escolhas e o link desta montagem
+    function atualizarPedido() {
+        const N = NICHOS[estado.nicho];
+        const C = CORES[estado.cor];
+        const nome = estado.nome.trim();
+        const texto = [
+            'Oi Kaique! Montei a minha página na prévia da MovCode:',
+            `• Negócio: ${nome || '(ainda sem nome)'}${estado.bairro.trim() ? ` (${estado.bairro.trim()})` : ''}`,
+            `• Tipo: ${N.rotulo}`,
+            `• Cor: ${C[1]}`,
+            `• Estilo: ${ESTILOS[estado.estilo][0]}`,
+            `• Seções: ${[...estado.sec].map((s) => SECOES[s][0]).join(', ') || 'só o topo'}`,
+            '',
+            'Quero a minha assim!',
+            `${window.location.origin}${window.location.pathname}?${linkMontagem().toString()}`
+        ].join('\n');
+        const url = typeof window.linkWhatsapp === 'function'
+            ? window.linkWhatsapp(texto)
+            : `https://wa.me/5516982157266?text=${encodeURIComponent(texto)}`;
+        document.querySelectorAll('[data-quero]').forEach((a) => {
+            a.href = url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+        });
     }
 
     function desenhar() {
@@ -332,7 +346,9 @@
         document.querySelectorAll('[data-opcoes="cor"] [data-v]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === estado.cor)));
         document.querySelectorAll('[data-opcoes="sec"] [data-v]').forEach((b) => b.setAttribute('aria-pressed', String(estado.sec.has(b.dataset.v))));
         amostras();
+        if (corNome) corNome.textContent = `· ${CORES[estado.cor][1]}`;
         nomeInput.placeholder = `Ex.: ${NICHOS[estado.nicho].exemplo}`;
+        atualizarPedido();
 
         try { history.replaceState(history.state, '', `?${linkMontagem().toString()}`); } catch { /* segue */ }
     }
@@ -356,27 +372,37 @@
 
     document.querySelector('[data-opcoes="nicho"]').addEventListener('click', (ev) => {
         const b = ev.target.closest('[data-v]');
-        if (b) trocar(() => { estado.nicho = b.dataset.v; }, 'topo');
+        if (!b || b.dataset.v === estado.nicho) return;
+        trocar(() => { estado.nicho = b.dataset.v; }, 'topo');
+        rastrear('sp_escolha', { campo: 'nicho', valor: b.dataset.v });
     });
     document.querySelector('[data-opcoes="cor"]').addEventListener('click', (ev) => {
         const b = ev.target.closest('[data-v]');
-        if (b) trocar(() => { estado.cor = b.dataset.v; });
+        if (!b || b.dataset.v === estado.cor) return;
+        trocar(() => { estado.cor = b.dataset.v; });
+        rastrear('sp_escolha', { campo: 'cor', valor: b.dataset.v });
     });
     document.querySelector('[data-opcoes="estilo"]').addEventListener('click', (ev) => {
         const b = ev.target.closest('[data-v]');
-        if (b) trocar(() => { estado.estilo = b.dataset.v; }, 'topo');
+        if (!b || b.dataset.v === estado.estilo) return;
+        trocar(() => { estado.estilo = b.dataset.v; }, 'topo');
+        rastrear('sp_escolha', { campo: 'estilo', valor: b.dataset.v });
     });
     document.querySelector('[data-opcoes="sec"]').addEventListener('click', (ev) => {
         const b = ev.target.closest('[data-v]');
         if (!b) return;
         const v = b.dataset.v;
-        trocar(() => { if (estado.sec.has(v)) estado.sec.delete(v); else estado.sec.add(v); }, estado.sec.has(v) ? null : v);
+        const ligando = !estado.sec.has(v);
+        trocar(() => { if (ligando) estado.sec.add(v); else estado.sec.delete(v); }, ligando ? v : null);
     });
     nomeInput.addEventListener('input', () => { estado.nome = nomeInput.value.slice(0, 36); desenhar(); });
     bairroInput.addEventListener('input', () => { estado.bairro = bairroInput.value.slice(0, 28); desenhar(); });
-    [nomeInput, bairroInput].forEach((campo) => campo.addEventListener('keydown', (ev) => {
-        if (ev.key === 'Enter') { ev.preventDefault(); irPara(passo + 1); }
-    }));
+    [nomeInput, bairroInput].forEach((campo) => {
+        campo.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); campo.blur(); } });
+        // no celular, a prévia encolhe enquanto o teclado está aberto
+        campo.addEventListener('focus', () => { if (celularPequeno.matches) montador.classList.add('digitando'); });
+        campo.addEventListener('blur', () => montador.classList.remove('digitando'));
+    });
 
     // Toque nos botões da prévia: explica o que acontece na página de verdade
     const aviso = document.createElement('div');
@@ -405,7 +431,7 @@
         document.querySelectorAll('[data-aparelho]').forEach((el) => { el.hidden = el.dataset.aparelho !== m; });
         document.querySelectorAll('[data-modo-btn]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.modoBtn === m)));
         if (!telaCheia.hidden) mostrarCheia();
-        if (typeof window.rastrear === 'function') window.rastrear('sp_modo', { modo: m });
+        rastrear('sp_modo', { modo: m });
     }
     document.querySelectorAll('[data-modo-btn]').forEach((b) => b.addEventListener('click', () => mudarModo(b.dataset.modoBtn)));
 
@@ -426,7 +452,7 @@
         // o botão "voltar" do celular fecha a tela cheia em vez de sair da página
         try { history.pushState({ spCheia: true }, ''); } catch { /* segue */ }
         telaCheia.querySelector('[data-fechar-cheia]').focus({ preventScroll: true });
-        if (typeof window.rastrear === 'function') window.rastrear('sp_tela_cheia', { modo });
+        rastrear('sp_tela_cheia', { modo });
     }
     function fecharCheia(peloHistorico = false) {
         if (telaCheia.hidden) return;
@@ -440,66 +466,9 @@
     window.addEventListener('popstate', () => fecharCheia(true));
     document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') fecharCheia(); });
 
-    // Navegação entre os passos
-    const btnVoltar = document.querySelector('[data-voltar]');
-    const btnAvancar = document.querySelector('[data-avancar]');
-
-    function irPara(n, rolar = true) {
-        passo = Math.max(1, Math.min(total + 1, n));
-        passos.forEach((el) => { el.hidden = Number(el.dataset.passo) !== passo; });
-        document.querySelector('[data-passo-atual]').textContent = String(Math.min(passo, total));
-        document.querySelector('[data-progresso]').style.width = `${(Math.min(passo, total + 1) / (total + 1)) * 100}%`;
-        btnVoltar.hidden = passo === 1;
-        btnVoltar.textContent = passo === total + 1 ? 'Mudar alguma coisa' : 'Voltar';
-        btnAvancar.hidden = passo === total + 1;
-        btnAvancar.firstChild.textContent = passo === total ? 'Ver como ficou ' : 'Próximo ';
-        if (passo === total + 1) final();
-        if (passo === 2 && !celularPequeno.matches) setTimeout(() => nomeInput.focus({ preventScroll: true }), 50);
-        if (rolar && celularPequeno.matches) montador.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (typeof window.rastrear === 'function' && rolar) window.rastrear('sp_passo', { passo });
-    }
-    btnVoltar.addEventListener('click', () => irPara(passo === total + 1 ? 1 : passo - 1));
-    btnAvancar.addEventListener('click', () => irPara(passo + 1));
-
-    // Final: resumo, preço e WhatsApp
-    function final() {
-        const N = NICHOS[estado.nicho];
-        const C = CORES[estado.cor];
-        const nome = estado.nome.trim();
-        document.querySelector('[data-nome-final]').textContent = nome || 'vocês';
-        document.querySelector('[data-resumo]').innerHTML = [
-            N.rotulo,
-            `<i style="background:${C[0]}"></i>${C[1]}`,
-            ESTILOS[estado.estilo][0],
-            `${estado.sec.size} ${estado.sec.size === 1 ? 'seção' : 'seções'}`
-        ].map((t) => `<li>${t}</li>`).join('');
-
-        const linhas = [
-            'Oi Kaique! Montei a minha página na prévia da MovCode:',
-            `• Negócio: ${nome || '(ainda sem nome)'}${estado.bairro.trim() ? ` (${estado.bairro.trim()})` : ''}`,
-            `• Tipo: ${N.rotulo}`,
-            `• Cor: ${C[1]}`,
-            `• Estilo: ${ESTILOS[estado.estilo][0]}`,
-            `• Seções: ${[...estado.sec].map((s) => SECOES[s][0]).join(', ') || 'só o topo'}`,
-            '',
-            'Quero a minha assim!',
-            `${window.location.origin}${window.location.pathname}?${linkMontagem().toString()}`
-        ];
-        const texto = linhas.join('\n');
-        const url = typeof window.linkWhatsapp === 'function'
-            ? window.linkWhatsapp(texto)
-            : `https://wa.me/5516982157266?text=${encodeURIComponent(texto)}`;
-        const quero = document.querySelector('[data-quero]');
-        quero.href = url;
-        quero.target = '_blank';
-        quero.rel = 'noopener noreferrer';
-    }
-    document.querySelector('[data-quero]').addEventListener('click', () => {
-        if (typeof window.rastrear === 'function') {
-            window.rastrear('generate_lead', { servico: 'Landing page (sua-pagina)', nicho: estado.nicho, estilo: estado.estilo, pagina: window.location.pathname });
-        }
-    });
+    document.querySelectorAll('[data-quero]').forEach((a) => a.addEventListener('click', () => {
+        rastrear('generate_lead', { servico: 'Landing page (sua-pagina)', nicho: estado.nicho, estilo: estado.estilo, pagina: window.location.pathname });
+    }));
 
     desenhar();
-    irPara(1, false);
 })();
