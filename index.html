@@ -262,7 +262,7 @@
                 <a href="#escala">Soluções</a>
                 <a href="#como-funciona">Como funciona</a>
                 <a href="#produtos">Produtos</a>
-                <a href="#projetos">Projetos</a>
+                <a href="/sua-pagina">Sua página</a>
                 <a href="#duvidas">Dúvidas</a>
                 <a href="#contato" class="btn btn-acao btn-pequeno" data-cta="menu">Diagnóstico grátis</a>
             </nav>
@@ -419,7 +419,7 @@
                 <div class="h-caso-rotulo"><span class="rotulo">Produtos MovCode</span></div>
                 <h2 id="produtos-titulo" class="h-caso-titulo gigante">Prontos.</h2>
                 <p class="h-produtos-sub">Soluções nossas, prontas para o seu tipo de negócio. É contratar e começar a usar.</p>
-                <div class="h-produtos-grade">
+                <div class="h-produtos-trilho" id="produtos-trilho" tabindex="0" aria-label="Carrossel de produtos">
                     <article class="h-produto">
                         <div class="h-produto-visual" data-cursor="lab">
                             <img src="assets/images/projects/forlabs-painel.webp" alt="Painel do ForLabs com total de registros, gráfico de testes por mês e atividade recente do laboratório" width="1600" height="931" loading="lazy">
@@ -450,34 +450,66 @@
                             </div>
                         </div>
                     </article>
+                    <article class="h-produto h-produto-breve">
+                        <span class="h-produto-faixa">Em breve</span>
+                        <div class="h-produto-visual h-produto-fluxo" aria-hidden="true">
+                            <span><b></b>Venda registrada no caixa<small>agora</small></span>
+                            <span><b></b>Fiado anotado<small>agora</small></span>
+                            <span><b></b>Estoque baixo: arroz 5kg<small>agora</small></span>
+                        </div>
+                        <div class="h-produto-corpo">
+                            <span class="h-produto-para">Para mercadinhos e comércios</span>
+                            <h3 class="h-produto-nome">Mercadinho</h3>
+                            <p>Estoque, caixa e fiado num lugar só, com aviso quando um produto está acabando.</p>
+                            <div class="h-produto-acoes">
+                                <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando o sistema para mercadinho estiver pronto." data-cta="produto_mercadinho">Quero ser avisado <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                                <a class="h-caso-link" href="/sistema-para-mercadinho">Saiba mais <span aria-hidden="true">→</span></a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="h-produto h-produto-breve">
+                        <span class="h-produto-faixa">Em breve</span>
+                        <div class="h-produto-visual h-produto-fluxo" aria-hidden="true">
+                            <span><b></b>Novo horário agendado<small>agora</small></span>
+                            <span><b></b>Lembrete enviado no WhatsApp<small>agora</small></span>
+                            <span><b></b>Cliente confirmou presença<small>agora</small></span>
+                        </div>
+                        <div class="h-produto-corpo">
+                            <span class="h-produto-para">Para quem atende com horário</span>
+                            <h3 class="h-produto-nome">Agenda Pronta</h3>
+                            <p>Agendamento online com confirmação e lembrete automático no WhatsApp para o cliente não faltar.</p>
+                            <div class="h-produto-acoes">
+                                <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando a Agenda Pronta estiver disponível." data-cta="produto_agenda">Quero ser avisado <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="h-produto h-produto-breve">
+                        <span class="h-produto-faixa">Em breve</span>
+                        <div class="h-produto-visual h-produto-fluxo" aria-hidden="true">
+                            <span><b></b>Pedido recebido na mesa 4<small>agora</small></span>
+                            <span><b></b>Preço atualizado<small>agora</small></span>
+                            <span><b></b>Pedido saiu para entrega<small>agora</small></span>
+                        </div>
+                        <div class="h-produto-corpo">
+                            <span class="h-produto-para">Para restaurantes e lanchonetes</span>
+                            <h3 class="h-produto-nome">Cardápio Digital</h3>
+                            <p>Cardápio no celular com pedido direto no WhatsApp, fácil de atualizar preço e foto.</p>
+                            <div class="h-produto-acoes">
+                                <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando o Cardápio Digital estiver disponível." data-cta="produto_cardapio">Quero ser avisado <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="h-produtos-controles">
+                    <button type="button" class="h-produtos-btn" data-dir="-1" aria-controls="produtos-trilho" aria-label="Produto anterior">←</button>
+                    <button type="button" class="h-produtos-btn" data-dir="1" aria-controls="produtos-trilho" aria-label="Próximo produto">→</button>
                 </div>
 
-                <div class="h-mais" id="projetos">
-                    <div class="h-mais-topo">
-                        <h3 class="h-mais-titulo">Projetos entregues</h3>
-                        <span class="h-mais-conta">02</span>
-                    </div>
-                    <ol class="h-lista">
-                        <li class="h-proj">
-                            <a class="h-proj-linha" data-cursor="ver" href="https://lojadokiwi.com.br" target="_blank" rel="noopener">
-                                <span class="h-proj-num">01</span>
-                                <h4 class="h-proj-nome">Loja do Kiwi</h4>
-                                <p class="h-proj-desc">Loja de materiais digitais para imprimir, com catálogo, busca e entrega automática.</p>
-                                <span class="h-proj-tipo">Loja virtual</span>
-                                <span class="h-proj-seta" aria-hidden="true">↗</span>
-                            </a>
-                        </li>
-                        <li class="h-proj">
-                            <a class="h-proj-linha" data-cursor="ver" href="https://cordeirinhosdecristo.com.br" target="_blank" rel="noopener">
-                                <span class="h-proj-num">02</span>
-                                <h4 class="h-proj-nome">Cordeirinhos de Cristo</h4>
-                                <p class="h-proj-desc">Site do ministério infantil de uma igreja em Ribeirão Preto, com eventos e galeria de fotos.</p>
-                                <span class="h-proj-tipo">Site</span>
-                                <span class="h-proj-seta" aria-hidden="true">↗</span>
-                            </a>
-                        </li>
-                    </ol>
-                </div>
+                <a class="h-sua-pagina" href="/sua-pagina" data-cta="home_sua_pagina">
+                    <span class="h-produto-para">Novidade</span>
+                    <strong>Veja como pode ficar a página do seu negócio.</strong>
+                    <span class="h-sua-pagina-url">movcode.com.br/sua-pagina <span aria-hidden="true">→</span></span>
+                </a>
             </div>
         </section>
 
@@ -578,7 +610,7 @@
                         <a href="#escala">Soluções</a>
                         <a href="#como-funciona">Como funciona</a>
                         <a href="#produtos">Produtos</a>
-                        <a href="#projetos">Projetos</a>
+                        <a href="/sua-pagina">Sua página</a>
                         <a href="diagnostico">Diagnóstico gratuito</a>
                     </div>
                     <div>
