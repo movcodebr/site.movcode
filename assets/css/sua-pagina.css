@@ -8,12 +8,26 @@
 
 /* ---------- Topo: fica no começo da página (não flutua sobre a prévia) ---------- */
 .sp .topo, .sp .topo.escondido { position: absolute; transform: translateX(-50%); }
-.sp .topo .btn-linha { border-color: var(--noite-linha); color: var(--sobre-noite); }
-.sp .topo .btn-linha:hover { border-color: var(--sobre-noite); }
-.sp .topo .btn-linha svg { color: #3DDC7A; }
+body.sp { background: var(--noite); }
+.sp .duvidas { background: var(--papel); }
+.sp .menu a[aria-current="page"] { color: var(--sobre-noite); background: var(--noite-2); }
+
+/* Mesmo visual da home: títulos gigantes (eixo wdth da Bricolage) e marca-texto laranja */
+.gigante { font-family: var(--f-display); font-weight: 800; font-stretch: 80%; line-height: 0.9; letter-spacing: -0.035em; text-wrap: balance; }
+.gigante em { font-style: normal; color: var(--noite); background: linear-gradient(var(--laranja), var(--laranja)) 0 88% / 100% 62% no-repeat; -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: 0 0.06em; }
+.escuro .gigante em { color: var(--laranja); background: none; padding: 0; }
 
 /* ---------- Montador ---------- */
-.montador { padding: 32px 0 72px; }
+.montador {
+    /* fundo escuro como as seções escuras da home: os tokens claros viram escuros aqui dentro */
+    --papel: var(--noite); --cartao: var(--noite-2); --linha: var(--noite-linha); --linha-forte: rgba(255, 255, 255, .22);
+    --tinta: var(--sobre-noite); --tinta-2: var(--sobre-noite-2); --tinta-3: #9A9DA6; --primaria: var(--laranja);
+    padding: 120px 0 clamp(72px, 9vw, 120px); background: var(--noite); color: var(--sobre-noite);
+}
+.montador .campo input { color: var(--sobre-noite); }
+.montador .campo input::placeholder { color: #8A8D96; }
+.montador .tipo[aria-pressed="true"], .montador .modo button[aria-pressed="true"] { color: var(--laranja-tinta-txt); }
+.montador :focus-visible { outline-color: var(--laranja); }
 .montador .wrap {
     display: grid;
     grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
@@ -23,8 +37,8 @@
     align-items: start;
 }
 .sp-intro { grid-area: intro; padding: 12px 0 8px; }
-.sp-intro h1 { font-size: clamp(32px, 3.4vw, 46px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.08; max-width: 17ch; }
-.sp-intro p { margin: 14px 0 0; font-size: 18px; line-height: 1.5; color: var(--tinta-2); max-width: 46ch; }
+.sp-intro h1 { font-size: clamp(44px, 5.4vw, 84px); max-width: 11ch; }
+.sp-intro p { margin: 20px 0 0; font-size: 18px; line-height: 1.5; color: var(--tinta-2); max-width: 46ch; }
 
 /* Escolhas, em grupos separados por linha (não usar .opcoes: o site.css já usa no diagnóstico) */
 .escolhas { grid-area: opcoes; padding-top: 12px; }
@@ -153,33 +167,26 @@
 .notebook .base { position: relative; height: 13px; margin: 0 -8%; border-radius: 2px 2px 16px 16px / 2px 2px 12px 12px; background: linear-gradient(180deg, #EDEEF0 0%, #CDCFD3 45%, #A3A6AB 100%); box-shadow: 0 34px 50px -24px rgba(17, 18, 20, .55), 0 14px 20px -12px rgba(17, 18, 20, .3); }
 .notebook .base::before { content: ""; position: absolute; top: 0; left: 50%; width: 15%; height: 5px; transform: translateX(-50%); border-radius: 0 0 8px 8px; background: linear-gradient(180deg, #A3A6AB, #C4C6CA); }
 
-/* ---------- Preço e pedido ---------- */
-.pedido { padding: 0 0 var(--secao); }
-.pedido-caixa { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px 64px; padding: clamp(28px, 4.5vw, 56px); border-radius: var(--r-xl); background: var(--noite); color: var(--sobre-noite-2); }
-.pedido h2 { color: var(--sobre-noite); font-size: clamp(30px, 3.6vw, 46px); font-weight: 700; letter-spacing: -0.025em; }
-.pedido-preco > p { margin: 16px 0 0; font-size: 17px; line-height: 1.55; max-width: 40ch; }
-.btn-quero { margin-top: 28px; width: 100%; max-width: 380px; min-height: 58px; font-size: 17px; }
-.btn-quero svg { width: 22px; height: 22px; }
+/* ---------- Preço e pedido: faixa laranja, como o "Bora crescer?" da home ---------- */
+.pedido { padding: var(--secao) 0; background: var(--laranja); color: var(--noite); }
+.pedido-caixa { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 40px clamp(40px, 6vw, 80px); align-items: center; }
+.pedido h2 { font-size: clamp(56px, 8vw, 132px); line-height: .86; letter-spacing: -0.045em; }
+.pedido-preco > p { margin: 24px 0 0; font-size: 19px; line-height: 1.5; max-width: 40ch; }
+.btn-quero { margin-top: 32px; width: 100%; max-width: 380px; min-height: 58px; font-size: 17px; background: var(--noite); color: var(--sobre-noite); }
+.btn-quero:hover { background: var(--noite-2); }
+.btn-quero svg { width: 22px; height: 22px; color: #3DDC7A; }
 .pedido .pedido-nota { margin-top: 12px; font-size: 14px; max-width: 40ch; }
-.incluso h3 { margin-bottom: 16px; color: var(--sobre-noite); font: 700 17px/1.3 var(--f-texto); letter-spacing: 0; }
+.incluso { padding: clamp(24px, 3.5vw, 40px); border-radius: var(--r-xl); background: var(--cartao); color: var(--tinta-2); box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .45); }
+.incluso h3 { margin-bottom: 18px; color: var(--tinta); font: 700 19px/1.3 var(--f-texto); letter-spacing: 0; }
 .incluso ul { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
 .incluso li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 12px; align-items: start; font-size: 16px; line-height: 1.5; }
-.incluso li svg { width: 20px; height: 20px; margin-top: 2px; color: var(--destaque-noite); }
-.incluso li b { color: var(--sobre-noite); font-weight: 600; }
+.incluso li svg { width: 20px; height: 20px; margin-top: 2px; color: var(--laranja-texto); }
+.incluso li b { color: var(--tinta); font-weight: 600; }
 
-/* ---------- Dúvidas ---------- */
-.sp .duvidas .wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 40px 56px; align-items: start; }
-.sp .duvidas h2 { font-size: clamp(28px, 3vw, 38px); font-weight: 700; }
-
-/* ---------- Rodapé enxuto ---------- */
-.sp-rodape { padding: 28px 0 36px; border-top: 1px solid var(--linha); color: var(--tinta-3); font-size: 14px; }
-.sp-rodape .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; }
-.sp-rodape .marca { font-size: 20px; }
-.sp-rodape .marca .duo { --w: 20px; }
-.sp-rodape p { margin: 0; }
-.sp-rodape nav { display: flex; flex-wrap: wrap; gap: 0 20px; }
-.sp-rodape nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--tinta-2); text-decoration: none; }
-.sp-rodape nav a:hover { color: var(--tinta); text-decoration: underline; }
+/* ---------- Dúvidas: igual às "Perguntas rápidas" da home ---------- */
+.sp .duvidas { padding: var(--secao) 0; }
+.sp .duvidas .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 40px 56px; align-items: start; }
+.sp .duvidas h2 { font-size: clamp(46px, 6.6vw, 108px); }
 
 /* ---------- Aviso ao tocar num botão da prévia ---------- */
 .sp-aviso { position: fixed; left: 50%; bottom: 20px; z-index: 95; width: min(calc(100% - 24px), 440px); padding: 14px 18px; border-radius: var(--r-lg); background: var(--noite); color: var(--sobre-noite-2); font-size: 14px; line-height: 1.45; box-shadow: var(--sombra); transform: translate(-50%, calc(100% + 40px)); visibility: hidden; transition: transform .35s cubic-bezier(.2, .7, .2, 1), visibility .35s; pointer-events: none; }
@@ -212,10 +219,10 @@
 }
 @media (max-width: 860px) {
     /* Celular e tablet: título, depois a prévia presa no topo, e as opções rolando por baixo dela */
-    .montador { padding: 16px 0 48px; }
+    .montador { padding: 96px 0 48px; }
     .montador .wrap { display: block; }
     .sp-intro { padding: 4px 0 18px; }
-    .sp-intro h1 { font-size: clamp(27px, 7.2vw, 38px); max-width: 20ch; }
+    .sp-intro h1 { font-size: clamp(40px, 12vw, 64px); max-width: 12ch; }
     .sp-intro p { margin-top: 10px; font-size: 16px; }
     .palco {
         position: sticky; top: 0; z-index: 20;
@@ -233,7 +240,7 @@
     .palco-acoes { display: grid; gap: 8px; justify-items: stretch; }
     .palco-acoes .modo { display: grid; gap: 2px; border-radius: var(--r-md); }
     .palco-acoes .modo button { justify-content: flex-start; min-height: 44px; padding: 0 14px; border-radius: 12px; }
-    .btn-cheia { min-height: 48px; background: var(--primaria); border-color: var(--primaria); color: #fff; font-size: 15px; }
+    .btn-cheia { min-height: 48px; background: var(--primaria); border-color: var(--primaria); color: var(--laranja-tinta-txt); font-size: 15px; }
     /* enquanto digita o nome, a prévia encolhe pra sobrar espaço pro teclado */
     .montador.digitando .palco { padding-block: 8px; }
     .montador.digitando .palco .celular.grande { --h: 150px; }
@@ -241,10 +248,9 @@
     .grupo .campo input { scroll-margin-top: 190px; }
     .escolhas { padding-top: 4px; }
     .grupo:first-child { border-top: 0; }
-    .pedido-caixa { grid-template-columns: minmax(0, 1fr); margin-inline: -8px; padding: 28px 22px; border-radius: var(--r-lg); }
+    .pedido-caixa { grid-template-columns: minmax(0, 1fr); }
     .btn-quero { max-width: none; }
     .sp .duvidas .wrap { grid-template-columns: minmax(0, 1fr); gap: 20px; }
-    .sp-rodape .wrap { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 640px) {
     .palco { margin-inline: -18px; } /* site.css usa 18px de margem lateral aqui */
@@ -259,8 +265,6 @@
     .btn-cheia { font-size: 14px; padding: 0 12px; }
 }
 @media (max-width: 359px) {
-    .topo-whats { width: 44px; padding: 0; }
-    .topo-whats > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .palco { grid-template-columns: auto minmax(0, 124px); gap: 12px; }
     .tipo { padding: 0 12px 0 10px; font-size: 14px; }
 }

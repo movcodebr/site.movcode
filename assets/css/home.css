@@ -433,9 +433,13 @@ a.h-proj-linha:focus-visible { outline: 2px solid var(--destaque-noite); outline
     .h-titulo { font-size: 17vw; }
     html:not(.anima) .h-hero-base { bottom: 88px; }
     html:not(.anima) .h-hero-base .wrap { padding-right: clamp(18px, 4vw, 48px); }
-    .h-servicos-trilho { grid-template-columns: 1fr; }
+    /* serviços: carrossel de arrastar com o dedo em vez de 6 cartões empilhados */
+    .h-servicos-trilho { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 82%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; scroll-padding-inline: 24px; }
+    .h-servicos-trilho::-webkit-scrollbar { display: none; }
+    .h-servicos-intro { grid-column: auto; margin: 0; align-content: center; scroll-snap-align: start; }
+    .h-servicos-trilho > .h-card { scroll-snap-align: start; }
     .h-passos { grid-template-columns: 1fr; }
-    .h-card { min-height: 320px; padding: 26px; }
+    .h-card { min-height: 280px; padding: 26px; }
     .h-card-curva { top: 56px; }
     .h-hero-base .btn { width: 100%; }
 }
