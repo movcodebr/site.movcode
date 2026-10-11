@@ -309,7 +309,20 @@ html.anima .h-escala-progresso {
 .h-caso-rotulo { display: flex; justify-content: center; margin-bottom: 20px; }
 .h-caso-titulo { font-size: clamp(64px, 17.5vw, 290px); font-stretch: 75%; line-height: 0.8; letter-spacing: -0.05em; text-align: center; margin-bottom: clamp(32px, 5vw, 64px); }
 .h-produtos-sub { max-width: 520px; margin: 0 auto clamp(40px, 6vw, 72px); text-align: center; color: var(--sobre-noite-2); font-size: clamp(17px, 1.5vw, 20px); text-wrap: balance; }
-.h-produtos-grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 20px; }
+.h-produtos-trilho { display: grid; grid-auto-flow: column; grid-auto-columns: min(86%, 520px); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain; padding-bottom: 8px; scrollbar-width: none; }
+.h-produtos-trilho::-webkit-scrollbar { display: none; }
+.h-produtos-trilho > .h-produto { scroll-snap-align: start; }
+.h-produtos-controles { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
+.h-produtos-btn { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--noite-linha); background: var(--noite-2); color: var(--sobre-noite); font-size: 20px; cursor: pointer; transition: background .2s, opacity .2s; }
+.h-produtos-btn:hover { background: var(--laranja); color: var(--noite); }
+.h-produtos-btn:disabled { opacity: .35; pointer-events: none; }
+.h-produto { position: relative; }
+.h-produto-faixa { position: absolute; z-index: 2; top: 26px; right: -46px; width: 180px; padding: 8px 0; transform: rotate(45deg); background: var(--laranja); color: var(--noite); text-align: center; font: 700 12px var(--f-mono); letter-spacing: .1em; text-transform: uppercase; box-shadow: 0 8px 20px -8px rgba(0,0,0,.6); }
+.h-produto-breve .h-produto-fluxo { background: var(--noite); }
+.h-sua-pagina { display: grid; gap: 12px; margin-top: clamp(56px, 8vw, 110px); padding: clamp(24px, 4vw, 48px); border: 1px solid var(--noite-linha); border-radius: var(--r-xl); background: var(--noite-2); color: var(--sobre-noite); text-decoration: none; transition: border-color .2s; }
+.h-sua-pagina:hover { border-color: var(--laranja); }
+.h-sua-pagina strong { font: 800 clamp(28px, 4vw, 52px)/1 var(--f-display); font-stretch: 75%; letter-spacing: -0.03em; text-wrap: balance; }
+.h-sua-pagina-url { font: 600 clamp(16px, 1.6vw, 20px) var(--f-mono); color: var(--destaque-noite); overflow-wrap: anywhere; }
 .h-produto { display: grid; grid-template-rows: auto 1fr; background: var(--noite-2); border: 1px solid var(--noite-linha); border-radius: var(--r-xl); overflow: hidden; }
 .h-produto-visual { aspect-ratio: 16 / 10; overflow: hidden; background: #F8FAFC; }
 .h-produto-visual img { width: 100%; height: 100%; object-fit: cover; object-position: left top; transform-origin: left top; }

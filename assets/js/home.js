@@ -4,6 +4,25 @@
    pedir menos movimento, ou se as bibliotecas faltarem, nada disto roda
    e a pagina fica no layout estatico do home.css.
 ------------------------------------------------------------------------- */
+// ---------- Carrossel de produtos (roda sempre, com ou sem animacao) ----------
+(() => {
+    const trilho = document.getElementById('produtos-trilho');
+    if (!trilho) return;
+    const botoes = document.querySelectorAll('.h-produtos-btn');
+    const passo = () => (trilho.querySelector('.h-produto')?.offsetWidth || 300) + 20;
+    const atualizar = () => {
+        const fim = trilho.scrollWidth - trilho.clientWidth - 4;
+        botoes.forEach((b) => { b.disabled = b.dataset.dir === '-1' ? trilho.scrollLeft <= 4 : trilho.scrollLeft >= fim; });
+    };
+    botoes.forEach((b) => b.addEventListener('click', () => trilho.scrollBy({ left: passo() * Number(b.dataset.dir), behavior: 'smooth' })));
+    trilho.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); trilho.scrollBy({ left: passo() * (e.key === 'ArrowRight' ? 1 : -1), behavior: 'smooth' }); }
+    });
+    trilho.addEventListener('scroll', atualizar, { passive: true });
+    window.addEventListener('resize', atualizar);
+    atualizar();
+})();
+
 (() => {
     const html = document.documentElement;
     const reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -346,16 +365,6 @@
         if (avisos.length) {
             tl.from(avisos, { x: -24, autoAlpha: 0, duration: 0.6, ease: 'back.out(1.6)', stagger: 0.35, clearProps: 'transform' }, '<0.35');
         }
-    });
-
-    // ---------- Mais projetos ----------
-    gsap.utils.toArray('.h-proj').forEach((proj) => {
-        const tl = gsap.timeline({ scrollTrigger: { trigger: proj, start: 'top 88%' } });
-        tl.from(proj.querySelector('.h-proj-nome'), {
-            yPercent: 40, autoAlpha: 0, filter: 'blur(12px)', duration: 1, ease: 'power3.out', clearProps: 'filter,transform'
-        }).from(proj.querySelectorAll('.h-proj-num, .h-proj-desc, .h-proj-tipo, .h-proj-seta'), {
-            y: 16, autoAlpha: 0, duration: 0.7, ease: 'power2.out', stagger: 0.06, clearProps: 'transform'
-        }, 0.15);
     });
 
     // ---------- Contato e rodape ----------
