@@ -13,9 +13,9 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 | `/` | `index.html` | Página inicial: soluções, como funciona, projetos, dúvidas e contato |
 | `/diagnostico` | `diagnostico.html` | Landing page do diagnóstico gratuito de 30 minutos |
 | `/criacao-de-sites` | `criacao-de-sites.html` | Sites e landing pages |
-| `/loja-virtual` | `loja-virtual.html` | Lojas virtuais |
+| `/loja-virtual` | `loja-virtual.html` | Redireciona para o site da Lojinha Pronta (lojinhapronta.vercel.app) |
 | `/sistema-para-mercadinho` | `sistema-para-mercadinho.html` | Sistema de gestão para comércio |
-| `/sistema-para-laboratorio` | `sistema-para-laboratorio.html` | ForLabs, controle de qualidade para laboratórios |
+| `/sistema-para-laboratorio` | `sistema-para-laboratorio.html` | Redireciona para o site do ForLabs (www.forlabs.com.br) |
 | `/sistema-para-condominio` | `sistema-para-condominio.html` | ForCondom (em breve), economia do condomínio |
 | `/sistema-para-barbearia` | `sistema-para-barbearia.html` | ForBarber (em breve), agendamento para barbearias |
 | `/cardapio-digital` | `cardapio-digital.html` | Pratuca (em breve), cardápio digital com pedido no WhatsApp |
@@ -31,7 +31,7 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 | `/termo` | `termo.html` | Termos de Uso |
 | — | `404.html` | Página de erro |
 
-`processo.html`, `projetos.html` e `servicos.html` são endereços antigos: só redirecionam para a seção certa da página inicial e não são indexados.
+`processo.html`, `projetos.html`, `servicos.html`, `loja-virtual.html` e `sistema-para-laboratorio.html` são endereços antigos: só redirecionam (para a seção certa da página inicial ou, no caso da Lojinha Pronta e do ForLabs, para o site próprio de cada um) e não são indexados.
 
 ## Estrutura
 
@@ -41,11 +41,13 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 ├── blog/                  índice e guias do blog (caminhos absolutos: /assets/...)
 ├── assets/
 │   ├── css/
-│   │   ├── site.css       estilos compartilhados por todas as páginas
-│   │   └── home.css       estilos exclusivos da página inicial
+│   │   ├── site.css       estilos compartilhados por todas as páginas (cabeçalho com menu, rodapé)
+│   │   ├── home.css       componentes da página inicial, reaproveitados pelas internas
+│   │   └── interna.css    peças próprias das páginas internas no estilo da home
 │   ├── js/
 │   │   ├── site.js        WhatsApp, formulários, Analytics/Meta Pixel e transições
-│   │   ├── home.js        animações da página inicial
+│   │   ├── home.js        animações da página inicial (também usado pelas internas)
+│   │   ├── interna.js     animações próprias das páginas internas
 │   │   └── vendor/        GSAP, ScrollTrigger e Lenis (versões minificadas)
 │   └── images/
 │       ├── icons/         favicon e ícones do app

@@ -22,7 +22,7 @@
     <title>Diagnóstico gratuito | MovCode</title>
     <meta name="description" content="Sua equipe perde horas com planilha e processo manual? Agende um diagnóstico gratuito de 30 minutos e descubra o que dá para automatizar.">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#F4F4F2">
+    <meta name="theme-color" content="#111214">
     <link rel="canonical" href="https://movcode.com.br/diagnostico">
 
     <meta property="og:type" content="website">
@@ -37,47 +37,6 @@
     <meta property="og:locale" content="pt_BR">
     <meta name="twitter:card" content="summary_large_image">
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "O diagnóstico gratuito tem algum compromisso?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Nenhum. É uma conversa de cerca de 30 minutos para entender a sua operação e apontar o caminho. Se fizer sentido para você, mandamos a proposta."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Quanto custa um projeto?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Depende do tamanho do problema, e é por isso que começamos pelo diagnóstico gratuito. Depois dele você recebe uma proposta por escrito com escopo, prazo e valor fechados, sem surpresa no meio do caminho."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Meu negócio é pequeno. Vale a pena?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Vale. A gente começa do tamanho do seu problema: um site simples ou um controle de estoque e fiado já muda a rotina de um comércio. Se a sua empresa crescer, o sistema cresce junto."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Vocês atendem fora de Ribeirão Preto?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Sim. Estamos em Ribeirão Preto e atendemos empresas de todo o Brasil, com reuniões por vídeo e acompanhamento próximo."
-                }
-            }
-        ]
-    }
-    </script>
-
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" href="assets/images/icons/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
@@ -87,8 +46,82 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/interna.css">
+    <script>
+        // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
+        try {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anima-pre');
+        } catch (e) {}
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Service",
+                "name": "Diagnóstico gratuito",
+                "description": "Sua equipe perde horas com planilha e processo manual? Agende um diagnóstico gratuito de 30 minutos e descubra o que dá para automatizar.",
+                "url": "https://movcode.com.br/diagnostico",
+                "provider": {
+                    "@type": "ProfessionalService",
+                    "@id": "https://movcode.com.br/#empresa",
+                    "name": "MovCode",
+                    "url": "https://movcode.com.br/"
+                },
+                "areaServed": [
+                    {
+                        "@type": "City",
+                        "name": "Ribeirão Preto"
+                    },
+                    {
+                        "@type": "Country",
+                        "name": "Brasil"
+                    }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "O diagnóstico gratuito tem algum compromisso?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Nenhum. É uma conversa de cerca de 30 minutos para entender a sua operação e apontar o caminho. Se fizer sentido para você, mandamos a proposta."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Quanto custa um projeto?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Depende do tamanho do problema, e é por isso que começamos pelo diagnóstico gratuito. Depois dele você recebe uma proposta por escrito com escopo, prazo e valor fechados, sem surpresa no meio do caminho."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Meu negócio é pequeno. Vale a pena?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Vale. A gente começa do tamanho do seu problema: um site simples ou um controle de estoque e fiado já muda a rotina de um comércio. Se a sua empresa crescer, o sistema cresce junto."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Vocês atendem fora de Ribeirão Preto?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sim. Estamos em Ribeirão Preto e atendemos empresas de todo o Brasil, com reuniões por vídeo e acompanhamento próximo."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
 </head>
-<body>
+<body class="home interna">
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
     <header class="topo">
         <div class="wrap">
@@ -96,94 +129,216 @@
                 <span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>
                 <span>Mov<span class="code">Code</span><span class="ponto">.</span></span>
             </a>
-            <a href="#contato" class="btn btn-acao btn-pequeno" data-cta="topo">Agendar diagnóstico</a>
+            <button class="menu-botao" type="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
+                <svg class="abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            </button>
+            <nav id="menu" class="menu" aria-label="Navegação principal">
+                <div class="menu-item">
+                    <button class="menu-gatilho" type="button" aria-expanded="false" aria-controls="menu-solucoes">Soluções <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+                    <div class="menu-painel" id="menu-solucoes">
+                        <div class="menu-coluna">
+                            <p class="menu-titulo">Serviços</p>
+                            <a href="/criacao-de-sites">Criação de sites</a>
+                            <a href="/sistema-para-mercadinho">Sistema para comércio</a>
+                            <a href="/automacoes">Automações</a>
+                            <a href="/integracoes">Integrações</a>
+                            <a href="/paineis">Painéis</a>
+                            <a href="/consultoria">Consultoria</a>
+                        </div>
+                        <div class="menu-coluna">
+                            <p class="menu-titulo">Produtos</p>
+                            <a href="https://www.forlabs.com.br" target="_blank" rel="noopener">ForLabs <span class="menu-externo" aria-hidden="true">↗</span></a>
+                            <a href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Lojinha Pronta <span class="menu-externo" aria-hidden="true">↗</span></a>
+                            <a href="/sistema-para-condominio">ForCondom <span class="rodape-breve">Em breve</span></a>
+                            <a href="/sistema-para-barbearia">ForBarber <span class="rodape-breve">Em breve</span></a>
+                            <a href="/cardapio-digital">Pratuca <span class="rodape-breve">Em breve</span></a>
+                        </div>
+                        <a class="menu-destaque" href="/sua-pagina">
+                            <span class="menu-destaque-visual" aria-hidden="true"><span class="menu-mini"><i></i><i></i><i></i><b></b></span></span>
+                            <span class="menu-destaque-texto">
+                                <strong>Sua página</strong>
+                                <span>Veja como pode ficar a página do seu negócio, com o seu nome e o seu WhatsApp.</span>
+                                <em>Montar agora</em>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <a href="/#como-funciona">Como funciona</a>
+                <a href="/sobre">Sobre</a>
+                <a href="/#duvidas">Dúvidas</a>
+                <a href="https://wa.me/5516982157266" class="btn btn-escuro btn-pequeno" data-whatsapp data-cta="menu_whatsapp">WhatsApp</a>
+                <a href="#contato" class="btn btn-acao btn-pequeno" data-cta="menu">Diagnóstico grátis</a>
+            </nav>
         </div>
     </header>
 
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-anel" aria-hidden="true"><span></span></div>
+
     <main id="conteudo">
-        <section class="hero">
+        <section class="i-hero escuro">
             <div class="wrap">
-                <div class="hero-texto">
-                    <span class="selo"><b>Grátis</b> 30 minutos · sem compromisso</span>
-                    <h1>Sua empresa perde horas com planilha e <span class="tamanho">improviso</span>?</h1>
-                    <p class="hero-sub">Em uma conversa rápida, mapeamos onde a sua operação trava e mostramos o que dá para resolver com um site, um sistema ou uma automação.</p>
-                    <div class="hero-acoes">
-                        <a href="#contato" class="btn btn-acao" data-cta="lp_hero">Quero meu diagnóstico gratuito <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <div class="i-hero-texto">
+                    <p class="i-rotulo i-entra"><b>Grátis</b> 30 minutos · sem compromisso</p>
+                    <h1 class="h-grande gigante i-titulo">Sua empresa perde horas com <em>improviso?</em></h1>
+                    <p class="i-hero-sub i-entra">Em uma conversa rápida, mapeamos onde a sua operação trava e mostramos o que dá para resolver com um site, um sistema ou uma automação.</p>
+                    <div class="i-acoes i-entra">
+                        <a href="#contato" class="btn btn-acao" data-cta="diagnostico_hero" data-magnetico data-cursor="bora">Quero meu diagnóstico <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="h-caso-link" href="#sinais">Como funciona <span aria-hidden="true">↓</span></a>
                     </div>
-                    <ul class="garantias">
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> Preço fechado</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Seus dados são seus</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg> Resposta no mesmo dia útil</li>
-                    </ul>
                 </div>
-                <div class="conversa" aria-hidden="true">
-                    <p class="msg">Quem vendeu fiado pro seu João ontem? Não tá no caderno.<small>09:12</small></p>
-                    <p class="msg">O sistema diz 12 no estoque, mas na prateleira tem 3.<small>10:47</small></p>
-                    <p class="msg">Cadê a planilha atualizada? Tem três versões aqui.<small>14:05</small></p>
-                    <p class="msg resposta">Bora resolver isso de vez?<small>MovCode</small></p>
+                <div class="i-fluxo i-entra" aria-hidden="true">
+                    <span class="duo i-fluxo-marca"><i><b></b><b></b></i><i><b></b><b></b></i></span>
+                    <span class="i-aviso"><b></b>Conversa de 30 minutos<small>grátis</small></span>
+                    <span class="i-aviso"><b></b>Gargalo mapeado<small>grátis</small></span>
+                    <span class="i-aviso"><b></b>Caminho recomendado<small>grátis</small></span>
+                </div>
+            </div>
+            <a href="#conteudo-segue" class="h-rolar i-entra"><span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>Role para conhecer</a>
+        </section>
+
+        <section id="conteudo-segue" class="h-faixa" aria-label="O que o diagnóstico olha">
+            <div class="h-faixa-linha" aria-hidden="true"><span class="item">Planilha<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Retrabalho<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Números<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Processo<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Plano<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Planilha<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Retrabalho<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Números<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Processo<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Plano<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
+            <div class="h-faixa-linha contorno" aria-hidden="true"><span class="item">Planilha<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Retrabalho<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Números<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Processo<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Plano<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Planilha<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Retrabalho<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Números<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Processo<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Plano<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
+        </section>
+
+        <section class="h-conversa" aria-labelledby="conversa-titulo">
+            <div class="wrap">
+                <h2 id="conversa-titulo" class="h-grande gigante"><span class="junto">Sua empresa</span> <em class="junto">já te avisa.</em></h2>
+                <div class="chat">
+                    <p class="bolha">Quem vendeu fiado pro seu João ontem? Não tá no caderno.<small>09:12</small></p>
+                    <p class="bolha">O sistema diz 12 no estoque, mas na prateleira tem 3.<small>10:47</small></p>
+                    <p class="bolha">Cadê a planilha atualizada? Tem três versões aqui.<small>14:05</small></p>
+                    <p class="bolha nossa">Bora resolver isso de vez?<small>MovCode</small></p>
                 </div>
             </div>
         </section>
 
-        <section class="solucoes" aria-labelledby="sinais-titulo">
-            <div class="wrap">
-                <div class="cabeca-secao">
-                    <h2 id="sinais-titulo">Se você se reconheceu em algum destes, vale a conversa.</h2>
-                </div>
-                <ul class="lp-sinais">
-                    <li>
+        <section id="sinais" class="h-servicos escuro" aria-labelledby="sinais-titulo">
+            <div class="h-servicos-pin">
+                <div class="h-servicos-trilho">
+                    <div class="h-servicos-intro">
+                        <h2 id="sinais-titulo" class="h-grande gigante">Se você se reconheceu, <em>vale a conversa.</em></h2>
+                        <p>Seis sinais de que a operação está pedindo ajuda.</p>
+                    </div>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">01</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-diagnostico-1" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-diagnostico-1" startOffset="0" data-repete="pedidos · estoque · clientes · ">pedidos · estoque · clientes · pedidos · estoque · clientes · pedidos · estoque · clientes · pedidos · estoque · clientes · pedidos · estoque · clientes · pedidos · estoque · clientes · </textPath></text></svg></div>
                         <h3>Tudo vive em planilha</h3>
                         <p>Pedidos, estoque e clientes em arquivos que só uma pessoa entende.</p>
-                    </li>
-                    <li>
-                        <h3>Digita a mesma coisa duas vezes</h3>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">02</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-diagnostico-2" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-diagnostico-2" startOffset="0" data-repete="copia · cola · erro · ">copia · cola · erro · copia · cola · erro · copia · cola · erro · copia · cola · erro · copia · cola · erro · copia · cola · erro · </textPath></text></svg></div>
+                        <h3>Digita duas vezes</h3>
                         <p>Informação copiada de um lugar para outro, com erro e atraso.</p>
-                    </li>
-                    <li>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">03</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-diagnostico-3" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-diagnostico-3" startOffset="0" data-repete="relatório · mês · números · ">relatório · mês · números · relatório · mês · números · relatório · mês · números · relatório · mês · números · relatório · mês · números · relatório · mês · números · </textPath></text></svg></div>
                         <h3>Não enxerga os números</h3>
                         <p>Para saber como está o mês, alguém para tudo e monta um relatório.</p>
-                    </li>
-                    <li>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">04</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-diagnostico-4" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-diagnostico-4" startOffset="0" data-repete="mais clientes · mais trabalho · ">mais clientes · mais trabalho · mais clientes · mais trabalho · mais clientes · mais trabalho · mais clientes · mais trabalho · mais clientes · mais trabalho · mais clientes · mais trabalho · </textPath></text></svg></div>
                         <h3>Crescer é contratar mais</h3>
                         <p>Cada cliente novo aumenta o trabalho manual em vez de escalar.</p>
-                    </li>
-                    <li>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">05</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-diagnostico-5" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-diagnostico-5" startOffset="0" data-repete="lento · caro · genérico · ">lento · caro · genérico · lento · caro · genérico · lento · caro · genérico · lento · caro · genérico · lento · caro · genérico · lento · caro · genérico · </textPath></text></svg></div>
                         <h3>O sistema atual atrapalha</h3>
                         <p>Lento, caro ou genérico demais. A equipe usa por obrigação.</p>
-                    </li>
-                    <li>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">06</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-diagnostico-6" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-diagnostico-6" startOffset="0" data-repete="sem contato · sem confiança · ">sem contato · sem confiança · sem contato · sem confiança · sem contato · sem confiança · sem contato · sem confiança · sem contato · sem confiança · sem contato · sem confiança · </textPath></text></svg></div>
                         <h3>O site não traz clientes</h3>
                         <p>A página existe, mas não gera contato nem passa confiança.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="plano" class="h-caso escuro i-lista" aria-labelledby="plano-titulo">
+            <div class="wrap">
+                <h2 id="plano-titulo" class="h-grande gigante">Saia com um plano, <em>não com um folder.</em></h2>
+                <ul class="h-lista">
+                    <li class="h-proj">
+                        <div class="h-proj-linha">
+                            <span class="h-proj-num">01</span>
+                            <span class="h-proj-nome">Mapa do gargalo</span>
+                            <p class="h-proj-desc">Onde a sua operação perde tempo e dinheiro hoje, em linguagem simples.</p>
+                            <span class="h-proj-tipo">Mapa</span>
+                            <span class="h-proj-seta" aria-hidden="true">↗</span>
+                        </div>
+                    </li>
+                    <li class="h-proj">
+                        <div class="h-proj-linha">
+                            <span class="h-proj-num">02</span>
+                            <span class="h-proj-nome">Caminho recomendado</span>
+                            <p class="h-proj-desc">Site, sistema, automação ou integração: o que resolve o seu caso e o que não vale a pena.</p>
+                            <span class="h-proj-tipo">Caminho</span>
+                            <span class="h-proj-seta" aria-hidden="true">↗</span>
+                        </div>
+                    </li>
+                    <li class="h-proj">
+                        <div class="h-proj-linha">
+                            <span class="h-proj-num">03</span>
+                            <span class="h-proj-nome">Proposta fechada</span>
+                            <p class="h-proj-desc">Se fizer sentido seguir, escopo, prazo e valor por escrito.</p>
+                            <span class="h-proj-tipo">Proposta</span>
+                            <span class="h-proj-seta" aria-hidden="true">↗</span>
+                        </div>
+                    </li>
+                    <li class="h-proj">
+                        <div class="h-proj-linha">
+                            <span class="h-proj-num">04</span>
+                            <span class="h-proj-nome">Zero compromisso</span>
+                            <p class="h-proj-desc">Se não for o momento, você fica com o diagnóstico mesmo assim.</p>
+                            <span class="h-proj-tipo">Sem compromisso</span>
+                            <span class="h-proj-seta" aria-hidden="true">↗</span>
+                        </div>
                     </li>
                 </ul>
             </div>
         </section>
 
-        <section class="processo" aria-labelledby="leva-titulo">
+        <section id="duvidas" class="h-duvidas" aria-labelledby="duvidas-titulo">
             <div class="wrap">
-                <div class="cabeca-secao">
-                    <h2 id="leva-titulo">Saia da conversa com um plano, não com um folder.</h2>
+                <h2 id="duvidas-titulo" class="h-grande gigante">Antes de <em>agendar.</em></h2>
+                <div class="perguntas">
+                    <details class="pergunta">
+                        <summary>O diagnóstico gratuito tem algum compromisso?</summary>
+                        <p>Nenhum. É uma conversa de cerca de 30 minutos para entender a sua operação e apontar o caminho. Se fizer sentido para você, mandamos a proposta.</p>
+                    </details>
+                    <details class="pergunta">
+                        <summary>Quanto custa um projeto?</summary>
+                        <p>Depende do tamanho do problema, e é por isso que começamos pelo diagnóstico gratuito. Depois dele você recebe uma proposta por escrito com escopo, prazo e valor fechados, sem surpresa no meio do caminho.</p>
+                    </details>
+                    <details class="pergunta">
+                        <summary>Meu negócio é pequeno. Vale a pena?</summary>
+                        <p>Vale. A gente começa do tamanho do seu problema: um site simples ou um controle de estoque e fiado já muda a rotina de um comércio. Se a sua empresa crescer, o sistema cresce junto.</p>
+                    </details>
+                    <details class="pergunta">
+                        <summary>Vocês atendem fora de Ribeirão Preto?</summary>
+                        <p>Sim. Estamos em Ribeirão Preto e atendemos empresas de todo o Brasil, com reuniões por vídeo e acompanhamento próximo.</p>
+                    </details>
                 </div>
-                <ol class="passos">
-                    <li class="passo"><h3>Mapa do gargalo</h3><p>Onde a sua operação perde tempo e dinheiro hoje, em linguagem simples.</p></li>
-                    <li class="passo"><h3>Caminho recomendado</h3><p>Site, sistema, automação ou integração: o que resolve o seu caso e o que não vale a pena.</p></li>
-                    <li class="passo"><h3>Proposta fechada</h3><p>Se fizer sentido seguir, escopo, prazo e valor por escrito.</p></li>
-                    <li class="passo"><h3>Zero compromisso</h3><p>Se não for o momento, você fica com o diagnóstico mesmo assim.</p></li>
-                </ol>
             </div>
         </section>
 
-        <section id="contato" class="contato escuro">
+        <section id="contato" class="h-contato" aria-labelledby="contato-titulo">
             <div class="wrap">
-                <div class="contato-texto">
-                    <h2>Leva 1 minuto para <em>agendar</em>.</h2>
-                    <p>Preencha e fale direto com quem desenvolve, pelo WhatsApp.</p>
+                <div class="h-contato-texto">
+                    <h2 id="contato-titulo" class="h-contato-titulo gigante">Bora agendar?</h2>
+                    <p>Leva 1 minuto para agendar. Fale direto com quem desenvolve, pelo WhatsApp.</p>
                     <ul class="contato-lista">
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 30 minutos, por vídeo ou presencial</li>
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> Proposta com escopo, prazo e valor fechados</li>
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg> Resposta no mesmo dia útil</li>
                     </ul>
-                    <p class="contato-alt">Prefere e-mail? <a href="mailto:contato@movcode.com.br">contato@movcode.com.br</a></p>
                 </div>
                 <form class="form" data-lead-form novalidate>
                         <p class="form-titulo">Agende seu diagnóstico</p>
@@ -210,34 +365,8 @@
                         </div>
                         <p class="form-erro" role="alert" hidden>Preencha seu nome e escolha o que você precisa.</p>
                         <button type="submit" class="btn btn-acao">Agendar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-                        <p class="form-nota">Ao enviar, o WhatsApp abre com a sua mensagem pronta. Veja a nossa <a href="politica">Política de Privacidade</a>.</p>
+                        <p class="form-nota">Ao enviar, o WhatsApp abre com a sua mensagem pronta. Veja a nossa <a href="/politica">Política de Privacidade</a>.</p>
                     </form>
-            </div>
-        </section>
-
-        <section class="duvidas" style="padding-top: var(--secao)" aria-labelledby="lp-duvidas">
-            <div class="wrap">
-                <div class="cabeca-secao">
-                    <h2 id="lp-duvidas">Antes de agendar.</h2>
-                </div>
-                <div class="perguntas">
-                    <details class="pergunta">
-                        <summary>O diagnóstico gratuito tem algum compromisso?</summary>
-                        <p>Nenhum. É uma conversa de cerca de 30 minutos para entender a sua operação e apontar o caminho. Se fizer sentido para você, mandamos a proposta.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Quanto custa um projeto?</summary>
-                        <p>Depende do tamanho do problema, e é por isso que começamos pelo diagnóstico gratuito. Depois dele você recebe uma proposta por escrito com escopo, prazo e valor fechados, sem surpresa no meio do caminho.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Meu negócio é pequeno. Vale a pena?</summary>
-                        <p>Vale. A gente começa do tamanho do seu problema: um site simples ou um controle de estoque e fiado já muda a rotina de um comércio. Se a sua empresa crescer, o sistema cresce junto.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Vocês atendem fora de Ribeirão Preto?</summary>
-                        <p>Sim. Estamos em Ribeirão Preto e atendemos empresas de todo o Brasil, com reuniões por vídeo e acompanhamento próximo.</p>
-                    </details>
-                </div>
             </div>
         </section>
     </main>
@@ -268,8 +397,8 @@
                 </div>
                 <div>
                     <strong>Produtos</strong>
-                    <a href="/sistema-para-laboratorio">ForLabs</a>
-                    <a href="/loja-virtual">Lojinha Pronta</a>
+                    <a href="https://www.forlabs.com.br" target="_blank" rel="noopener">ForLabs <span class="menu-externo" aria-hidden="true">↗</span></a>
+                    <a href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Lojinha Pronta <span class="menu-externo" aria-hidden="true">↗</span></a>
                     <a href="/sistema-para-condominio">ForCondom <span class="rodape-breve">Em breve</span></a>
                     <a href="/sistema-para-barbearia">ForBarber <span class="rodape-breve">Em breve</span></a>
                     <a href="/cardapio-digital">Pratuca <span class="rodape-breve">Em breve</span></a>
@@ -296,5 +425,10 @@
     </footer>
 
     <script src="assets/js/site.js"></script>
+    <script src="assets/js/vendor/gsap.min.js"></script>
+    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/js/vendor/lenis.min.js"></script>
+    <script src="assets/js/home.js"></script>
+    <script src="assets/js/interna.js"></script>
 </body>
 </html>

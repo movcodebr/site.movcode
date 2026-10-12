@@ -108,7 +108,8 @@ document.querySelectorAll('[data-servico]').forEach((link) => {
     window.addEventListener('scroll', () => {
         const y = window.scrollY;
         const descendo = y > ultimoY && y > 240;
-        topo?.classList.toggle('escondido', descendo && !document.body.classList.contains('menu-aberto'));
+        const segurando = document.body.classList.contains('menu-aberto') || topo?.querySelector('.menu-item.aberto');
+        topo?.classList.toggle('escondido', descendo && !segurando);
         ultimoY = y;
     }, { passive: true });
 
@@ -265,6 +266,53 @@ window.addEventListener('load', () => {
             setTimeout(piscar, 2500 + Math.random() * 4500);
         };
         setTimeout(piscar, 1200 + Math.random() * 3000);
+    });
+})();
+
+// ---------- Menu com painel (Solucoes) ----------
+// No computador abre ao passar o mouse; no toque e no teclado, ao clicar.
+// Esc ou um clique fora fecha.
+(() => {
+    const itens = [...document.querySelectorAll('.menu-item')];
+    if (!itens.length) return;
+    const mouseNoComputador = window.matchMedia('(min-width: 1081px) and (hover: hover) and (pointer: fine)');
+
+    const abrir = (item, aberto) => {
+        item.classList.toggle('aberto', aberto);
+        item.querySelector('.menu-gatilho')?.setAttribute('aria-expanded', String(aberto));
+    };
+
+    itens.forEach((item) => {
+        const gatilho = item.querySelector('.menu-gatilho');
+        let espera = null;
+        gatilho?.addEventListener('click', (event) => {
+            // Com o mouse o painel ja abriu no hover: o clique so confirma
+            const pelaPassagem = mouseNoComputador.matches && event.pointerType === 'mouse';
+            abrir(item, pelaPassagem ? true : !item.classList.contains('aberto'));
+        });
+        item.addEventListener('pointerenter', (event) => {
+            if (!mouseNoComputador.matches || event.pointerType !== 'mouse') return;
+            clearTimeout(espera);
+            abrir(item, true);
+        });
+        item.addEventListener('pointerleave', (event) => {
+            if (!mouseNoComputador.matches || event.pointerType !== 'mouse') return;
+            espera = setTimeout(() => abrir(item, false), 180);
+        });
+        item.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => abrir(item, false)));
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        itens.filter((item) => item.classList.contains('aberto')).forEach((item) => {
+            abrir(item, false);
+            item.querySelector('.menu-gatilho')?.focus();
+        });
+    });
+    document.addEventListener('click', (event) => {
+        itens.forEach((item) => {
+            if (!item.contains(event.target)) abrir(item, false);
+        });
     });
 })();
 
