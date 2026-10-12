@@ -432,6 +432,7 @@ html.chegando body::before {
 .rodape-links strong { margin-bottom: 8px; color: var(--sobre-noite); font: 500 20px/1.2 var(--f-texto); }
 .rodape-links a { text-decoration: none; font-size: 15px; }
 .rodape-links a:hover { color: var(--sobre-noite); }
+.rodape-breve { margin-left: 4px; padding: 2px 7px; border-radius: var(--r-pill); background: var(--laranja); color: var(--noite); font: 700 10px/1.4 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; vertical-align: 2px; white-space: nowrap; }
 
 .rodape-base { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 40px; font-size: 13px; }
 .rodape-legal { display: flex; flex-wrap: wrap; gap: 0 0.5em; }
@@ -559,7 +560,7 @@ body.rodape-a-vista .whats-flutuante { opacity: 0; visibility: hidden; }
     .passos, .lp-sinais { grid-template-columns: 1fr; }
     .form { padding: 28px 20px; }
     .whats-flutuante { right: 14px; bottom: 14px; width: 54px; height: 54px; }
-    .rodape-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .rodape-links { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 14px; }
     .rodape-base { flex-direction: column; align-items: flex-start; }
     .rodape-sociais { margin-left: 0; order: -1; }
 }
