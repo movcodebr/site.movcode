@@ -427,7 +427,7 @@ html.chegando body::before {
 }
 .rodape-gigante .duo { --w: 0.62em; margin-right: 0.08em; margin-bottom: 0.02em; }
 
-.rodape-links { display: grid; grid-template-columns: repeat(3, minmax(0, 240px)); gap: 36px 24px; }
+.rodape-links { display: grid; grid-template-columns: repeat(4, minmax(0, 240px)); gap: 36px 24px; }
 .rodape-links div { display: grid; gap: 10px; align-content: start; justify-items: start; }
 .rodape-links strong { margin-bottom: 8px; color: var(--sobre-noite); font: 500 20px/1.2 var(--f-texto); }
 .rodape-links a { text-decoration: none; font-size: 15px; }
@@ -513,6 +513,35 @@ body.rodape-a-vista .whats-flutuante { opacity: 0; visibility: hidden; }
     .prova:hover strong { color: var(--noite); }
 }
 
+/* ---------- Paginas de produto, Sobre e blog ---------- */
+/* Topo na largura da pagina, alinhado com as secoes de baixo (Sobre, indice do blog) */
+.pagina-topo-largo .wrap { max-width: var(--largura); }
+.pagina-topo-largo h1 { max-width: 900px; }
+.solucoes-junto { padding-top: 0; }
+.contato-unico .wrap { grid-template-columns: minmax(0, 760px); }
+.sobre-porque { padding: 8px 0 var(--secao); }
+.sobre-porque .cabeca-secao { margin: 0; }
+.cabeca-secao p a { color: var(--primaria-texto); font-weight: 600; }
+.blog-indice { padding: 0 0 var(--secao); }
+.blog-indice .wrap { display: grid; gap: 40px; }
+.blog-mais { padding: 0 0 var(--secao); }
+.blog-mais .wrap { max-width: 860px; display: grid; gap: 24px; }
+.blog-mais h2 { font-size: 26px; font-weight: 700; }
+.blog-lista { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.blog-card { display: grid; gap: 12px; align-content: start; padding: 28px; background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--r-lg); color: inherit; text-decoration: none; transition: border-color .2s ease, transform .2s ease; }
+.blog-card:hover { border-color: var(--laranja); transform: translateY(-4px); }
+.blog-tag { font: 500 13px var(--f-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--laranja-texto); }
+.blog-card h2, .blog-card h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; }
+.blog-card p { font-size: 16px; color: var(--tinta-2); }
+.blog-ler { margin-top: 4px; font-size: 15px; font-weight: 600; }
+.artigo-topo .wrap { gap: 16px; }
+.voltar { justify-self: start; font-size: 15px; font-weight: 600; color: var(--tinta-2); text-decoration: none; }
+.voltar:hover { color: var(--tinta); }
+.pagina-topo .artigo-meta { font: 500 14px/1.5 var(--f-mono); color: var(--tinta-3); }
+.artigo-cta { display: grid; gap: 12px; justify-items: start; padding: clamp(24px, 4vw, 36px); border-radius: var(--r-lg); background: var(--noite); color: var(--sobre-noite); }
+.artigo-cta strong { font: 700 24px/1.15 var(--f-display); color: var(--sobre-noite); }
+.artigo-cta p { color: var(--sobre-noite-2); }
+
 /* ---------- Movimento ---------- */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -549,6 +578,7 @@ body.rodape-a-vista .whats-flutuante { opacity: 0; visibility: hidden; }
         transition: opacity .2s ease, transform .2s ease, visibility .2s;
     }
     body.menu-aberto .menu { opacity: 1; visibility: visible; transform: none; }
+    .rodape-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .menu a:not(.btn) { padding: 14px 16px; font-size: 17px; }
     .menu .btn { margin: 8px 0 0; }
 }
