@@ -270,9 +270,9 @@ window.addEventListener('load', () => {
 
 // ---------- Rodape a vista ----------
 // O rodape tem o proprio WhatsApp; enquanto ele aparece, o botao flutuante
-// some para nao cobrir as insignias e as redes sociais.
+// some para nao cobrir as redes sociais.
 (() => {
-    const partes = document.querySelectorAll('.rodape-meio, .rodape-base');
+    const partes = document.querySelectorAll('.rodape-links, .rodape-base');
     if (!partes.length || !('IntersectionObserver' in window)) return;
     const visiveis = new Set();
     const observador = new IntersectionObserver((entradas) => {
