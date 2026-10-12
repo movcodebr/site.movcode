@@ -268,6 +268,23 @@ window.addEventListener('load', () => {
     });
 })();
 
+// ---------- Rodape a vista ----------
+// O rodape tem o proprio WhatsApp; enquanto ele aparece, o botao flutuante
+// some para nao cobrir as redes sociais.
+(() => {
+    const partes = document.querySelectorAll('.rodape-links, .rodape-base');
+    if (!partes.length || !('IntersectionObserver' in window)) return;
+    const visiveis = new Set();
+    const observador = new IntersectionObserver((entradas) => {
+        entradas.forEach((entrada) => {
+            if (entrada.isIntersecting) visiveis.add(entrada.target);
+            else visiveis.delete(entrada.target);
+        });
+        document.body.classList.toggle('rodape-a-vista', visiveis.size > 0);
+    });
+    partes.forEach((parte) => observador.observe(parte));
+})();
+
 // ---------- Transicao entre paginas ----------
 (() => {
     if (MOVCODE_MOVIMENTO_REDUZIDO) {

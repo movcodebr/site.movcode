@@ -403,31 +403,47 @@ html.chegando body::before {
 .form-nota { font-size: 13px; color: var(--tinta-3); line-height: 1.5; }
 .form-nota a { color: var(--tinta-2); }
 
-/* ---------- Rodape ---------- */
-.rodape { background: var(--noite); color: var(--sobre-noite-2); padding: 56px 0 32px; border-top: 1px solid var(--noite-linha); }
-.rodape .wrap { display: grid; gap: 40px; }
-.rodape-topo { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
-.rodape .marca { color: var(--sobre-noite); }
-.rodape-frase { margin-top: 12px; font-size: 15px; }
-.rodape-links { display: flex; gap: 48px; flex-wrap: wrap; }
-.rodape-links div { display: grid; gap: 10px; align-content: start; }
-.rodape-links strong { color: var(--sobre-noite); font-size: 14px; }
-.rodape-links a { text-decoration: none; font-size: 15px; }
-.rodape-links a:hover { color: var(--sobre-noite); }
+/* ---------- Rodape ----------
+   Letreiro gigante de ponta a ponta, colunas de links e a linha legal com as
+   redes sociais. O rodape usa a largura toda da tela (com respiro) para o
+   letreiro preencher de uma borda a outra. */
+.rodape { background: var(--noite); color: var(--sobre-noite-2); padding: clamp(40px, 5vw, 64px) 0 32px; border-top: 1px solid var(--noite-linha); }
+.rodape .wrap { max-width: 1680px; padding-inline: clamp(18px, 2.5vw, 40px); display: grid; gap: clamp(36px, 4.5vw, 64px); container-type: inline-size; }
 .rodape-gigante {
     display: flex;
     align-items: flex-end;
-    gap: 0.05em;
+    min-width: 0;
     overflow-x: clip;
-    font: 800 clamp(52px, 16.5vw, 250px)/0.8 var(--f-display);
+    font: 800 25vw/0.8 var(--f-display);
+    font-size: 26.6cqi; /* ocupa a largura do rodape */
     font-stretch: 75%;
-    letter-spacing: -0.05em;
+    font-variation-settings: "opsz" 96; /* mesmo desenho em qualquer tamanho, para a conta da largura fechar */
+    letter-spacing: -0.03em;
+    font-kerning: none; /* a home divide em letras (sem kerning entre elas): assim a largura e igual em todas as paginas */
+    white-space: nowrap;
     color: var(--laranja);
-    padding-top: 0.06em;
+    padding: 0.06em 0.03em 0 0; /* a direita: devolve o espacamento negativo do ponto final */
     user-select: none;
 }
 .rodape-gigante .duo { --w: 0.62em; margin-right: 0.08em; margin-bottom: 0.02em; }
-.rodape-base { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--noite-linha); font-size: 14px; }
+
+.rodape-links { display: grid; grid-template-columns: repeat(4, minmax(0, 240px)); gap: 36px 24px; }
+.rodape-links div { display: grid; gap: 10px; align-content: start; justify-items: start; }
+.rodape-links strong { margin-bottom: 8px; color: var(--sobre-noite); font: 500 20px/1.2 var(--f-texto); }
+.rodape-links a { text-decoration: none; font-size: 15px; }
+.rodape-links a:hover { color: var(--sobre-noite); }
+.rodape-breve { margin-left: 4px; padding: 2px 7px; border-radius: var(--r-pill); background: var(--laranja); color: var(--noite); font: 700 10px/1.4 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; vertical-align: 2px; white-space: nowrap; }
+
+.rodape-base { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 40px; font-size: 13px; }
+.rodape-legal { display: flex; flex-wrap: wrap; gap: 0 0.5em; }
+.rodape-legal a { text-decoration: none; }
+.rodape-legal a:hover { color: var(--sobre-noite); text-decoration: underline; }
+.rodape-sociais { display: flex; gap: 20px; margin-left: auto; }
+.rodape-sociais a { display: grid; place-items: center; width: 32px; height: 32px; color: var(--sobre-noite); transition: color .2s ease; }
+.rodape-sociais a:hover { color: var(--laranja); }
+.rodape-sociais svg { width: 26px; height: 26px; }
+/* O rodape ja tem WhatsApp: com ele a vista, o botao flutuante sai da frente */
+body.rodape-a-vista .whats-flutuante { opacity: 0; visibility: hidden; }
 
 /* ---------- WhatsApp flutuante ---------- */
 .whats-flutuante {
@@ -497,6 +513,35 @@ html.chegando body::before {
     .prova:hover strong { color: var(--noite); }
 }
 
+/* ---------- Paginas de produto, Sobre e blog ---------- */
+/* Topo na largura da pagina, alinhado com as secoes de baixo (Sobre, indice do blog) */
+.pagina-topo-largo .wrap { max-width: var(--largura); }
+.pagina-topo-largo h1 { max-width: 900px; }
+.solucoes-junto { padding-top: 0; }
+.contato-unico .wrap { grid-template-columns: minmax(0, 760px); }
+.sobre-porque { padding: 8px 0 var(--secao); }
+.sobre-porque .cabeca-secao { margin: 0; }
+.cabeca-secao p a { color: var(--primaria-texto); font-weight: 600; }
+.blog-indice { padding: 0 0 var(--secao); }
+.blog-indice .wrap { display: grid; gap: 40px; }
+.blog-mais { padding: 0 0 var(--secao); }
+.blog-mais .wrap { max-width: 860px; display: grid; gap: 24px; }
+.blog-mais h2 { font-size: 26px; font-weight: 700; }
+.blog-lista { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.blog-card { display: grid; gap: 12px; align-content: start; padding: 28px; background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--r-lg); color: inherit; text-decoration: none; transition: border-color .2s ease, transform .2s ease; }
+.blog-card:hover { border-color: var(--laranja); transform: translateY(-4px); }
+.blog-tag { font: 500 13px var(--f-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--laranja-texto); }
+.blog-card h2, .blog-card h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; }
+.blog-card p { font-size: 16px; color: var(--tinta-2); }
+.blog-ler { margin-top: 4px; font-size: 15px; font-weight: 600; }
+.artigo-topo .wrap { gap: 16px; }
+.voltar { justify-self: start; font-size: 15px; font-weight: 600; color: var(--tinta-2); text-decoration: none; }
+.voltar:hover { color: var(--tinta); }
+.pagina-topo .artigo-meta { font: 500 14px/1.5 var(--f-mono); color: var(--tinta-3); }
+.artigo-cta { display: grid; gap: 12px; justify-items: start; padding: clamp(24px, 4vw, 36px); border-radius: var(--r-lg); background: var(--noite); color: var(--sobre-noite); }
+.artigo-cta strong { font: 700 24px/1.15 var(--f-display); color: var(--sobre-noite); }
+.artigo-cta p { color: var(--sobre-noite-2); }
+
 /* ---------- Movimento ---------- */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -533,6 +578,7 @@ html.chegando body::before {
         transition: opacity .2s ease, transform .2s ease, visibility .2s;
     }
     body.menu-aberto .menu { opacity: 1; visibility: visible; transform: none; }
+    .rodape-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .menu a:not(.btn) { padding: 14px 16px; font-size: 17px; }
     .menu .btn { margin: 8px 0 0; }
 }
@@ -544,4 +590,7 @@ html.chegando body::before {
     .passos, .lp-sinais { grid-template-columns: 1fr; }
     .form { padding: 28px 20px; }
     .whats-flutuante { right: 14px; bottom: 14px; width: 54px; height: 54px; }
+    .rodape-links { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 14px; }
+    .rodape-base { flex-direction: column; align-items: flex-start; }
+    .rodape-sociais { margin-left: 0; order: -1; }
 }

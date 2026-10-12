@@ -133,7 +133,7 @@
             ease: 'back.out(2.2)',
             stagger: 0.06
         }, 0.35)
-        .from('.h-hero-base .wrap > *', { y: 24, autoAlpha: 0, duration: 0.8, ease: 'power3.out', stagger: 0.1 }, 0.55);
+        .from(gsap.utils.toArray('.h-hero-base .wrap > *'), { y: 24, autoAlpha: 0, duration: 0.8, ease: 'power3.out', stagger: 0.1 }, 0.55);
 
     const tamanho = document.querySelector('.h-titulo .tamanho');
     tamanho?.addEventListener('pointerenter', () => {
@@ -149,7 +149,8 @@
         });
     });
 
-    const hero = document.querySelector('.h-hero');
+    // Nas paginas internas o topo e o .i-hero (interna.css)
+    const hero = document.querySelector('.h-hero, .i-hero');
 
     if (hero) {
         // O WhatsApp flutuante so aparece depois do hero, para nao cobrir o botao
@@ -159,7 +160,7 @@
             onEnter: () => document.body.classList.add('mostrar-whats'),
             onLeaveBack: () => document.body.classList.remove('mostrar-whats')
         });
-        gsap.to('.h-titulo', {
+        gsap.to(hero.querySelector('.h-titulo, .i-titulo'), {
             yPercent: -14,
             scale: 0.94,
             opacity: 0.2,

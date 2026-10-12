@@ -1,0 +1,168 @@
+/* =========================================================================
+   MovCode — paginas internas no estilo da home (produtos, servicos, Sobre
+   e blog). Usam os componentes do home.css (faixa, conversa, cartoes,
+   passos, duvidas, contato) e aqui ficam so as pecas proprias delas.
+   Sem JavaScript (ou com movimento reduzido) tudo aparece estatico.
+   ========================================================================= */
+
+/* ---------- Topo da pagina ---------- */
+.i-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: min(100svh, 1000px);
+    display: grid;
+    align-content: center;
+    padding: clamp(120px, 16vh, 172px) 0 clamp(72px, 10vh, 120px);
+}
+.i-hero .wrap { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: clamp(36px, 5vw, 80px); align-items: center; }
+.i-hero-texto { display: grid; gap: 28px; justify-items: start; }
+.i-rotulo { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 10px; font: 500 13px var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--destaque-noite); }
+.i-rotulo b { padding: 4px 10px; border-radius: var(--r-pill); background: var(--laranja); color: var(--noite); font-weight: 600; }
+.i-rotulo a { color: inherit; text-decoration: none; }
+.i-rotulo a:hover { color: var(--sobre-noite); }
+.i-hero .i-titulo { font-size: clamp(58px, 8.6vw, 164px); line-height: 0.86; }
+.i-hero-sub { max-width: 540px; font-size: clamp(17px, 1.45vw, 20px); color: var(--sobre-noite-2); text-wrap: balance; }
+.i-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; }
+.i-acoes .btn { min-height: 56px; padding-inline: 28px; }
+/* Indicador de rolagem no pe do topo, como na home */
+.i-hero > .h-rolar { position: absolute; left: 0; right: 0; bottom: clamp(20px, 4vh, 36px); width: max-content; margin-inline: auto; }
+/* Topo so com texto (blog e artigos) */
+.i-hero-compacto { min-height: 0; padding-bottom: clamp(56px, 8vw, 96px); }
+.i-hero-compacto .wrap { grid-template-columns: minmax(0, 1fr); }
+.i-hero-compacto .i-titulo { max-width: 15ch; }
+.i-artigo-topo .i-titulo { font-size: clamp(44px, 6.4vw, 108px); max-width: 17ch; }
+.i-meta { font: 500 13px var(--f-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--sobre-noite-2); }
+/* Sem animacao pronta, o titulo e as pecas do topo esperam o script (com rede de seguranca) */
+html.anima-pre .i-hero .i-titulo, html.anima-pre .i-entra { opacity: 0; animation: titulo-aparece 0s 3s forwards; }
+
+/* Visual do topo: avisos chegando num painel laranja */
+.i-fluxo {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    gap: 14px;
+    min-height: 460px;
+    padding: clamp(28px, 4vw, 52px);
+    border-radius: var(--r-xl);
+    background: var(--laranja);
+    overflow: hidden;
+}
+.i-fluxo-marca { position: absolute; right: -8%; bottom: -18%; z-index: -1; --w: clamp(200px, 24vw, 340px); --cor: var(--noite); opacity: 0.12; }
+.i-aviso {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 100%;
+    padding: 15px 20px;
+    border-radius: 18px;
+    background: var(--noite);
+    color: var(--sobre-noite);
+    font: 600 clamp(14px, 1.3vw, 17px)/1.25 var(--f-texto);
+    white-space: nowrap;
+    box-shadow: 0 22px 44px -22px rgba(0, 0, 0, 0.6);
+}
+.i-aviso b { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--laranja); }
+.i-aviso small { margin-left: 4px; font: 500 12px var(--f-mono); color: var(--sobre-noite-2); white-space: nowrap; }
+.i-aviso:nth-child(3) { margin-left: 9%; }
+.i-aviso:nth-child(4) { margin-left: 18%; }
+
+/* Visual do topo dos paineis: barras subindo, sem numeros inventados */
+.i-painel { display: grid; gap: 22px; padding: clamp(24px, 3vw, 36px); border-radius: var(--r-xl); background: var(--noite-2); border: 1px solid var(--noite-linha); }
+.i-painel-topo { display: flex; justify-content: space-between; align-items: center; font: 500 13px var(--f-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--sobre-noite-2); }
+.i-painel-topo i { display: inline-flex; align-items: center; gap: 8px; font-style: normal; color: var(--destaque-noite); }
+.i-painel-topo i::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--laranja); }
+.i-barras { position: relative; display: flex; align-items: flex-end; gap: clamp(8px, 1.4vw, 16px); height: clamp(200px, 22vw, 280px); padding-top: 12px; border-bottom: 1px solid var(--noite-linha); }
+.i-barras span { flex: 1; height: var(--h); border-radius: 10px 10px 4px 4px; background: color-mix(in srgb, var(--laranja) 35%, var(--noite-2)); transform-origin: bottom; }
+.i-barras span:last-of-type { background: var(--laranja); }
+.i-meta-linha { position: absolute; left: 0; right: 0; bottom: 72%; border-top: 2px dashed color-mix(in srgb, var(--sobre-noite) 40%, transparent); }
+.i-meta-linha em { position: absolute; right: 0; top: -26px; font: 500 12px var(--f-mono); font-style: normal; color: var(--sobre-noite-2); }
+.i-painel-pes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.i-painel-pes span { padding: 14px; border-radius: 14px; background: var(--noite); font: 600 14px var(--f-texto); color: var(--sobre-noite); }
+.i-painel-pes small { display: block; margin-bottom: 4px; font: 500 11px var(--f-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--sobre-noite-2); }
+
+/* Visual do Sobre: o simbolo grande, com os olhos seguindo o mouse */
+.i-simbolo { display: grid; place-items: center; }
+.i-simbolo .duo { --w: clamp(190px, 25vw, 360px); }
+
+/* ---------- Manifesto: o texto acende enquanto rola ---------- */
+.i-manifesto { background: var(--papel); color: var(--tinta); padding: var(--secao) 0; }
+.i-manifesto .wrap { display: grid; gap: clamp(24px, 3vw, 40px); max-width: 1100px; }
+.i-sobretitulo { font: 500 13px var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--laranja-texto); }
+.i-manifesto p { font: 700 clamp(28px, 3.7vw, 56px)/1.1 var(--f-display); letter-spacing: -0.025em; text-wrap: pretty; }
+.i-manifesto .i-palavra { transition: none; }
+
+/* ---------- Tres pontos (seguranca) ---------- */
+.i-trio { background: var(--papel); color: var(--tinta); padding: var(--secao) 0; }
+.i-trio .h-grande { max-width: 12ch; margin-bottom: clamp(40px, 6vw, 80px); }
+.i-trio-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.i-trio-item { display: grid; gap: 14px; align-content: start; padding: 32px; border-radius: var(--r-xl); background: var(--cartao); border: 1px solid var(--linha); }
+.i-trio-icone { width: 56px; height: 56px; display: grid; place-items: center; border-radius: 16px; background: var(--noite); color: var(--laranja); }
+.i-trio-icone svg { width: 28px; height: 28px; }
+.i-trio-item h3 { font: 800 clamp(26px, 2.4vw, 36px)/0.95 var(--f-display); font-stretch: 85%; letter-spacing: -0.03em; }
+.i-trio-item p { color: var(--tinta-2); }
+.i-trio-nota { margin-top: 28px; color: var(--tinta-2); }
+.i-trio-nota a { color: var(--laranja-texto); font-weight: 600; }
+
+/* ---------- Listas grandes (produtos, extras, guias) ---------- */
+.i-lista .h-grande { margin-bottom: clamp(40px, 6vw, 80px); }
+.i-lista-sub { max-width: 520px; margin: calc(clamp(40px, 6vw, 80px) * -0.6) 0 clamp(40px, 6vw, 72px); color: var(--sobre-noite-2); font-size: clamp(17px, 1.5vw, 20px); }
+div.h-proj-linha .h-proj-seta { visibility: hidden; }
+.i-guias .h-proj-linha { grid-template-columns: 56px minmax(0, 1.4fr) minmax(0, 1fr) 140px 40px; }
+.i-guias .h-proj-nome { font-size: clamp(28px, 3.4vw, 54px); line-height: 0.95; }
+
+/* ---------- Faixa final laranja (blog) ---------- */
+.i-chamada { background: var(--laranja); color: var(--noite); padding: clamp(72px, 10vw, 140px) 0; }
+.i-chamada .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: clamp(32px, 5vw, 72px); align-items: end; }
+.i-chamada-titulo { font-size: clamp(60px, 9vw, 160px); font-stretch: 75%; line-height: 0.84; letter-spacing: -0.045em; }
+.i-chamada-texto { display: grid; gap: 24px; justify-items: start; }
+.i-chamada-texto p { font-size: 20px; max-width: 420px; text-wrap: balance; }
+.i-chamada .btn-acao, .i-cartao .btn-acao { background: var(--noite); color: var(--sobre-noite); }
+.i-chamada .btn-acao:hover, .i-cartao .btn-acao:hover { background: var(--noite-2); }
+
+/* Cartao de aviso (produtos em breve), no lugar do formulario */
+.i-cartao { display: grid; gap: 18px; padding: clamp(28px, 4vw, 44px); border-radius: var(--r-xl); background: var(--cartao); color: var(--tinta); box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.45); }
+.i-cartao strong { font: 800 clamp(30px, 3vw, 44px)/0.95 var(--f-display); font-stretch: 80%; letter-spacing: -0.03em; }
+.i-cartao p { color: var(--tinta-2); }
+.i-cartao .btn { width: 100%; }
+.i-cartao small { font-size: 13px; color: var(--tinta-3); }
+
+/* ---------- Artigo do blog ---------- */
+.i-progresso { display: none; }
+html.anima .i-progresso { display: block; position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: 4px; background: var(--laranja); transform-origin: left; transform: scaleX(0); }
+.i-artigo { background: var(--papel); color: var(--tinta-2); padding: clamp(56px, 8vw, 112px) 0 var(--secao); }
+.i-artigo article { max-width: 780px; display: grid; gap: 22px; font-size: 19px; line-height: 1.75; }
+.i-artigo article > p:first-child { font-size: clamp(21px, 2vw, 26px); line-height: 1.5; color: var(--tinta); }
+.i-artigo h2 { margin-top: 32px; font: 800 clamp(32px, 3.6vw, 52px)/0.98 var(--f-display); font-stretch: 80%; letter-spacing: -0.035em; color: var(--tinta); text-wrap: balance; }
+.i-artigo ul { list-style: none; display: grid; gap: 12px; }
+.i-artigo li { position: relative; padding-left: 30px; }
+.i-artigo li::before { content: ""; position: absolute; left: 4px; top: 0.62em; width: 10px; height: 10px; border-radius: 50%; background: var(--laranja); }
+.i-artigo strong { color: var(--tinta); }
+.i-artigo a { color: var(--laranja-texto); font-weight: 600; }
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1080px) {
+    .i-hero { min-height: 0; }
+    .i-hero > .h-rolar { display: none; }
+    .i-hero .wrap, .i-chamada .wrap { grid-template-columns: minmax(0, 1fr); }
+    .i-fluxo, .i-painel { max-width: 620px; width: 100%; }
+    .i-simbolo { justify-items: start; }
+    .i-trio-grade { grid-template-columns: minmax(0, 1fr); }
+    .i-guias .h-proj-linha { grid-template-columns: minmax(0, 1fr) auto; }
+}
+@media (max-width: 820px) {
+    .i-guias .h-proj-nome { font-size: clamp(28px, 7vw, 44px); }
+}
+@media (max-width: 640px) {
+    .i-hero { padding-top: 112px; }
+    .i-acoes .btn { width: 100%; }
+    .i-fluxo { min-height: 300px; gap: 10px; padding: 22px; }
+    .i-aviso { padding: 12px 16px; font-size: 14px; white-space: normal; }
+    .i-aviso small { display: none; }
+    .i-aviso:nth-child(3) { margin-left: 5%; }
+    .i-aviso:nth-child(4) { margin-left: 10%; }
+    .i-painel-pes { grid-template-columns: minmax(0, 1fr); }
+    .i-artigo article { font-size: 18px; }
+}

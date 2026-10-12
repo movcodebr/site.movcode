@@ -16,6 +16,17 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 | `/loja-virtual` | `loja-virtual.html` | Lojas virtuais |
 | `/sistema-para-mercadinho` | `sistema-para-mercadinho.html` | Sistema de gestão para comércio |
 | `/sistema-para-laboratorio` | `sistema-para-laboratorio.html` | ForLabs, controle de qualidade para laboratórios |
+| `/sistema-para-condominio` | `sistema-para-condominio.html` | ForCondom (em breve), economia do condomínio |
+| `/sistema-para-barbearia` | `sistema-para-barbearia.html` | ForBarber (em breve), agendamento para barbearias |
+| `/cardapio-digital` | `cardapio-digital.html` | Pratuca (em breve), cardápio digital com pedido no WhatsApp |
+| `/automacoes` | `automacoes.html` | Automação de processos |
+| `/integracoes` | `integracoes.html` | Integração de sistemas |
+| `/paineis` | `paineis.html` | Painéis de gestão |
+| `/consultoria` | `consultoria.html` | Consultoria em tecnologia |
+| `/sobre` | `sobre.html` | Sobre a MovCode: como trabalhamos, produtos e segurança |
+| `/sua-pagina` | `sua-pagina.html` | Prévia editável da página do negócio (não indexada) |
+| `/blog/` | `blog/index.html` | Índice do blog |
+| `/blog/<guia>` | `blog/<guia>.html` | Guias do blog (fiado, site ou Instagram, custo de um sistema) |
 | `/politica` | `politica.html` | Política de Privacidade |
 | `/termo` | `termo.html` | Termos de Uso |
 | — | `404.html` | Página de erro |
@@ -27,6 +38,7 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 ```
 .
 ├── *.html                 páginas do site (uma por URL)
+├── blog/                  índice e guias do blog (caminhos absolutos: /assets/...)
 ├── assets/
 │   ├── css/
 │   │   ├── site.css       estilos compartilhados por todas as páginas

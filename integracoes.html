@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CKRK3S37W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1CKRK3S37W');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Chegando de outra pagina do site: comeca coberto de laranja (transicao)
+        try {
+            if (sessionStorage.getItem('movcode_transicao') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.documentElement.classList.add('chegando');
+            }
+        } catch (e) {}
+    </script>
+    <title>Integração de sistemas, planilhas e APIs | MovCode</title>
+    <meta name="description" content="Loja, estoque, financeiro, planilhas e CRM trocando dados sozinhos, sem digitar a mesma coisa duas vezes. Integração de sistemas em Ribeirão Preto e todo o Brasil.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#111214">
+    <link rel="canonical" href="https://movcode.com.br/integracoes">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MovCode">
+    <meta property="og:title" content="Integração de sistemas, planilhas e APIs | MovCode">
+    <meta property="og:description" content="Loja, estoque, financeiro, planilhas e CRM trocando dados sozinhos, sem digitar a mesma coisa duas vezes. Integração de sistemas em Ribeirão Preto e todo o Brasil.">
+    <meta property="og:url" content="https://movcode.com.br/integracoes">
+    <meta property="og:image" content="https://movcode.com.br/assets/images/og/movcode-og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="MovCode: tecnologia do tamanho do seu negócio">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="assets/images/icons/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/interna.css">
+    <script>
+        // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
+        try {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anima-pre');
+        } catch (e) {}
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Service",
+                "name": "Integração de sistemas",
+                "description": "Loja, estoque, financeiro, planilhas e CRM trocando dados sozinhos, sem digitar a mesma coisa duas vezes. Integração de sistemas em Ribeirão Preto e todo o Brasil.",
+                "url": "https://movcode.com.br/integracoes",
+                "provider": {
+                    "@type": "ProfessionalService",
+                    "@id": "https://movcode.com.br/#empresa",
+                    "name": "MovCode",
+                    "url": "https://movcode.com.br/"
+                },
+                "areaServed": [
+                    {
+                        "@type": "City",
+                        "name": "Ribeirão Preto"
+                    },
+                    {
+                        "@type": "Country",
+                        "name": "Brasil"
+                    }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Meu sistema atual tem como integrar?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Se ele tem API ou exporta e importa arquivos, quase sempre dá. No diagnóstico a gente confere o que cada sistema permite."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Preciso trocar de sistema?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Não é a ideia. A integração aproveita o que você já usa e liga as partes."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "E se um dos sistemas mudar?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Com o plano de manutenção, a gente ajusta a integração quando algum sistema muda."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Quanto custa?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Depende de quantos sistemas entram na conversa e do que cada um permite. Depois do diagnóstico gratuito você recebe uma proposta com escopo, prazo e valor fechados."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+</head>
+<body class="home interna">
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+    <header class="topo">
+        <div class="wrap">
+            <a href="/" class="marca" aria-label="MovCode, página inicial">
+                <span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>
+                <span>Mov<span class="code">Code</span><span class="ponto">.</span></span>
+            </a>
+            <button class="menu-botao" type="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
+                <svg class="abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            </button>
+            <nav id="menu" class="menu" aria-label="Navegação principal">
+                <a href="/#escala">Soluções</a>
+                <a href="/#como-funciona">Como funciona</a>
+                <a href="/#produtos">Produtos</a>
+                <a href="/sua-pagina">Sua página</a>
+                <a href="/#duvidas">Dúvidas</a>
+                <a href="/#contato" class="btn btn-acao btn-pequeno" data-cta="menu">Diagnóstico grátis</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-anel" aria-hidden="true"><span></span></div>
+
+    <main id="conteudo">
+        <section class="i-hero escuro">
+            <div class="wrap">
+                <div class="i-hero-texto">
+                    <p class="i-rotulo i-entra"><b>Serviço</b> Integrações</p>
+                    <h1 class="h-grande gigante i-titulo">Seus sistemas <em>conversando.</em></h1>
+                    <p class="i-hero-sub i-entra">Quando a loja, o estoque e o financeiro não se falam, alguém digita tudo duas vezes. A gente liga um no outro.</p>
+                    <div class="i-acoes i-entra">
+                        <a href="#contato" class="btn btn-acao" data-cta="integracoes_hero" data-servico="Automação ou integração" data-magnetico data-cursor="bora">Quero integrar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="h-caso-link" href="#exemplos">Ver exemplos <span aria-hidden="true">↓</span></a>
+                    </div>
+                </div>
+                <div class="i-fluxo i-entra" aria-hidden="true">
+                    <span class="duo i-fluxo-marca"><i><b></b><b></b></i><i><b></b><b></b></i></span>
+                    <span class="i-aviso"><b></b>Venda na loja → estoque atualizado<small>sozinho</small></span>
+                    <span class="i-aviso"><b></b>Pagamento aprovado → pedido confirmado<small>sozinho</small></span>
+                    <span class="i-aviso"><b></b>Novo contato → CRM<small>sozinho</small></span>
+                </div>
+            </div>
+            <a href="#conteudo-segue" class="h-rolar i-entra"><span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>Role para conhecer</a>
+        </section>
+
+        <section id="conteudo-segue" class="h-faixa" aria-label="Integração de sistemas: o que entra">
+            <div class="h-faixa-linha" aria-hidden="true"><span class="item">Loja<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Estoque<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Pagamentos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">CRM<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Planilhas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Loja<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Estoque<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Pagamentos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">CRM<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Planilhas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
+            <div class="h-faixa-linha contorno" aria-hidden="true"><span class="item">Loja<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Estoque<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Pagamentos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">CRM<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Planilhas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Loja<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Estoque<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Pagamentos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">CRM<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Planilhas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
+        </section>
+
+        <section class="h-conversa" aria-labelledby="conversa-titulo">
+            <div class="wrap">
+                <h2 id="conversa-titulo" class="h-grande gigante"><span class="junto">Sua equipe</span> <em class="junto">já te avisa.</em></h2>
+                <div class="chat">
+                    <p class="bolha">Vendeu na loja, mas o estoque não baixou.<small>09:12</small></p>
+                    <p class="bolha">O CRM tem um telefone, a planilha tem outro.<small>10:47</small></p>
+                    <p class="bolha">Lança de novo no financeiro, por favor.<small>14:05</small></p>
+                    <p class="bolha nossa">Bora fazer eles conversarem?<small>MovCode</small></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="exemplos" class="h-servicos escuro" aria-labelledby="exemplos-titulo">
+            <div class="h-servicos-pin">
+                <div class="h-servicos-trilho">
+                    <div class="h-servicos-intro">
+                        <h2 id="exemplos-titulo" class="h-grande gigante">O que a gente <em>conecta.</em></h2>
+                        <p>Cada sistema continua fazendo o que faz de melhor. A diferença é que agora eles conversam.</p>
+                    </div>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">01</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-integracoes-1" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-integracoes-1" startOffset="0" data-repete="venda · estoque · balcão · ">venda · estoque · balcão · venda · estoque · balcão · venda · estoque · balcão · venda · estoque · balcão · venda · estoque · balcão · venda · estoque · balcão · </textPath></text></svg></div>
+                        <h3>Loja e estoque</h3>
+                        <p>Vendeu online, o estoque baixa sozinho. Vendeu no balcão, a loja já sabe.</p>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">02</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-integracoes-2" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-integracoes-2" startOffset="0" data-repete="Pix · cartão · pedido · ">Pix · cartão · pedido · Pix · cartão · pedido · Pix · cartão · pedido · Pix · cartão · pedido · Pix · cartão · pedido · Pix · cartão · pedido · </textPath></text></svg></div>
+                        <h3>Pagamentos e pedidos</h3>
+                        <p>Pagamento aprovado vira pedido confirmado, sem ninguém conferir extrato.</p>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">03</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-integracoes-3" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-integracoes-3" startOffset="0" data-repete="planilha · sistema · sempre igual · ">planilha · sistema · sempre igual · planilha · sistema · sempre igual · planilha · sistema · sempre igual · planilha · sistema · sempre igual · planilha · sistema · sempre igual · planilha · sistema · sempre igual · </textPath></text></svg></div>
+                        <h3>Planilhas e sistemas</h3>
+                        <p>A planilha que todo mundo usa passa a ler e gravar direto no sistema.</p>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">04</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-integracoes-4" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-integracoes-4" startOffset="0" data-repete="site · CRM · contato · ">site · CRM · contato · site · CRM · contato · site · CRM · contato · site · CRM · contato · site · CRM · contato · site · CRM · contato · </textPath></text></svg></div>
+                        <h3>Site e atendimento</h3>
+                        <p>O contato que chegou pelo site entra no CRM com tudo o que a pessoa preencheu.</p>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">05</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15v14H5a2 2 0 0 1-2-2V5"/><path d="M16 14h.01"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-integracoes-5" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-integracoes-5" startOffset="0" data-repete="contas · vendas · sem digitar · ">contas · vendas · sem digitar · contas · vendas · sem digitar · contas · vendas · sem digitar · contas · vendas · sem digitar · contas · vendas · sem digitar · contas · vendas · sem digitar · </textPath></text></svg></div>
+                        <h3>Financeiro</h3>
+                        <p>Vendas e contas caindo no financeiro sem lançamento manual.</p>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">06</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-integracoes-6" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-integracoes-6" startOffset="0" data-repete="API · ponte · sob medida · ">API · ponte · sob medida · API · ponte · sob medida · API · ponte · sob medida · API · ponte · sob medida · API · ponte · sob medida · API · ponte · sob medida · </textPath></text></svg></div>
+                        <h3>APIs sob medida</h3>
+                        <p>Sistema sem integração pronta? Se ele tem API, a gente faz a ponte.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="como-funciona" class="h-processo" aria-labelledby="como-funciona-titulo">
+            <div class="wrap">
+                <h2 id="como-funciona-titulo" class="h-grande gigante">Do papo ao <em>sistema no ar.</em></h2>
+                <div class="h-passos-caixa">
+                    <span class="h-passos-linha" aria-hidden="true"></span>
+                    <ol class="h-passos">
+                    <li class="h-passo">
+                        <span class="h-passo-num">01</span>
+                        <h3>Conversa <small>grátis</small></h3>
+                        <p>Meia hora para entender a sua rotina.</p>
+                    </li>
+                    <li class="h-passo">
+                        <span class="h-passo-num">02</span>
+                        <h3>Proposta</h3>
+                        <p>Escopo, prazo e preço fechados.</p>
+                    </li>
+                    <li class="h-passo">
+                        <span class="h-passo-num">03</span>
+                        <h3>Construção</h3>
+                        <p>Você testa e opina a cada etapa.</p>
+                    </li>
+                    <li class="h-passo">
+                        <span class="h-passo-num">04</span>
+                        <h3>No ar</h3>
+                        <p>Treinamos a equipe e seguimos junto.</p>
+                    </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="duvidas" class="h-duvidas" aria-labelledby="duvidas-titulo">
+            <div class="wrap">
+                <h2 id="duvidas-titulo" class="h-grande gigante">Perguntas <em>rápidas.</em></h2>
+                <div class="perguntas">
+                    <details class="pergunta">
+                        <summary>Meu sistema atual tem como integrar?</summary>
+                        <p>Se ele tem API ou exporta e importa arquivos, quase sempre dá. No diagnóstico a gente confere o que cada sistema permite.</p>
+                    </details>
+                    <details class="pergunta">
+                        <summary>Preciso trocar de sistema?</summary>
+                        <p>Não é a ideia. A integração aproveita o que você já usa e liga as partes.</p>
+                    </details>
+                    <details class="pergunta">
+                        <summary>E se um dos sistemas mudar?</summary>
+                        <p>Com o plano de manutenção, a gente ajusta a integração quando algum sistema muda.</p>
+                    </details>
+                    <details class="pergunta">
+                        <summary>Quanto custa?</summary>
+                        <p>Depende de quantos sistemas entram na conversa e do que cada um permite. Depois do diagnóstico gratuito você recebe uma proposta com escopo, prazo e valor fechados.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="h-contato" aria-labelledby="contato-titulo">
+            <div class="wrap">
+                <div class="h-contato-texto">
+                    <h2 id="contato-titulo" class="h-contato-titulo gigante">Bora integrar?</h2>
+                    <p>Conte quais sistemas não se falam hoje. A gente responde no mesmo dia útil.</p>
+                    <ul class="contato-lista">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 30 minutos, sem compromisso</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> Preço fechado na proposta</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Seus dados são seus</li>
+                    </ul>
+                </div>
+                <form class="form" data-lead-form novalidate>
+                        <p class="form-titulo">Agende seu diagnóstico</p>
+                        <div class="campo">
+                            <label for="leadNome">Seu nome</label>
+                            <input id="leadNome" name="nome" type="text" autocomplete="name" required placeholder="Como podemos te chamar?">
+                        </div>
+                        <div class="campo">
+                            <label for="leadEmpresa">Empresa <span>(opcional)</span></label>
+                            <input id="leadEmpresa" name="empresa" type="text" autocomplete="organization" placeholder="Nome do seu negócio">
+                        </div>
+                        <fieldset class="opcoes">
+                            <legend>O que você precisa?</legend>
+                            <label><input type="radio" name="servico" value="Site ou landing page" required><span>Site ou landing page</span></label>
+                            <label><input type="radio" name="servico" value="Loja virtual"><span>Loja virtual</span></label>
+                            <label><input type="radio" name="servico" value="Sistema de gestão"><span>Sistema de gestão</span></label>
+                            <label><input type="radio" name="servico" value="Sistema sob medida"><span>Sistema sob medida</span></label>
+                            <label><input type="radio" name="servico" value="Automação ou integração" checked><span>Automação ou integração</span></label>
+                            <label><input type="radio" name="servico" value="Ainda não sei"><span>Ainda não sei</span></label>
+                        </fieldset>
+                        <div class="campo">
+                            <label for="leadMensagem">O que mais atrapalha hoje? <span>(opcional)</span></label>
+                            <textarea id="leadMensagem" name="mensagem" rows="3" placeholder="Ex.: minha loja virtual não conversa com o estoque"></textarea>
+                        </div>
+                        <p class="form-erro" role="alert" hidden>Preencha seu nome e escolha o que você precisa.</p>
+                        <button type="submit" class="btn btn-acao">Agendar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+                        <p class="form-nota">Ao enviar, o WhatsApp abre com a sua mensagem pronta. Veja a nossa <a href="/politica">Política de Privacidade</a>.</p>
+                    </form>
+            </div>
+        </section>
+    </main>
+
+    <a href="https://wa.me/5516982157266" class="whats-flutuante" data-whatsapp data-cta="flutuante" aria-label="Falar com a MovCode pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></a>
+
+    <footer class="rodape">
+        <div class="wrap">
+            <div class="rodape-gigante" aria-hidden="true"><span class="duo duo-vivo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>MovCode.</div>
+            <nav class="rodape-links" aria-label="Rodapé">
+                <div>
+                    <strong>Navegar</strong>
+                    <a href="/sobre">Sobre a MovCode</a>
+                    <a href="/#como-funciona">Como funciona</a>
+                    <a href="/sua-pagina">Sua página</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/#duvidas">Dúvidas</a>
+                    <a href="/diagnostico">Diagnóstico gratuito</a>
+                </div>
+                <div>
+                    <strong>Serviços</strong>
+                    <a href="/criacao-de-sites">Criação de sites</a>
+                    <a href="/sistema-para-mercadinho">Sistema para comércio</a>
+                    <a href="/automacoes">Automações</a>
+                    <a href="/integracoes">Integrações</a>
+                    <a href="/paineis">Painéis</a>
+                    <a href="/consultoria">Consultoria</a>
+                </div>
+                <div>
+                    <strong>Produtos</strong>
+                    <a href="/sistema-para-laboratorio">ForLabs</a>
+                    <a href="/loja-virtual">Lojinha Pronta</a>
+                    <a href="/sistema-para-condominio">ForCondom <span class="rodape-breve">Em breve</span></a>
+                    <a href="/sistema-para-barbearia">ForBarber <span class="rodape-breve">Em breve</span></a>
+                    <a href="/cardapio-digital">Pratuca <span class="rodape-breve">Em breve</span></a>
+                </div>
+                <div>
+                    <strong>Termos</strong>
+                    <a href="/politica">Política de Privacidade</a>
+                    <a href="/termo">Termos de Uso</a>
+                    <a href="/politica#direitos">Seus direitos (LGPD)</a>
+                    <a href="/politica#seguranca">Segurança dos dados</a>
+                </div>
+            </nav>
+            <div class="rodape-base">
+                <p class="rodape-legal"><span>MovCode · Tecnologia do tamanho do seu negócio.</span> <span>Ribeirão Preto, SP · <a href="mailto:contato@movcode.com.br">contato@movcode.com.br</a></span></p>
+                <p class="rodape-copia">&copy; <span data-ano>2026</span> MovCode</p>
+                <div class="rodape-sociais">
+                    <a href="https://wa.me/5516982157266" data-whatsapp data-cta="rodape" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></a>
+                    <a href="https://www.instagram.com/mov.code/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+                    <a href="https://github.com/movcodebr" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a>
+                    <a href="mailto:contato@movcode.com.br" aria-label="E-mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/site.js"></script>
+    <script src="assets/js/vendor/gsap.min.js"></script>
+    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/js/vendor/lenis.min.js"></script>
+    <script src="assets/js/home.js"></script>
+    <script src="assets/js/interna.js"></script>
+</body>
+</html>
