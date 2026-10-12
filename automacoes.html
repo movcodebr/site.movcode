@@ -22,7 +22,7 @@
     <title>Automação de processos para empresas | MovCode</title>
     <meta name="description" content="O trabalho repetitivo rodando sozinho: planilhas, relatórios, avisos e e-mails que acontecem sem ninguém copiar e colar. Ribeirão Preto e todo o Brasil.">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#F4F4F2">
+    <meta name="theme-color" content="#111214">
     <link rel="canonical" href="https://movcode.com.br/automacoes">
 
     <meta property="og:type" content="website">
@@ -37,6 +37,23 @@
     <meta property="og:locale" content="pt_BR">
     <meta name="twitter:card" content="summary_large_image">
 
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="assets/images/icons/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/interna.css">
+    <script>
+        // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
+        try {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anima-pre');
+        } catch (e) {}
+    </script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -95,7 +112,7 @@
                         "name": "Quanto custa?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Depende de quantas tarefas e sistemas entram na automação. Depois de uma conversa rápida você recebe uma proposta com escopo, prazo e valor fechados."
+                            "text": "Depende de quantas tarefas e sistemas entram na automação. Depois do diagnóstico gratuito você recebe uma proposta com escopo, prazo e valor fechados."
                         }
                     }
                 ]
@@ -103,18 +120,8 @@
         ]
     }
     </script>
-
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="icon" href="assets/images/icons/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
-    <link rel="apple-touch-icon" href="assets/images/icons/apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
+<body class="home interna">
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
     <header class="topo">
         <div class="wrap">
@@ -122,97 +129,177 @@
                 <span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>
                 <span>Mov<span class="code">Code</span><span class="ponto">.</span></span>
             </a>
-            <a href="#contato" class="btn btn-acao btn-pequeno" data-cta="topo">Pedir orçamento</a>
+            <button class="menu-botao" type="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
+                <svg class="abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            </button>
+            <nav id="menu" class="menu" aria-label="Navegação principal">
+                <a href="/#escala">Soluções</a>
+                <a href="/#como-funciona">Como funciona</a>
+                <a href="/#produtos">Produtos</a>
+                <a href="/sua-pagina">Sua página</a>
+                <a href="/#duvidas">Dúvidas</a>
+                <a href="/#contato" class="btn btn-acao btn-pequeno" data-cta="menu">Diagnóstico grátis</a>
+            </nav>
         </div>
     </header>
 
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-anel" aria-hidden="true"><span></span></div>
+
     <main id="conteudo">
-        <section class="hero">
+        <section class="i-hero escuro">
             <div class="wrap">
-                <div class="hero-texto">
-                    <span class="selo"><b>Automações</b> sem copiar e colar</span>
-                    <h1>O trabalho repetitivo <span class="tamanho">rodando sozinho</span>.</h1>
-                    <p class="hero-sub">Aquela tarefa que alguém faz todo dia, sempre igual, pode acontecer sozinha. Você ganha tempo e para de errar na digitação.</p>
-                    <div class="hero-acoes">
-                        <a href="#contato" class="btn btn-acao" data-cta="nicho_hero">Quero automatizar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <div class="i-hero-texto">
+                    <p class="i-rotulo i-entra"><b>Serviço</b> Automações</p>
+                    <h1 class="h-grande gigante i-titulo">O trabalho repetitivo <em>rodando sozinho.</em></h1>
+                    <p class="i-hero-sub i-entra">Aquela tarefa que alguém faz todo dia, sempre igual, pode acontecer sozinha. Você ganha tempo e para de errar na digitação.</p>
+                    <div class="i-acoes i-entra">
+                        <a href="#contato" class="btn btn-acao" data-cta="automacoes_hero" data-servico="Automação ou integração" data-magnetico data-cursor="bora">Quero automatizar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="h-caso-link" href="#exemplos">Ver exemplos <span aria-hidden="true">↓</span></a>
                     </div>
-                    <ul class="garantias">
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> Preço fechado</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Seus dados são seus</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg> Resposta no mesmo dia útil</li>
-                    </ul>
                 </div>
-                <div class="conversa" aria-hidden="true">
-                    <p class="msg">Passei a manhã copiando pedido para a planilha.<small>09:12</small></p>
-                    <p class="msg">Esqueci de mandar a cobrança de novo.<small>10:47</small></p>
-                    <p class="msg">O relatório de vendas ainda não saiu?<small>14:05</small></p>
-                    <p class="msg resposta">Bora deixar isso rodando sozinho?<small>MovCode</small></p>
+                <div class="i-fluxo i-entra" aria-hidden="true">
+                    <span class="duo i-fluxo-marca"><i><b></b><b></b></i><i><b></b><b></b></i></span>
+                    <span class="i-aviso"><b></b>Pedido copiado para a planilha<small>sozinho</small></span>
+                    <span class="i-aviso"><b></b>Relatório do dia enviado<small>sozinho</small></span>
+                    <span class="i-aviso"><b></b>Cobrança agendada<small>sozinho</small></span>
+                </div>
+            </div>
+            <a href="#conteudo-segue" class="h-rolar i-entra"><span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>Role para conhecer</a>
+        </section>
+
+        <section id="conteudo-segue" class="h-faixa" aria-label="Automação de processos: o que entra">
+            <div class="h-faixa-linha" aria-hidden="true"><span class="item">Planilhas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Relatórios<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Avisos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">E-mails<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Documentos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Planilhas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Relatórios<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Avisos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">E-mails<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Documentos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
+            <div class="h-faixa-linha contorno" aria-hidden="true"><span class="item">Planilhas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Relatórios<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Avisos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">E-mails<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Documentos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Planilhas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Relatórios<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Avisos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">E-mails<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Documentos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
+        </section>
+
+        <section class="h-conversa" aria-labelledby="conversa-titulo">
+            <div class="wrap">
+                <h2 id="conversa-titulo" class="h-grande gigante"><span class="junto">Sua rotina</span> <em class="junto">já te avisa.</em></h2>
+                <div class="chat">
+                    <p class="bolha">Passei a manhã copiando pedido para a planilha.<small>09:12</small></p>
+                    <p class="bolha">Esqueci de mandar a cobrança de novo.<small>10:47</small></p>
+                    <p class="bolha">O relatório de vendas ainda não saiu?<small>14:05</small></p>
+                    <p class="bolha nossa">Bora deixar isso rodando sozinho?<small>MovCode</small></p>
                 </div>
             </div>
         </section>
 
-        <section class="solucoes" aria-labelledby="entra-titulo">
-            <div class="wrap">
-                <div class="cabeca-secao">
-                    <h2 id="entra-titulo">O que dá para deixar no automático.</h2>
-                </div>
-                <ul class="lp-sinais">
-                    <li>
+        <section id="exemplos" class="h-servicos escuro" aria-labelledby="exemplos-titulo">
+            <div class="h-servicos-pin">
+                <div class="h-servicos-trilho">
+                    <div class="h-servicos-intro">
+                        <h2 id="exemplos-titulo" class="h-grande gigante">O que dá para deixar <em>no automático.</em></h2>
+                        <p>Exemplos do que costuma tomar horas da semana.</p>
+                    </div>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">01</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-automacoes-1" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-automacoes-1" startOffset="0" data-repete="pedidos · vendas · cadastros · ">pedidos · vendas · cadastros · pedidos · vendas · cadastros · pedidos · vendas · cadastros · pedidos · vendas · cadastros · pedidos · vendas · cadastros · pedidos · vendas · cadastros · </textPath></text></svg></div>
                         <h3>Planilhas que se preenchem</h3>
                         <p>Pedidos, vendas e cadastros caem na planilha certa, sem ninguém digitar de novo.</p>
-                    </li>
-                    <li>
-                        <h3>Relatórios na hora marcada</h3>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">02</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-automacoes-2" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-automacoes-2" startOffset="0" data-repete="resumo do dia · da semana · ">resumo do dia · da semana · resumo do dia · da semana · resumo do dia · da semana · resumo do dia · da semana · resumo do dia · da semana · resumo do dia · da semana · </textPath></text></svg></div>
+                        <h3>Relatório na hora certa</h3>
                         <p>O resumo do dia ou da semana chega pronto no seu e-mail.</p>
-                    </li>
-                    <li>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">03</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-automacoes-3" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-automacoes-3" startOffset="0" data-repete="vencimento · confirmação · estoque · ">vencimento · confirmação · estoque · vencimento · confirmação · estoque · vencimento · confirmação · estoque · vencimento · confirmação · estoque · vencimento · confirmação · estoque · vencimento · confirmação · estoque · </textPath></text></svg></div>
                         <h3>Avisos e cobranças</h3>
                         <p>Lembrete de vencimento, confirmação de pedido e aviso de estoque baixo saindo sozinhos.</p>
-                    </li>
-                    <li>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">04</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-automacoes-4" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-automacoes-4" startOffset="0" data-repete="boas-vindas · confirmação · ">boas-vindas · confirmação · boas-vindas · confirmação · boas-vindas · confirmação · boas-vindas · confirmação · boas-vindas · confirmação · boas-vindas · confirmação · </textPath></text></svg></div>
                         <h3>E-mails automáticos</h3>
                         <p>Boas-vindas, confirmação e acompanhamento disparados no momento certo.</p>
-                    </li>
-                    <li>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">05</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-automacoes-5" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-automacoes-5" startOffset="0" data-repete="proposta · recibo · laudo · ">proposta · recibo · laudo · proposta · recibo · laudo · proposta · recibo · laudo · proposta · recibo · laudo · proposta · recibo · laudo · proposta · recibo · laudo · </textPath></text></svg></div>
                         <h3>Documentos prontos</h3>
                         <p>Proposta, recibo ou laudo gerado em PDF a partir dos dados que você já tem.</p>
-                    </li>
-                    <li>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">06</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-automacoes-6" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-automacoes-6" startOffset="0" data-repete="pagou · recebeu · pronto · ">pagou · recebeu · pronto · pagou · recebeu · pronto · pagou · recebeu · pronto · pagou · recebeu · pronto · pagou · recebeu · pronto · pagou · recebeu · pronto · </textPath></text></svg></div>
                         <h3>Entrega automática</h3>
                         <p>Pagamento aprovado, arquivo enviado: a venda se resolve sem ninguém apertar botão.</p>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="processo" aria-labelledby="passos-titulo">
-            <div class="wrap">
-                <div class="cabeca-secao">
-                    <h2 id="passos-titulo">Do papo ao projeto no ar.</h2>
+                    </article>
                 </div>
-                <ol class="passos">
-                    <li class="passo"><h3>Conversa</h3><p>Entendemos o seu negócio e o que precisa ser resolvido, sem compromisso.</p></li>
-                    <li class="passo"><h3>Proposta fechada</h3><p>Escopo, prazo e valor por escrito, sem surpresa no meio do caminho.</p></li>
-                    <li class="passo"><h3>Construção</h3><p>Você acompanha, testa e pede ajustes antes de ir para o ar.</p></li>
-                    <li class="passo"><h3>No ar e com suporte</h3><p>Publicado, medido e com a gente por perto depois da entrega.</p></li>
-                </ol>
             </div>
         </section>
 
-        <section id="contato" class="contato escuro">
+        <section id="como-funciona" class="h-processo" aria-labelledby="como-funciona-titulo">
             <div class="wrap">
-                <div class="contato-texto">
-                    <h2>Leva 1 minuto para <em>começar</em>.</h2>
-                    <p>Preencha e fale direto com quem desenvolve, pelo WhatsApp.</p>
+                <h2 id="como-funciona-titulo" class="h-grande gigante">Do papo ao <em>sistema no ar.</em></h2>
+                <div class="h-passos-caixa">
+                    <span class="h-passos-linha" aria-hidden="true"></span>
+                    <ol class="h-passos">
+                    <li class="h-passo">
+                        <span class="h-passo-num">01</span>
+                        <h3>Conversa <small>grátis</small></h3>
+                        <p>Meia hora para entender a sua rotina.</p>
+                    </li>
+                    <li class="h-passo">
+                        <span class="h-passo-num">02</span>
+                        <h3>Proposta</h3>
+                        <p>Escopo, prazo e preço fechados.</p>
+                    </li>
+                    <li class="h-passo">
+                        <span class="h-passo-num">03</span>
+                        <h3>Construção</h3>
+                        <p>Você testa e opina a cada etapa.</p>
+                    </li>
+                    <li class="h-passo">
+                        <span class="h-passo-num">04</span>
+                        <h3>No ar</h3>
+                        <p>Treinamos a equipe e seguimos junto.</p>
+                    </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="duvidas" class="h-duvidas" aria-labelledby="duvidas-titulo">
+            <div class="wrap">
+                <h2 id="duvidas-titulo" class="h-grande gigante">Perguntas <em>rápidas.</em></h2>
+                <div class="perguntas">
+                    <details class="pergunta">
+                        <summary>Preciso trocar os sistemas que já uso?</summary>
+                        <p>Na maioria das vezes, não. A automação trabalha em cima do que você já tem: planilhas, e-mail, sistema de gestão ou loja virtual.</p>
+                    </details>
+                    <details class="pergunta">
+                        <summary>Como vocês descobrem o que automatizar?</summary>
+                        <p>Na conversa de diagnóstico mapeamos as tarefas repetitivas da sua rotina e mostramos quais valem a pena automatizar primeiro.</p>
+                    </details>
+                    <details class="pergunta">
+                        <summary>E se a automação parar de funcionar?</summary>
+                        <p>Com o plano de manutenção, a gente acompanha e corrige. Você não fica sozinho depois da entrega.</p>
+                    </details>
+                    <details class="pergunta">
+                        <summary>Quanto custa?</summary>
+                        <p>Depende de quantas tarefas e sistemas entram na automação. Depois do diagnóstico gratuito você recebe uma proposta com escopo, prazo e valor fechados.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="h-contato" aria-labelledby="contato-titulo">
+            <div class="wrap">
+                <div class="h-contato-texto">
+                    <h2 id="contato-titulo" class="h-contato-titulo gigante">Bora automatizar?</h2>
+                    <p>Conte o que se repete na sua rotina. A gente responde no mesmo dia útil.</p>
                     <ul class="contato-lista">
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Conversa de 30 minutos, por vídeo ou presencial</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> Proposta com escopo, prazo e valor fechados</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg> Resposta no mesmo dia útil</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 30 minutos, sem compromisso</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> Preço fechado na proposta</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Seus dados são seus</li>
                     </ul>
-                    <p class="contato-alt">Prefere e-mail? <a href="mailto:contato@movcode.com.br">contato@movcode.com.br</a></p>
                 </div>
                 <form class="form" data-lead-form novalidate>
-                        <p class="form-titulo">Peça o orçamento da sua automação</p>
+                        <p class="form-titulo">Agende seu diagnóstico</p>
                         <div class="campo">
                             <label for="leadNome">Seu nome</label>
                             <input id="leadNome" name="nome" type="text" autocomplete="name" required placeholder="Como podemos te chamar?">
@@ -235,35 +322,9 @@
                             <textarea id="leadMensagem" name="mensagem" rows="3" placeholder="Ex.: todo dia copio os pedidos do site para uma planilha"></textarea>
                         </div>
                         <p class="form-erro" role="alert" hidden>Preencha seu nome e escolha o que você precisa.</p>
-                        <button type="submit" class="btn btn-acao">Chamar no WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+                        <button type="submit" class="btn btn-acao">Agendar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
                         <p class="form-nota">Ao enviar, o WhatsApp abre com a sua mensagem pronta. Veja a nossa <a href="/politica">Política de Privacidade</a>.</p>
                     </form>
-            </div>
-        </section>
-
-        <section class="duvidas" style="padding-top: var(--secao)" aria-labelledby="lp-duvidas">
-            <div class="wrap">
-                <div class="cabeca-secao">
-                    <h2 id="lp-duvidas">Antes de chamar.</h2>
-                </div>
-                <div class="perguntas">
-                    <details class="pergunta">
-                        <summary>Preciso trocar os sistemas que já uso?</summary>
-                        <p>Na maioria das vezes, não. A automação trabalha em cima do que você já tem: planilhas, e-mail, sistema de gestão ou loja virtual.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Como vocês descobrem o que automatizar?</summary>
-                        <p>Na conversa de diagnóstico mapeamos as tarefas repetitivas da sua rotina e mostramos quais valem a pena automatizar primeiro.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>E se a automação parar de funcionar?</summary>
-                        <p>Com o plano de manutenção, a gente acompanha e corrige. Você não fica sozinho depois da entrega.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Quanto custa?</summary>
-                        <p>Depende de quantas tarefas e sistemas entram na automação. Depois de uma conversa rápida você recebe uma proposta com escopo, prazo e valor fechados.</p>
-                    </details>
-                </div>
             </div>
         </section>
     </main>
@@ -322,5 +383,10 @@
     </footer>
 
     <script src="assets/js/site.js"></script>
+    <script src="assets/js/vendor/gsap.min.js"></script>
+    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/js/vendor/lenis.min.js"></script>
+    <script src="assets/js/home.js"></script>
+    <script src="assets/js/interna.js"></script>
 </body>
 </html>

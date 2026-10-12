@@ -22,7 +22,7 @@
     <title>Blog da MovCode | Guias práticos para o seu negócio</title>
     <meta name="description" content="Guias práticos, sem tecniquês, para quem toca um negócio e quer usar a tecnologia a favor: fiado, site, sistema e mais.">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#F4F4F2">
+    <meta name="theme-color" content="#111214">
     <link rel="canonical" href="https://movcode.com.br/blog/">
 
     <meta property="og:type" content="website">
@@ -37,6 +37,23 @@
     <meta property="og:locale" content="pt_BR">
     <meta name="twitter:card" content="summary_large_image">
 
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="/assets/images/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/interna.css">
+    <script>
+        // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
+        try {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anima-pre');
+        } catch (e) {}
+    </script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -77,18 +94,8 @@
         ]
     }
     </script>
-
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="icon" href="/assets/images/icons/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
-    <link rel="apple-touch-icon" href="/assets/images/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/site.css">
 </head>
-<body>
+<body class="home interna">
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
     <header class="topo">
         <div class="wrap">
@@ -110,41 +117,61 @@
         </div>
     </header>
 
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-anel" aria-hidden="true"><span></span></div>
+
     <main id="conteudo">
-        <section class="pagina-topo pagina-topo-largo">
+        <section class="i-hero escuro i-hero-compacto">
             <div class="wrap">
-                <h1>Guias práticos para o seu negócio.</h1>
-                <p>Textos curtos, sem tecniquês, para quem toca um negócio e quer usar a tecnologia a favor.</p>
+                <div class="i-hero-texto">
+                    <p class="i-rotulo i-entra">Blog da MovCode</p>
+                    <h1 class="h-grande gigante i-titulo">Guias <em>sem tecniquês.</em></h1>
+                    <p class="i-hero-sub i-entra">Textos curtos para quem toca um negócio e quer usar a tecnologia a favor.</p>
+                </div>
             </div>
         </section>
 
-        <section class="blog-indice" aria-label="Guias">
+        <section id="guias" class="h-caso escuro i-lista i-guias" aria-label="Guias">
             <div class="wrap">
-                <div class="blog-lista">
-                    <a class="blog-card" href="/blog/como-sair-do-caderno-de-fiado">
-                        <span class="blog-tag">Comércio · 3 min</span>
-                        <h2>Como sair do caderno de fiado sem perder o controle</h2>
-                        <p>O caderno funciona até o dia em que não funciona. Um passo a passo para organizar o fiado, cobrar sem constrangimento e saber quanto você tem a receber.</p>
-                        <span class="blog-ler">Ler o guia <span aria-hidden="true">→</span></span>
-                    </a>
-                    <a class="blog-card" href="/blog/site-ou-instagram">
-                        <span class="blog-tag">Presença online · 2 min</span>
-                        <h2>Site ou Instagram: o que o seu negócio precisa?</h2>
-                        <p>O Instagram é ótimo para aparecer, mas não é seu. Quando ele basta, quando o site faz falta e por que os dois juntos funcionam melhor.</p>
-                        <span class="blog-ler">Ler o guia <span aria-hidden="true">→</span></span>
-                    </a>
-                    <a class="blog-card" href="/blog/quanto-custa-um-sistema-proprio">
-                        <span class="blog-tag">Investimento · 2 min</span>
-                        <h2>Quanto custa ter um sistema próprio?</h2>
-                        <p>A resposta honesta é: depende. Veja o que pesa no preço, quais custos continuam depois da entrega e como não gastar à toa.</p>
-                        <span class="blog-ler">Ler o guia <span aria-hidden="true">→</span></span>
-                    </a>
-                </div>
-                <aside class="artigo-cta">
-                    <strong>Tem uma dúvida que não está aqui?</strong>
+                <ul class="h-lista">
+                    <li class="h-proj">
+                        <a class="h-proj-linha" href="/blog/como-sair-do-caderno-de-fiado">
+                            <span class="h-proj-num">01</span>
+                            <span class="h-proj-nome">Como sair do caderno de fiado sem perder o controle</span>
+                            <p class="h-proj-desc">O caderno funciona até o dia em que não funciona. Um passo a passo para organizar o fiado, cobrar sem constrangimento e saber quanto você tem a receber.</p>
+                            <span class="h-proj-tipo">Comércio · 3 min</span>
+                            <span class="h-proj-seta" aria-hidden="true">↗</span>
+                        </a>
+                    </li>
+                    <li class="h-proj">
+                        <a class="h-proj-linha" href="/blog/site-ou-instagram">
+                            <span class="h-proj-num">02</span>
+                            <span class="h-proj-nome">Site ou Instagram: o que o seu negócio precisa?</span>
+                            <p class="h-proj-desc">O Instagram é ótimo para aparecer, mas não é seu. Quando ele basta, quando o site faz falta e por que os dois juntos funcionam melhor.</p>
+                            <span class="h-proj-tipo">Presença online · 2 min</span>
+                            <span class="h-proj-seta" aria-hidden="true">↗</span>
+                        </a>
+                    </li>
+                    <li class="h-proj">
+                        <a class="h-proj-linha" href="/blog/quanto-custa-um-sistema-proprio">
+                            <span class="h-proj-num">03</span>
+                            <span class="h-proj-nome">Quanto custa ter um sistema próprio?</span>
+                            <p class="h-proj-desc">A resposta honesta é: depende. Veja o que pesa no preço, quais custos continuam depois da entrega e como não gastar à toa.</p>
+                            <span class="h-proj-tipo">Investimento · 2 min</span>
+                            <span class="h-proj-seta" aria-hidden="true">↗</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="i-chamada" aria-labelledby="chamada-titulo">
+            <div class="wrap">
+                <h2 id="chamada-titulo" class="i-chamada-titulo gigante">Ficou com dúvida?</h2>
+                <div class="i-chamada-texto">
                     <p>Pergunte direto para quem desenvolve. A gente responde no mesmo dia útil.</p>
-                    <a href="/#contato" class="btn btn-acao" data-cta="blog_indice">Falar com a MovCode <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                </aside>
+                    <a href="/#contato" class="btn btn-acao" data-cta="blog_indice" data-magnetico data-cursor="bora">Falar com a MovCode <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                </div>
             </div>
         </section>
     </main>
@@ -203,5 +230,10 @@
     </footer>
 
     <script src="/assets/js/site.js"></script>
+    <script src="/assets/js/vendor/gsap.min.js"></script>
+    <script src="/assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="/assets/js/vendor/lenis.min.js"></script>
+    <script src="/assets/js/home.js"></script>
+    <script src="/assets/js/interna.js"></script>
 </body>
 </html>

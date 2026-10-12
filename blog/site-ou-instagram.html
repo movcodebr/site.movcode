@@ -22,7 +22,7 @@
     <title>Site ou Instagram: o que o seu negócio precisa? | Blog da MovCode</title>
     <meta name="description" content="O Instagram é ótimo para aparecer, mas não é seu. Quando ele basta, quando o site faz falta e por que os dois juntos funcionam melhor.">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#F4F4F2">
+    <meta name="theme-color" content="#111214">
     <link rel="canonical" href="https://movcode.com.br/blog/site-ou-instagram">
 
     <meta property="og:type" content="article">
@@ -37,6 +37,23 @@
     <meta property="og:locale" content="pt_BR">
     <meta name="twitter:card" content="summary_large_image">
 
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="/assets/images/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/interna.css">
+    <script>
+        // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
+        try {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anima-pre');
+        } catch (e) {}
+    </script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -71,18 +88,8 @@
         }
     }
     </script>
-
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="icon" href="/assets/images/icons/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
-    <link rel="apple-touch-icon" href="/assets/images/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/site.css">
 </head>
-<body>
+<body class="home interna">
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
     <header class="topo">
         <div class="wrap">
@@ -104,38 +111,35 @@
         </div>
     </header>
 
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-anel" aria-hidden="true"><span></span></div>
+
+    <div class="i-progresso" aria-hidden="true"></div>
+
     <main id="conteudo">
-        <section class="pagina-topo artigo-topo">
+        <section class="i-hero escuro i-hero-compacto i-artigo-topo">
             <div class="wrap">
-                <a class="voltar" href="/blog/"><span aria-hidden="true">←</span> Todos os guias</a>
-                <h1>Site ou Instagram: o que o seu negócio precisa?</h1>
-                <p>O Instagram é ótimo para aparecer, mas não é seu. Quando ele basta, quando o site faz falta e por que os dois juntos funcionam melhor.</p>
-                <p class="artigo-meta">Presença online · 2 min de leitura · <time datetime="2026-10-12">12 de outubro de 2026</time></p>
+                <div class="i-hero-texto">
+                    <p class="i-rotulo i-entra"><a href="/blog/"><span aria-hidden="true">←</span> Guias</a> · Presença online · 2 min de leitura</p>
+                    <h1 class="h-grande gigante i-titulo">Site ou Instagram: o que o seu negócio precisa?</h1>
+                    <p class="i-hero-sub i-entra">O Instagram é ótimo para aparecer, mas não é seu. Quando ele basta, quando o site faz falta e por que os dois juntos funcionam melhor.<br><span class="i-meta">Publicado em <time datetime="2026-10-12">12 de outubro de 2026</time></span></p>
+                </div>
             </div>
         </section>
-        <section class="texto-longo">
+
+        <section class="i-artigo">
             <div class="wrap">
                 <article>
-                <section>
                     <p>É uma das dúvidas mais comuns de quem está começando: "Já tenho Instagram, preciso mesmo de um site?". A resposta curta é: depende de onde o seu cliente procura você. A resposta longa está aqui embaixo.</p>
-                </section>
-
-                <section>
                     <h2>O Instagram é uma vitrine alugada</h2>
                     <p>O Instagram é excelente para mostrar o dia a dia, criar relacionamento e ser lembrado. Mas as regras são da plataforma: o alcance dos posts muda sem aviso, o perfil pode ser bloqueado e quem não usa a rede simplesmente não encontra você.</p>
                     <p>Além disso, quando alguém pesquisa no Google pelo que você vende, quem aparece costuma ser um site, não um perfil.</p>
-                </section>
-
-                <section>
                     <h2>Quando só o Instagram basta</h2>
                     <ul>
                         <li>O negócio está começando e as vendas vêm de indicação.</li>
                         <li>O seu público está todo na rede e compra pelo direct.</li>
                         <li>Você ainda está testando o que vender e para quem.</li>
                     </ul>
-                </section>
-
-                <section>
                     <h2>Quando o site faz falta</h2>
                     <ul>
                         <li>Os clientes procuram no Google pelo seu serviço e pela sua cidade.</li>
@@ -143,14 +147,8 @@
                         <li>Você quer anunciar e precisa de uma página que transforme o clique em contato.</li>
                         <li>Você vende para outras empresas, que costumam checar o site antes de fechar.</li>
                     </ul>
-                </section>
-
-                <section>
                     <h2>O melhor dos dois</h2>
                     <p>Na prática, um não substitui o outro. O Instagram atrai e mantém o relacionamento. O site responde às dúvidas e leva para o contato. O link na bio é a ponte entre os dois.</p>
-                </section>
-
-                <section>
                     <h2>O que um bom site precisa ter</h2>
                     <ul>
                         <li>Abrir rápido no celular, que é de onde vem a maioria das visitas.</li>
@@ -160,31 +158,42 @@
                         <li>Título e descrição pensados para aparecer no Google.</li>
                     </ul>
                     <p>Quer ver como ficaria o seu? Monte uma prévia em <a href="/sua-pagina">movcode.com.br/sua-pagina</a> ou conheça a nossa <a href="/criacao-de-sites">criação de sites</a>.</p>
-                </section>
-
-                <aside class="artigo-cta">
-                    <strong>Quer ajuda com o seu caso?</strong>
-                    <p>Conte o seu desafio. O diagnóstico é gratuito, leva 30 minutos e não tem compromisso.</p>
-                    <a href="/diagnostico" class="btn btn-acao" data-cta="blog_site-ou-instagram">Agendar diagnóstico grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                </aside>
                 </article>
             </div>
         </section>
 
-        <section class="blog-mais" aria-labelledby="mais-titulo">
+        <section id="leia-tambem" class="h-caso escuro i-lista i-guias" aria-labelledby="leia-tambem-titulo">
             <div class="wrap">
-                <h2 id="mais-titulo">Leia também</h2>
-                <div class="blog-lista">
-                    <a class="blog-card" href="/blog/como-sair-do-caderno-de-fiado">
-                        <span class="blog-tag">Comércio</span>
-                        <h3>Como sair do caderno de fiado sem perder o controle</h3>
-                        <span class="blog-ler">Ler o guia <span aria-hidden="true">→</span></span>
-                    </a>
-                    <a class="blog-card" href="/blog/quanto-custa-um-sistema-proprio">
-                        <span class="blog-tag">Investimento</span>
-                        <h3>Quanto custa ter um sistema próprio?</h3>
-                        <span class="blog-ler">Ler o guia <span aria-hidden="true">→</span></span>
-                    </a>
+                <h2 id="leia-tambem-titulo" class="h-grande gigante">Leia <em>também.</em></h2>
+                <ul class="h-lista">
+                    <li class="h-proj">
+                        <a class="h-proj-linha" href="/blog/como-sair-do-caderno-de-fiado">
+                            <span class="h-proj-num">01</span>
+                            <span class="h-proj-nome">Como sair do caderno de fiado sem perder o controle</span>
+                            <p class="h-proj-desc">O caderno funciona até o dia em que não funciona. Um passo a passo para organizar o fiado, cobrar sem constrangimento e saber quanto você tem a receber.</p>
+                            <span class="h-proj-tipo">Comércio</span>
+                            <span class="h-proj-seta" aria-hidden="true">↗</span>
+                        </a>
+                    </li>
+                    <li class="h-proj">
+                        <a class="h-proj-linha" href="/blog/quanto-custa-um-sistema-proprio">
+                            <span class="h-proj-num">02</span>
+                            <span class="h-proj-nome">Quanto custa ter um sistema próprio?</span>
+                            <p class="h-proj-desc">A resposta honesta é: depende. Veja o que pesa no preço, quais custos continuam depois da entrega e como não gastar à toa.</p>
+                            <span class="h-proj-tipo">Investimento</span>
+                            <span class="h-proj-seta" aria-hidden="true">↗</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="i-chamada" aria-labelledby="chamada-titulo">
+            <div class="wrap">
+                <h2 id="chamada-titulo" class="i-chamada-titulo gigante">Bora resolver?</h2>
+                <div class="i-chamada-texto">
+                    <p>Conte o seu caso. O diagnóstico é gratuito, leva 30 minutos e não tem compromisso.</p>
+                    <a href="/diagnostico" class="btn btn-acao" data-cta="blog_site-ou-instagram" data-magnetico data-cursor="bora">Agendar diagnóstico grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                 </div>
             </div>
         </section>
@@ -244,5 +253,10 @@
     </footer>
 
     <script src="/assets/js/site.js"></script>
+    <script src="/assets/js/vendor/gsap.min.js"></script>
+    <script src="/assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="/assets/js/vendor/lenis.min.js"></script>
+    <script src="/assets/js/home.js"></script>
+    <script src="/assets/js/interna.js"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@
     <title>Como sair do caderno de fiado sem perder o controle | Blog da MovCode</title>
     <meta name="description" content="O caderno funciona até o dia em que não funciona. Um passo a passo para organizar o fiado, cobrar sem constrangimento e saber quanto você tem a receber.">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#F4F4F2">
+    <meta name="theme-color" content="#111214">
     <link rel="canonical" href="https://movcode.com.br/blog/como-sair-do-caderno-de-fiado">
 
     <meta property="og:type" content="article">
@@ -37,6 +37,23 @@
     <meta property="og:locale" content="pt_BR">
     <meta name="twitter:card" content="summary_large_image">
 
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="/assets/images/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/interna.css">
+    <script>
+        // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
+        try {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anima-pre');
+        } catch (e) {}
+    </script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -71,18 +88,8 @@
         }
     }
     </script>
-
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="icon" href="/assets/images/icons/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
-    <link rel="apple-touch-icon" href="/assets/images/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/site.css">
 </head>
-<body>
+<body class="home interna">
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
     <header class="topo">
         <div class="wrap">
@@ -104,24 +111,27 @@
         </div>
     </header>
 
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-anel" aria-hidden="true"><span></span></div>
+
+    <div class="i-progresso" aria-hidden="true"></div>
+
     <main id="conteudo">
-        <section class="pagina-topo artigo-topo">
+        <section class="i-hero escuro i-hero-compacto i-artigo-topo">
             <div class="wrap">
-                <a class="voltar" href="/blog/"><span aria-hidden="true">←</span> Todos os guias</a>
-                <h1>Como sair do caderno de fiado sem perder o controle</h1>
-                <p>O caderno funciona até o dia em que não funciona. Um passo a passo para organizar o fiado, cobrar sem constrangimento e saber quanto você tem a receber.</p>
-                <p class="artigo-meta">Comércio · 3 min de leitura · <time datetime="2026-10-12">12 de outubro de 2026</time></p>
+                <div class="i-hero-texto">
+                    <p class="i-rotulo i-entra"><a href="/blog/"><span aria-hidden="true">←</span> Guias</a> · Comércio · 3 min de leitura</p>
+                    <h1 class="h-grande gigante i-titulo">Como sair do caderno de fiado sem perder o controle</h1>
+                    <p class="i-hero-sub i-entra">O caderno funciona até o dia em que não funciona. Um passo a passo para organizar o fiado, cobrar sem constrangimento e saber quanto você tem a receber.<br><span class="i-meta">Publicado em <time datetime="2026-10-12">12 de outubro de 2026</time></span></p>
+                </div>
             </div>
         </section>
-        <section class="texto-longo">
+
+        <section class="i-artigo">
             <div class="wrap">
                 <article>
-                <section>
                     <p>O caderno de fiado é quase uma instituição no comércio de bairro. Ele funciona, até o dia em que não funciona: a página rasga, a letra não dá para entender, o cliente jura que já pagou e ninguém lembra quem anotou aquela compra.</p>
                     <p>Sair do caderno não precisa ser um salto no escuro. Dá para fazer em etapas, sem parar o balcão.</p>
-                </section>
-
-                <section>
                     <h2>Sinais de que o caderno já não dá conta</h2>
                     <ul>
                         <li>Para saber quanto você tem a receber, é preciso somar página por página.</li>
@@ -130,14 +140,8 @@
                         <li>A cobrança fica sempre para depois, porque dá trabalho levantar quem está atrasado.</li>
                     </ul>
                     <p>Se dois ou mais desses itens soam familiares, vale a pena mudar.</p>
-                </section>
-
-                <section>
                     <h2>1. Faça um retrato de hoje</h2>
                     <p>Antes de qualquer ferramenta, passe a limpo quem deve, quanto e desde quando. É o passo mais chato, mas é ele que mostra o tamanho real do fiado. Muita gente se assusta com o total.</p>
-                </section>
-
-                <section>
                     <h2>2. Combine regras simples</h2>
                     <p>Fiado sem regra vira empréstimo sem prazo. Defina três coisas e conte para a equipe:</p>
                     <ul>
@@ -145,56 +149,55 @@
                         <li><strong>Prazo de acerto:</strong> por exemplo, todo dia 10 ou a cada quinzena.</li>
                         <li><strong>Quem pode liberar:</strong> se qualquer pessoa do balcão vende fiado ou só você.</li>
                     </ul>
-                </section>
-
-                <section>
                     <h2>3. Escolha onde registrar</h2>
                     <p>Há dois caminhos principais, e os dois são melhores que o caderno:</p>
                     <ul>
                         <li><strong>Planilha:</strong> não custa nada e resolve para quem tem poucos clientes no fiado. O ponto fraco é que depende de alguém atualizar e não conversa com o caixa nem com o estoque.</li>
                         <li><strong>Sistema:</strong> registra a venda fiada na hora do caixa, mostra o saldo de cada cliente na tela e lista quem está atrasado. Tem custo e pede um tempo de adaptação, mas acaba com a soma de página por página.</li>
                     </ul>
-                </section>
-
-                <section>
                     <h2>4. Registre na hora da venda</h2>
                     <p>Essa é a regra de ouro. Anotar depois é como não anotar: no fim do dia ninguém lembra direito. Se o registro acontece junto com a venda, a discussão com o cliente simplesmente desaparece.</p>
-                </section>
-
-                <section>
                     <h2>5. Cobre com o extrato na mão</h2>
                     <p>Uma vez por semana, olhe a lista de quem passou do prazo. Mande uma mensagem educada com o valor, as compras e a data combinada. Com o extrato organizado, a cobrança deixa de ser constrangedora e vira só um lembrete.</p>
-                </section>
-
-                <section>
                     <h2>Resumindo</h2>
                     <p>Retrato de hoje, regras claras, um lugar confiável para registrar, registro na hora e cobrança com dados. Feito isso, o fiado volta a ser o que deveria: uma forma de fidelizar o cliente, não um buraco no caixa.</p>
                     <p>Se você quer o fiado junto com o estoque e o caixa, conheça o nosso <a href="/sistema-para-mercadinho">sistema para comércio</a>.</p>
-                </section>
-
-                <aside class="artigo-cta">
-                    <strong>Quer ajuda com o seu caso?</strong>
-                    <p>Conte o seu desafio. O diagnóstico é gratuito, leva 30 minutos e não tem compromisso.</p>
-                    <a href="/diagnostico" class="btn btn-acao" data-cta="blog_como-sair-do-caderno-de-fiado">Agendar diagnóstico grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                </aside>
                 </article>
             </div>
         </section>
 
-        <section class="blog-mais" aria-labelledby="mais-titulo">
+        <section id="leia-tambem" class="h-caso escuro i-lista i-guias" aria-labelledby="leia-tambem-titulo">
             <div class="wrap">
-                <h2 id="mais-titulo">Leia também</h2>
-                <div class="blog-lista">
-                    <a class="blog-card" href="/blog/site-ou-instagram">
-                        <span class="blog-tag">Presença online</span>
-                        <h3>Site ou Instagram: o que o seu negócio precisa?</h3>
-                        <span class="blog-ler">Ler o guia <span aria-hidden="true">→</span></span>
-                    </a>
-                    <a class="blog-card" href="/blog/quanto-custa-um-sistema-proprio">
-                        <span class="blog-tag">Investimento</span>
-                        <h3>Quanto custa ter um sistema próprio?</h3>
-                        <span class="blog-ler">Ler o guia <span aria-hidden="true">→</span></span>
-                    </a>
+                <h2 id="leia-tambem-titulo" class="h-grande gigante">Leia <em>também.</em></h2>
+                <ul class="h-lista">
+                    <li class="h-proj">
+                        <a class="h-proj-linha" href="/blog/site-ou-instagram">
+                            <span class="h-proj-num">01</span>
+                            <span class="h-proj-nome">Site ou Instagram: o que o seu negócio precisa?</span>
+                            <p class="h-proj-desc">O Instagram é ótimo para aparecer, mas não é seu. Quando ele basta, quando o site faz falta e por que os dois juntos funcionam melhor.</p>
+                            <span class="h-proj-tipo">Presença online</span>
+                            <span class="h-proj-seta" aria-hidden="true">↗</span>
+                        </a>
+                    </li>
+                    <li class="h-proj">
+                        <a class="h-proj-linha" href="/blog/quanto-custa-um-sistema-proprio">
+                            <span class="h-proj-num">02</span>
+                            <span class="h-proj-nome">Quanto custa ter um sistema próprio?</span>
+                            <p class="h-proj-desc">A resposta honesta é: depende. Veja o que pesa no preço, quais custos continuam depois da entrega e como não gastar à toa.</p>
+                            <span class="h-proj-tipo">Investimento</span>
+                            <span class="h-proj-seta" aria-hidden="true">↗</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="i-chamada" aria-labelledby="chamada-titulo">
+            <div class="wrap">
+                <h2 id="chamada-titulo" class="i-chamada-titulo gigante">Bora resolver?</h2>
+                <div class="i-chamada-texto">
+                    <p>Conte o seu caso. O diagnóstico é gratuito, leva 30 minutos e não tem compromisso.</p>
+                    <a href="/diagnostico" class="btn btn-acao" data-cta="blog_como-sair-do-caderno-de-fiado" data-magnetico data-cursor="bora">Agendar diagnóstico grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                 </div>
             </div>
         </section>
@@ -254,5 +257,10 @@
     </footer>
 
     <script src="/assets/js/site.js"></script>
+    <script src="/assets/js/vendor/gsap.min.js"></script>
+    <script src="/assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="/assets/js/vendor/lenis.min.js"></script>
+    <script src="/assets/js/home.js"></script>
+    <script src="/assets/js/interna.js"></script>
 </body>
 </html>

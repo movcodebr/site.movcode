@@ -22,7 +22,7 @@
     <title>Quanto custa ter um sistema próprio? | Blog da MovCode</title>
     <meta name="description" content="A resposta honesta é: depende. Veja o que pesa no preço, quais custos continuam depois da entrega e como não gastar à toa.">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#F4F4F2">
+    <meta name="theme-color" content="#111214">
     <link rel="canonical" href="https://movcode.com.br/blog/quanto-custa-um-sistema-proprio">
 
     <meta property="og:type" content="article">
@@ -37,6 +37,23 @@
     <meta property="og:locale" content="pt_BR">
     <meta name="twitter:card" content="summary_large_image">
 
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="/assets/images/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/interna.css">
+    <script>
+        // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
+        try {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anima-pre');
+        } catch (e) {}
+    </script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -71,18 +88,8 @@
         }
     }
     </script>
-
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="icon" href="/assets/images/icons/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
-    <link rel="apple-touch-icon" href="/assets/images/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/site.css">
 </head>
-<body>
+<body class="home interna">
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
     <header class="topo">
         <div class="wrap">
@@ -104,23 +111,26 @@
         </div>
     </header>
 
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-anel" aria-hidden="true"><span></span></div>
+
+    <div class="i-progresso" aria-hidden="true"></div>
+
     <main id="conteudo">
-        <section class="pagina-topo artigo-topo">
+        <section class="i-hero escuro i-hero-compacto i-artigo-topo">
             <div class="wrap">
-                <a class="voltar" href="/blog/"><span aria-hidden="true">←</span> Todos os guias</a>
-                <h1>Quanto custa ter um sistema próprio?</h1>
-                <p>A resposta honesta é: depende. Veja o que pesa no preço, quais custos continuam depois da entrega e como não gastar à toa.</p>
-                <p class="artigo-meta">Investimento · 2 min de leitura · <time datetime="2026-10-12">12 de outubro de 2026</time></p>
+                <div class="i-hero-texto">
+                    <p class="i-rotulo i-entra"><a href="/blog/"><span aria-hidden="true">←</span> Guias</a> · Investimento · 2 min de leitura</p>
+                    <h1 class="h-grande gigante i-titulo">Quanto custa ter um sistema próprio?</h1>
+                    <p class="i-hero-sub i-entra">A resposta honesta é: depende. Veja o que pesa no preço, quais custos continuam depois da entrega e como não gastar à toa.<br><span class="i-meta">Publicado em <time datetime="2026-10-12">12 de outubro de 2026</time></span></p>
+                </div>
             </div>
         </section>
-        <section class="texto-longo">
+
+        <section class="i-artigo">
             <div class="wrap">
                 <article>
-                <section>
                     <p>Quem pergunta quanto custa um sistema quase sempre ouve "depende". Parece fuga, mas é verdade: um controle de fiado e um sistema com estoque, financeiro e vários usuários são projetos de tamanhos muito diferentes. O que dá para fazer é entender do que esse "depende" é feito.</p>
-                </section>
-
-                <section>
                     <h2>O que pesa no preço</h2>
                     <ul>
                         <li><strong>O tamanho do problema:</strong> quantas telas, quantos tipos de usuário e quantas regras do seu negócio o sistema precisa seguir.</li>
@@ -128,9 +138,6 @@
                         <li><strong>Dados que já existem:</strong> trazer planilhas e cadastros antigos para dentro do sistema também entra na conta.</li>
                         <li><strong>Onde ele vai rodar:</strong> servidor, backups e segurança são parte do projeto, não um detalhe.</li>
                     </ul>
-                </section>
-
-                <section>
                     <h2>São dois custos, não um</h2>
                     <p>Um sistema tem o custo de ser construído e o custo de continuar funcionando:</p>
                     <ul>
@@ -138,15 +145,9 @@
                         <li><strong>Manutenção e hospedagem:</strong> um valor mensal que mantém o servidor no ar, os backups em dia e o suporte por perto.</li>
                     </ul>
                     <p>Desconfie de orçamento que só fala do primeiro. Sistema sem manutenção é como carro sem revisão.</p>
-                </section>
-
-                <section>
                     <h2>Sistema pronto ou sob medida?</h2>
                     <p>O <strong>sistema pronto</strong> costuma custar menos no começo, cobra mensalidade e pede que você se adapte ao jeito dele. Para processos comuns, muitas vezes é a melhor escolha.</p>
                     <p>O <strong>sistema sob medida</strong> se adapta ao seu jeito de trabalhar. Faz sentido quando o seu processo é o seu diferencial, ou quando nenhum sistema pronto resolve sem gambiarra.</p>
-                </section>
-
-                <section>
                     <h2>Como não gastar à toa</h2>
                     <ul>
                         <li><strong>Comece pelo gargalo principal.</strong> Resolva primeiro o que mais custa tempo ou dinheiro hoje.</li>
@@ -154,36 +155,44 @@
                         <li><strong>Exija escopo fechado por escrito.</strong> O que entra, o que não entra, prazo e valor.</li>
                         <li><strong>Garanta que os dados são seus.</strong> O banco de dados e os cadastros devem pertencer à sua empresa.</li>
                     </ul>
-                </section>
-
-                <section>
                     <h2>E o seu caso?</h2>
                     <p>Na MovCode, o primeiro passo é o <a href="/diagnostico">diagnóstico gratuito</a>: uma conversa de 30 minutos para entender a sua operação. Depois dela, você recebe uma proposta com escopo, prazo e valor fechados.</p>
-                </section>
-
-                <aside class="artigo-cta">
-                    <strong>Quer ajuda com o seu caso?</strong>
-                    <p>Conte o seu desafio. O diagnóstico é gratuito, leva 30 minutos e não tem compromisso.</p>
-                    <a href="/diagnostico" class="btn btn-acao" data-cta="blog_quanto-custa-um-sistema-proprio">Agendar diagnóstico grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                </aside>
                 </article>
             </div>
         </section>
 
-        <section class="blog-mais" aria-labelledby="mais-titulo">
+        <section id="leia-tambem" class="h-caso escuro i-lista i-guias" aria-labelledby="leia-tambem-titulo">
             <div class="wrap">
-                <h2 id="mais-titulo">Leia também</h2>
-                <div class="blog-lista">
-                    <a class="blog-card" href="/blog/como-sair-do-caderno-de-fiado">
-                        <span class="blog-tag">Comércio</span>
-                        <h3>Como sair do caderno de fiado sem perder o controle</h3>
-                        <span class="blog-ler">Ler o guia <span aria-hidden="true">→</span></span>
-                    </a>
-                    <a class="blog-card" href="/blog/site-ou-instagram">
-                        <span class="blog-tag">Presença online</span>
-                        <h3>Site ou Instagram: o que o seu negócio precisa?</h3>
-                        <span class="blog-ler">Ler o guia <span aria-hidden="true">→</span></span>
-                    </a>
+                <h2 id="leia-tambem-titulo" class="h-grande gigante">Leia <em>também.</em></h2>
+                <ul class="h-lista">
+                    <li class="h-proj">
+                        <a class="h-proj-linha" href="/blog/como-sair-do-caderno-de-fiado">
+                            <span class="h-proj-num">01</span>
+                            <span class="h-proj-nome">Como sair do caderno de fiado sem perder o controle</span>
+                            <p class="h-proj-desc">O caderno funciona até o dia em que não funciona. Um passo a passo para organizar o fiado, cobrar sem constrangimento e saber quanto você tem a receber.</p>
+                            <span class="h-proj-tipo">Comércio</span>
+                            <span class="h-proj-seta" aria-hidden="true">↗</span>
+                        </a>
+                    </li>
+                    <li class="h-proj">
+                        <a class="h-proj-linha" href="/blog/site-ou-instagram">
+                            <span class="h-proj-num">02</span>
+                            <span class="h-proj-nome">Site ou Instagram: o que o seu negócio precisa?</span>
+                            <p class="h-proj-desc">O Instagram é ótimo para aparecer, mas não é seu. Quando ele basta, quando o site faz falta e por que os dois juntos funcionam melhor.</p>
+                            <span class="h-proj-tipo">Presença online</span>
+                            <span class="h-proj-seta" aria-hidden="true">↗</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="i-chamada" aria-labelledby="chamada-titulo">
+            <div class="wrap">
+                <h2 id="chamada-titulo" class="i-chamada-titulo gigante">Bora resolver?</h2>
+                <div class="i-chamada-texto">
+                    <p>Conte o seu caso. O diagnóstico é gratuito, leva 30 minutos e não tem compromisso.</p>
+                    <a href="/diagnostico" class="btn btn-acao" data-cta="blog_quanto-custa-um-sistema-proprio" data-magnetico data-cursor="bora">Agendar diagnóstico grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                 </div>
             </div>
         </section>
@@ -243,5 +252,10 @@
     </footer>
 
     <script src="/assets/js/site.js"></script>
+    <script src="/assets/js/vendor/gsap.min.js"></script>
+    <script src="/assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="/assets/js/vendor/lenis.min.js"></script>
+    <script src="/assets/js/home.js"></script>
+    <script src="/assets/js/interna.js"></script>
 </body>
 </html>

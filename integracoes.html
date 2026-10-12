@@ -22,7 +22,7 @@
     <title>Integração de sistemas, planilhas e APIs | MovCode</title>
     <meta name="description" content="Loja, estoque, financeiro, planilhas e CRM trocando dados sozinhos, sem digitar a mesma coisa duas vezes. Integração de sistemas em Ribeirão Preto e todo o Brasil.">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#F4F4F2">
+    <meta name="theme-color" content="#111214">
     <link rel="canonical" href="https://movcode.com.br/integracoes">
 
     <meta property="og:type" content="website">
@@ -37,6 +37,23 @@
     <meta property="og:locale" content="pt_BR">
     <meta name="twitter:card" content="summary_large_image">
 
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="assets/images/icons/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/interna.css">
+    <script>
+        // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
+        try {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anima-pre');
+        } catch (e) {}
+    </script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -95,7 +112,7 @@
                         "name": "Quanto custa?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Depende de quantos sistemas entram na conversa e do que cada um permite. Depois de uma conversa rápida você recebe uma proposta com escopo, prazo e valor fechados."
+                            "text": "Depende de quantos sistemas entram na conversa e do que cada um permite. Depois do diagnóstico gratuito você recebe uma proposta com escopo, prazo e valor fechados."
                         }
                     }
                 ]
@@ -103,18 +120,8 @@
         ]
     }
     </script>
-
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="icon" href="assets/images/icons/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
-    <link rel="apple-touch-icon" href="assets/images/icons/apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
+<body class="home interna">
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
     <header class="topo">
         <div class="wrap">
@@ -122,97 +129,177 @@
                 <span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>
                 <span>Mov<span class="code">Code</span><span class="ponto">.</span></span>
             </a>
-            <a href="#contato" class="btn btn-acao btn-pequeno" data-cta="topo">Pedir orçamento</a>
+            <button class="menu-botao" type="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
+                <svg class="abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            </button>
+            <nav id="menu" class="menu" aria-label="Navegação principal">
+                <a href="/#escala">Soluções</a>
+                <a href="/#como-funciona">Como funciona</a>
+                <a href="/#produtos">Produtos</a>
+                <a href="/sua-pagina">Sua página</a>
+                <a href="/#duvidas">Dúvidas</a>
+                <a href="/#contato" class="btn btn-acao btn-pequeno" data-cta="menu">Diagnóstico grátis</a>
+            </nav>
         </div>
     </header>
 
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-anel" aria-hidden="true"><span></span></div>
+
     <main id="conteudo">
-        <section class="hero">
+        <section class="i-hero escuro">
             <div class="wrap">
-                <div class="hero-texto">
-                    <span class="selo"><b>Integrações</b> ERP, CRM, planilhas e APIs</span>
-                    <h1>Seus sistemas <span class="tamanho">conversando</span>, sem você no meio.</h1>
-                    <p class="hero-sub">Quando a loja, o estoque e o financeiro não se falam, alguém digita tudo duas vezes. A gente liga um no outro.</p>
-                    <div class="hero-acoes">
-                        <a href="#contato" class="btn btn-acao" data-cta="nicho_hero">Quero integrar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <div class="i-hero-texto">
+                    <p class="i-rotulo i-entra"><b>Serviço</b> Integrações</p>
+                    <h1 class="h-grande gigante i-titulo">Seus sistemas <em>conversando.</em></h1>
+                    <p class="i-hero-sub i-entra">Quando a loja, o estoque e o financeiro não se falam, alguém digita tudo duas vezes. A gente liga um no outro.</p>
+                    <div class="i-acoes i-entra">
+                        <a href="#contato" class="btn btn-acao" data-cta="integracoes_hero" data-servico="Automação ou integração" data-magnetico data-cursor="bora">Quero integrar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="h-caso-link" href="#exemplos">Ver exemplos <span aria-hidden="true">↓</span></a>
                     </div>
-                    <ul class="garantias">
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> Preço fechado</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Seus dados são seus</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg> Resposta no mesmo dia útil</li>
-                    </ul>
                 </div>
-                <div class="conversa" aria-hidden="true">
-                    <p class="msg">Vendeu na loja, mas o estoque não baixou.<small>09:12</small></p>
-                    <p class="msg">O CRM tem um telefone, a planilha tem outro.<small>10:47</small></p>
-                    <p class="msg">Lança de novo no financeiro, por favor.<small>14:05</small></p>
-                    <p class="msg resposta">Bora fazer eles conversarem?<small>MovCode</small></p>
+                <div class="i-fluxo i-entra" aria-hidden="true">
+                    <span class="duo i-fluxo-marca"><i><b></b><b></b></i><i><b></b><b></b></i></span>
+                    <span class="i-aviso"><b></b>Venda na loja → estoque atualizado<small>sozinho</small></span>
+                    <span class="i-aviso"><b></b>Pagamento aprovado → pedido confirmado<small>sozinho</small></span>
+                    <span class="i-aviso"><b></b>Novo contato → CRM<small>sozinho</small></span>
+                </div>
+            </div>
+            <a href="#conteudo-segue" class="h-rolar i-entra"><span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>Role para conhecer</a>
+        </section>
+
+        <section id="conteudo-segue" class="h-faixa" aria-label="Integração de sistemas: o que entra">
+            <div class="h-faixa-linha" aria-hidden="true"><span class="item">Loja<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Estoque<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Pagamentos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">CRM<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Planilhas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Loja<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Estoque<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Pagamentos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">CRM<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Planilhas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
+            <div class="h-faixa-linha contorno" aria-hidden="true"><span class="item">Loja<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Estoque<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Pagamentos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">CRM<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Planilhas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Loja<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Estoque<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Pagamentos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">CRM<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Planilhas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
+        </section>
+
+        <section class="h-conversa" aria-labelledby="conversa-titulo">
+            <div class="wrap">
+                <h2 id="conversa-titulo" class="h-grande gigante"><span class="junto">Sua equipe</span> <em class="junto">já te avisa.</em></h2>
+                <div class="chat">
+                    <p class="bolha">Vendeu na loja, mas o estoque não baixou.<small>09:12</small></p>
+                    <p class="bolha">O CRM tem um telefone, a planilha tem outro.<small>10:47</small></p>
+                    <p class="bolha">Lança de novo no financeiro, por favor.<small>14:05</small></p>
+                    <p class="bolha nossa">Bora fazer eles conversarem?<small>MovCode</small></p>
                 </div>
             </div>
         </section>
 
-        <section class="solucoes" aria-labelledby="entra-titulo">
-            <div class="wrap">
-                <div class="cabeca-secao">
-                    <h2 id="entra-titulo">O que a gente conecta.</h2>
-                </div>
-                <ul class="lp-sinais">
-                    <li>
+        <section id="exemplos" class="h-servicos escuro" aria-labelledby="exemplos-titulo">
+            <div class="h-servicos-pin">
+                <div class="h-servicos-trilho">
+                    <div class="h-servicos-intro">
+                        <h2 id="exemplos-titulo" class="h-grande gigante">O que a gente <em>conecta.</em></h2>
+                        <p>Cada sistema continua fazendo o que faz de melhor. A diferença é que agora eles conversam.</p>
+                    </div>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">01</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-integracoes-1" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-integracoes-1" startOffset="0" data-repete="venda · estoque · balcão · ">venda · estoque · balcão · venda · estoque · balcão · venda · estoque · balcão · venda · estoque · balcão · venda · estoque · balcão · venda · estoque · balcão · </textPath></text></svg></div>
                         <h3>Loja e estoque</h3>
                         <p>Vendeu online, o estoque baixa sozinho. Vendeu no balcão, a loja já sabe.</p>
-                    </li>
-                    <li>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">02</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-integracoes-2" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-integracoes-2" startOffset="0" data-repete="Pix · cartão · pedido · ">Pix · cartão · pedido · Pix · cartão · pedido · Pix · cartão · pedido · Pix · cartão · pedido · Pix · cartão · pedido · Pix · cartão · pedido · </textPath></text></svg></div>
                         <h3>Pagamentos e pedidos</h3>
                         <p>Pagamento aprovado vira pedido confirmado, sem ninguém conferir extrato.</p>
-                    </li>
-                    <li>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">03</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-integracoes-3" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-integracoes-3" startOffset="0" data-repete="planilha · sistema · sempre igual · ">planilha · sistema · sempre igual · planilha · sistema · sempre igual · planilha · sistema · sempre igual · planilha · sistema · sempre igual · planilha · sistema · sempre igual · planilha · sistema · sempre igual · </textPath></text></svg></div>
                         <h3>Planilhas e sistemas</h3>
                         <p>A planilha que todo mundo usa passa a ler e gravar direto no sistema.</p>
-                    </li>
-                    <li>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">04</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-integracoes-4" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-integracoes-4" startOffset="0" data-repete="site · CRM · contato · ">site · CRM · contato · site · CRM · contato · site · CRM · contato · site · CRM · contato · site · CRM · contato · site · CRM · contato · </textPath></text></svg></div>
                         <h3>Site e atendimento</h3>
                         <p>O contato que chegou pelo site entra no CRM com tudo o que a pessoa preencheu.</p>
-                    </li>
-                    <li>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">05</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15v14H5a2 2 0 0 1-2-2V5"/><path d="M16 14h.01"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-integracoes-5" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-integracoes-5" startOffset="0" data-repete="contas · vendas · sem digitar · ">contas · vendas · sem digitar · contas · vendas · sem digitar · contas · vendas · sem digitar · contas · vendas · sem digitar · contas · vendas · sem digitar · contas · vendas · sem digitar · </textPath></text></svg></div>
                         <h3>Financeiro</h3>
                         <p>Vendas e contas caindo no financeiro sem lançamento manual.</p>
-                    </li>
-                    <li>
+                    </article>
+                    <article class="h-card">
+                        <div class="h-card-topo"><span class="h-card-num">06</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span></div>
+                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-integracoes-6" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-integracoes-6" startOffset="0" data-repete="API · ponte · sob medida · ">API · ponte · sob medida · API · ponte · sob medida · API · ponte · sob medida · API · ponte · sob medida · API · ponte · sob medida · API · ponte · sob medida · </textPath></text></svg></div>
                         <h3>APIs sob medida</h3>
                         <p>Sistema sem integração pronta? Se ele tem API, a gente faz a ponte.</p>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="processo" aria-labelledby="passos-titulo">
-            <div class="wrap">
-                <div class="cabeca-secao">
-                    <h2 id="passos-titulo">Do papo ao projeto no ar.</h2>
+                    </article>
                 </div>
-                <ol class="passos">
-                    <li class="passo"><h3>Conversa</h3><p>Entendemos o seu negócio e o que precisa ser resolvido, sem compromisso.</p></li>
-                    <li class="passo"><h3>Proposta fechada</h3><p>Escopo, prazo e valor por escrito, sem surpresa no meio do caminho.</p></li>
-                    <li class="passo"><h3>Construção</h3><p>Você acompanha, testa e pede ajustes antes de ir para o ar.</p></li>
-                    <li class="passo"><h3>No ar e com suporte</h3><p>Publicado, medido e com a gente por perto depois da entrega.</p></li>
-                </ol>
             </div>
         </section>
 
-        <section id="contato" class="contato escuro">
+        <section id="como-funciona" class="h-processo" aria-labelledby="como-funciona-titulo">
             <div class="wrap">
-                <div class="contato-texto">
-                    <h2>Leva 1 minuto para <em>começar</em>.</h2>
-                    <p>Preencha e fale direto com quem desenvolve, pelo WhatsApp.</p>
+                <h2 id="como-funciona-titulo" class="h-grande gigante">Do papo ao <em>sistema no ar.</em></h2>
+                <div class="h-passos-caixa">
+                    <span class="h-passos-linha" aria-hidden="true"></span>
+                    <ol class="h-passos">
+                    <li class="h-passo">
+                        <span class="h-passo-num">01</span>
+                        <h3>Conversa <small>grátis</small></h3>
+                        <p>Meia hora para entender a sua rotina.</p>
+                    </li>
+                    <li class="h-passo">
+                        <span class="h-passo-num">02</span>
+                        <h3>Proposta</h3>
+                        <p>Escopo, prazo e preço fechados.</p>
+                    </li>
+                    <li class="h-passo">
+                        <span class="h-passo-num">03</span>
+                        <h3>Construção</h3>
+                        <p>Você testa e opina a cada etapa.</p>
+                    </li>
+                    <li class="h-passo">
+                        <span class="h-passo-num">04</span>
+                        <h3>No ar</h3>
+                        <p>Treinamos a equipe e seguimos junto.</p>
+                    </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="duvidas" class="h-duvidas" aria-labelledby="duvidas-titulo">
+            <div class="wrap">
+                <h2 id="duvidas-titulo" class="h-grande gigante">Perguntas <em>rápidas.</em></h2>
+                <div class="perguntas">
+                    <details class="pergunta">
+                        <summary>Meu sistema atual tem como integrar?</summary>
+                        <p>Se ele tem API ou exporta e importa arquivos, quase sempre dá. No diagnóstico a gente confere o que cada sistema permite.</p>
+                    </details>
+                    <details class="pergunta">
+                        <summary>Preciso trocar de sistema?</summary>
+                        <p>Não é a ideia. A integração aproveita o que você já usa e liga as partes.</p>
+                    </details>
+                    <details class="pergunta">
+                        <summary>E se um dos sistemas mudar?</summary>
+                        <p>Com o plano de manutenção, a gente ajusta a integração quando algum sistema muda.</p>
+                    </details>
+                    <details class="pergunta">
+                        <summary>Quanto custa?</summary>
+                        <p>Depende de quantos sistemas entram na conversa e do que cada um permite. Depois do diagnóstico gratuito você recebe uma proposta com escopo, prazo e valor fechados.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="h-contato" aria-labelledby="contato-titulo">
+            <div class="wrap">
+                <div class="h-contato-texto">
+                    <h2 id="contato-titulo" class="h-contato-titulo gigante">Bora integrar?</h2>
+                    <p>Conte quais sistemas não se falam hoje. A gente responde no mesmo dia útil.</p>
                     <ul class="contato-lista">
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Conversa de 30 minutos, por vídeo ou presencial</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> Proposta com escopo, prazo e valor fechados</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg> Resposta no mesmo dia útil</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 30 minutos, sem compromisso</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> Preço fechado na proposta</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Seus dados são seus</li>
                     </ul>
-                    <p class="contato-alt">Prefere e-mail? <a href="mailto:contato@movcode.com.br">contato@movcode.com.br</a></p>
                 </div>
                 <form class="form" data-lead-form novalidate>
-                        <p class="form-titulo">Peça o orçamento da sua integração</p>
+                        <p class="form-titulo">Agende seu diagnóstico</p>
                         <div class="campo">
                             <label for="leadNome">Seu nome</label>
                             <input id="leadNome" name="nome" type="text" autocomplete="name" required placeholder="Como podemos te chamar?">
@@ -235,35 +322,9 @@
                             <textarea id="leadMensagem" name="mensagem" rows="3" placeholder="Ex.: minha loja virtual não conversa com o estoque"></textarea>
                         </div>
                         <p class="form-erro" role="alert" hidden>Preencha seu nome e escolha o que você precisa.</p>
-                        <button type="submit" class="btn btn-acao">Chamar no WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+                        <button type="submit" class="btn btn-acao">Agendar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
                         <p class="form-nota">Ao enviar, o WhatsApp abre com a sua mensagem pronta. Veja a nossa <a href="/politica">Política de Privacidade</a>.</p>
                     </form>
-            </div>
-        </section>
-
-        <section class="duvidas" style="padding-top: var(--secao)" aria-labelledby="lp-duvidas">
-            <div class="wrap">
-                <div class="cabeca-secao">
-                    <h2 id="lp-duvidas">Antes de chamar.</h2>
-                </div>
-                <div class="perguntas">
-                    <details class="pergunta">
-                        <summary>Meu sistema atual tem como integrar?</summary>
-                        <p>Se ele tem API ou exporta e importa arquivos, quase sempre dá. No diagnóstico a gente confere o que cada sistema permite.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Preciso trocar de sistema?</summary>
-                        <p>Não é a ideia. A integração aproveita o que você já usa e liga as partes.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>E se um dos sistemas mudar?</summary>
-                        <p>Com o plano de manutenção, a gente ajusta a integração quando algum sistema muda.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Quanto custa?</summary>
-                        <p>Depende de quantos sistemas entram na conversa e do que cada um permite. Depois de uma conversa rápida você recebe uma proposta com escopo, prazo e valor fechados.</p>
-                    </details>
-                </div>
             </div>
         </section>
     </main>
@@ -322,5 +383,10 @@
     </footer>
 
     <script src="assets/js/site.js"></script>
+    <script src="assets/js/vendor/gsap.min.js"></script>
+    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/js/vendor/lenis.min.js"></script>
+    <script src="assets/js/home.js"></script>
+    <script src="assets/js/interna.js"></script>
 </body>
 </html>
