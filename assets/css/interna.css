@@ -142,6 +142,17 @@ html.anima .i-progresso { display: block; position: fixed; top: 0; left: 0; righ
 .i-artigo strong { color: var(--tinta); }
 .i-artigo a { color: var(--laranja-texto); font-weight: 600; }
 
+/* ---------- Textos legais (Politica e Termos) no layout de leitura ---------- */
+.i-artigo section { display: grid; gap: 14px; }
+.i-legal article { gap: 44px; }
+.i-legal h2 { margin-top: 0; font-size: clamp(26px, 2.6vw, 36px); }
+.i-legal h3 { font: 700 20px/1.2 var(--f-display); color: var(--tinta); }
+.i-artigo .contact-box { display: grid; gap: 6px; padding: 20px 22px; border-radius: var(--r-md); background: var(--realce); }
+
+/* ---------- 404: o numero gigante, cada digito maior que o anterior ---------- */
+.i-erro { display: flex; align-items: flex-end; justify-content: center; font: 800 clamp(110px, 16vw, 250px)/0.8 var(--f-display); font-stretch: 75%; letter-spacing: -0.05em; color: var(--laranja); user-select: none; }
+.i-erro span { display: inline-block; font-size: calc(var(--s) * 1em); }
+
 /* ---------- Responsivo ---------- */
 @media (max-width: 1080px) {
     .i-hero { min-height: 0; }

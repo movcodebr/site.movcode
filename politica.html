@@ -22,7 +22,7 @@
     <title>Política de Privacidade | MovCode</title>
     <meta name="description" content="Como a MovCode coleta, usa, compartilha e protege os dados dos clientes e dos usuários dos sistemas que desenvolve.">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#F4F4F2">
+    <meta name="theme-color" content="#111214">
     <link rel="canonical" href="https://movcode.com.br/politica">
 
     <meta property="og:type" content="website">
@@ -46,8 +46,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/interna.css">
+    <script>
+        // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
+        try {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anima-pre');
+        } catch (e) {}
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Política de Privacidade",
+        "url": "https://movcode.com.br/politica",
+        "inLanguage": "pt-BR",
+        "isPartOf": {
+            "@id": "https://movcode.com.br/#site"
+        },
+        "publisher": {
+            "@type": "ProfessionalService",
+            "@id": "https://movcode.com.br/#empresa",
+            "name": "MovCode",
+            "url": "https://movcode.com.br/"
+        }
+    }
+    </script>
 </head>
-<body>
+<body class="home interna">
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
     <header class="topo">
         <div class="wrap">
@@ -59,112 +85,140 @@
                 <svg class="abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
             </button>
             <nav id="menu" class="menu" aria-label="Navegação principal">
-                <a href="/#escala">Soluções</a>
+                <div class="menu-item">
+                    <button class="menu-gatilho" type="button" aria-expanded="false" aria-controls="menu-solucoes">Soluções <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+                    <div class="menu-painel" id="menu-solucoes">
+                        <div class="menu-coluna">
+                            <p class="menu-titulo">Serviços</p>
+                            <a href="/criacao-de-sites">Criação de sites</a>
+                            <a href="/sistema-para-mercadinho">Sistema para comércio</a>
+                            <a href="/automacoes">Automações</a>
+                            <a href="/integracoes">Integrações</a>
+                            <a href="/paineis">Painéis</a>
+                            <a href="/consultoria">Consultoria</a>
+                        </div>
+                        <div class="menu-coluna">
+                            <p class="menu-titulo">Produtos</p>
+                            <a href="https://www.forlabs.com.br" target="_blank" rel="noopener">ForLabs <span class="menu-externo" aria-hidden="true">↗</span></a>
+                            <a href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Lojinha Pronta <span class="menu-externo" aria-hidden="true">↗</span></a>
+                            <a href="/sistema-para-condominio">ForCondom <span class="rodape-breve">Em breve</span></a>
+                            <a href="/sistema-para-barbearia">ForBarber <span class="rodape-breve">Em breve</span></a>
+                            <a href="/cardapio-digital">Pratuca <span class="rodape-breve">Em breve</span></a>
+                        </div>
+                        <a class="menu-destaque" href="/sua-pagina">
+                            <span class="menu-destaque-visual" aria-hidden="true"><span class="menu-mini"><i></i><i></i><i></i><b></b></span></span>
+                            <span class="menu-destaque-texto">
+                                <strong>Sua página</strong>
+                                <span>Veja como pode ficar a página do seu negócio, com o seu nome e o seu WhatsApp.</span>
+                                <em>Montar agora</em>
+                            </span>
+                        </a>
+                    </div>
+                </div>
                 <a href="/#como-funciona">Como funciona</a>
-                <a href="/#produtos">Produtos</a>
-                <a href="/sua-pagina">Sua página</a>
+                <a href="/sobre">Sobre</a>
                 <a href="/#duvidas">Dúvidas</a>
-                <a href="/#contato" class="btn btn-acao btn-pequeno" data-cta="menu">Diagnóstico grátis</a>
+                <a href="https://wa.me/5516982157266" class="btn btn-escuro btn-pequeno" data-whatsapp data-cta="menu_whatsapp">WhatsApp</a>
+                <a href="/diagnostico" class="btn btn-acao btn-pequeno" data-cta="menu">Diagnóstico grátis</a>
             </nav>
         </div>
     </header>
 
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-anel" aria-hidden="true"><span></span></div>
+
     <main id="conteudo">
-        <section class="pagina-topo">
+        <section class="i-hero escuro i-hero-compacto i-artigo-topo">
             <div class="wrap">
-                <h1>Política de Privacidade</h1>
-                <p>MovCode &bull; Vigente a partir de 01/05/2026</p>
+                <div class="i-hero-texto">
+                    <p class="i-rotulo i-entra">Documento · Privacidade</p>
+                    <h1 class="h-grande gigante i-titulo">Política de Privacidade</h1>
+                    <p class="i-hero-sub i-entra">MovCode &bull; Vigente a partir de 01/05/2026</p>
+                </div>
             </div>
         </section>
-        <section class="texto-longo">
+
+        <section class="i-artigo i-legal">
             <div class="wrap">
                 <article>
-                <section>
-                    <h2>1. Identificação e contato</h2>
-                    <p>A <strong>MovCode</strong> é uma agência de soluções digitais e está disponível para contato por e-mail e WhatsApp.</p>
-                    <div class="contact-box">
-                        <p><strong>Encarregados pelo tratamento de dados (DPO):</strong> Vinicius Hallal e Kaique Mota</p>
-                        <p><strong>E-mail para suporte e privacidade:</strong> contato@movcode.com.br</p>
-                    </div>
-                    <p><em>Última atualização: 01/10/2026</em></p>
-                </section>
-
-                <section>
-                    <h2>2. Dados que coletamos</h2>
-                    <p>Para desenvolver seus projetos e manter seus sistemas rodando, coletamos:</p>
-                    <ul>
-                        <li><strong>Dados cadastrais do cliente:</strong> nome, e-mail, CPF/CNPJ, telefone e endereço (para fins contratuais e emissão de notas fiscais).</li>
-                        <li><strong>Dados dos seus usuários:</strong> informações que você ou seus clientes inserem nos sistemas que desenvolvemos (vendas, cadastros, arquivos).</li>
-                        <li><strong>Logs técnicos:</strong> endereço IP, tipo de navegador e timestamps de acesso para garantir a segurança dos sistemas e facilitar o suporte técnico.</li>
-                        <li><strong>Comunicação:</strong> histórico de conversas por WhatsApp ou e-mail relacionadas ao suporte e escopo dos projetos.</li>
-                        <li><strong>Navegação neste site:</strong> páginas visitadas, cliques em botões, origem da visita (por exemplo, de qual anúncio você veio) e dados técnicos do navegador, coletados por cookies do Google Analytics e, quando ativo, do Meta Pixel. Usamos essas informações de forma agregada para medir e melhorar o site e os nossos anúncios. Você pode bloquear ou apagar esses cookies nas configurações do seu navegador.</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>3. Finalidade do tratamento</h2>
-                    <p>Os dados são utilizados exclusivamente para:</p>
-                    <ul>
-                        <li><strong>Execução do contrato:</strong> desenvolver o código, realizar o deploy e manter o seu site/sistema funcional.</li>
-                        <li><strong>Suporte técnico:</strong> resolver bugs e realizar manutenções solicitadas.</li>
-                        <li><strong>Segurança:</strong> prevenir acessos não autorizados e garantir a integridade do banco de dados.</li>
-                        <li><strong>Faturamento:</strong> processar pagamentos recorrentes e emitir documentos fiscais.</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>4. Compartilhamento (suboperadores)</h2>
-                    <p>Como agência, utilizamos infraestruturas de ponta para hospedar e processar dados. Seus dados podem passar por:</p>
-                    <ul>
-                        <li><strong>Hospedagem (nuvem):</strong> Vercel, para os sistemas, e GitHub Pages, para os sites estáticos.</li>
-                        <li><strong>Banco de dados:</strong> Supabase (PostgreSQL), para o armazenamento de informações estruturadas e arquivos.</li>
-                        <li><strong>Pagamentos:</strong> Asaas, para processar suas mensalidades.</li>
-                        <li><strong>Comunicação:</strong> WhatsApp (via Evolution API ou oficial) e Resend/SendGrid, para o envio de e-mails do sistema.</li>
-                        <li><strong>Medição e anúncios:</strong> Google Analytics (Google) e Meta Pixel (Meta), para entender o uso deste site e medir campanhas.</li>
-                        <li><strong>Inteligência artificial:</strong> caso seu sistema use IA, utilizamos a OpenAI (configurada para não usar os dados no treinamento de modelos).</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>5. Retenção de dados</h2>
-                    <ul>
-                        <li><strong>Sistemas ativos:</strong> os dados são mantidos enquanto o contrato de manutenção/hospedagem estiver vigente.</li>
-                        <li><strong>Após o cancelamento:</strong> conforme nossos Termos de Uso, os dados de uso do sistema ficam disponíveis para exportação por <strong>30 dias</strong>. Após esse período, realizamos a exclusão definitiva das bases de produção.</li>
-                        <li><strong>Obrigação legal:</strong> dados fiscais e contratuais são preservados por <strong>5 anos</strong> para cumprimento de normas da Receita Federal.</li>
-                    </ul>
-                </section>
-
-                <section id="direitos">
-                    <h2>6. Seus Direitos (LGPD)</h2>
-                    <p>Você, como titular, pode solicitar a qualquer momento:</p>
-                    <ul>
-                        <li>Confirmação e acesso aos dados que tratamos.</li>
-                        <li>Correção de informações incompletas ou desatualizadas.</li>
-                        <li>Exclusão definitiva de dados (respeitados os prazos de obrigações fiscais).</li>
-                        <li>Portabilidade dos dados para outra plataforma.</li>
-                    </ul>
-                </section>
-
-                <section id="seguranca">
-                    <h2>7. Segurança da informação</h2>
-                    <p>Adotamos práticas rigorosas de desenvolvimento:</p>
-                    <ul>
-                        <li>Uso de criptografia TLS (HTTPS) em todos os acessos.</li>
-                        <li>Isolamento de bancos de dados (Row-Level Security) para que um cliente nunca acesse dados de outro.</li>
-                        <li>Armazenamento de senhas com hash seguro (bcrypt).</li>
-                        <li>Monitoramento constante de logs para identificação de tentativas de invasão.</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>8. Alterações nesta política</h2>
-                    <p>Sempre que houver uma mudança significativa (como a adição de um novo suboperador de dados), você será notificado por e-mail ou através de um aviso no painel administrativo do seu sistema.</p>
-                </section>
-
-                <section>
-                    <h2>9. Foro</h2>
-                    <p>Fica eleito o foro da Comarca de Ribeirão Preto/SP para dirimir questões sobre esta Política.</p>
-                </section>
+                    <section>
+                        <h2>1. Identificação e contato</h2>
+                        <p>A <strong>MovCode</strong> é uma agência de soluções digitais e está disponível para contato por e-mail e WhatsApp.</p>
+                        <div class="contact-box">
+                            <p><strong>Encarregados pelo tratamento de dados (DPO):</strong> Vinicius Hallal e Kaique Mota</p>
+                            <p><strong>E-mail para suporte e privacidade:</strong> contato@movcode.com.br</p>
+                        </div>
+                        <p><em>Última atualização: 01/10/2026</em></p>
+                    </section>
+                    <section>
+                        <h2>2. Dados que coletamos</h2>
+                        <p>Para desenvolver seus projetos e manter seus sistemas rodando, coletamos:</p>
+                        <ul>
+                            <li><strong>Dados cadastrais do cliente:</strong> nome, e-mail, CPF/CNPJ, telefone e endereço (para fins contratuais e emissão de notas fiscais).</li>
+                            <li><strong>Dados dos seus usuários:</strong> informações que você ou seus clientes inserem nos sistemas que desenvolvemos (vendas, cadastros, arquivos).</li>
+                            <li><strong>Logs técnicos:</strong> endereço IP, tipo de navegador e timestamps de acesso para garantir a segurança dos sistemas e facilitar o suporte técnico.</li>
+                            <li><strong>Comunicação:</strong> histórico de conversas por WhatsApp ou e-mail relacionadas ao suporte e escopo dos projetos.</li>
+                            <li><strong>Navegação neste site:</strong> páginas visitadas, cliques em botões, origem da visita (por exemplo, de qual anúncio você veio) e dados técnicos do navegador, coletados por cookies do Google Analytics e, quando ativo, do Meta Pixel. Usamos essas informações de forma agregada para medir e melhorar o site e os nossos anúncios. Você pode bloquear ou apagar esses cookies nas configurações do seu navegador.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>3. Finalidade do tratamento</h2>
+                        <p>Os dados são utilizados exclusivamente para:</p>
+                        <ul>
+                            <li><strong>Execução do contrato:</strong> desenvolver o código, realizar o deploy e manter o seu site/sistema funcional.</li>
+                            <li><strong>Suporte técnico:</strong> resolver bugs e realizar manutenções solicitadas.</li>
+                            <li><strong>Segurança:</strong> prevenir acessos não autorizados e garantir a integridade do banco de dados.</li>
+                            <li><strong>Faturamento:</strong> processar pagamentos recorrentes e emitir documentos fiscais.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>4. Compartilhamento (suboperadores)</h2>
+                        <p>Como agência, utilizamos infraestruturas de ponta para hospedar e processar dados. Seus dados podem passar por:</p>
+                        <ul>
+                            <li><strong>Hospedagem (nuvem):</strong> Vercel, para os sistemas, e GitHub Pages, para os sites estáticos.</li>
+                            <li><strong>Banco de dados:</strong> Supabase (PostgreSQL), para o armazenamento de informações estruturadas e arquivos.</li>
+                            <li><strong>Pagamentos:</strong> Asaas, para processar suas mensalidades.</li>
+                            <li><strong>Comunicação:</strong> WhatsApp (via Evolution API ou oficial) e Resend/SendGrid, para o envio de e-mails do sistema.</li>
+                            <li><strong>Medição e anúncios:</strong> Google Analytics (Google) e Meta Pixel (Meta), para entender o uso deste site e medir campanhas.</li>
+                            <li><strong>Inteligência artificial:</strong> caso seu sistema use IA, utilizamos a OpenAI (configurada para não usar os dados no treinamento de modelos).</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>5. Retenção de dados</h2>
+                        <ul>
+                            <li><strong>Sistemas ativos:</strong> os dados são mantidos enquanto o contrato de manutenção/hospedagem estiver vigente.</li>
+                            <li><strong>Após o cancelamento:</strong> conforme nossos Termos de Uso, os dados de uso do sistema ficam disponíveis para exportação por <strong>30 dias</strong>. Após esse período, realizamos a exclusão definitiva das bases de produção.</li>
+                            <li><strong>Obrigação legal:</strong> dados fiscais e contratuais são preservados por <strong>5 anos</strong> para cumprimento de normas da Receita Federal.</li>
+                        </ul>
+                    </section>
+                    <section id="direitos">
+                        <h2>6. Seus Direitos (LGPD)</h2>
+                        <p>Você, como titular, pode solicitar a qualquer momento:</p>
+                        <ul>
+                            <li>Confirmação e acesso aos dados que tratamos.</li>
+                            <li>Correção de informações incompletas ou desatualizadas.</li>
+                            <li>Exclusão definitiva de dados (respeitados os prazos de obrigações fiscais).</li>
+                            <li>Portabilidade dos dados para outra plataforma.</li>
+                        </ul>
+                    </section>
+                    <section id="seguranca">
+                        <h2>7. Segurança da informação</h2>
+                        <p>Adotamos práticas rigorosas de desenvolvimento:</p>
+                        <ul>
+                            <li>Uso de criptografia TLS (HTTPS) em todos os acessos.</li>
+                            <li>Isolamento de bancos de dados (Row-Level Security) para que um cliente nunca acesse dados de outro.</li>
+                            <li>Armazenamento de senhas com hash seguro (bcrypt).</li>
+                            <li>Monitoramento constante de logs para identificação de tentativas de invasão.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>8. Alterações nesta política</h2>
+                        <p>Sempre que houver uma mudança significativa (como a adição de um novo suboperador de dados), você será notificado por e-mail ou através de um aviso no painel administrativo do seu sistema.</p>
+                    </section>
+                    <section>
+                        <h2>9. Foro</h2>
+                        <p>Fica eleito o foro da Comarca de Ribeirão Preto/SP para dirimir questões sobre esta Política.</p>
+                    </section>
                 </article>
             </div>
         </section>
@@ -196,8 +250,8 @@
                 </div>
                 <div>
                     <strong>Produtos</strong>
-                    <a href="/sistema-para-laboratorio">ForLabs</a>
-                    <a href="/loja-virtual">Lojinha Pronta</a>
+                    <a href="https://www.forlabs.com.br" target="_blank" rel="noopener">ForLabs <span class="menu-externo" aria-hidden="true">↗</span></a>
+                    <a href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Lojinha Pronta <span class="menu-externo" aria-hidden="true">↗</span></a>
                     <a href="/sistema-para-condominio">ForCondom <span class="rodape-breve">Em breve</span></a>
                     <a href="/sistema-para-barbearia">ForBarber <span class="rodape-breve">Em breve</span></a>
                     <a href="/cardapio-digital">Pratuca <span class="rodape-breve">Em breve</span></a>
@@ -224,5 +278,10 @@
     </footer>
 
     <script src="assets/js/site.js"></script>
+    <script src="assets/js/vendor/gsap.min.js"></script>
+    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/js/vendor/lenis.min.js"></script>
+    <script src="assets/js/home.js"></script>
+    <script src="assets/js/interna.js"></script>
 </body>
 </html>
