@@ -184,7 +184,7 @@
         const capitulos = gsap.utils.toArray('.h-escala .h-cap');
         const nomes = capitulos.map((cap) => cap.querySelector('.h-cap-nome'));
         const palavras = capitulos.map((cap) => cap.querySelector('.h-cap-nome-i'));
-        const detalhes = capitulos.map((cap) => cap.querySelectorAll('.h-cap-num, .h-cap-linha, .h-cap-link'));
+        const detalhes = capitulos.map((cap) => cap.querySelectorAll('.h-cap-num, .h-cap-linha'));
         gsap.set(duo, { xPercent: -50, yPercent: -50, scale: 0.45 });
         gsap.set(nomes, { xPercent: -50, yPercent: -50 });
         // Mesmo efeito dos titulos: a palavra sobe um pouco enquanto sai do desfoque
@@ -337,16 +337,11 @@
     }
     gsap.utils.toArray('.h-produto').forEach((produto, i) => {
         const tl = gsap.timeline({ scrollTrigger: { trigger: produto, start: 'top 85%' } });
-        tl.from(produto, { y: 60, autoAlpha: 0, duration: 1, ease: 'power3.out', delay: i * 0.12, clearProps: 'transform' });
-        const foto = produto.querySelector('.h-produto-visual img');
-        if (foto) {
-            tl.from(foto, { scale: 1.12, duration: 1.4, ease: 'power3.out', clearProps: 'transform' }, '<');
-        }
-        // Lojinha: as notificacoes chegam uma por uma, como numa venda de verdade
-        const avisos = produto.querySelectorAll('.h-produto-fluxo span');
-        if (avisos.length) {
-            tl.from(avisos, { x: -24, autoAlpha: 0, duration: 0.6, ease: 'back.out(1.6)', stagger: 0.35, clearProps: 'transform' }, '<0.35');
-        }
+        tl.from(produto, { y: 60, autoAlpha: 0, duration: 1, ease: 'power3.out', delay: i * 0.12, clearProps: 'transform' })
+            // Dentro do cartao, marca, frase, texto e botoes sobem em sequencia
+            .from(produto.querySelectorAll('.h-produto-topo, .h-produto-frase, .h-produto-corpo, .h-produto-acoes'), {
+                y: 26, autoAlpha: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09, clearProps: 'transform'
+            }, '<0.25');
     });
 
     // Produtos a caminho: entram juntos, um depois do outro

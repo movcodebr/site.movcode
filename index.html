@@ -45,6 +45,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <!-- Fontes das marcas dos produtos (ForLabs, Lojinha Pronta, ForCondom, ForBarber, Pratuca).
+         O parametro text baixa so as letras usadas nos nomes e nas frases dos cartoes:
+         ao mudar esses textos, inclua as letras novas aqui. Carrega sem travar a abertura. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Geist:wght@700&family=Inter:wght@400;700&family=Poppins:wght@700&text=%20%2C.BCFLPSabcdeghijlmnopqrstuv%C3%B3&display=swap" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="assets/css/site.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <script>
@@ -328,21 +332,18 @@
                         <span class="h-cap-num">01 / 03</span>
                         <h3 class="h-cap-nome gigante"><span class="h-cap-nome-i">Começar</span></h3>
                         <p class="h-cap-linha">Um site que coloca você no mapa.</p>
-                        <a href="#contato" class="h-cap-link" data-cta="escala_começar" data-servico="Site ou landing page">Quero esse →</a>
                     </div>
                     <div class="h-cap c2">
                         <span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>
                         <span class="h-cap-num">02 / 03</span>
                         <h3 class="h-cap-nome gigante"><span class="h-cap-nome-i">Organizar</span></h3>
                         <p class="h-cap-linha">Um sistema que arruma a casa.</p>
-                        <a href="#contato" class="h-cap-link" data-cta="escala_organizar" data-servico="Sistema de gestão">Quero esse →</a>
                     </div>
                     <div class="h-cap c3">
                         <span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>
                         <span class="h-cap-num">03 / 03</span>
                         <h3 class="h-cap-nome gigante"><span class="h-cap-nome-i">Escalar</span></h3>
                         <p class="h-cap-linha">Tecnologia que cresce junto.</p>
-                        <a href="#contato" class="h-cap-link" data-cta="escala_escalar" data-servico="Sistema sob medida">Quero esse →</a>
                     </div>
                 <div class="h-escala-progresso" aria-hidden="true"><i></i></div>
                 <div class="h-escala-fundo" aria-hidden="true"><p class="h-escala-final gigante">Do tamanho que você precisar.</p></div>
@@ -449,36 +450,34 @@
                 <p class="h-produtos-sub">Sistemas que a gente já criou para tipos de negócio que conhece de perto. É contratar e começar a usar.</p>
 
                 <div class="h-produtos-grade">
-                    <article class="h-produto">
-                        <div class="h-produto-visual" data-cursor="lab">
+                    <article class="h-produto h-marca-forlabs">
+                        <div class="h-produto-topo">
+                            <h3 class="h-produto-marca"><img src="assets/images/marcas/forlabs.svg" alt="" width="40" height="40" loading="lazy"><span><span>For</span>Labs</span></h3>
                             <em class="h-produto-status">No ar</em>
-                            <img src="assets/images/projects/forlabs-painel.webp" alt="Painel do ForLabs com total de registros, gráfico de testes por mês e atividade recente do laboratório" width="1600" height="931" loading="lazy">
                         </div>
+                        <p class="h-produto-frase">Controle de qualidade laboratorial, <em>num só lugar.</em></p>
                         <div class="h-produto-corpo">
                             <span class="h-produto-para">Para laboratórios</span>
-                            <h3 class="h-produto-nome">ForLabs</h3>
-                            <p>Controle de qualidade num só lugar: testes, análise de cor, laudos em PDF e histórico de quem fez o quê.</p>
-                            <div class="h-produto-acoes">
-                                <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pelo site da MovCode e quero conhecer o ForLabs." data-cta="produto_forlabs">Quero o ForLabs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                                <a class="h-caso-link" href="https://www.forlabs.com.br" target="_blank" rel="noopener">Ver o site <span aria-hidden="true">↗</span></a>
-                            </div>
+                            <p>Testes, análise de cor, laudos em PDF e histórico de quem fez o quê. No computador do escritório e no celular da bancada.</p>
+                        </div>
+                        <div class="h-produto-acoes">
+                            <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pelo site da MovCode e quero conhecer o ForLabs." data-cta="produto_forlabs">Quero o ForLabs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                            <a class="btn h-produto-site" href="https://www.forlabs.com.br" target="_blank" rel="noopener">Ver o site <span aria-hidden="true">↗</span></a>
                         </div>
                     </article>
-                    <article class="h-produto">
-                        <div class="h-produto-visual h-produto-fluxo" aria-hidden="true">
+                    <article class="h-produto h-marca-lojinha">
+                        <div class="h-produto-topo">
+                            <h3 class="h-produto-marca"><span class="h-marca-icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 5 4.2h14l1.5 4.3"/><path d="M5 8.5v10.3h14V8.5"/><path d="m9.5 13 1.8 1.8 3.4-3.4"/></svg></span>Lojinha Pronta</h3>
                             <em class="h-produto-status">No ar</em>
-                            <span><b></b>Novo pedido recebido<small>agora</small></span>
-                            <span><b></b>Pagamento aprovado no Pix<small>agora</small></span>
-                            <span><b></b>Arquivo enviado ao cliente<small>agora</small></span>
                         </div>
+                        <p class="h-produto-frase"><span>Sua loja pronta</span> <span>pra vender</span></p>
                         <div class="h-produto-corpo">
                             <span class="h-produto-para">Para quem vende online</span>
-                            <h3 class="h-produto-nome">Lojinha Pronta</h3>
                             <p>Loja virtual que já sai configurada: pagamento pelo Mercado Pago, entrega automática e e-mails que se mandam sozinhos.</p>
-                            <div class="h-produto-acoes">
-                                <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pelo site da MovCode e quero a Lojinha Pronta." data-cta="produto_lojinha">Quero a Lojinha <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                                <a class="h-caso-link" href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Ver o site <span aria-hidden="true">↗</span></a>
-                            </div>
+                        </div>
+                        <div class="h-produto-acoes">
+                            <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pelo site da MovCode e quero a Lojinha Pronta." data-cta="produto_lojinha">Quero a Lojinha <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                            <a class="btn h-produto-site" href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Ver o site <span aria-hidden="true">↗</span></a>
                         </div>
                     </article>
                 </div>
@@ -486,30 +485,36 @@
                 <div class="h-breve">
                     <h3 class="h-breve-titulo">Em breve.</h3>
                     <div class="h-breve-grade">
-                    <article class="h-breve-card">
-                        <span class="h-breve-selo">Em breve</span>
+                    <article class="h-breve-card h-marca-forcondom">
+                        <div class="h-breve-topo">
+                            <h4 class="h-produto-marca"><svg class="h-marca-icone" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#c2410c"/><path d="M16 30 32 17l16 13v17a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2z" fill="#fff"/><rect x="27" y="35" width="10" height="14" rx="1.5" fill="#c2410c"/></svg>ForCondom</h4>
+                            <span class="h-breve-selo">Em breve</span>
+                        </div>
                         <span class="h-produto-para">Para condomínios</span>
-                        <h4 class="h-breve-nome">ForCondom</h4>
                         <p>A economia do condomínio, organizada: vizinhos vendem produtos, oferecem serviços e anunciam usados só para quem mora ali.</p>
                         <div class="h-breve-acoes">
                             <a class="h-caso-link" href="/sistema-para-condominio">Conhecer <span aria-hidden="true">→</span></a>
                             <a href="https://wa.me/5516982157266" class="h-breve-avise" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando o ForCondom estiver disponível." data-cta="produto_forcondom">Quero ser avisado</a>
                         </div>
                     </article>
-                    <article class="h-breve-card">
-                        <span class="h-breve-selo">Em breve</span>
+                    <article class="h-breve-card h-marca-forbarber">
+                        <div class="h-breve-topo">
+                            <h4 class="h-produto-marca"><span class="h-marca-icone" aria-hidden="true"></span>ForBarber</h4>
+                            <span class="h-breve-selo">Em breve</span>
+                        </div>
                         <span class="h-produto-para">Para barbearias</span>
-                        <h4 class="h-breve-nome">ForBarber</h4>
                         <p>Agendamento online, site e app próprios para a barbearia, com painel de agenda, clientes, equipe e financeiro.</p>
                         <div class="h-breve-acoes">
                             <a class="h-caso-link" href="/sistema-para-barbearia">Conhecer <span aria-hidden="true">→</span></a>
                             <a href="https://wa.me/5516982157266" class="h-breve-avise" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando o ForBarber estiver disponível." data-cta="produto_forbarber">Quero ser avisado</a>
                         </div>
                     </article>
-                    <article class="h-breve-card">
-                        <span class="h-breve-selo">Em breve</span>
+                    <article class="h-breve-card h-marca-pratuca">
+                        <div class="h-breve-topo">
+                            <h4 class="h-produto-marca"><svg class="h-marca-icone" viewBox="0 0 64 56" aria-hidden="true"><g fill="#fff3e5"><circle cx="19" cy="22" r="12"/><circle cx="32" cy="15" r="14"/><circle cx="45" cy="22" r="12"/><rect x="13" y="20" width="38" height="26" rx="9"/></g><path d="M22.5 37.5c6-4.6 13.5-5.6 20-3" fill="none" stroke="#f28c38" stroke-width="4" stroke-linecap="round"/><circle cx="21.5" cy="38.3" r="3" fill="#f28c38"/></svg>pratuca</h4>
+                            <span class="h-breve-selo">Em breve</span>
+                        </div>
                         <span class="h-produto-para">Para marmitarias e delivery</span>
-                        <h4 class="h-breve-nome">Pratuca</h4>
                         <p>Cardápio digital com link próprio, pedido direto no WhatsApp e painel de pedidos. Sem comissão.</p>
                         <div class="h-breve-acoes">
                             <a class="h-caso-link" href="/cardapio-digital">Conhecer <span aria-hidden="true">→</span></a>
