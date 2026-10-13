@@ -4,25 +4,6 @@
    pedir menos movimento, ou se as bibliotecas faltarem, nada disto roda
    e a pagina fica no layout estatico do home.css.
 ------------------------------------------------------------------------- */
-// ---------- Carrossel de produtos (roda sempre, com ou sem animacao) ----------
-(() => {
-    const trilho = document.getElementById('produtos-trilho');
-    if (!trilho) return;
-    const botoes = document.querySelectorAll('.h-produtos-btn');
-    const passo = () => (trilho.querySelector('.h-produto')?.offsetWidth || 300) + 20;
-    const atualizar = () => {
-        const fim = trilho.scrollWidth - trilho.clientWidth - 4;
-        botoes.forEach((b) => { b.disabled = b.dataset.dir === '-1' ? trilho.scrollLeft <= 4 : trilho.scrollLeft >= fim; });
-    };
-    botoes.forEach((b) => b.addEventListener('click', () => trilho.scrollBy({ left: passo() * Number(b.dataset.dir), behavior: 'smooth' })));
-    trilho.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); trilho.scrollBy({ left: passo() * (e.key === 'ArrowRight' ? 1 : -1), behavior: 'smooth' }); }
-    });
-    trilho.addEventListener('scroll', atualizar, { passive: true });
-    window.addEventListener('resize', atualizar);
-    atualizar();
-})();
-
 (() => {
     const html = document.documentElement;
     const reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -368,6 +349,12 @@
         }
     });
 
+    // Produtos a caminho: entram juntos, um depois do outro
+    const breves = gsap.utils.toArray('.h-breve-card');
+    if (breves.length) {
+        gsap.from(breves, { y: 48, autoAlpha: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12, clearProps: 'transform', scrollTrigger: { trigger: '.h-breve-grade', start: 'top 85%' } });
+    }
+
     // ---------- Contato e rodape ----------
     const tituloContato = document.querySelector('.h-contato-titulo');
     if (tituloContato) {
@@ -423,7 +410,9 @@
             document.addEventListener('pointerover', (event) => {
                 const alvo = event.target.closest('a, button, summary, label, [data-cursor]');
                 const sobreCampo = event.target.closest('input, textarea');
-                anel.classList.toggle('ativo', Boolean(alvo) && !sobreCampo);
+                // No topo e no menu o anel nao cresce: cobriria os textos do menu
+                const noTopo = Boolean(alvo?.closest('.topo'));
+                anel.classList.toggle('ativo', Boolean(alvo) && !sobreCampo && !noTopo);
                 rotulo.textContent = alvo?.dataset.cursor || '';
                 anel.classList.toggle('sobre-laranja', Boolean(alvo?.closest('.h-proj-linha')));
                 gsap.to(ponto, { opacity: sobreCampo ? 0 : 1, duration: 0.2 });

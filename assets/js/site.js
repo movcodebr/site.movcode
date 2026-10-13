@@ -93,6 +93,7 @@ document.querySelectorAll('[data-servico]').forEach((link) => {
         const opcao = document.querySelector(`.form input[name="servico"][value="${link.dataset.servico}"]`);
         if (opcao) {
             opcao.checked = true;
+            opcao.dispatchEvent(new Event('change', { bubbles: true }));
         }
     });
 });
@@ -155,7 +156,13 @@ document.querySelectorAll('[data-lead-form]').forEach((form) => {
 
         if (!nome || !servico) {
             if (erro) erro.hidden = false;
-            form.querySelector(!nome ? '[name="nome"]' : '[name="servico"]')?.focus();
+            if (!nome) {
+                form.querySelector('[name="nome"]')?.focus();
+            } else if (form.querySelector('.opcoes-botao')) {
+                form.querySelector('.opcoes-menu')?.abrirMenu();
+            } else {
+                form.querySelector('[name="servico"]')?.focus();
+            }
             return;
         }
 
@@ -312,6 +319,118 @@ window.addEventListener('load', () => {
     document.addEventListener('click', (event) => {
         itens.forEach((item) => {
             if (!item.contains(event.target)) abrir(item, false);
+        });
+    });
+})();
+
+// ---------- "O que você precisa?": menu de escolha ----------
+// Os radios continuam no formulario (o envio e a pre-selecao usam eles).
+// O script troca os botoes lado a lado por um menu que abre uma lista vertical.
+(() => {
+    const seta = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+    document.querySelectorAll('.form .opcoes').forEach((grupo, n) => {
+        const legenda = grupo.querySelector('legend');
+        const radios = [...grupo.querySelectorAll('input[type="radio"]')];
+        if (!legenda || !radios.length) return;
+
+        legenda.id = legenda.id || `opcoes-legenda-${n}`;
+        const lista = document.createElement('div');
+        lista.className = 'opcoes-lista';
+        lista.id = `opcoes-lista-${n}`;
+        radios.forEach((radio) => lista.appendChild(radio.closest('label')));
+
+        const botao = document.createElement('button');
+        botao.type = 'button';
+        botao.className = 'opcoes-botao';
+        botao.setAttribute('aria-expanded', 'false');
+        botao.setAttribute('aria-controls', lista.id);
+        botao.innerHTML = `<span class="opcoes-valor" id="opcoes-valor-${n}"></span>${seta}`;
+        botao.setAttribute('aria-labelledby', `${legenda.id} opcoes-valor-${n}`);
+        legenda.after(botao);
+        botao.after(lista);
+        grupo.classList.add('opcoes-menu');
+
+        const valor = botao.querySelector('.opcoes-valor');
+        const atualizar = () => {
+            const marcado = radios.find((radio) => radio.checked);
+            valor.textContent = marcado ? marcado.value : 'Escolha uma opção';
+            botao.classList.toggle('vazio', !marcado);
+        };
+        const abrir = (aberto) => {
+            grupo.classList.toggle('aberto', aberto);
+            botao.setAttribute('aria-expanded', String(aberto));
+            if (aberto) (radios.find((radio) => radio.checked) || radios[0]).focus();
+        };
+        const fecharEVoltar = () => {
+            abrir(false);
+            botao.focus();
+        };
+        grupo.abrirMenu = () => abrir(true);
+
+        botao.addEventListener('click', () => abrir(!grupo.classList.contains('aberto')));
+        radios.forEach((radio) => radio.addEventListener('change', atualizar));
+        // Com o mouse ou o dedo, escolher ja fecha; no teclado as setas trocam
+        // a opcao e Enter, espaco ou Esc confirmam
+        lista.addEventListener('pointerup', (event) => {
+            if (event.target.closest('label')) setTimeout(fecharEVoltar, 0);
+        });
+        lista.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === 'Escape') {
+                event.preventDefault();
+                event.stopPropagation();
+                fecharEVoltar();
+            } else if (event.key === ' ') {
+                setTimeout(fecharEVoltar, 0);
+            }
+        });
+        document.addEventListener('click', (event) => {
+            if (!grupo.contains(event.target)) abrir(false);
+        });
+        grupo.addEventListener('focusout', (event) => {
+            if (!grupo.contains(event.relatedTarget)) {
+                grupo.classList.remove('aberto');
+                botao.setAttribute('aria-expanded', 'false');
+            }
+        });
+        atualizar();
+    });
+})();
+
+// ---------- Perguntas: abrem e fecham com animacao ----------
+(() => {
+    if (MOVCODE_MOVIMENTO_REDUZIDO) return;
+    document.querySelectorAll('details.pergunta').forEach((pergunta) => {
+        const resumo = pergunta.querySelector('summary');
+        if (!resumo) return;
+        let animacao = null;
+        const alturaFechada = () => resumo.offsetHeight + (pergunta.offsetHeight - pergunta.clientHeight);
+
+        resumo.addEventListener('click', (event) => {
+            event.preventDefault();
+            const inicio = pergunta.offsetHeight;
+            animacao?.cancel();
+            pergunta.style.overflow = 'hidden';
+            const abrindo = !pergunta.open || pergunta.classList.contains('fechando');
+            pergunta.classList.toggle('fechando', !abrindo);
+            if (abrindo) pergunta.open = true;
+            const fim = abrindo ? pergunta.offsetHeight : alturaFechada();
+            animacao = pergunta.animate(
+                { height: [`${inicio}px`, `${fim}px`] },
+                { duration: abrindo ? 380 : 300, easing: 'cubic-bezier(.2, .7, .2, 1)' }
+            );
+            const resposta = [...pergunta.children].filter((filho) => filho !== resumo);
+            if (abrindo) {
+                resposta.forEach((parte) => parte.animate(
+                    { opacity: [0, 1], transform: ['translateY(-8px)', 'none'] },
+                    { duration: 380, easing: 'ease-out' }
+                ));
+            }
+            animacao.onfinish = () => {
+                if (!abrindo) pergunta.open = false;
+                pergunta.classList.remove('fechando');
+                pergunta.style.overflow = '';
+                animacao = null;
+            };
         });
     });
 })();
