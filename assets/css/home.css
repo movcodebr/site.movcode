@@ -133,8 +133,6 @@ html:not(.anima) .h-hero-base .wrap { padding-right: 96px; }
 .h-cap-num { font: 500 13px var(--f-mono); letter-spacing: .06em; color: var(--laranja); }
 .h-cap-nome { font-size: clamp(44px, 6vw, 88px); }
 .h-cap-linha { font: 700 clamp(20px, 1.8vw, 26px)/1.25 var(--f-display); letter-spacing: -0.01em; max-width: 360px; text-wrap: balance; }
-.h-cap-link { color: var(--laranja); font-weight: 700; text-decoration: none; }
-.h-cap-link:hover { text-decoration: underline; }
 
 html.anima .h-escala-palco { display: block; max-width: none; height: 100svh; padding: 0; position: relative; overflow: hidden; }
 html.anima .h-escala-duo { display: block; position: absolute; left: 50%; top: 50%; z-index: 2; }
@@ -155,8 +153,18 @@ html.anima .h-cap-nome {
 }
 .h-cap-nome-i { display: block; }
 html.anima .h-cap-num { position: absolute; left: var(--borda); top: 112px; }
-html.anima .h-cap-linha { position: absolute; left: var(--borda); bottom: 9vh; }
-html.anima .h-cap-link { position: absolute; right: var(--borda); bottom: 9vh; }
+/* Frase de cada capitulo: centralizada e sempre em uma linha so. A fonte
+   encolhe para caber na largura do celular sem quebrar. */
+html.anima .h-cap-linha {
+    position: absolute;
+    left: var(--margem);
+    right: var(--margem);
+    bottom: clamp(48px, 10svh, 96px);
+    max-width: none;
+    text-align: center;
+    white-space: nowrap;
+    font-size: min(clamp(20px, 1.8vw, 26px), calc((100vw - var(--margem) * 2) / 16.5));
+}
 html.anima .h-escala-fundo { display: grid; place-items: center; position: absolute; inset: 0; z-index: 5; background: var(--laranja); clip-path: circle(0% at 50% 50%); }
 .h-escala-final { max-width: 12ch; padding: 0 24px; text-align: center; color: var(--noite); font-size: clamp(56px, 10vw, 170px); line-height: 0.88; }
 html.anima .h-escala-progresso {
@@ -310,70 +318,200 @@ html.anima .h-escala-progresso {
 .h-caso { background: var(--noite); padding: var(--secao) 0; overflow: hidden; }
 .h-caso-titulo { font-size: clamp(64px, 17.5vw, 290px); font-stretch: 75%; line-height: 0.8; letter-spacing: -0.05em; text-align: center; margin-bottom: clamp(32px, 5vw, 64px); }
 .h-produtos-sub { max-width: 520px; margin: 0 auto clamp(40px, 6vw, 72px); text-align: center; color: var(--sobre-noite-2); font-size: clamp(17px, 1.5vw, 20px); text-wrap: balance; }
-.h-produto { position: relative; }
-/* Produtos no ar lado a lado; os que estao a caminho em cartoes menores embaixo */
+/* Cada produto com a identidade do proprio site: cores, fonte, marca e botoes.
+   As cores de cada marca ficam nas variaveis --p-* (veja .h-marca-* abaixo). */
 .h-produtos-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.h-produto {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-rows: auto 1fr auto auto;
+    gap: clamp(22px, 2.6vw, 32px);
+    min-height: clamp(440px, 42vw, 580px);
+    padding: clamp(24px, 3.2vw, 44px);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    background: var(--p-fundo);
+    color: var(--p-texto);
+}
+.h-produto-topo, .h-breve-topo { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; }
+.h-produto-marca { display: inline-flex; align-items: center; gap: 12px; font-family: var(--p-fonte); color: var(--p-texto); white-space: nowrap; }
+.h-produto-marca img, .h-produto-marca .h-marca-icone { flex: none; }
+.h-produto-frase { align-self: end; max-width: 15ch; font-family: var(--p-fonte-frase, var(--p-fonte)); text-wrap: balance; }
+.h-produto-frase em { font-style: normal; }
+.h-produto-corpo { display: grid; gap: 10px; max-width: 46ch; }
+.h-produto-para { font: 600 15px var(--f-texto); color: var(--p-acento); }
+.h-produto-corpo p { color: var(--p-texto-2); font-size: 17px; line-height: 1.5; text-wrap: pretty; }
+.h-produto-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.h-produto .btn-acao { background: var(--p-botao); color: var(--p-botao-txt); box-shadow: var(--p-botao-sombra, none); }
+.h-produto .btn-acao:hover { background: var(--p-botao-hover); }
+.h-produto-site { border-color: var(--p-linha); background: transparent; color: var(--p-texto); }
+.h-produto-site:hover { border-color: var(--p-texto); }
+.h-produto-site span { transition: transform 0.3s ease; }
+.h-produto-site:hover span { transform: translate(2px, -2px); }
 .h-produto-status {
-    position: absolute;
-    top: 18px;
-    left: 18px;
-    z-index: 2;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 6px 12px;
     border-radius: var(--r-pill);
-    background: var(--noite);
-    color: var(--sobre-noite);
-    font: 600 12px var(--f-mono);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    background: var(--p-status-fundo);
+    color: var(--p-status-txt);
+    font: 600 13px var(--f-texto);
     font-style: normal;
-    box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
 }
-.h-produto-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--verde-whats); box-shadow: 0 0 0 4px color-mix(in srgb, var(--verde-whats) 28%, transparent); }
-.h-produto-visual { position: relative; }
+.h-produto-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 22%, transparent); }
+.h-produto :focus-visible, .h-breve-card :focus-visible { outline-color: var(--p-foco); }
+
+/* ForLabs: bancada de laboratorio, papel milimetrado claro e o azul do sistema (Inter) */
+.h-marca-forlabs {
+    --p-fundo: #F6F8FB;
+    --p-texto: #0B1530;
+    --p-texto-2: #4B5568;
+    --p-acento: #176BD0;
+    --p-botao: #176BD0;
+    --p-botao-txt: #FFFFFF;
+    --p-botao-hover: #1460BB;
+    --p-linha: rgba(11, 21, 48, 0.16);
+    --p-status-fundo: rgba(16, 185, 129, 0.12);
+    --p-status-txt: #047857;
+    --p-foco: #176BD0;
+    --p-fonte: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:
+        radial-gradient(90% 70% at 100% 0%, rgba(41, 148, 242, 0.16), transparent 62%),
+        linear-gradient(rgba(23, 107, 208, 0.07) 1px, transparent 1px) 0 0 / 28px 28px,
+        linear-gradient(90deg, rgba(23, 107, 208, 0.07) 1px, transparent 1px) 0 0 / 28px 28px,
+        var(--p-fundo);
+}
+.h-marca-forlabs .h-produto-marca { font-size: 26px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+.h-marca-forlabs .h-produto-marca img { width: 40px; height: 40px; border-radius: 10px; }
+.h-marca-forlabs .h-produto-marca span span { font-weight: 400; color: var(--p-texto-2); }
+.h-marca-forlabs .h-produto-frase { max-width: 17ch; font-size: clamp(30px, 3.3vw, 50px); font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; }
+.h-marca-forlabs .h-produto-frase em { color: var(--p-acento); white-space: nowrap; }
+
+/* Lojinha Pronta: azul-petroleo com brilho coral, titulos em Fraunces */
+.h-marca-lojinha {
+    --p-fundo: #0A2531;
+    --p-texto: #F7F5F2;
+    --p-texto-2: #C3D5DB;
+    --p-acento: #FF8B7D;
+    --p-botao: #CF3F2B;
+    --p-botao-txt: #FFFFFF;
+    --p-botao-hover: #B83422;
+    --p-botao-sombra: 0 10px 30px rgba(255, 107, 91, 0.35);
+    --p-linha: rgba(247, 245, 242, 0.4);
+    --p-status-fundo: rgba(247, 245, 242, 0.1);
+    --p-status-txt: #7EE2A8;
+    --p-foco: #FF6B5B;
+    --p-fonte: "Fraunces", "Iowan Old Style", Georgia, serif;
+    background:
+        radial-gradient(60% 55% at 92% 8%, rgba(255, 107, 91, 0.42), transparent 70%),
+        radial-gradient(55% 50% at 6% 96%, rgba(89, 131, 146, 0.5), transparent 70%),
+        radial-gradient(50% 45% at 45% 55%, rgba(26, 90, 114, 0.6), transparent 72%),
+        var(--p-fundo);
+}
+/* Granulado do topo do site da Lojinha */
+.h-marca-lojinha::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.07;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23r)'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+.h-marca-lojinha .h-produto-marca { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
+.h-marca-lojinha .h-marca-icone { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 11px; background: #FF6B5B; color: #FFFFFF; box-shadow: 0 4px 14px rgba(255, 107, 91, 0.4); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+.h-marca-lojinha .h-marca-icone svg { width: 22px; height: 22px; }
+.h-marca-lojinha:hover .h-marca-icone { transform: rotate(-8deg) scale(1.06); }
+/* Duas linhas como no topo do site: "Sua loja pronta" / "pra vender" */
+.h-marca-lojinha .h-produto-frase { max-width: none; font-size: clamp(36px, 4.4vw, 68px); font-weight: 600; line-height: 1; letter-spacing: -0.035em; color: #FFFFFF; }
+.h-marca-lojinha .h-produto-frase span { display: inline-block; }
+.h-marca-lojinha .h-produto-site { border-width: 1.5px; }
+
 .h-breve { margin-top: clamp(56px, 8vw, 104px); }
 .h-breve-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .h-breve-card {
     position: relative;
     display: grid;
+    grid-template-rows: auto auto 1fr auto;
     gap: 14px;
-    align-content: start;
     padding: clamp(24px, 2.6vw, 34px);
     border-radius: var(--r-xl);
-    background: var(--noite-2);
-    border: 1px solid var(--noite-linha);
+    background: var(--p-fundo);
+    color: var(--p-texto);
+    border: 1px solid var(--p-linha);
     transition: border-color .3s ease, transform .3s ease;
 }
-.h-breve-card:hover { border-color: color-mix(in srgb, var(--laranja) 55%, transparent); transform: translateY(-4px); }
-.h-breve-selo { position: absolute; top: 22px; right: 22px; padding: 4px 10px; border-radius: var(--r-pill); background: var(--laranja); color: var(--noite); font: 700 11px var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; }
-.h-breve-card .h-produto-para { padding-right: 96px; }
-.h-breve-titulo { margin-bottom: clamp(24px, 3vw, 36px); font: 800 clamp(40px, 5vw, 72px)/0.9 var(--f-display); font-stretch: 78%; letter-spacing: -0.04em; }
-.h-breve-nome { margin-top: 18px; font: 800 clamp(42px, 4.2vw, 64px)/0.85 var(--f-display); font-stretch: 75%; letter-spacing: -0.04em; }
-.h-breve-card p { color: var(--sobre-noite-2); font-size: 16px; line-height: 1.5; }
+.h-breve-card:hover { border-color: var(--p-acento); transform: translateY(-4px); }
+.h-breve-topo { margin-bottom: 6px; }
+.h-breve-selo { flex: none; padding: 4px 10px; border-radius: var(--r-pill); background: var(--p-selo-fundo); color: var(--p-selo-txt); font: 700 11px var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; }
+.h-breve-card .h-produto-marca { line-height: 1; }
+.h-breve-card .h-marca-icone { width: 38px; height: 38px; }
+.h-breve-card p { color: var(--p-texto-2); font-size: 16px; line-height: 1.5; }
 .h-breve-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 4px; }
-.h-breve-avise { font: 600 15px var(--f-texto); color: var(--sobre-noite-2); text-decoration: none; }
-.h-breve-avise:hover { color: var(--sobre-noite); text-decoration: underline; }
+.h-breve-card .h-caso-link { color: var(--p-texto); }
+.h-breve-avise { font: 600 15px var(--f-texto); color: var(--p-texto-2); text-decoration: none; }
+.h-breve-avise:hover { color: var(--p-texto); text-decoration: underline; }
+
+/* ForCondom: creme claro com o laranja queimado do app (Geist) */
+.h-marca-forcondom {
+    --p-fundo: #FAF7F2;
+    --p-texto: #1F1B16;
+    --p-texto-2: #6B635A;
+    --p-acento: #9A3412;
+    --p-linha: #E8E1D6;
+    --p-selo-fundo: #C2410C;
+    --p-selo-txt: #FFFFFF;
+    --p-foco: #C2410C;
+    --p-fonte: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.h-marca-forcondom .h-produto-marca { font-size: 28px; font-weight: 700; letter-spacing: -0.035em; }
+.h-marca-forcondom:hover { border-color: #C2410C; }
+
+/* ForBarber: marinho, marfim e vinho, com o poste de barbeiro (Cormorant Garamond) */
+.h-marca-forbarber {
+    --p-fundo: #0B1220;
+    --p-texto: #F4EFE6;
+    --p-texto-2: rgba(244, 239, 230, 0.74);
+    --p-acento: #D0646B;
+    --p-linha: rgba(244, 239, 230, 0.14);
+    --p-selo-fundo: #9B2730;
+    --p-selo-txt: #F4EFE6;
+    --p-foco: #D0646B;
+    --p-fonte: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+    background: radial-gradient(80% 60% at 100% 0%, rgba(155, 39, 48, 0.28), transparent 70%), var(--p-fundo);
+}
+.h-marca-forbarber .h-produto-marca { font-size: 36px; font-weight: 600; letter-spacing: 0.01em; }
+.h-marca-forbarber .h-marca-icone {
+    width: 12px;
+    height: 32px;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1.5px currentColor;
+    background: repeating-linear-gradient(-45deg, #9B2730 0 3px, #F4EFE6 3px 6px, #2F4A8A 6px 9px, #F4EFE6 9px 12px);
+}
+
+/* Pratuca: o laranja e o chapeu de chef da marca (Poppins) */
+.h-marca-pratuca {
+    --p-fundo: #F28C38;
+    --p-texto: #29231F;
+    --p-texto-2: #3B2A1F;
+    --p-acento: #29231F;
+    --p-linha: #F28C38;
+    --p-selo-fundo: #29231F;
+    --p-selo-txt: #FFF3E5;
+    --p-foco: #29231F;
+    --p-fonte: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.h-marca-pratuca .h-produto-marca { gap: 10px; font-size: 30px; font-weight: 700; letter-spacing: -0.025em; }
+.h-marca-pratuca .h-marca-icone { width: 44px; height: auto; }
+.h-marca-pratuca:hover { border-color: #FFF3E5; }
+.h-breve-titulo { margin-bottom: clamp(24px, 3vw, 36px); font: 800 clamp(40px, 5vw, 72px)/0.9 var(--f-display); font-stretch: 78%; letter-spacing: -0.04em; }
 .h-sua-pagina { display: grid; gap: 12px; margin-top: clamp(56px, 8vw, 110px); padding: clamp(24px, 4vw, 48px); border: 1px solid var(--noite-linha); border-radius: var(--r-xl); background: var(--noite-2); color: var(--sobre-noite); text-decoration: none; transition: border-color .2s; }
 .h-sua-pagina:hover { border-color: var(--laranja); }
 .h-sua-pagina strong { font: 800 clamp(28px, 4vw, 52px)/1 var(--f-display); font-stretch: 75%; letter-spacing: -0.03em; text-wrap: balance; }
 .h-sua-pagina-url { font: 600 clamp(16px, 1.6vw, 20px) var(--f-mono); color: var(--destaque-noite); overflow-wrap: anywhere; }
-.h-produto { display: grid; grid-template-rows: auto 1fr; background: var(--noite-2); border: 1px solid var(--noite-linha); border-radius: var(--r-xl); overflow: hidden; }
-.h-produto-visual { aspect-ratio: 16 / 10; overflow: hidden; background: #F8FAFC; }
-.h-produto-visual img { width: 100%; height: 100%; object-fit: cover; object-position: left top; transform-origin: left top; }
-/* Lojinha: o fluxo da loja em notificacoes (sem print do produto por enquanto) */
-.h-produto-fluxo { display: grid; align-content: center; justify-items: start; gap: 12px; padding: clamp(20px, 4vw, 44px); background: var(--laranja); }
-.h-produto-fluxo span { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 18px; background: var(--noite); color: var(--sobre-noite); font: 600 clamp(14px, 1.4vw, 17px)/1.2 var(--f-texto); box-shadow: 0 18px 40px -20px rgba(0, 0, 0, .55); }
-.h-produto-fluxo span:nth-of-type(2) { margin-left: 8%; }
-.h-produto-fluxo span:nth-of-type(3) { margin-left: 16%; }
-.h-produto-fluxo b { width: 10px; height: 10px; border-radius: 50%; background: var(--laranja); flex: none; }
-.h-produto-fluxo small { font: 500 12px var(--f-mono); color: var(--sobre-noite-2); margin-left: 6px; }
-.h-produto-corpo { display: grid; gap: 16px; align-content: start; padding: clamp(24px, 3vw, 40px); }
-.h-produto-para { font: 600 15px var(--f-texto); color: var(--destaque-noite); }
-.h-produto-nome { font: 800 clamp(48px, 6vw, 88px)/0.85 var(--f-display); font-stretch: 75%; letter-spacing: -0.04em; }
-.h-produto p { color: var(--sobre-noite-2); font-size: 17px; line-height: 1.5; text-wrap: pretty; }
-.h-produto-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 8px; }
 .h-caso-link { display: inline-flex; align-items: center; gap: 8px; font: 600 16px var(--f-texto); color: var(--destaque-noite); text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 4px; }
 .h-caso-link span { transition: transform 0.3s ease; }
 .h-caso-link:hover span { transform: translate(3px, -3px); }
@@ -450,19 +588,12 @@ a.h-proj-linha:focus-visible { outline: 2px solid var(--destaque-noite); outline
     .h-hero-base p { max-width: 320px; }
     .h-rolar { display: none; }
     .h-proj-linha { grid-template-columns: minmax(0, 1fr) auto; row-gap: 10px; column-gap: 16px; }
-    .h-produto-fluxo { gap: 10px; padding: 20px; }
-    .h-produto-fluxo span { padding: 12px 16px; font-size: 14px; white-space: nowrap; }
-    .h-produto-fluxo span:nth-of-type(2) { margin-left: 5%; }
-    .h-produto-fluxo span:nth-of-type(3) { margin-left: 10%; }
-    .h-produto-fluxo small { display: none; }
     .h-proj-num { grid-column: 1; grid-row: 1; }
     .h-proj-tipo { grid-column: 2; grid-row: 1; }
     .h-proj-nome { grid-column: 1 / -1; grid-row: 2; }
     .h-proj-desc { grid-column: 1; grid-row: 3; font-size: 15px; }
     .h-proj-seta { grid-column: 2; grid-row: 3; align-self: end; }
     .h-escala-palco { grid-template-columns: 1fr; }
-    html.anima .h-cap-linha { right: var(--borda); bottom: 16vh; }
-    html.anima .h-cap-link { left: var(--borda); right: auto; bottom: 9vh; }
 }
 /* Celular deitado ou janela muito baixa: base do topo em linha e sem o "Role" */
 @media (max-height: 520px) and (orientation: landscape) {
@@ -483,6 +614,10 @@ a.h-proj-linha:focus-visible { outline: 2px solid var(--destaque-noite); outline
     .h-card { min-height: 280px; padding: 26px; }
     .h-card-curva { top: 56px; }
     .h-hero-base .btn { width: 100%; }
+    /* marcas dos produtos menores para caber ao lado do "No ar" */
+    .h-marca-forlabs .h-produto-marca, .h-marca-lojinha .h-produto-marca { gap: 10px; font-size: 21px; }
+    .h-marca-forlabs .h-produto-marca img, .h-marca-lojinha .h-marca-icone { width: 34px; height: 34px; }
+    .h-marca-lojinha .h-marca-icone svg { width: 19px; height: 19px; }
 }
 
 /* Textos curtos com linhas equilibradas */
