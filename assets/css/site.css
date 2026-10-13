@@ -41,7 +41,9 @@
     --f-mono: "JetBrains Mono", ui-monospace, monospace;
 
     /* Ritmo */
-    --secao: clamp(72px, 10vw, 128px);
+    /* espaco entre secoes: acompanha a largura e tambem a altura da tela,
+       para nao sobrar vazio em notebook de tela baixa */
+    --secao: clamp(64px, min(10vw, 15svh), 128px);
     /* Uma medida so para o site inteiro: o conteudo vai ate --largura e a
        margem lateral fica entre 18px (celular) e 48px. --borda e a mesma
        borda para pecas posicionadas em blocos que ocupam a tela toda. */

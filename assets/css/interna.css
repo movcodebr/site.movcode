@@ -13,21 +13,23 @@
     min-height: min(100svh, 1000px);
     display: grid;
     align-content: center;
-    padding: clamp(120px, 16vh, 172px) 0 clamp(72px, 10vh, 120px);
+    /* espacos, titulo e visual acompanham a altura da tela: titulo, texto e
+       botoes cabem na primeira dobra mesmo em notebook de tela baixa */
+    padding: clamp(96px, 15svh, 172px) 0 clamp(56px, 10svh, 120px);
 }
 .i-hero .wrap { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: clamp(36px, 5vw, 80px); align-items: center; }
 .i-hero-texto { display: grid; gap: 28px; justify-items: start; }
-.i-hero .i-titulo { font-size: clamp(58px, 8.6vw, 164px); line-height: 0.86; }
+.i-hero .i-titulo { font-size: clamp(46px, min(7.6vw, calc((100svh - 330px) / 3.3)), 150px); line-height: 0.86; }
 .i-hero-sub { max-width: 540px; font-size: clamp(17px, 1.45vw, 20px); color: var(--sobre-noite-2); text-wrap: balance; }
 .i-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; }
 .i-acoes .btn { min-height: 56px; padding-inline: 28px; }
-/* Indicador de rolagem no pe do topo, como na home */
+/* Indicador de rolagem no pe do topo, como na home (some em tela baixa) */
 .i-hero > .h-rolar { position: absolute; left: 0; right: 0; bottom: clamp(20px, 4vh, 36px); width: max-content; margin-inline: auto; }
 /* Topo so com texto (blog e artigos) */
 .i-hero-compacto { min-height: 0; padding-bottom: clamp(56px, 8vw, 96px); }
 .i-hero-compacto .wrap { grid-template-columns: minmax(0, 1fr); }
 .i-hero-compacto .i-titulo { max-width: 15ch; }
-.i-artigo-topo .i-titulo { font-size: clamp(44px, 6.4vw, 108px); max-width: 17ch; }
+.i-artigo-topo .i-titulo { font-size: clamp(42px, min(6.4vw, 13svh), 108px); max-width: 17ch; }
 .i-meta { display: inline-block; margin-top: 8px; font-size: 15px; color: var(--sobre-noite-2); }
 /* Sem animacao pronta, o titulo e as pecas do topo esperam o script (com rede de seguranca) */
 html.anima-pre .i-hero .i-titulo, html.anima-pre .i-entra { opacity: 0; animation: titulo-aparece 0s 3s forwards; }
@@ -40,7 +42,7 @@ html.anima-pre .i-hero .i-titulo, html.anima-pre .i-entra { opacity: 0; animatio
     align-content: center;
     justify-items: start;
     gap: 14px;
-    min-height: 460px;
+    min-height: clamp(300px, 52svh, 460px);
     padding: clamp(28px, 4vw, 52px);
     border-radius: var(--r-xl);
     background: var(--laranja);
@@ -70,7 +72,7 @@ html.anima-pre .i-hero .i-titulo, html.anima-pre .i-entra { opacity: 0; animatio
 .i-painel-topo { display: flex; justify-content: space-between; align-items: center; font: 600 15px var(--f-texto); color: var(--sobre-noite); }
 .i-painel-topo i { display: inline-flex; align-items: center; gap: 8px; font-style: normal; color: var(--destaque-noite); }
 .i-painel-topo i::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--laranja); }
-.i-barras { position: relative; display: flex; align-items: flex-end; gap: clamp(8px, 1.4vw, 16px); height: clamp(200px, 22vw, 280px); padding-top: 12px; border-bottom: 1px solid var(--noite-linha); }
+.i-barras { position: relative; display: flex; align-items: flex-end; gap: clamp(8px, 1.4vw, 16px); height: clamp(150px, min(22vw, 30svh), 280px); padding-top: 12px; border-bottom: 1px solid var(--noite-linha); }
 .i-barras span { flex: 1; height: var(--h); border-radius: 10px 10px 4px 4px; background: color-mix(in srgb, var(--laranja) 35%, var(--noite-2)); transform-origin: bottom; }
 .i-barras span:last-of-type { background: var(--laranja); }
 .i-meta-linha { position: absolute; left: 0; right: 0; bottom: 72%; border-top: 2px dashed color-mix(in srgb, var(--sobre-noite) 40%, transparent); }
@@ -81,7 +83,7 @@ html.anima-pre .i-hero .i-titulo, html.anima-pre .i-entra { opacity: 0; animatio
 
 /* Visual do Sobre: o simbolo grande, com os olhos seguindo o mouse */
 .i-simbolo { display: grid; place-items: center; }
-.i-simbolo .duo { --w: clamp(190px, 25vw, 360px); }
+.i-simbolo .duo { --w: clamp(150px, min(25vw, 36svh), 360px); }
 
 /* ---------- Manifesto: o texto acende enquanto rola ---------- */
 .i-manifesto { background: var(--papel); color: var(--tinta); padding: var(--secao) 0; }
@@ -149,6 +151,9 @@ html.anima .i-progresso { display: block; position: fixed; top: 0; left: 0; righ
 .i-erro span { display: inline-block; font-size: calc(var(--s) * 1em); }
 
 /* ---------- Responsivo ---------- */
+@media (max-height: 760px) {
+    .i-hero > .h-rolar { display: none; }
+}
 @media (max-width: 1080px) {
     .i-hero { min-height: 0; }
     .i-hero > .h-rolar { display: none; }
