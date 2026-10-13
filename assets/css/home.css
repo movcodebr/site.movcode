@@ -306,7 +306,6 @@ html.anima .h-escala-progresso {
 
 /* ---------- Caso ---------- */
 .h-caso { background: var(--noite); padding: var(--secao) 0; overflow: hidden; }
-.h-caso-rotulo { display: flex; justify-content: center; margin-bottom: 20px; }
 .h-caso-titulo { font-size: clamp(64px, 17.5vw, 290px); font-stretch: 75%; line-height: 0.8; letter-spacing: -0.05em; text-align: center; margin-bottom: clamp(32px, 5vw, 64px); }
 .h-produtos-sub { max-width: 520px; margin: 0 auto clamp(40px, 6vw, 72px); text-align: center; color: var(--sobre-noite-2); font-size: clamp(17px, 1.5vw, 20px); text-wrap: balance; }
 .h-produto { position: relative; }
@@ -333,7 +332,7 @@ html.anima .h-escala-progresso {
 .h-produto-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--verde-whats); box-shadow: 0 0 0 4px color-mix(in srgb, var(--verde-whats) 28%, transparent); }
 .h-produto-visual { position: relative; }
 .h-breve { margin-top: clamp(56px, 8vw, 104px); }
-.h-breve-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+.h-breve-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .h-breve-card {
     position: relative;
     display: grid;
@@ -348,6 +347,7 @@ html.anima .h-escala-progresso {
 .h-breve-card:hover { border-color: color-mix(in srgb, var(--laranja) 55%, transparent); transform: translateY(-4px); }
 .h-breve-selo { position: absolute; top: 22px; right: 22px; padding: 4px 10px; border-radius: var(--r-pill); background: var(--laranja); color: var(--noite); font: 700 11px var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; }
 .h-breve-card .h-produto-para { padding-right: 96px; }
+.h-breve-titulo { margin-bottom: clamp(24px, 3vw, 36px); font: 800 clamp(40px, 5vw, 72px)/0.9 var(--f-display); font-stretch: 78%; letter-spacing: -0.04em; }
 .h-breve-nome { margin-top: 18px; font: 800 clamp(42px, 4.2vw, 64px)/0.85 var(--f-display); font-stretch: 75%; letter-spacing: -0.04em; }
 .h-breve-card p { color: var(--sobre-noite-2); font-size: 16px; line-height: 1.5; }
 .h-breve-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 4px; }
@@ -368,7 +368,7 @@ html.anima .h-escala-progresso {
 .h-produto-fluxo b { width: 10px; height: 10px; border-radius: 50%; background: var(--laranja); flex: none; }
 .h-produto-fluxo small { font: 500 12px var(--f-mono); color: var(--sobre-noite-2); margin-left: 6px; }
 .h-produto-corpo { display: grid; gap: 16px; align-content: start; padding: clamp(24px, 3vw, 40px); }
-.h-produto-para { font: 500 13px var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--destaque-noite); }
+.h-produto-para { font: 600 15px var(--f-texto); color: var(--destaque-noite); }
 .h-produto-nome { font: 800 clamp(48px, 6vw, 88px)/0.85 var(--f-display); font-stretch: 75%; letter-spacing: -0.04em; }
 .h-produto p { color: var(--sobre-noite-2); font-size: 17px; line-height: 1.5; text-wrap: pretty; }
 .h-produto-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 8px; }
@@ -377,20 +377,19 @@ html.anima .h-escala-progresso {
 .h-caso-link:hover span { transform: translate(3px, -3px); }
 
 .h-mais { margin-top: clamp(72px, 10vw, 140px); }
-.h-mais-topo { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 18px; }
-.h-mais-titulo { margin: 0; font: 500 13px var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--destaque-noite); }
-.h-mais-conta { font: 500 13px var(--f-mono); color: var(--sobre-noite-2); }
 .h-lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--noite-linha); }
 .h-proj { border-bottom: 1px solid var(--noite-linha); }
 .h-proj-linha {
     position: relative; isolation: isolate;
     display: grid; grid-template-columns: 56px minmax(0, 1.5fr) minmax(0, 1fr) 120px 40px;
     align-items: center; gap: clamp(16px, 2.5vw, 40px);
-    padding: clamp(22px, 3vw, 40px) clamp(4px, 1.5vw, 24px);
+    /* sem recuo lateral: o texto da linha comeca na mesma borda do resto do site */
+    padding: clamp(22px, 3vw, 40px) 0;
     color: var(--sobre-noite); text-decoration: none;
 }
 .h-proj-linha::before {
-    content: ""; position: absolute; inset: 0; z-index: -1; background: var(--laranja);
+    /* o fundo laranja do hover passa um pouco das bordas, para o texto nao encostar nele */
+    content: ""; position: absolute; inset: 0 calc(clamp(12px, 1.5vw, 24px) * -1); z-index: -1; background: var(--laranja);
     transform: scaleY(0); transform-origin: bottom; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .h-proj-num, .h-proj-tipo { font: 500 13px var(--f-mono); color: var(--sobre-noite-2); transition: color 0.3s; }
@@ -426,8 +425,6 @@ a.h-proj-linha:focus-visible { outline: 2px solid var(--destaque-noite); outline
 .h-contato-texto > p { font-size: 20px; max-width: 440px; }
 .h-contato .contato-lista svg { color: var(--noite); }
 .h-contato .contato-alt, .h-contato .contato-alt a { color: var(--noite); }
-.h-contato .rotulo { color: var(--noite); }
-.h-contato .rotulo::before { background: var(--noite); }
 .h-contato .form { box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.45); }
 .h-contato .form .btn-acao { background: var(--noite); color: var(--sobre-noite); }
 .h-contato .form .btn-acao:hover { background: var(--noite-2); }
