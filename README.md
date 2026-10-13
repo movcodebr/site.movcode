@@ -10,7 +10,7 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 
 | URL | Arquivo | Conteúdo |
 | --- | --- | --- |
-| `/` | `index.html` | Página inicial: soluções, como funciona, projetos, dúvidas e contato |
+| `/` | `index.html` | Página inicial: soluções, como funciona, produtos, dúvidas e contato |
 | `/diagnostico` | `diagnostico.html` | Landing page do diagnóstico gratuito de 30 minutos |
 | `/criacao-de-sites` | `criacao-de-sites.html` | Sites e landing pages |
 | `/loja-virtual` | `loja-virtual.html` | Redireciona para o site da Lojinha Pronta (lojinhapronta.vercel.app) |
@@ -24,6 +24,7 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 | `/paineis` | `paineis.html` | Painéis de gestão |
 | `/consultoria` | `consultoria.html` | Consultoria em tecnologia |
 | `/sobre` | `sobre.html` | Sobre a MovCode: como trabalhamos, produtos e segurança |
+| `/projetos` | `projetos.html` | Projetos no ar (Cordeirinhos de Cristo, ForLabs e Lojinha Pronta), cada um com a identidade do próprio site, e os produtos em construção |
 | `/sua-pagina` | `sua-pagina.html` | Prévia editável da página do negócio (não indexada) |
 | `/blog/` | `blog/index.html` | Índice do blog |
 | `/blog/<guia>` | `blog/<guia>.html` | Guias do blog (fiado, site ou Instagram, custo de um sistema) |
@@ -31,7 +32,7 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 | `/termo` | `termo.html` | Termos de Uso |
 | — | `404.html` | Página de erro |
 
-`processo.html`, `projetos.html`, `servicos.html`, `loja-virtual.html` e `sistema-para-laboratorio.html` são endereços antigos: só redirecionam (para a seção certa da página inicial ou, no caso da Lojinha Pronta e do ForLabs, para o site próprio de cada um) e não são indexados.
+`processo.html`, `servicos.html`, `loja-virtual.html` e `sistema-para-laboratorio.html` são endereços antigos: só redirecionam (para a seção certa da página inicial ou, no caso da Lojinha Pronta e do ForLabs, para o site próprio de cada um) e não são indexados.
 
 ## Estrutura
 
@@ -52,6 +53,7 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 │   └── images/
 │       ├── icons/         favicon e ícones do app
 │       ├── logos/         símbolo da marca em SVG
+│       ├── marcas/        logos das marcas dos projetos (ForLabs, Cordeirinhos de Cristo)
 │       ├── og/            imagem de compartilhamento (1200×630)
 │       └── projects/      imagens dos projetos
 ├── site.webmanifest
