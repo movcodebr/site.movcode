@@ -430,6 +430,28 @@ html.anima .h-escala-progresso {
 .h-marca-lojinha .h-produto-frase span { display: inline-block; }
 .h-marca-lojinha .h-produto-site { border-width: 1.5px; }
 
+/* Cordeirinhos de Cristo: o ceu azul da capa do site, o rosa do "DE" da logo e a Baloo 2 */
+.h-marca-cordeirinhos {
+    --p-fundo: #28AAE2;
+    --p-texto: #2E2823;
+    --p-texto-2: #2E2823;
+    --p-acento: #0B2D42;
+    --p-botao: #0E618B;
+    --p-botao-txt: #FFFFFF;
+    --p-botao-hover: #0B4665;
+    --p-linha: rgba(46, 40, 35, 0.32);
+    --p-status-fundo: rgba(255, 255, 255, 0.62);
+    --p-status-txt: #0E618B;
+    --p-foco: #0B2D42;
+    --p-fonte: "Baloo 2", ui-rounded, system-ui, sans-serif;
+    background:
+        radial-gradient(60% 55% at 95% 0%, rgba(255, 253, 249, 0.7), transparent 62%),
+        linear-gradient(180deg, #28AAE2 0%, #8BD1EE 58%, #B8E2F5 100%);
+}
+.h-marca-cordeirinhos .h-produto-frase { max-width: 14ch; font-size: clamp(32px, 3.4vw, 54px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+/* O marca-texto rosa que o site usa nas palavras de destaque */
+.h-marca-cordeirinhos .h-produto-frase em { background: linear-gradient(#FF8A8A, #FF8A8A) 0 74% / 100% 30% no-repeat; -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-inline: 0.06em; }
+
 .h-breve { margin-top: clamp(56px, 8vw, 104px); }
 .h-breve-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .h-breve-card {

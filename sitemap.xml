@@ -36,6 +36,11 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://movcode.com.br/projetos</loc>
+        <lastmod>2026-10-13</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://movcode.com.br/automacoes</loc>
         <lastmod>2026-10-12</lastmod>
         <priority>0.8</priority>
