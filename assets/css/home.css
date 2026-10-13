@@ -85,10 +85,12 @@ html.anima-pre .h-titulo .p { opacity: 0; animation: titulo-aparece 0s 3s forwar
     min-height: 100svh;
     display: grid;
     align-content: center;
-    padding: 120px 0 160px;
+    /* espacos e titulo acompanham a altura da tela: o topo inteiro (titulo e
+       base com o botao) cabe na primeira dobra, ate em notebook de tela baixa */
+    padding: clamp(86px, 13svh, 130px) 0 clamp(110px, 18svh, 170px);
     overflow: hidden;
 }
-.h-titulo { font-size: clamp(46px, 11vw, 190px); text-align: center; line-height: 0.88; padding-inline: 12px; }
+.h-titulo { font-size: clamp(46px, min(11vw, calc((100svh - 220px) / 2.85)), 190px); text-align: center; line-height: 0.88; padding-inline: 12px; }
 .h-titulo .linha { display: block; }
 .h-titulo .tamanho { color: var(--laranja); }
 /* cada letra de "tamanho" e maior que a anterior */
@@ -443,7 +445,7 @@ a.h-proj-linha:focus-visible { outline: 2px solid var(--destaque-noite); outline
 }
 @media (max-width: 820px) {
     .h-produtos-grade, .h-breve-grade { grid-template-columns: minmax(0, 1fr); }
-    .h-hero { padding-bottom: 220px; }
+    .h-hero { padding-bottom: clamp(170px, 26svh, 230px); }
     .h-hero-base .wrap { flex-direction: column; align-items: center; text-align: center; gap: 18px; }
     .h-hero-base p { max-width: 320px; }
     .h-rolar { display: none; }
@@ -462,8 +464,14 @@ a.h-proj-linha:focus-visible { outline: 2px solid var(--destaque-noite); outline
     html.anima .h-cap-linha { right: var(--borda); bottom: 16vh; }
     html.anima .h-cap-link { left: var(--borda); right: auto; bottom: 9vh; }
 }
+/* Celular deitado ou janela muito baixa: base do topo em linha e sem o "Role" */
+@media (max-height: 520px) and (orientation: landscape) {
+    .h-hero { padding-bottom: clamp(84px, 22svh, 120px); }
+    .h-hero-base .wrap { flex-direction: row; align-items: flex-end; text-align: left; }
+    .h-rolar { display: none; }
+}
 @media (max-width: 640px) {
-    .h-titulo { font-size: 17vw; }
+    .h-titulo { font-size: min(17vw, calc((100svh - 330px) / 2.85)); }
     html:not(.anima) .h-hero-base { bottom: 88px; }
     html:not(.anima) .h-hero-base .wrap { padding-right: var(--margem); }
     /* serviços: carrossel de arrastar com o dedo em vez de 6 cartões empilhados */
