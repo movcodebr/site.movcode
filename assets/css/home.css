@@ -97,7 +97,7 @@ html.anima-pre .h-titulo .p { opacity: 0; animation: titulo-aparece 0s 3s forwar
 .h-titulo .tamanho { position: relative; }
 .h-titulo .alem { display: inline-block; width: 0; margin-block: -2em; white-space: nowrap; text-align: left; }
 .h-hero-base { position: absolute; left: 0; right: 0; bottom: clamp(20px, 4vh, 40px); }
-.h-hero-base .wrap { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; max-width: none; padding-inline: clamp(18px, 4vw, 48px); }
+.h-hero-base .wrap { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
 .h-hero-base p { max-width: 320px; color: var(--sobre-noite-2); font-size: 16px; line-height: 1.5; }
 /* Uma frase por linha: quebra sempre no ponto final */
 .h-hero-base p span { display: block; white-space: nowrap; }
@@ -114,9 +114,9 @@ html:not(.anima) .h-hero-base .wrap { padding-right: 96px; }
 /* ---------- A escala: o simbolo cresce com o scroll ---------- */
 .h-escala { background: var(--noite); position: relative; }
 .h-escala-palco {
-    max-width: var(--largura);
+    max-width: calc(var(--largura) + var(--margem) * 2);
     margin: 0 auto;
-    padding: var(--secao) 24px;
+    padding: var(--secao) var(--margem);
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 32px;
@@ -152,15 +152,15 @@ html.anima .h-cap-nome {
     color: var(--sobre-noite);
 }
 .h-cap-nome-i { display: block; }
-html.anima .h-cap-num { position: absolute; left: clamp(18px, 5vw, 72px); top: 112px; }
-html.anima .h-cap-linha { position: absolute; left: clamp(18px, 5vw, 72px); bottom: 9vh; }
-html.anima .h-cap-link { position: absolute; right: clamp(18px, 5vw, 72px); bottom: 9vh; }
+html.anima .h-cap-num { position: absolute; left: var(--borda); top: 112px; }
+html.anima .h-cap-linha { position: absolute; left: var(--borda); bottom: 9vh; }
+html.anima .h-cap-link { position: absolute; right: var(--borda); bottom: 9vh; }
 html.anima .h-escala-fundo { display: grid; place-items: center; position: absolute; inset: 0; z-index: 5; background: var(--laranja); clip-path: circle(0% at 50% 50%); }
 .h-escala-final { max-width: 12ch; padding: 0 24px; text-align: center; color: var(--noite); font-size: clamp(56px, 10vw, 170px); line-height: 0.88; }
 html.anima .h-escala-progresso {
     display: block;
     position: absolute;
-    right: clamp(18px, 5vw, 72px);
+    right: var(--borda);
     top: 118px;
     width: 120px;
     height: 3px;
@@ -236,9 +236,9 @@ html.anima .h-escala-progresso {
 /* ---------- Servicos (rolagem lateral no desktop) ---------- */
 .h-servicos { background: var(--noite); padding: var(--secao) 0; overflow: hidden; }
 .h-servicos-trilho {
-    max-width: var(--largura);
+    max-width: calc(var(--largura) + var(--margem) * 2);
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 var(--margem);
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
@@ -285,7 +285,7 @@ html.anima .h-escala-progresso {
 @media (min-width: 821px) {
     html.anima .h-servicos { padding: 0; }
     html.anima .h-servicos-pin { height: 100svh; display: flex; align-items: center; overflow: hidden; }
-    html.anima .h-servicos-trilho { display: flex; width: max-content; max-width: none; margin: 0; gap: 20px; padding: 0 6vw; align-items: stretch; }
+    html.anima .h-servicos-trilho { display: flex; width: max-content; max-width: none; margin: 0; gap: 20px; padding: 0 var(--borda); align-items: stretch; }
     html.anima .h-servicos-intro { flex: 0 0 min(560px, 42vw); margin: 0 4vw 0 0; align-content: center; }
     html.anima .h-card { flex: 0 0 clamp(300px, 27vw, 420px); min-height: min(64svh, 540px); }
 }
@@ -309,16 +309,50 @@ html.anima .h-escala-progresso {
 .h-caso-rotulo { display: flex; justify-content: center; margin-bottom: 20px; }
 .h-caso-titulo { font-size: clamp(64px, 17.5vw, 290px); font-stretch: 75%; line-height: 0.8; letter-spacing: -0.05em; text-align: center; margin-bottom: clamp(32px, 5vw, 64px); }
 .h-produtos-sub { max-width: 520px; margin: 0 auto clamp(40px, 6vw, 72px); text-align: center; color: var(--sobre-noite-2); font-size: clamp(17px, 1.5vw, 20px); text-wrap: balance; }
-.h-produtos-trilho { display: grid; grid-auto-flow: column; grid-auto-columns: min(86%, 520px); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain; padding-bottom: 8px; scrollbar-width: none; }
-.h-produtos-trilho::-webkit-scrollbar { display: none; }
-.h-produtos-trilho > .h-produto { scroll-snap-align: start; }
-.h-produtos-controles { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
-.h-produtos-btn { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--noite-linha); background: var(--noite-2); color: var(--sobre-noite); font-size: 20px; cursor: pointer; transition: background .2s, opacity .2s; }
-.h-produtos-btn:hover { background: var(--laranja); color: var(--noite); }
-.h-produtos-btn:disabled { opacity: .35; pointer-events: none; }
 .h-produto { position: relative; }
-.h-produto-faixa { position: absolute; z-index: 2; top: 26px; right: -46px; width: 180px; padding: 8px 0; transform: rotate(45deg); background: var(--laranja); color: var(--noite); text-align: center; font: 700 12px var(--f-mono); letter-spacing: .1em; text-transform: uppercase; box-shadow: 0 8px 20px -8px rgba(0,0,0,.6); }
-.h-produto-breve .h-produto-fluxo { background: var(--noite); }
+/* Produtos no ar lado a lado; os que estao a caminho em cartoes menores embaixo */
+.h-produtos-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.h-produto-status {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: var(--r-pill);
+    background: var(--noite);
+    color: var(--sobre-noite);
+    font: 600 12px var(--f-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-style: normal;
+    box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.6);
+}
+.h-produto-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--verde-whats); box-shadow: 0 0 0 4px color-mix(in srgb, var(--verde-whats) 28%, transparent); }
+.h-produto-visual { position: relative; }
+.h-breve { margin-top: clamp(56px, 8vw, 104px); }
+.h-breve-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+.h-breve-card {
+    position: relative;
+    display: grid;
+    gap: 14px;
+    align-content: start;
+    padding: clamp(24px, 2.6vw, 34px);
+    border-radius: var(--r-xl);
+    background: var(--noite-2);
+    border: 1px solid var(--noite-linha);
+    transition: border-color .3s ease, transform .3s ease;
+}
+.h-breve-card:hover { border-color: color-mix(in srgb, var(--laranja) 55%, transparent); transform: translateY(-4px); }
+.h-breve-selo { position: absolute; top: 22px; right: 22px; padding: 4px 10px; border-radius: var(--r-pill); background: var(--laranja); color: var(--noite); font: 700 11px var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; }
+.h-breve-card .h-produto-para { padding-right: 96px; }
+.h-breve-nome { margin-top: 18px; font: 800 clamp(42px, 4.2vw, 64px)/0.85 var(--f-display); font-stretch: 75%; letter-spacing: -0.04em; }
+.h-breve-card p { color: var(--sobre-noite-2); font-size: 16px; line-height: 1.5; }
+.h-breve-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 4px; }
+.h-breve-avise { font: 600 15px var(--f-texto); color: var(--sobre-noite-2); text-decoration: none; }
+.h-breve-avise:hover { color: var(--sobre-noite); text-decoration: underline; }
 .h-sua-pagina { display: grid; gap: 12px; margin-top: clamp(56px, 8vw, 110px); padding: clamp(24px, 4vw, 48px); border: 1px solid var(--noite-linha); border-radius: var(--r-xl); background: var(--noite-2); color: var(--sobre-noite); text-decoration: none; transition: border-color .2s; }
 .h-sua-pagina:hover { border-color: var(--laranja); }
 .h-sua-pagina strong { font: 800 clamp(28px, 4vw, 52px)/1 var(--f-display); font-stretch: 75%; letter-spacing: -0.03em; text-wrap: balance; }
@@ -329,8 +363,8 @@ html.anima .h-escala-progresso {
 /* Lojinha: o fluxo da loja em notificacoes (sem print do produto por enquanto) */
 .h-produto-fluxo { display: grid; align-content: center; justify-items: start; gap: 12px; padding: clamp(20px, 4vw, 44px); background: var(--laranja); }
 .h-produto-fluxo span { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 18px; background: var(--noite); color: var(--sobre-noite); font: 600 clamp(14px, 1.4vw, 17px)/1.2 var(--f-texto); box-shadow: 0 18px 40px -20px rgba(0, 0, 0, .55); }
-.h-produto-fluxo span:nth-child(2) { margin-left: 8%; }
-.h-produto-fluxo span:nth-child(3) { margin-left: 16%; }
+.h-produto-fluxo span:nth-of-type(2) { margin-left: 8%; }
+.h-produto-fluxo span:nth-of-type(3) { margin-left: 16%; }
 .h-produto-fluxo b { width: 10px; height: 10px; border-radius: 50%; background: var(--laranja); flex: none; }
 .h-produto-fluxo small { font: 500 12px var(--f-mono); color: var(--sobre-noite-2); margin-left: 6px; }
 .h-produto-corpo { display: grid; gap: 16px; align-content: start; padding: clamp(24px, 3vw, 40px); }
@@ -344,7 +378,7 @@ html.anima .h-escala-progresso {
 
 .h-mais { margin-top: clamp(72px, 10vw, 140px); }
 .h-mais-topo { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 18px; }
-.h-mais-titulo { font: 500 13px var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--destaque-noite); }
+.h-mais-titulo { margin: 0; font: 500 13px var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--destaque-noite); }
 .h-mais-conta { font: 500 13px var(--f-mono); color: var(--sobre-noite-2); }
 .h-lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--noite-linha); }
 .h-proj { border-bottom: 1px solid var(--noite-linha); }
@@ -401,6 +435,7 @@ a.h-proj-linha:focus-visible { outline: 2px solid var(--destaque-noite); outline
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 1080px) {
+    .h-breve-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .h-conversa .wrap, .h-duvidas .wrap, .h-contato .wrap { grid-template-columns: 1fr; }
     .chat { justify-self: start; }
     .h-duvidas .h-grande { position: static; }
@@ -410,6 +445,7 @@ a.h-proj-linha:focus-visible { outline: 2px solid var(--destaque-noite); outline
     .h-servicos-trilho { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 820px) {
+    .h-produtos-grade, .h-breve-grade { grid-template-columns: minmax(0, 1fr); }
     .h-hero { padding-bottom: 220px; }
     .h-hero-base .wrap { flex-direction: column; align-items: center; text-align: center; gap: 18px; }
     .h-hero-base p { max-width: 320px; }
@@ -417,8 +453,8 @@ a.h-proj-linha:focus-visible { outline: 2px solid var(--destaque-noite); outline
     .h-proj-linha { grid-template-columns: minmax(0, 1fr) auto; row-gap: 10px; column-gap: 16px; }
     .h-produto-fluxo { gap: 10px; padding: 20px; }
     .h-produto-fluxo span { padding: 12px 16px; font-size: 14px; white-space: nowrap; }
-    .h-produto-fluxo span:nth-child(2) { margin-left: 5%; }
-    .h-produto-fluxo span:nth-child(3) { margin-left: 10%; }
+    .h-produto-fluxo span:nth-of-type(2) { margin-left: 5%; }
+    .h-produto-fluxo span:nth-of-type(3) { margin-left: 10%; }
     .h-produto-fluxo small { display: none; }
     .h-proj-num { grid-column: 1; grid-row: 1; }
     .h-proj-tipo { grid-column: 2; grid-row: 1; }
@@ -426,15 +462,15 @@ a.h-proj-linha:focus-visible { outline: 2px solid var(--destaque-noite); outline
     .h-proj-desc { grid-column: 1; grid-row: 3; font-size: 15px; }
     .h-proj-seta { grid-column: 2; grid-row: 3; align-self: end; }
     .h-escala-palco { grid-template-columns: 1fr; }
-    html.anima .h-cap-linha { right: 18px; bottom: 16vh; }
-    html.anima .h-cap-link { left: clamp(18px, 5vw, 72px); right: auto; bottom: 9vh; }
+    html.anima .h-cap-linha { right: var(--borda); bottom: 16vh; }
+    html.anima .h-cap-link { left: var(--borda); right: auto; bottom: 9vh; }
 }
 @media (max-width: 640px) {
     .h-titulo { font-size: 17vw; }
     html:not(.anima) .h-hero-base { bottom: 88px; }
-    html:not(.anima) .h-hero-base .wrap { padding-right: clamp(18px, 4vw, 48px); }
+    html:not(.anima) .h-hero-base .wrap { padding-right: var(--margem); }
     /* serviços: carrossel de arrastar com o dedo em vez de 6 cartões empilhados */
-    .h-servicos-trilho { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 82%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; scroll-padding-inline: 24px; }
+    .h-servicos-trilho { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 82%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; scroll-padding-inline: var(--margem); }
     .h-servicos-trilho::-webkit-scrollbar { display: none; }
     .h-servicos-intro { grid-column: auto; margin: 0; align-content: center; scroll-snap-align: start; }
     .h-servicos-trilho > .h-card { scroll-snap-align: start; }

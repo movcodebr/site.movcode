@@ -89,9 +89,9 @@ html.anima-pre .i-hero .i-titulo, html.anima-pre .i-entra { opacity: 0; animatio
 
 /* ---------- Manifesto: o texto acende enquanto rola ---------- */
 .i-manifesto { background: var(--papel); color: var(--tinta); padding: var(--secao) 0; }
-.i-manifesto .wrap { display: grid; gap: clamp(24px, 3vw, 40px); max-width: 1100px; }
+.i-manifesto .wrap { display: grid; gap: clamp(24px, 3vw, 40px); }
 .i-sobretitulo { font: 500 13px var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--laranja-texto); }
-.i-manifesto p { font: 700 clamp(28px, 3.7vw, 56px)/1.1 var(--f-display); letter-spacing: -0.025em; text-wrap: pretty; }
+.i-manifesto p { max-width: 1040px; font: 700 clamp(28px, 3.7vw, 56px)/1.1 var(--f-display); letter-spacing: -0.025em; text-wrap: pretty; }
 .i-manifesto .i-palavra { transition: none; }
 
 /* ---------- Tres pontos (seguranca) ---------- */

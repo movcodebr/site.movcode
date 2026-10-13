@@ -42,7 +42,12 @@
 
     /* Ritmo */
     --secao: clamp(72px, 10vw, 128px);
-    --largura: 1180px;
+    /* Uma medida so para o site inteiro: o conteudo vai ate --largura e a
+       margem lateral fica entre 18px (celular) e 48px. --borda e a mesma
+       borda para pecas posicionadas em blocos que ocupam a tela toda. */
+    --largura: 1240px;
+    --margem: clamp(18px, 4vw, 48px);
+    --borda: max(var(--margem), calc((100% - var(--largura)) / 2));
     --r-sm: 10px;
     --r-md: 16px;
     --r-lg: 24px;
@@ -76,7 +81,7 @@ ul, ol { margin: 0; padding: 0; }
 .escuro :focus-visible, .rodape :focus-visible { outline-color: var(--destaque-noite); }
 section[id] { scroll-margin-top: 96px; }
 
-.wrap { width: 100%; max-width: var(--largura); margin: 0 auto; padding-inline: 24px; }
+.wrap { width: 100%; max-width: calc(var(--largura) + var(--margem) * 2); margin: 0 auto; padding-inline: var(--margem); }
 .pular { position: absolute; left: -999px; top: 8px; background: var(--tinta); color: #fff; padding: 10px 16px; border-radius: var(--r-sm); z-index: 100; }
 .pular:focus { left: 8px; }
 .sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
@@ -131,7 +136,7 @@ section[id] { scroll-margin-top: 96px; }
     left: 50%;
     transform: translateX(-50%);
     z-index: 50;
-    width: min(calc(100% - 24px), 1180px);
+    width: min(calc(100% - var(--margem) * 2), var(--largura));
     background: color-mix(in srgb, var(--noite) 90%, transparent);
     backdrop-filter: saturate(1.4) blur(16px);
     -webkit-backdrop-filter: saturate(1.4) blur(16px);
@@ -217,28 +222,39 @@ body:not(.home) { padding-top: 88px; }
 .menu-externo { font-size: 13px; color: var(--sobre-noite-2); }
 .menu a.menu-destaque {
     display: grid;
-    grid-template-columns: 150px minmax(0, 1fr);
-    gap: 20px;
-    align-items: center;
-    padding: 14px;
-    border-radius: 20px;
+    grid-template-columns: 168px minmax(0, 1fr);
+    gap: 22px;
+    align-items: stretch;
+    padding: 12px;
+    border-radius: 22px;
     background: var(--papel);
     color: var(--tinta);
     text-decoration: none;
+    overflow: hidden;
     transition: background-color .2s ease;
 }
 .menu a.menu-destaque:hover { background: var(--cartao); color: var(--tinta); }
-.menu-destaque-visual { display: grid; place-items: center; aspect-ratio: 1 / 0.9; border-radius: 14px; background: var(--laranja); }
-/* miniatura de uma pagina: topo, duas linhas e o botao do WhatsApp */
-.menu-mini { display: grid; gap: 6px; width: 62%; padding: 10px; border-radius: 10px; background: var(--cartao); box-shadow: 0 14px 24px -14px rgba(0, 0, 0, 0.5); }
-.menu-mini i { display: block; height: 6px; border-radius: 6px; background: var(--linha-forte); }
-.menu-mini i:first-child { height: 18px; width: 18px; border-radius: 50%; background: var(--noite); }
-.menu-mini i:nth-child(3) { width: 70%; }
-.menu-mini b { display: block; height: 12px; margin-top: 4px; border-radius: 12px; background: var(--verde-whats); }
-.menu-destaque-texto { display: grid; gap: 8px; }
-.menu-destaque-texto strong { font: 800 28px/0.95 var(--f-display); font-stretch: 80%; letter-spacing: -0.03em; }
-.menu-destaque-texto span { font-size: 15px; line-height: 1.45; color: var(--tinta-2); }
-.menu-destaque-texto em { justify-self: start; font-style: normal; font-weight: 700; font-size: 15px; color: var(--laranja-texto); border-bottom: 1.5px solid currentColor; }
+/* Celular com a previa de uma pagina: capa, foto, nome, links e WhatsApp */
+.menu-destaque-visual { position: relative; display: grid; place-items: end center; min-height: 196px; overflow: hidden; border-radius: 16px; background: radial-gradient(120% 90% at 20% 0%, var(--laranja-hover), var(--laranja) 70%); }
+.menu-destaque-visual::before { content: ""; position: absolute; inset: auto -30% -40% auto; width: 140px; height: 140px; border-radius: 50%; background: color-mix(in srgb, var(--noite) 12%, transparent); }
+.menu-celular { position: relative; display: grid; align-content: start; gap: 6px; width: 108px; height: 186px; margin-bottom: -30px; padding: 9px 8px; border-radius: 22px 22px 0 0; background: var(--noite); box-shadow: 0 24px 40px -16px rgba(0, 0, 0, 0.55); transform: rotate(-7deg) translateY(8px); transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
+.menu-celular::before { content: ""; justify-self: center; width: 30px; height: 4px; margin-bottom: 2px; border-radius: 4px; background: #2C2F35; }
+.menu-celular i, .menu-celular b { display: block; border-radius: 6px; }
+.mc-capa { height: 34px; background: linear-gradient(135deg, #2C2F35, #41454E); }
+.mc-foto { width: 26px; height: 26px; margin: -19px 0 0 8px; border-radius: 50% !important; background: var(--laranja); border: 3px solid var(--noite); }
+.mc-nome { width: 72%; height: 7px; background: var(--sobre-noite); }
+.mc-texto { width: 90%; height: 5px; background: #4A4E57; }
+.mc-link { height: 14px; background: #2C2F35; }
+.mc-whats { height: 16px; margin-top: 2px; border-radius: 10px !important; background: var(--verde-whats); }
+.menu a.menu-destaque:hover .menu-celular { transform: rotate(0deg) translateY(-6px); }
+.menu-destaque-texto { display: grid; align-content: center; gap: 8px; padding: 6px 8px 6px 0; }
+.menu-destaque-texto small { font: 500 12px var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--laranja-texto); }
+.menu-destaque-texto strong { font: 800 30px/0.95 var(--f-display); font-stretch: 80%; letter-spacing: -0.03em; }
+.menu-destaque-texto > span { font-size: 15px; line-height: 1.45; color: var(--tinta-2); }
+.menu-destaque-texto em { display: inline-flex; align-items: center; gap: 8px; justify-self: start; margin-top: 4px; padding: 9px 16px; border-radius: var(--r-pill); background: var(--noite); color: var(--sobre-noite); font: 600 14px var(--f-texto); font-style: normal; transition: background-color .2s ease; }
+.menu-destaque-texto em i { font-style: normal; transition: transform .3s ease; }
+.menu a.menu-destaque:hover .menu-destaque-texto em { background: var(--laranja); color: var(--noite); }
+.menu a.menu-destaque:hover .menu-destaque-texto em i { transform: translateX(4px); }
 .menu-botao {
     display: none;
     width: 46px; height: 46px;
@@ -411,6 +427,8 @@ html.chegando body::before {
     transition: transform .2s ease;
 }
 .pergunta[open] summary::after { transform: rotate(45deg); }
+.pergunta.fechando summary::after { transform: none; }
+.pergunta summary::after { transition: transform .3s cubic-bezier(.2, .7, .2, 1); }
 .pergunta p { padding: 0 4px 24px; color: var(--tinta-2); max-width: 640px; }
 .pergunta a { color: var(--primaria-texto); font-weight: 600; }
 
@@ -469,6 +487,59 @@ html.chegando body::before {
 }
 .opcoes input:checked + span { background: var(--primaria); border-color: var(--primaria); color: #fff; }
 .opcoes input:focus-visible + span { outline: 3px solid var(--primaria); outline-offset: 2px; }
+/* Com o script, "O que voce precisa?" vira um menu: o botao mostra a escolha e
+   abre a lista vertical de opcoes (os radios continuam por baixo) */
+.form .opcoes.opcoes-menu { position: relative; display: block; }
+.opcoes-botao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: var(--r-sm);
+    border: 1.5px solid var(--linha);
+    background: var(--papel);
+    color: var(--tinta);
+    font: 600 16px var(--f-texto);
+    text-align: left;
+    cursor: pointer;
+    transition: border-color .15s ease, background-color .15s ease;
+}
+.opcoes-botao:hover { border-color: var(--linha-forte); }
+.opcoes-botao.vazio .opcoes-valor { color: var(--tinta-3); font-weight: 500; }
+.opcoes-botao svg { width: 18px; height: 18px; flex-shrink: 0; transition: transform .25s ease; }
+.opcoes-menu.aberto .opcoes-botao { border-color: var(--primaria); background: var(--cartao); }
+.opcoes-menu.aberto .opcoes-botao svg { transform: rotate(180deg); }
+.opcoes-lista {
+    position: absolute;
+    z-index: 5;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    display: grid;
+    gap: 2px;
+    padding: 6px;
+    border-radius: var(--r-md);
+    background: var(--cartao);
+    border: 1px solid var(--linha);
+    box-shadow: 0 28px 56px -24px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    /* ao fechar, some depois do fade; ao abrir, fica visivel na hora (para receber o foco) */
+    transition: opacity .18s ease, transform .22s ease, visibility 0s linear .18s;
+}
+.opcoes-menu.aberto .opcoes-lista { opacity: 1; visibility: visible; transform: none; transition: opacity .18s ease, transform .22s ease, visibility 0s; }
+.form .opcoes.opcoes-menu label { display: block; }
+/* o texto do botao nao herda o visual de opcao */
+.form .opcoes.opcoes-menu .opcoes-valor { display: inline; padding: 0; border: 0; border-radius: 0; background: none; font-size: inherit; }
+.form .opcoes.opcoes-menu label > span { display: flex; align-items: center; gap: 12px; width: 100%; padding: 11px 12px; border: 0; border-radius: 10px; background: transparent; color: var(--tinta); }
+.form .opcoes.opcoes-menu label > span::before { content: ""; flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--linha-forte); transition: border-color .15s ease, background-color .15s ease; }
+.form .opcoes.opcoes-menu label:hover > span { background: var(--realce); }
+.form .opcoes.opcoes-menu input:checked + span { background: var(--realce); border-color: transparent; color: var(--tinta); }
+.form .opcoes.opcoes-menu input:checked + span::before { border-color: var(--laranja); background: radial-gradient(circle, var(--laranja) 0 40%, transparent 45%); }
+.form .opcoes.opcoes-menu input:focus-visible + span { outline: 3px solid var(--primaria); outline-offset: -3px; }
 .form-erro { color: #B42318; font-size: 15px; font-weight: 600; }
 .form .btn { width: 100%; }
 .form-nota { font-size: 13px; color: var(--tinta-3); line-height: 1.5; }
@@ -479,7 +550,7 @@ html.chegando body::before {
    redes sociais. O rodape usa a largura toda da tela (com respiro) para o
    letreiro preencher de uma borda a outra. */
 .rodape { background: var(--noite); color: var(--sobre-noite-2); padding: clamp(40px, 5vw, 64px) 0 32px; border-top: 1px solid var(--noite-linha); }
-.rodape .wrap { max-width: 1680px; padding-inline: clamp(18px, 2.5vw, 40px); display: grid; gap: clamp(36px, 4.5vw, 64px); container-type: inline-size; }
+.rodape .wrap { display: grid; gap: clamp(36px, 4.5vw, 64px); container-type: inline-size; }
 .rodape-gigante {
     display: flex;
     align-items: flex-end;
@@ -665,7 +736,6 @@ body.rodape-a-vista .whats-flutuante { opacity: 0; visibility: hidden; }
 }
 @media (max-width: 640px) {
     body { font-size: 16px; }
-    .wrap { padding-inline: 18px; }
     .hero { padding-top: 32px; }
     .hero-acoes .btn { width: 100%; }
     .passos, .lp-sinais { grid-template-columns: 1fr; }
