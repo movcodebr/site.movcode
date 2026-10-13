@@ -17,10 +17,6 @@
 }
 .i-hero .wrap { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: clamp(36px, 5vw, 80px); align-items: center; }
 .i-hero-texto { display: grid; gap: 28px; justify-items: start; }
-.i-rotulo { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 10px; font: 500 13px var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--destaque-noite); }
-.i-rotulo b { padding: 4px 10px; border-radius: var(--r-pill); background: var(--laranja); color: var(--noite); font-weight: 600; }
-.i-rotulo a { color: inherit; text-decoration: none; }
-.i-rotulo a:hover { color: var(--sobre-noite); }
 .i-hero .i-titulo { font-size: clamp(58px, 8.6vw, 164px); line-height: 0.86; }
 .i-hero-sub { max-width: 540px; font-size: clamp(17px, 1.45vw, 20px); color: var(--sobre-noite-2); text-wrap: balance; }
 .i-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; }
@@ -32,7 +28,7 @@
 .i-hero-compacto .wrap { grid-template-columns: minmax(0, 1fr); }
 .i-hero-compacto .i-titulo { max-width: 15ch; }
 .i-artigo-topo .i-titulo { font-size: clamp(44px, 6.4vw, 108px); max-width: 17ch; }
-.i-meta { font: 500 13px var(--f-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--sobre-noite-2); }
+.i-meta { display: inline-block; margin-top: 8px; font-size: 15px; color: var(--sobre-noite-2); }
 /* Sem animacao pronta, o titulo e as pecas do topo esperam o script (com rede de seguranca) */
 html.anima-pre .i-hero .i-titulo, html.anima-pre .i-entra { opacity: 0; animation: titulo-aparece 0s 3s forwards; }
 
@@ -71,7 +67,7 @@ html.anima-pre .i-hero .i-titulo, html.anima-pre .i-entra { opacity: 0; animatio
 
 /* Visual do topo dos paineis: barras subindo, sem numeros inventados */
 .i-painel { display: grid; gap: 22px; padding: clamp(24px, 3vw, 36px); border-radius: var(--r-xl); background: var(--noite-2); border: 1px solid var(--noite-linha); }
-.i-painel-topo { display: flex; justify-content: space-between; align-items: center; font: 500 13px var(--f-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--sobre-noite-2); }
+.i-painel-topo { display: flex; justify-content: space-between; align-items: center; font: 600 15px var(--f-texto); color: var(--sobre-noite); }
 .i-painel-topo i { display: inline-flex; align-items: center; gap: 8px; font-style: normal; color: var(--destaque-noite); }
 .i-painel-topo i::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--laranja); }
 .i-barras { position: relative; display: flex; align-items: flex-end; gap: clamp(8px, 1.4vw, 16px); height: clamp(200px, 22vw, 280px); padding-top: 12px; border-bottom: 1px solid var(--noite-linha); }
@@ -81,7 +77,7 @@ html.anima-pre .i-hero .i-titulo, html.anima-pre .i-entra { opacity: 0; animatio
 .i-meta-linha em { position: absolute; right: 0; top: -26px; font: 500 12px var(--f-mono); font-style: normal; color: var(--sobre-noite-2); }
 .i-painel-pes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .i-painel-pes span { padding: 14px; border-radius: 14px; background: var(--noite); font: 600 14px var(--f-texto); color: var(--sobre-noite); }
-.i-painel-pes small { display: block; margin-bottom: 4px; font: 500 11px var(--f-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--sobre-noite-2); }
+.i-painel-pes small { display: block; margin-bottom: 2px; font-size: 12px; color: var(--sobre-noite-2); }
 
 /* Visual do Sobre: o simbolo grande, com os olhos seguindo o mouse */
 .i-simbolo { display: grid; place-items: center; }
@@ -90,7 +86,6 @@ html.anima-pre .i-hero .i-titulo, html.anima-pre .i-entra { opacity: 0; animatio
 /* ---------- Manifesto: o texto acende enquanto rola ---------- */
 .i-manifesto { background: var(--papel); color: var(--tinta); padding: var(--secao) 0; }
 .i-manifesto .wrap { display: grid; gap: clamp(24px, 3vw, 40px); }
-.i-sobretitulo { font: 500 13px var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--laranja-texto); }
 .i-manifesto p { max-width: 1040px; font: 700 clamp(28px, 3.7vw, 56px)/1.1 var(--f-display); letter-spacing: -0.025em; text-wrap: pretty; }
 .i-manifesto .i-palavra { transition: none; }
 
