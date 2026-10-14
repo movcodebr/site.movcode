@@ -70,6 +70,23 @@
         });
     });
 
+    // ---------- Sobre: historia, pessoas e o nome ----------
+    gsap.utils.toArray('.i-historia-texto p').forEach((item) => {
+        gsap.from(item, { y: 32, autoAlpha: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: item, start: 'top 86%' } });
+    });
+    const pessoas = gsap.utils.toArray('.i-pessoa');
+    if (pessoas.length) {
+        gsap.from(pessoas, { y: 48, autoAlpha: 0, duration: 0.9, ease: 'power3.out', stagger: 0.15, scrollTrigger: { trigger: '.i-pessoas-grade', start: 'top 82%' } });
+    }
+    // movii perde o "ii" e vira MovCode
+    const nomeVisual = document.querySelector('.i-nome-visual');
+    if (nomeVisual) {
+        gsap.timeline({ scrollTrigger: { trigger: nomeVisual, start: 'top 78%' } })
+            .from('.i-nome-antes', { y: 30, autoAlpha: 0, duration: 0.7, ease: 'power3.out' })
+            .from('.i-nome-antes s', { textDecorationColor: 'rgba(255, 90, 31, 0)', duration: 0.5 }, '+=0.15')
+            .from('.i-nome-depois', { y: 40, autoAlpha: 0, filter: 'blur(10px)', duration: 0.9, ease: 'power3.out', clearProps: 'filter' }, '-=0.1');
+    }
+
     // ---------- Faixa final laranja: titulo letra por letra ----------
     const chamada = document.querySelector('.i-chamada-titulo');
     if (chamada) {
