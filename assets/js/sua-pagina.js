@@ -301,7 +301,7 @@
     // ---------- Elementos ----------
     const montador = document.getElementById('montador');
     const tela = document.querySelector('[data-tela]');
-    const escalaEl = tela.querySelector('[data-escala]');
+    const rolagem = tela.querySelector('[data-rolagem]');
     const preview = tela.querySelector('[data-preview]');
     const dica = document.querySelector('[data-dica]');
     const ferramentas = document.querySelector('[data-ferramentas]');
@@ -316,6 +316,12 @@
     let modo = 'cel';
     let editando = true;
 
+    // No computador o WhatsApp flutuante cobria o canto da prévia: sai da frente enquanto o montador está na tela
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([e]) => document.body.classList.toggle('montador-a-vista', e.intersectionRatio >= 0.6), { threshold: [0, 0.6] })
+            .observe(document.querySelector('[data-editor]'));
+    }
+
     // contenteditable="plaintext-only" evita colar formatação; nem todo navegador aceita
     const SO_TEXTO = (() => { try { const d = document.createElement('div'); d.contentEditable = 'plaintext-only'; return d.contentEditable === 'plaintext-only'; } catch { return false; } })();
 
@@ -326,15 +332,17 @@
     }
 
     // ---------- Escala ----------
-    // Celular: a página no tamanho real. Computador: a página de 1200px encolhida para caber na largura.
-    const escalaPc = () => Math.min(1, tela.clientWidth / 1200);
+    // Celular: a página no tamanho real. Computador: a página de 1200px encolhida para caber na janela.
+    // O transform não muda a altura ocupada, então a margem negativa tira a sobra (senão a rolagem
+    // continuaria pela altura da página sem encolher).
+    const escalaPc = () => Math.min(1, rolagem.clientWidth / 1200);
     function escalar() {
-        if (modo !== 'pc') { tela.style.removeProperty('--k'); escalaEl.style.removeProperty('height'); return; }
+        if (modo !== 'pc') { tela.style.removeProperty('--k'); preview.style.removeProperty('margin-bottom'); return; }
         const k = escalaPc();
         tela.style.setProperty('--k', String(k));
-        escalaEl.style.height = `${Math.ceil(preview.offsetHeight * k)}px`;
+        preview.style.marginBottom = `${-Math.floor(preview.offsetHeight * (1 - k))}px`;
     }
-    new ResizeObserver(escalar).observe(tela);
+    new ResizeObserver(escalar).observe(rolagem);
     new ResizeObserver(escalar).observe(preview);
     // no computador pequeno (ex.: celular no modo Computador) a página fica miúda demais para editar
     const podeEditar = () => editando && (modo === 'cel' || escalaPc() >= 0.6);
@@ -420,6 +428,8 @@
 
     // ---------- Desenho ----------
     function desenhar() {
+        // troca a moldura antes de medir: no modo Computador a largura que vale é a da janela
+        tela.dataset.modo = modo;
         const ed = podeEditar();
         preview.innerHTML = pagina(estado, modo, ed);
         if (ed) {
@@ -430,11 +440,10 @@
                 el.setAttribute('aria-label', 'Texto da página (toque para editar)');
             });
         }
-        tela.dataset.modo = modo;
         dica.textContent = !editando
             ? 'Assim o seu cliente vê a página. Toque nos botões para ver o que acontece.'
-            : ed ? (telaGrande.matches ? 'Clique em qualquer texto para editar. Nas seções, use as setas para mudar a ordem.' : 'Toque em qualquer texto para editar. Nas seções, use as setas para mudar a ordem.')
-                : 'No computador a página fica assim. Para editar os textos, volte para Celular.';
+            : ed ? (telaGrande.matches ? 'Clique em qualquer texto sublinhado para editar.' : 'Toque em qualquer texto sublinhado para editar.')
+                : 'Para editar os textos, volte para Celular.';
         opcoes();
         escalar();
         salvar();
@@ -450,7 +459,13 @@
                 const alvo = preview.querySelector(`[data-sec="${foco}"]`);
                 if (alvo) {
                     alvo.classList.add('destaque');
-                    if (!ferramentas.dataset.ativo || telaGrande.matches) alvo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    if (telaGrande.matches) {
+                        // no computador a prévia rola dentro da moldura: só ela anda, o site fica parado
+                        const topo = alvo.getBoundingClientRect().top - rolagem.getBoundingClientRect().top + rolagem.scrollTop;
+                        rolagem.scrollTo({ top: Math.max(0, topo - 72), behavior: 'smooth' });
+                    } else if (!ferramentas.dataset.ativo) {
+                        alvo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
                 }
             }
         }, 120);

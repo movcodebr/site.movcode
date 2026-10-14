@@ -104,7 +104,8 @@
     <main id="conteudo">
         <!-- ===== Editor: a página do cliente em tamanho real, editável direto nela =====
              Celular: a prévia ocupa a tela e as ferramentas abrem numa gaveta presa embaixo.
-             Computador: ferramentas num painel à esquerda e a prévia ao lado. -->
+             Computador: uma bancada do tamanho da tela, com as ferramentas à esquerda e a
+             prévia numa moldura à direita, cada lado com a própria rolagem. -->
         <section id="montador" class="montador escuro" aria-labelledby="sp-titulo">
             <div class="wrap sp-intro">
                 <h1 id="sp-titulo" class="gigante" data-titulo>Monte a página do seu <em>negócio.</em></h1>
@@ -119,7 +120,7 @@
                     </div>
 
                     <section class="ferr" data-ferr="negocio" aria-labelledby="f-negocio">
-                        <h2 id="f-negocio" class="ferr-titulo">Seu negócio</h2>
+                        <h2 id="f-negocio" class="ferr-titulo"><b>1</b>Seu negócio</h2>
                         <div class="tipos" data-opcoes="nicho" role="group" aria-label="Tipo de negócio"></div>
                         <div class="campos">
                             <div class="campo">
@@ -135,17 +136,17 @@
                     </section>
 
                     <section class="ferr" data-ferr="cor" aria-labelledby="f-cor">
-                        <h2 id="f-cor" class="ferr-titulo">Cor <span class="ferr-valor" data-cor-nome></span></h2>
+                        <h2 id="f-cor" class="ferr-titulo"><b>2</b>Cor <span class="ferr-valor" data-cor-nome></span></h2>
                         <div class="cores" data-opcoes="cor" role="group" aria-label="Cor principal"></div>
                     </section>
 
                     <section class="ferr" data-ferr="estilo" aria-labelledby="f-estilo">
-                        <h2 id="f-estilo" class="ferr-titulo">Estilo</h2>
+                        <h2 id="f-estilo" class="ferr-titulo"><b>3</b>Estilo</h2>
                         <div class="estilos" data-opcoes="estilo" role="group" aria-label="Estilo"></div>
                     </section>
 
                     <section class="ferr" data-ferr="secoes" aria-labelledby="f-secoes">
-                        <h2 id="f-secoes" class="ferr-titulo">Seções <span class="ferr-valor">ligue, desligue e mude a ordem</span></h2>
+                        <h2 id="f-secoes" class="ferr-titulo"><b>4</b>Seções <span class="ferr-valor">ligue, desligue, mude a ordem</span></h2>
                         <div class="secoes" data-opcoes="sec"></div>
                     </section>
 
@@ -161,15 +162,17 @@
                             <button type="button" data-modo-btn="cel" aria-pressed="true" aria-label="Ver no celular"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span class="rot">Celular</span></button>
                             <button type="button" data-modo-btn="pc" aria-pressed="false" aria-label="Ver no computador"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="11" rx="2"/><path d="M2 19h20"/></svg><span class="rot">Computador</span></button>
                         </div>
+                        <p class="tela-dica" data-dica>Toque em qualquer texto sublinhado para editar.</p>
                         <div class="seg" role="group" aria-label="Modo">
                             <button type="button" data-edicao-btn="on" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span>Editar</span></button>
                             <button type="button" data-edicao-btn="off" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span>Ver<span class="so-largo"> como cliente</span></span></button>
                         </div>
                     </div>
-                    <p class="tela-dica" data-dica>Toque num texto para editar. Nas seções, use ↑ ↓ para mudar a ordem.</p>
                     <div class="tela" data-tela data-modo="cel">
                         <div class="tela-escala" data-escala>
-                            <div class="zoom" data-preview aria-label="Prévia da sua página"></div>
+                            <div class="tela-rolagem" data-rolagem>
+                                <div class="zoom" data-preview aria-label="Prévia da sua página"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
