@@ -18,16 +18,23 @@
         gsap.fromTo(pecas, { y: 28, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.9, ease: 'power3.out', stagger: 0.1, delay: 0.25 });
     }
 
-    // Diagnostico: a pauta do convite se marca item por item enquanto o relogio dos 30 minutos enche
+    // Diagnostico: o jeito em destaque troca sozinho (chamada, presencial, mensagem)
+    // e a pauta do convite se marca item por item
     const convite = document.querySelector('.i-convite');
     if (convite) {
         const itens = convite.querySelectorAll('.i-convite-pauta li');
-        const anel = convite.querySelector('.anel');
         itens.forEach((li) => li.classList.add('pendente'));
-        gsap.set(anel, { strokeDashoffset: 326.7 });
         const tl = gsap.timeline({ delay: 1.1 });
-        tl.to(anel, { strokeDashoffset: 0, duration: 2.6, ease: 'none' }, 0);
-        itens.forEach((li, i) => tl.call(() => li.classList.remove('pendente'), null, 0.5 + i * 0.85));
+        itens.forEach((li, i) => tl.call(() => li.classList.remove('pendente'), null, 0.4 + i * 0.7));
+        const jeitos = convite.querySelectorAll('.i-convite-formatos span');
+        let atual = 0;
+        jeitos[0].classList.add('ativo');
+        setInterval(() => {
+            if (document.hidden) return;
+            jeitos[atual].classList.remove('ativo');
+            atual = (atual + 1) % jeitos.length;
+            jeitos[atual].classList.add('ativo');
+        }, 1600);
     }
     const entregas = gsap.utils.toArray('.i-entrega');
     if (entregas.length) {
