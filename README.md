@@ -11,7 +11,7 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 | URL | Arquivo | Conteúdo |
 | --- | --- | --- |
 | `/` | `index.html` | Página inicial: soluções, como funciona, produtos, dúvidas e contato |
-| `/diagnostico` | `diagnostico.html` | Landing page do diagnóstico gratuito de 30 minutos |
+| `/diagnostico` | `diagnostico.html` | Landing page do diagnóstico gratuito (por chamada, presencial ou mensagem no WhatsApp) |
 | `/criacao-de-sites` | `criacao-de-sites.html` | Sites e landing pages |
 | `/loja-virtual` | `loja-virtual.html` | Redireciona para o site da Lojinha Pronta (lojinhapronta.vercel.app) |
 | `/sistema-para-mercadinho` | `sistema-para-mercadinho.html` | Sistema de gestão para comércio |
