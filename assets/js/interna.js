@@ -41,27 +41,6 @@
             .from(simbolo.querySelectorAll('b:first-child'), { yPercent: -260, autoAlpha: 0, duration: 0.8, ease: 'bounce.out', stagger: 0.12 }, 0.3);
     }
 
-    // ---------- Manifesto: cada palavra acende conforme a rolagem ----------
-    gsap.utils.toArray('.i-manifesto p').forEach((paragrafo) => {
-        paragrafo.setAttribute('aria-label', paragrafo.textContent.trim());
-        const palavras = paragrafo.textContent.trim().split(/\s+/);
-        paragrafo.innerHTML = '';
-        palavras.forEach((palavra, i) => {
-            const span = document.createElement('span');
-            span.className = 'i-palavra';
-            span.setAttribute('aria-hidden', 'true');
-            span.textContent = palavra;
-            paragrafo.appendChild(span);
-            if (i < palavras.length - 1) paragrafo.appendChild(document.createTextNode(' '));
-        });
-        gsap.fromTo(paragrafo.querySelectorAll('.i-palavra'), { opacity: 0.14 }, {
-            opacity: 1,
-            ease: 'none',
-            stagger: 0.1,
-            scrollTrigger: { trigger: paragrafo, start: 'top 80%', end: 'bottom 45%', scrub: true }
-        });
-    });
-
     // ---------- Listas grandes e pontos de seguranca entram ao rolar ----------
     gsap.utils.toArray('.i-lista .h-lista, .i-trio-grade').forEach((grupo) => {
         gsap.from(grupo.children, {
@@ -70,21 +49,55 @@
         });
     });
 
-    // ---------- Sobre: historia, pessoas e o nome ----------
-    gsap.utils.toArray('.i-historia-texto p').forEach((item) => {
-        gsap.from(item, { y: 32, autoAlpha: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: item, start: 'top 86%' } });
-    });
+    // ---------- Sobre: "movii" vira "MovCode." enquanto a historia passa ----------
+    const origem = document.querySelector('.i-origem-palco');
+    if (origem) {
+        const legendas = gsap.utils.toArray('.i-origem-legendas li');
+        const contador = origem.querySelector('.i-origem-num b');
+        // Mesmo efeito das palavras da escala na home: sobe saindo do desfoque
+        // (as duas palavras ficam centradas com xPercent/yPercent -50)
+        gsap.set(['.i-origem-antes', '.i-origem-depois'], { xPercent: -50, yPercent: -50 });
+        gsap.set('.i-origem-depois', { yPercent: -15, autoAlpha: 0, filter: 'blur(14px)' });
+        gsap.set(legendas.slice(1), { autoAlpha: 0, y: 28 });
+        const tl = gsap.timeline({
+            defaults: { ease: 'none' },
+            scrollTrigger: {
+                trigger: origem, start: 'top top', end: '+=' + legendas.length * 90 + '%', pin: true, scrub: 0.8, anticipatePin: 1,
+                // O contador acompanha a frase que esta na tela
+                onUpdate: (st) => {
+                    const agora = st.progress * tl.duration();
+                    contador.textContent = String(1 + entradas.filter((t) => agora >= t).length).padStart(2, '0');
+                }
+            }
+        });
+        // Uma frase sai subindo e a proxima entra por baixo, nunca as duas juntas
+        const entradas = [];
+        const troca = (i, em) => entradas.push(em + 0.14) && tl
+            .to(legendas[i - 1], { autoAlpha: 0, y: -28, duration: 0.18, ease: 'power1.in' }, em)
+            .fromTo(legendas[i], { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 0.22, ease: 'power2.out', immediateRender: false }, em + 0.14);
+        troca(1, 0.75);
+        // O "ii" cai, "movii" se desfaz e "MovCode." sobe no lugar
+        tl.to('.i-origem-ii', { yPercent: 160, rotation: 28, autoAlpha: 0, duration: 0.4, ease: 'power2.in' }, 1.55)
+            .to('.i-origem-antes', { yPercent: -85, autoAlpha: 0, filter: 'blur(14px)', duration: 0.24, ease: 'power2.in' }, 1.95)
+            .to('.i-origem-depois', { yPercent: -50, autoAlpha: 1, filter: 'blur(0px)', duration: 0.3, ease: 'power3.out' }, 2.15);
+        troca(2, 1.95);
+        troca(3, 2.95);
+        tl.to('.i-origem-progresso i', { scaleX: 1, duration: 3.6 }, 0);
+    }
+
+    // Quem faz: os paineis entram e as figuras sobem de baixo do cartao
     const pessoas = gsap.utils.toArray('.i-pessoa');
     if (pessoas.length) {
-        gsap.from(pessoas, { y: 48, autoAlpha: 0, duration: 0.9, ease: 'power3.out', stagger: 0.15, scrollTrigger: { trigger: '.i-pessoas-grade', start: 'top 82%' } });
+        const gatilho = { trigger: '.i-pessoas-grade', start: 'top 80%' };
+        gsap.from(pessoas, { y: 48, autoAlpha: 0, duration: 0.9, ease: 'power3.out', stagger: 0.15, scrollTrigger: gatilho });
+        gsap.from('.i-pessoa .i-figura', { yPercent: 70, duration: 1.1, ease: 'back.out(1.5)', stagger: 0.15, delay: 0.25, clearProps: 'transform', scrollTrigger: gatilho });
     }
-    // movii perde o "ii" e vira MovCode
-    const nomeVisual = document.querySelector('.i-nome-visual');
-    if (nomeVisual) {
-        gsap.timeline({ scrollTrigger: { trigger: nomeVisual, start: 'top 78%' } })
-            .from('.i-nome-antes', { y: 30, autoAlpha: 0, duration: 0.7, ease: 'power3.out' })
-            .from('.i-nome-antes s', { textDecorationColor: 'rgba(255, 90, 31, 0)', duration: 0.5 }, '+=0.15')
-            .from('.i-nome-depois', { y: 40, autoAlpha: 0, filter: 'blur(10px)', duration: 0.9, ease: 'power3.out', clearProps: 'filter' }, '-=0.1');
+
+    // No que a gente acredita: a frase grande sai do desfoque
+    const frase = document.querySelector('.i-acredita-frase');
+    if (frase) {
+        gsap.from(frase, { yPercent: 16, autoAlpha: 0, filter: 'blur(12px)', duration: 1.1, ease: 'power3.out', clearProps: 'filter', scrollTrigger: { trigger: frase, start: 'top 80%' } });
+        gsap.from('.i-acredita-texto p', { y: 32, autoAlpha: 0, duration: 0.8, ease: 'power3.out', stagger: 0.12, scrollTrigger: { trigger: '.i-acredita-texto', start: 'top 85%' } });
     }
 
     // ---------- Faixa final laranja: titulo letra por letra ----------
