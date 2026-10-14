@@ -332,9 +332,9 @@
     }
 
     // ---------- Escala ----------
-    // Celular: a página no tamanho real. Computador: a página de 1200px encolhida para caber na janela.
-    // O transform não muda a altura ocupada, então a margem negativa tira a sobra (senão a rolagem
-    // continuaria pela altura da página sem encolher).
+    // Celular: a página no tamanho real, num celular de tamanho fixo. Computador: a página de 1200px
+    // encolhida para caber na janela. O transform não muda a altura ocupada, então a margem negativa
+    // tira a sobra (senão a rolagem continuaria pela altura da página sem encolher).
     const escalaPc = () => Math.min(1, rolagem.clientWidth / 1200);
     function escalar() {
         if (modo !== 'pc') { tela.style.removeProperty('--k'); preview.style.removeProperty('margin-bottom'); return; }
@@ -460,9 +460,11 @@
                 if (alvo) {
                     alvo.classList.add('destaque');
                     if (telaGrande.matches) {
-                        // no computador a prévia rola dentro da moldura: só ela anda, o site fica parado
+                        // no computador a prévia rola dentro da moldura: só ela anda, o site fica parado.
+                        // No celular o topo do negócio fica preso em cima, então a seção para logo abaixo dele.
                         const topo = alvo.getBoundingClientRect().top - rolagem.getBoundingClientRect().top + rolagem.scrollTop;
-                        rolagem.scrollTo({ top: Math.max(0, topo - 72), behavior: 'smooth' });
+                        const folga = modo === 'cel' ? (preview.querySelector('.pv-top')?.offsetHeight || 0) : 72;
+                        rolagem.scrollTo({ top: Math.max(0, topo - folga), behavior: 'smooth' });
                     } else if (!ferramentas.dataset.ativo) {
                         alvo.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
