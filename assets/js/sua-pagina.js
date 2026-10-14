@@ -332,42 +332,16 @@
     }
 
     // ---------- Escala ----------
-    // Celular (no computador): um aparelho de 410px de largura e altura de celular de verdade (820px).
-    // Se o palco for mais baixo, ele primeiro fica um pouco mais curto (até 720px, ainda com cara de
-    // celular) e depois encolhe por inteiro. Em tela baixa ele fica menor, mas nunca achatado.
-    // Computador: a página de 1200px encolhida para caber na janela. O transform não muda a altura
-    // ocupada, então a margem negativa tira a sobra (senão a rolagem continuaria pela altura da
-    // página sem encolher).
-    const CEL = { largura: 410, alto: 820, baixo: 720 };
-    let kc = 1;
+    // Celular: a página no tamanho real, num celular de tamanho fixo. Computador: a página de 1200px
+    // encolhida para caber na janela. O transform não muda a altura ocupada, então a margem negativa
+    // tira a sobra (senão a rolagem continuaria pela altura da página sem encolher).
     const escalaPc = () => Math.min(1, rolagem.clientWidth / 1200);
     function escalar() {
-        if (modo === 'cel') {
-            tela.style.removeProperty('--k');
-            preview.style.removeProperty('margin-bottom');
-            kc = 1;
-            if (telaGrande.matches) {
-                const cs = getComputedStyle(tela);
-                const alto = tela.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
-                const largo = tela.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-                const altura = Math.max(CEL.baixo, Math.min(CEL.alto, Math.floor(alto)));
-                kc = Math.min(1, alto / altura, largo / CEL.largura);
-                tela.style.setProperty('--kc', String(kc));
-                tela.style.setProperty('--ch', `${altura}px`);
-            } else {
-                tela.style.removeProperty('--kc');
-                tela.style.removeProperty('--ch');
-            }
-            return;
-        }
-        tela.style.removeProperty('--kc');
-        tela.style.removeProperty('--ch');
-        kc = 1;
+        if (modo !== 'pc') { tela.style.removeProperty('--k'); preview.style.removeProperty('margin-bottom'); return; }
         const k = escalaPc();
         tela.style.setProperty('--k', String(k));
         preview.style.marginBottom = `${-Math.floor(preview.offsetHeight * (1 - k))}px`;
     }
-    new ResizeObserver(escalar).observe(tela);
     new ResizeObserver(escalar).observe(rolagem);
     new ResizeObserver(escalar).observe(preview);
     // no computador pequeno (ex.: celular no modo Computador) a página fica miúda demais para editar
@@ -487,8 +461,8 @@
                     alvo.classList.add('destaque');
                     if (telaGrande.matches) {
                         // no computador a prévia rola dentro da moldura: só ela anda, o site fica parado.
-                        // No celular a moldura está encolhida (kc) e o topo do negócio fica preso em cima.
-                        const topo = (alvo.getBoundingClientRect().top - rolagem.getBoundingClientRect().top) / kc + rolagem.scrollTop;
+                        // No celular o topo do negócio fica preso em cima, então a seção para logo abaixo dele.
+                        const topo = alvo.getBoundingClientRect().top - rolagem.getBoundingClientRect().top + rolagem.scrollTop;
                         const folga = modo === 'cel' ? (preview.querySelector('.pv-top')?.offsetHeight || 0) : 72;
                         rolagem.scrollTo({ top: Math.max(0, topo - folga), behavior: 'smooth' });
                     } else if (!ferramentas.dataset.ativo) {

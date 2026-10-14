@@ -29,12 +29,13 @@ body.sp { background: var(--noite); }
 .sp-intro h1 { font-size: clamp(44px, 6vw, 96px); max-width: 13ch; }
 .sp-intro p { margin: 18px 0 0; font-size: 18px; line-height: 1.5; color: var(--tinta-2); max-width: 48ch; }
 
-/* Computador: uma bancada do tamanho da tela. Ferramentas à esquerda e a prévia à direita,
-   cada lado com a própria rolagem: dá para ver o resultado sem rolar o site inteiro. */
-.editor { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 24px; height: clamp(560px, calc(100svh - 24px), 1000px); max-width: calc(var(--largura) + var(--margem) * 2); margin: 0 auto; padding: 0 var(--margem); }
+/* Computador: ferramentas à esquerda, presas na tela, e a prévia à direita com a própria rolagem.
+   O celular tem sempre o tamanho de um celular de verdade; em tela baixa a bancada fica mais alta
+   que a janela e o painel acompanha a rolagem. */
+.editor { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 24px; align-items: start; max-width: calc(var(--largura) + var(--margem) * 2); margin: 0 auto; padding: 0 var(--margem); }
 
 /* Ferramentas: painel à esquerda no computador, gaveta presa embaixo no celular */
-.ferramentas { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; padding: 4px 22px 0; border: 1px solid var(--linha); border-radius: var(--r-lg); background: var(--noite-2); }
+.ferramentas { position: sticky; top: 12px; height: min(calc(100svh - 24px), 1000px); display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; padding: 4px 22px 0; border: 1px solid var(--linha); border-radius: var(--r-lg); background: var(--noite-2); }
 .gaveta-topo { display: none; }
 .ferr { padding: 20px 0 22px; border-bottom: 1px solid var(--linha); }
 .ferr[data-ferr="secoes"] { border-bottom: 0; }
@@ -99,7 +100,7 @@ body.sp { background: var(--noite); }
 .ferr-pedido .btn svg { width: 20px; height: 20px; }
 
 /* Área da prévia: barra com os seletores e a dica, e o palco com a moldura */
-.tela-area { display: flex; flex-direction: column; min-width: 0; min-height: 0; container-type: inline-size; }
+.tela-area { display: flex; flex-direction: column; min-width: 0; container-type: inline-size; }
 /* a dica vai entre os botões quando sobra espaço (ver @container no fim); senão, numa linha só dela */
 .tela-barra { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; padding-bottom: 12px; }
 .tela-dica { order: 3; flex-basis: 100%; margin: 0; color: var(--tinta-3); font-size: 13px; text-align: center; }
@@ -110,14 +111,15 @@ body.sp { background: var(--noite); }
 /* selecionado em branco: o laranja fica só para o "Quero" */
 .seg button[aria-pressed="true"] { background: var(--sobre-noite); color: var(--noite); }
 
-/* O palco: celular = aparelho de 410px com altura de celular (--ch, de 720 a 820px), encolhido por
-   inteiro (--kc) quando não cabe; antes a moldura só perdia altura e virava um quadrado em tela baixa.
-   Computador = página de 1200px encolhida (--k) numa janela que ocupa o palco.
-   Nos dois, a página rola dentro da moldura. */
-.tela { position: relative; flex: 1; min-height: 0; display: flex; justify-content: center; padding: 12px; border: 1px solid var(--linha); border-radius: var(--r-lg); background: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, .07) 1px, transparent 0) 0 0 / 22px 22px, #0B0C0E; overflow: hidden; }
+/* O palco: celular = aparelho de 410×864 (tela de 390×844, a de um iPhone), sempre nesse tamanho e
+   nessa proporção, em qualquer janela. Computador = página de 1200px encolhida (--k) numa janela que
+   ocupa o palco, da altura da tela. Nos dois, a página rola dentro da moldura. */
+.tela { position: relative; display: flex; align-items: center; justify-content: center; padding: 16px; border: 1px solid var(--linha); border-radius: var(--r-lg); background: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, .07) 1px, transparent 0) 0 0 / 22px 22px, #0B0C0E; overflow: hidden; }
+.tela[data-modo="cel"] { height: clamp(896px, calc(100svh - 82px), 942px); }
+.tela[data-modo="pc"] { height: clamp(480px, calc(100svh - 82px), 942px); }
 .tela-escala { position: relative; display: flex; flex-direction: column; }
 .tela-rolagem { flex: 1; min-height: 0; overflow-x: hidden; overflow-y: auto; scrollbar-width: thin; }
-.tela[data-modo="cel"] .tela-escala { position: absolute; top: 50%; left: 50%; width: 410px; height: var(--ch, 820px); transform: translate(-50%, -50%) scale(var(--kc, 1)); border: 10px solid #060607; border-radius: 54px; overflow: hidden; background: #060607; box-shadow: 0 0 0 1.5px #3A3C41, 0 60px 90px -40px rgba(0, 0, 0, .8); }
+.tela[data-modo="cel"] .tela-escala { flex: none; width: 410px; height: 864px; border: 10px solid #060607; border-radius: 54px; overflow: hidden; background: #060607; box-shadow: 0 0 0 1.5px #3A3C41, 0 60px 90px -40px rgba(0, 0, 0, .8); }
 .tela[data-modo="cel"] .tela-rolagem { border-radius: 44px; scrollbar-width: none; }
 .tela[data-modo="cel"] .tela-rolagem::-webkit-scrollbar { display: none; }
 .tela[data-modo="cel"] .zoom { width: 390px; }
@@ -197,13 +199,12 @@ body.montador-a-vista .whats-flutuante { opacity: 0; visibility: hidden; }
     .tela-area { display: block; padding: 0 clamp(0px, 3vw, 24px); }
     .tela-barra { padding: 10px 12px; }
     .tela-dica { text-align: left; }
-    /* aqui a página do cliente rola junto com o site (sem palco nem rolagem própria) */
-    .tela { display: block; padding: 0; border: 0; border-radius: 0; background: none; overflow: visible; }
-    .tela-escala { display: block; }
-    .tela-rolagem { overflow: visible; }
-    .tela[data-modo="cel"] .tela-escala { position: relative; top: auto; left: auto; height: auto; margin: 0 auto; transform: none; }
-    .tela[data-modo="cel"] .pv-top { position: relative; }
-    .tela[data-modo="pc"] .tela-escala { height: auto; }
+    /* sem palco: no tablet o celular continua do mesmo tamanho, com rolagem própria;
+       o modo Computador rola junto com o site */
+    .tela, .tela[data-modo="cel"], .tela[data-modo="pc"] { display: block; height: auto; padding: 0; border: 0; border-radius: 0; background: none; overflow: visible; }
+    .tela[data-modo="cel"] .tela-escala { margin: 0 auto; }
+    .tela[data-modo="pc"] .tela-escala { display: block; height: auto; }
+    .tela[data-modo="pc"] .tela-rolagem { overflow: visible; }
 
     .ferramentas {
         position: fixed; left: 0; right: 0; bottom: calc(68px + env(safe-area-inset-bottom)); top: auto; z-index: 61;
@@ -245,11 +246,11 @@ body.montador-a-vista .whats-flutuante { opacity: 0; visibility: hidden; }
 @media (max-width: 600px) {
     /* no celular a prévia é a própria tela: sem moldura e na largura do aparelho */
     .tela-area { padding: 0; }
-    .tela[data-modo="cel"] .tela-escala { width: 100%; border: 0; border-radius: 0; background: none; box-shadow: none; }
-    .tela[data-modo="cel"] .tela-rolagem { border-radius: 0; }
+    .tela[data-modo="cel"] .tela-escala { display: block; width: 100%; height: auto; border: 0; border-radius: 0; background: none; box-shadow: none; }
+    .tela[data-modo="cel"] .tela-rolagem { overflow: visible; border-radius: 0; }
     .tela[data-modo="cel"] .zoom { width: 100%; }
     .tela[data-modo="cel"] .pv-status { display: none; }
-    .tela[data-modo="cel"] .pv-top { padding-top: 14px; border-radius: 0; }
+    .tela[data-modo="cel"] .pv-top { position: relative; padding-top: 14px; border-radius: 0; }
     .tela[data-modo="pc"] .tela-escala { margin: 0 12px; }
     .seg button { min-height: 38px; padding: 0 12px; font-size: 13px; gap: 6px; }
     .seg .rot, .so-largo { display: none; }
@@ -506,7 +507,7 @@ body.montador-a-vista .whats-flutuante { opacity: 0; visibility: hidden; }
 .pv.vibrante.pc .pv-h1 { font-size: 64px; }
 .pv.vibrante.pc .pv-hero .pv-capa { transform: rotate(-2deg); border-radius: 32px; }
 
-/* Com espaço entre os dois grupos de botões, a dica vai no meio deles (até duas linhas) e o palco ganha altura */
+/* Com espaço entre os dois grupos de botões, a dica vai no meio deles (até duas linhas) */
 @container (min-width: 780px) {
     .tela-dica { order: 0; flex: 1 1 0; min-width: 0; text-align: center; }
 }
