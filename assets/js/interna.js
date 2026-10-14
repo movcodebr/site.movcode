@@ -70,15 +70,8 @@
         });
     });
 
-    // ---------- Sobre: linha do tempo, pessoas e o nome ----------
-    const trilho = document.querySelector('.i-tempo-trilho i');
-    if (trilho) {
-        gsap.fromTo(trilho, { scaleY: 0 }, {
-            scaleY: 1, ease: 'none',
-            scrollTrigger: { trigger: '.i-tempo-caixa', start: 'top 70%', end: 'bottom 70%', scrub: true }
-        });
-    }
-    gsap.utils.toArray('.i-marco, .i-historia-texto p').forEach((item) => {
+    // ---------- Sobre: historia, pessoas e o nome ----------
+    gsap.utils.toArray('.i-historia-texto p').forEach((item) => {
         gsap.from(item, { y: 32, autoAlpha: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: item, start: 'top 86%' } });
     });
     const pessoas = gsap.utils.toArray('.i-pessoa');

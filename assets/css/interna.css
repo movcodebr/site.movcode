@@ -156,30 +156,15 @@ html.anima .i-progresso { display: block; position: fixed; top: 0; left: 0; righ
 .i-historia .h-grande { position: sticky; top: 120px; }
 .i-historia-texto { display: grid; gap: 1.1em; font-size: clamp(19px, 1.6vw, 23px); line-height: 1.55; text-wrap: pretty; }
 
-/* Linha do tempo: data a esquerda, trilho com bolinhas no meio, o marco a direita */
-.i-tempo { --col: clamp(130px, 17vw, 230px); --vao: clamp(36px, 5vw, 72px); background: var(--noite); padding: var(--secao) 0; }
-.i-tempo .h-grande { margin-bottom: clamp(40px, 6vw, 80px); }
-.i-tempo-caixa { position: relative; }
-.i-tempo-trilho { position: absolute; top: 8px; bottom: 8px; left: calc(var(--col) + var(--vao) / 2 - 1px); width: 2px; background: var(--noite-linha); }
-.i-tempo-trilho i { display: block; height: 100%; background: var(--laranja); transform-origin: top; }
-.i-tempo-lista { display: grid; gap: clamp(32px, 4.4vw, 56px); margin: 0; padding: 0; list-style: none; }
-.i-marco { position: relative; display: grid; grid-template-columns: var(--col) minmax(0, 1fr); column-gap: var(--vao); row-gap: 8px; }
-.i-marco::before { content: ""; position: absolute; top: 4px; left: calc(var(--col) + var(--vao) / 2 - 8px); width: 16px; height: 16px; border-radius: 50%; background: var(--laranja); box-shadow: 0 0 0 6px var(--noite); }
-.i-marco > * { grid-column: 2; }
-.i-marco-quando { grid-column: 1; grid-row: 1 / span 3; font: 800 clamp(20px, 2vw, 28px)/1.05 var(--f-display); font-stretch: 80%; letter-spacing: -0.02em; color: var(--destaque-noite); text-align: right; }
-.i-marco h3 { font: 800 clamp(28px, 3vw, 46px)/0.95 var(--f-display); font-stretch: 78%; letter-spacing: -0.035em; }
-.i-marco p { max-width: 58ch; color: var(--sobre-noite-2); font-size: 17px; line-height: 1.55; text-wrap: pretty; }
-.i-marco .h-caso-link { justify-self: start; margin-top: 6px; }
-
 /* Quem faz: as duas pessoas do simbolo, uma em cada cartao */
-.i-pessoas { background: var(--papel); color: var(--tinta); padding: var(--secao) 0; }
+.i-pessoas { background: var(--noite); color: var(--sobre-noite); padding: var(--secao) 0; }
 .i-pessoas .h-grande { margin-bottom: 18px; }
-.i-pessoas-sub { max-width: 520px; margin-bottom: clamp(40px, 6vw, 72px); color: var(--tinta-2); font-size: clamp(17px, 1.5vw, 20px); }
+.i-pessoas-sub { max-width: 520px; margin-bottom: clamp(40px, 6vw, 72px); color: var(--sobre-noite-2); font-size: clamp(17px, 1.5vw, 20px); }
 .i-pessoas-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-.i-pessoa { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: clamp(20px, 3vw, 36px); row-gap: 12px; padding: clamp(24px, 3vw, 40px); border: 1px solid var(--linha); border-radius: var(--r-xl); background: #FFFFFF; }
+.i-pessoa { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: clamp(20px, 3vw, 36px); row-gap: 12px; padding: clamp(24px, 3vw, 40px); border: 1px solid var(--noite-linha); border-radius: var(--r-xl); background: var(--noite-2); }
 .i-pessoa .i-figura { --w: clamp(48px, 5vw, 68px); grid-row: 1 / span 2; grid-template-columns: 1fr; }
 .i-pessoa h3 { align-self: center; font: 800 clamp(32px, 3.4vw, 52px)/0.95 var(--f-display); font-stretch: 78%; letter-spacing: -0.035em; }
-.i-pessoa p { color: var(--tinta-2); font-size: 17px; line-height: 1.55; text-wrap: pretty; }
+.i-pessoa p { color: var(--sobre-noite-2); font-size: 17px; line-height: 1.55; text-wrap: pretty; }
 
 /* O nome: movii virando MovCode */
 .i-nome { background: var(--noite); padding: var(--secao) 0; }
@@ -270,13 +255,6 @@ html.anima .i-progresso { display: block; position: fixed; top: 0; left: 0; righ
     .i-acoes .btn { width: 100%; }
     .i-fluxo { min-height: 300px; gap: 10px; padding: 22px; }
     .i-janela { width: 92%; }
-    /* Linha do tempo em uma coluna: trilho na esquerda, data em cima do marco */
-    .i-tempo { --col: 0px; --vao: 40px; }
-    .i-marco { grid-template-columns: minmax(0, 1fr); padding-left: 40px; }
-    .i-marco > *, .i-marco-quando { grid-column: 1; grid-row: auto; }
-    .i-marco-quando { text-align: left; font-size: 18px; }
-    .i-tempo-trilho { left: 7px; }
-    .i-marco::before { left: 0; }
     .i-pessoas-grade { grid-template-columns: minmax(0, 1fr); }
     .i-janela-corpo { padding: 14px 18px 18px; }
     .i-aviso { padding: 12px 16px; font-size: 14px; white-space: normal; }
