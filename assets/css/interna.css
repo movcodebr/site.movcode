@@ -244,6 +244,45 @@ html.anima .i-origem-legendas p { max-width: 36ch; margin: 0 auto; font-size: cl
 @keyframes i-deriva { from { translate: -16px 0; } to { translate: 16px 0; } }
 .i-breve-sub { margin: calc(clamp(24px, 3vw, 36px) * -0.5) 0 clamp(24px, 3vw, 36px); }
 
+/* ---------- Diagnostico ---------- */
+/* Topo: o convite da conversa num painel laranja, com a pauta e o relogio dos 30 minutos.
+   Sem animacao fica tudo marcado; o script tira e devolve as marcas uma por uma. */
+.i-convite-palco { position: relative; isolation: isolate; display: grid; place-items: center; min-height: clamp(300px, 52svh, 460px); padding: clamp(24px, 4vw, 52px); border-radius: var(--r-xl); background: var(--laranja); overflow: hidden; }
+.i-convite-marca { position: absolute; right: -8%; bottom: -18%; z-index: -1; --w: clamp(200px, 24vw, 340px); --cor: var(--noite); opacity: 0.12; }
+.i-convite { display: grid; gap: 16px; width: min(100%, 420px); padding: clamp(20px, 2.4vw, 28px); border-radius: 24px; background: var(--noite); color: var(--sobre-noite); box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.6); rotate: -2deg; }
+.i-convite-topo { display: flex; align-items: center; gap: 12px; }
+.i-convite-topo .duo { --w: 30px; }
+.i-convite-nome { display: grid; flex: 1; min-width: 0; line-height: 1.25; }
+.i-convite-nome strong { font: 700 17px var(--f-texto); }
+.i-convite-nome small { color: var(--sobre-noite-2); font-size: 13px; }
+.i-convite-tempo { padding: 5px 10px; border-radius: var(--r-pill); background: var(--laranja); color: var(--laranja-tinta-txt); font: 700 12px var(--f-mono); white-space: nowrap; }
+.i-convite-meta { display: flex; align-items: center; gap: 8px; color: var(--sobre-noite-2); font-size: 14px; }
+.i-convite-meta svg { width: 18px; height: 18px; color: var(--destaque-noite); }
+.i-convite-corpo { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: center; padding-top: 16px; border-top: 1px solid var(--noite-linha); }
+.i-convite-pauta { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.i-convite-pauta li { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; line-height: 1.3; }
+.i-convite-pauta b { display: grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--laranja); color: var(--noite); transition: background-color 0.3s ease, box-shadow 0.3s ease; }
+.i-convite-pauta b svg { width: 14px; height: 14px; transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.i-convite-pauta li.pendente b { background: transparent; box-shadow: inset 0 0 0 2px var(--noite-linha); }
+.i-convite-pauta li.pendente b svg { opacity: 0; transform: scale(0.4); }
+.i-convite-relogio { position: relative; display: grid; place-items: center; width: clamp(84px, 8vw, 104px); aspect-ratio: 1; }
+.i-convite-relogio svg { position: absolute; inset: 0; width: 100%; height: 100%; rotate: -90deg; }
+.i-convite-relogio circle { fill: none; stroke-width: 8; }
+.i-convite-relogio .fundo { stroke: var(--noite-linha); }
+.i-convite-relogio .anel { stroke: var(--laranja); stroke-linecap: round; stroke-dasharray: 326.7; stroke-dashoffset: 0; }
+.i-convite-relogio > span { display: grid; justify-items: center; color: var(--sobre-noite-2); font: 600 11px/1 var(--f-mono); }
+.i-convite-relogio b { color: var(--sobre-noite); font: 800 28px/0.9 var(--f-display); font-stretch: 80%; }
+
+/* O que voce leva da conversa: quatro cartoes (antes era lista com seta de link sem link) */
+.i-entregas .h-grande { margin-bottom: clamp(40px, 6vw, 72px); }
+.i-entregas-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.i-entrega { display: grid; gap: 14px; align-content: start; padding: clamp(26px, 3vw, 40px); border: 1px solid var(--noite-linha); border-radius: var(--r-xl); background: var(--noite-2); transition: border-color 0.3s ease, transform 0.3s ease; }
+.i-entrega:hover { border-color: color-mix(in srgb, var(--laranja) 60%, transparent); transform: translateY(-4px); }
+.i-entrega-icone { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 8px; border-radius: 16px; background: var(--laranja); color: var(--noite); }
+.i-entrega-icone svg { width: 26px; height: 26px; }
+.i-entrega h3 { font: 800 clamp(32px, 3.4vw, 52px)/0.95 var(--f-display); font-stretch: 78%; letter-spacing: -0.035em; }
+.i-entrega p { max-width: 40ch; color: var(--sobre-noite-2); font-size: 17px; line-height: 1.55; text-wrap: pretty; }
+
 /* ---------- Responsivo ---------- */
 /* Cena "movii -> MovCode": celular em pe ganha palavra maior; tela baixa (celular deitado) tudo mais compacto */
 @media (max-width: 640px) {
@@ -264,7 +303,7 @@ html.anima .i-origem-legendas p { max-width: 36ch; margin: 0 auto; font-size: cl
     .i-hero { min-height: 0; }
     .i-hero > .h-rolar { display: none; }
     .i-hero .wrap, .i-chamada .wrap { grid-template-columns: minmax(0, 1fr); }
-    .i-fluxo, .i-painel, .i-janelas { max-width: 620px; width: 100%; }
+    .i-fluxo, .i-painel, .i-janelas, .i-convite-palco { max-width: 620px; width: 100%; }
     .i-pessoas-grade { grid-template-columns: minmax(0, 1fr); }
     .i-projeto { grid-template-columns: minmax(0, 1fr); min-height: 0; }
     .i-projeto-info { align-content: start; }
@@ -284,7 +323,11 @@ html.anima .i-origem-legendas p { max-width: 36ch; margin: 0 auto; font-size: cl
     .i-acoes .btn { width: 100%; }
     .i-fluxo { min-height: 300px; gap: 10px; padding: 22px; }
     .i-janela { width: 92%; }
-    .i-origem-legendas, .i-acredita-texto { grid-template-columns: minmax(0, 1fr); }
+    .i-origem-legendas, .i-acredita-texto, .i-entregas-grade { grid-template-columns: minmax(0, 1fr); }
+    .i-convite-palco { min-height: 300px; padding: 22px; }
+    .i-convite { rotate: none; }
+    .i-convite-relogio { width: 72px; }
+    .i-convite-relogio b { font-size: 22px; }
     /* Quem faz no celular: texto em cima, figura embaixo a direita */
     .i-pessoa { min-height: 0; padding-bottom: 228px; }
     .i-pessoa-texto p:last-child { max-width: none; }

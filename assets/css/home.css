@@ -596,6 +596,8 @@ a.h-proj-linha:focus-visible { outline: 2px solid var(--destaque-noite); outline
 @media (max-width: 1080px) {
     .h-breve-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .h-conversa .wrap, .h-duvidas .wrap, .h-contato .wrap { grid-template-columns: 1fr; }
+    /* formulario empilhado nao estica na largura toda do tablet */
+    .h-contato .form { width: 100%; max-width: 640px; }
     .chat { justify-self: start; }
     .h-duvidas .h-grande { position: static; }
     .h-passos { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 72px; }

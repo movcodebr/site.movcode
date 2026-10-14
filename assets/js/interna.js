@@ -18,6 +18,22 @@
         gsap.fromTo(pecas, { y: 28, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.9, ease: 'power3.out', stagger: 0.1, delay: 0.25 });
     }
 
+    // Diagnostico: a pauta do convite se marca item por item enquanto o relogio dos 30 minutos enche
+    const convite = document.querySelector('.i-convite');
+    if (convite) {
+        const itens = convite.querySelectorAll('.i-convite-pauta li');
+        const anel = convite.querySelector('.anel');
+        itens.forEach((li) => li.classList.add('pendente'));
+        gsap.set(anel, { strokeDashoffset: 326.7 });
+        const tl = gsap.timeline({ delay: 1.1 });
+        tl.to(anel, { strokeDashoffset: 0, duration: 2.6, ease: 'none' }, 0);
+        itens.forEach((li, i) => tl.call(() => li.classList.remove('pendente'), null, 0.5 + i * 0.85));
+    }
+    const entregas = gsap.utils.toArray('.i-entrega');
+    if (entregas.length) {
+        gsap.from(entregas, { y: 40, autoAlpha: 0, duration: 0.8, ease: 'power3.out', stagger: 0.1, clearProps: 'transform', scrollTrigger: { trigger: '.i-entregas-grade', start: 'top 82%' } });
+    }
+
     // Avisos do painel laranja chegando um por um, como notificacoes
     const avisos = gsap.utils.toArray('.i-fluxo .i-aviso');
     if (avisos.length) {
