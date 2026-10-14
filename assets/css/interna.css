@@ -154,7 +154,7 @@ html.anima .i-progresso { display: block; position: fixed; top: 0; left: 0; righ
 .i-historia { background: var(--papel); color: var(--tinta); padding: var(--secao) 0; }
 .i-historia .wrap { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
 .i-historia .h-grande { position: sticky; top: 120px; }
-.i-historia-texto { display: grid; gap: 1.1em; font-size: clamp(19px, 1.6vw, 23px); line-height: 1.55; text-wrap: pretty; }
+.i-historia-texto { display: grid; gap: 1.1em; max-width: 34em; font-size: clamp(19px, 1.6vw, 23px); line-height: 1.55; text-wrap: pretty; }
 
 /* Quem faz: as duas pessoas do simbolo, uma em cada cartao */
 .i-pessoas { background: var(--noite); color: var(--sobre-noite); padding: var(--secao) 0; }
@@ -243,11 +243,18 @@ html.anima .i-progresso { display: block; position: fixed; top: 0; left: 0; righ
     .i-projeto { grid-template-columns: minmax(0, 1fr); min-height: 0; }
     .i-projeto-info { align-content: start; }
     .i-nuvem:not(.i-nuvem-2) { display: none; }
-    .i-simbolo { justify-items: start; }
+    /* Topo empilhado: o simbolo encolhe (tambem pela altura, no celular deitado)
+       e vai para a direita, sem empurrar a historia para baixo */
+    .i-simbolo { justify-items: end; }
+    .i-simbolo .duo { --w: clamp(110px, min(24vw, 32svh), 200px); }
     .i-trio-grade { grid-template-columns: minmax(0, 1fr); }
     .i-guias .h-proj-linha { grid-template-columns: minmax(0, 1fr) auto; }
 }
 @media (max-width: 820px) {
+    /* Quem faz: figura e nome na mesma linha, texto embaixo na largura toda */
+    .i-pessoa { grid-template-rows: auto auto; row-gap: 16px; }
+    .i-pessoa .i-figura { --w: 44px; grid-row: 1; }
+    .i-pessoa p { grid-column: 1 / -1; }
     .i-guias .h-proj-nome { font-size: clamp(28px, 7vw, 44px); }
 }
 @media (max-width: 640px) {
