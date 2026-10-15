@@ -3,7 +3,8 @@
    Editor de landing page. A página inteira é o montador: a página do cliente
    ocupa a tela no tamanho real (versão computador no computador, versão
    celular no celular) e ele edita os textos direto nela. Tipo, nome, cor,
-   estilo e seções ficam numa barra presa embaixo, que abre um painel.
+   estilo e seções ficam numa barra presa embaixo, que abre um painel; o "?"
+   da barra explica preço, o que vem junto e as dúvidas.
    "Quero a minha assim" abre o WhatsApp com as escolhas e o link da montagem,
    que reabre a página exatamente como ficou (textos editados vão no "t").
 
@@ -11,7 +12,7 @@
    movcode.com.br/sua-pagina?nome=Box%2004%20Barbershop&nicho=barbearia&bairro=Centro
    nicho:  barbearia | estetica | pilates | oficina | construcao | contabilidade | petshop | outro
    cor:    laranja | vermelho | rosa | roxo | azul | verde | dourado | grafite
-   estilo: moderno | elegante | vibrante
+   estilo: moderno | elegante | vibrante | minimalista | noturno | aconchegante
    sec:    precos,galeria,diferenciais,local  (as visíveis, na ordem em que aparecem)
 ------------------------------------------------------------------------- */
 (() => {
@@ -127,7 +128,10 @@
     const ESTILOS = {
         moderno: ['Moderno', 'Escuro e marcante'],
         elegante: ['Elegante', 'Claro e refinado'],
-        vibrante: ['Vibrante', 'Sua cor em destaque']
+        vibrante: ['Vibrante', 'Sua cor em destaque'],
+        minimalista: ['Minimalista', 'Branco e direto'],
+        noturno: ['Noturno', 'Escuro do começo ao fim'],
+        aconchegante: ['Aconchegante', 'Tons quentes e suaves']
     };
     const SECOES = {
         precos: ['Serviços e preços', 'O que vocês fazem e quanto custa'],
@@ -212,7 +216,7 @@
         const local = e.bairro.trim() ? `${e.bairro.trim()}, Ribeirão Preto` : 'Ribeirão Preto';
         // texto editável: <tag data-e="chave">texto</tag>
         const t = (k, tag = 'span', cls = '') => `<${tag}${cls ? ` class="${cls}"` : ''} data-e="${k}">${esc(ov[k] ?? base[k])}</${tag}>`;
-        const arteClara = e.estilo === 'elegante' ? ' clara' : '';
+        const arteClara = e.estilo === 'elegante' || e.estilo === 'minimalista' ? ' clara' : '';
         const arte = (legenda, cls = '') => `<div class="pv-arte${arteClara}${cls}">${ic(e.nicho)}<em>${legenda}</em></div>`;
         const estilo = `--ac:${C[0]};--ac-on:${sobre(C[0])};--ac-soft:${C[2]};--ac-ink:${C[3]}`;
         const botao = (cls = '') => `<span class="pv-btn${cls}" data-pv-acao>${WHATS}${t('cta')}</span>`;
@@ -286,7 +290,6 @@
     }
 
     // ---------- Elementos ----------
-    const montador = document.getElementById('montador');
     const tela = document.querySelector('[data-tela]');
     const preview = tela.querySelector('[data-preview]');
     const ferramentas = document.querySelector('[data-ferramentas]');
@@ -322,14 +325,19 @@
     function opcoes() {
         const C = CORES[estado.cor];
         const on = sobre(C[0]);
+        // amostra de cada estilo: [fundo, letra, fonte, peso, botão, cantos do botão, borda]
+        const AMOSTRA = {
+            moderno: ['#111214', '#fff', '"Bricolage Grotesque"', 800, C[0], '999px', ''],
+            elegante: ['#FBF8F3', '#1E1B17', 'Fraunces, Georgia, serif', 500, C[0], '3px', '#E9E2D6'],
+            vibrante: [C[0], on, 'Outfit', 800, on, '999px', ''],
+            minimalista: ['#FFFFFF', '#111214', 'Figtree', 700, C[0], '4px', '#E7E7E9'],
+            noturno: ['#0D0E11', '#fff', '"Bricolage Grotesque"', 800, C[0], '999px', '#30333A'],
+            aconchegante: [C[2], '#2B221C', 'Fraunces, Georgia, serif', 700, C[0], '999px', '']
+        };
         cx('estilo').innerHTML = Object.entries(ESTILOS).map(([k, s]) => {
-            const fundo = k === 'moderno' ? '#111214' : k === 'elegante' ? '#FBF8F3' : C[0];
-            const letra = k === 'moderno' ? '#fff' : k === 'elegante' ? '#1E1B17' : on;
-            const fonte = k === 'moderno' ? '"Bricolage Grotesque"' : k === 'elegante' ? 'Fraunces, Georgia, serif' : 'Outfit';
-            const peso = k === 'elegante' ? 500 : 800;
-            const botao = k === 'vibrante' ? on : C[0];
-            const borda = k === 'elegante' ? 'border:1px solid #E9E2D6;' : '';
-            return `<button type="button" class="estilo-op" data-v="${k}" aria-pressed="${estado.estilo === k}"><span class="amostra" style="background:${fundo};${borda}"><b style="color:${letra};font-family:${fonte};font-weight:${peso}">Aa</b><span style="background:${botao};border-radius:${k === 'elegante' ? '3px' : '999px'}"></span></span><strong>${s[0]}</strong><small>${s[1]}</small></button>`;
+            const [fundo, letra, fonte, peso, botao, cantos, borda] = AMOSTRA[k];
+            const extra = k === 'noturno' ? ';font-stretch:78%' : '';
+            return `<button type="button" class="estilo-op" data-v="${k}" aria-pressed="${estado.estilo === k}"><span class="amostra" style="background:${fundo};${borda ? `box-shadow:inset 0 0 0 1px ${borda};` : ''}"><b style="color:${letra};font-family:${fonte};font-weight:${peso}${extra}">Aa</b><span style="background:${botao};border-radius:${cantos}"></span></span><strong>${s[0]}</strong><small>${s[1]}</small></button>`;
         }).join('');
         const vis = estado.ordem.filter((s) => estado.sec.has(s));
         cx('sec').innerHTML = estado.ordem.map((s) => {
@@ -574,10 +582,11 @@
         if (mais) { alternar(mais.dataset.mostrar, true); return; }
         const acao = ev.target.closest('[data-pv-acao]');
         if (!acao) return;
-        if (!podeEditar()) { mostrarAviso(); return; }
-        // editando: tocar no botão (fora do texto) já leva para o texto dele
+        // editando: tocar no botão (fora do texto) já leva para o texto dele; sem texto (o WhatsApp
+        // flutuante) ou no modo Ver, mostra o que ele faz na página de verdade
         const texto = acao.querySelector('[data-e]');
-        if (texto && !ev.target.closest('[data-e]')) { texto.focus(); cursorNoFim(texto); }
+        if (!podeEditar() || !texto) { mostrarAviso(); return; }
+        if (!ev.target.closest('[data-e]')) { texto.focus(); cursorNoFim(texto); }
     });
 
     // ---------- Versão computador / celular e Ver como cliente ----------
@@ -604,7 +613,7 @@
     });
 
     // ---------- Painel de ferramentas (uma de cada vez) ----------
-    const TITULOS = { negocio: 'Seu negócio', cor: 'Cor', estilo: 'Estilo', secoes: 'Seções' };
+    const TITULOS = { negocio: 'Seu negócio', cor: 'Cor', estilo: 'Estilo', secoes: 'Seções', ajuda: 'Preço e dúvidas' };
     function abrirGaveta(qual) {
         const atual = ferramentas.dataset.ativo;
         if (!qual || atual === qual) { delete ferramentas.dataset.ativo; }
@@ -624,12 +633,8 @@
     preview.addEventListener('pointerdown', (ev) => {
         if (ferramentas.dataset.ativo && !ev.target.closest('[data-ed], [data-mostrar]')) abrirGaveta(null);
     });
-    // a barra só aparece enquanto a página do negócio está na tela; aí o WhatsApp da MovCode sai da frente
-    new IntersectionObserver(([item]) => {
-        doca.classList.toggle('on', item.isIntersecting);
-        document.body.classList.toggle('montador-a-vista', item.isIntersecting);
-        if (!item.isIntersecting && ferramentas.dataset.ativo) abrirGaveta(null);
-    }, { rootMargin: '-120px 0px -40% 0px' }).observe(montador);
+    // a página é só a do negócio: a barra fica sempre na tela (entra deslizando)
+    requestAnimationFrame(() => doca.classList.add('on'));
     telaGrande.addEventListener('change', () => {
         modo = telaGrande.matches ? 'pc' : 'cel';
         marcarModo();
