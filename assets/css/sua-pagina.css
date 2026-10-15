@@ -38,7 +38,7 @@ body.sp { padding-top: 0; background: var(--noite); }
 .ferramentas[data-ativo="estilo"] [data-ferr="estilo"],
 .ferramentas[data-ativo="secoes"] [data-ferr="secoes"],
 .ferramentas[data-ativo="ajuda"] [data-ferr="ajuda"] { display: block; }
-.ferr-dica { margin: 0 0 12px; font-size: 13px; line-height: 1.45; color: var(--tinta-3); }
+.ferr-dica { text-wrap: pretty; margin: 0 0 12px; font-size: 13px; line-height: 1.45; color: var(--tinta-3); }
 
 /* Tipos de negócio em grade de duas colunas: nada corta nem rola para o lado */
 .tipos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
@@ -91,24 +91,24 @@ body.sp { padding-top: 0; background: var(--noite); }
 
 /* Preço e dúvidas (botão "?"): o que antes ficava embaixo da página */
 .ajuda-preco { display: grid; gap: 6px; padding: 18px; border-radius: 16px; background: var(--laranja); color: var(--laranja-tinta-txt); }
-.ajuda-preco p { margin: 0; font-size: 14px; line-height: 1.45; }
+.ajuda-preco p { margin: 0; font-size: 14px; line-height: 1.45; text-wrap: balance; }
 .ajuda-preco .ajuda-valor { font-size: 16px; font-weight: 600; }
 .ajuda-valor b { margin-right: 4px; font: 800 34px/1 var(--f-display); font-stretch: 85%; letter-spacing: -0.03em; }
 .ajuda-titulo { margin: 24px 0 10px; font: 700 15px/1.3 var(--f-texto); letter-spacing: 0; color: var(--tinta); }
 .ajuda-lista, .ajuda-passos { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
-.ajuda-lista li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; font-size: 14px; line-height: 1.45; color: var(--tinta-2); }
+.ajuda-lista li { text-wrap: balance; display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; font-size: 14px; line-height: 1.45; color: var(--tinta-2); }
 .ajuda-lista svg { width: 18px; height: 18px; margin-top: 1px; color: var(--laranja); }
 .ajuda-lista b, .ajuda-passos b { color: var(--tinta); font-weight: 600; }
 .ajuda-passos { counter-reset: passo; }
-.ajuda-passos li { position: relative; padding-left: 36px; font-size: 14px; line-height: 1.45; color: var(--tinta-2); counter-increment: passo; }
+.ajuda-passos li { text-wrap: balance; position: relative; padding-left: 36px; font-size: 14px; line-height: 1.45; color: var(--tinta-2); counter-increment: passo; }
 .ajuda-passos li::before { content: counter(passo); position: absolute; left: 0; top: -1px; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: var(--noite); box-shadow: inset 0 0 0 1px var(--linha-forte); color: var(--tinta); font: 600 12px/1 var(--f-mono); }
 .ferr-ajuda .perguntas { border-top-color: var(--linha); }
-.ferr-ajuda .pergunta summary { gap: 12px; padding: 14px 0; font: 600 15px/1.35 var(--f-texto); letter-spacing: 0; color: var(--tinta); }
+.ferr-ajuda .pergunta summary { text-wrap: balance; gap: 12px; padding: 14px 0; font: 600 15px/1.35 var(--f-texto); letter-spacing: 0; color: var(--tinta); }
 .ferr-ajuda .pergunta summary::after { width: 26px; height: 26px; background-size: 13px; }
-.ferr-ajuda .pergunta p { padding: 0 0 16px; font-size: 14px; line-height: 1.5; }
+.ferr-ajuda .pergunta p { text-wrap: pretty; padding: 0 0 16px; font-size: 14px; line-height: 1.5; }
 .ajuda-quero { width: 100%; min-height: 52px; margin-top: 22px; }
 .ajuda-quero svg { width: 20px; height: 20px; }
-.ajuda-nota { margin: 10px 0 0; font-size: 13px; line-height: 1.45; text-align: center; color: var(--tinta-3); }
+.ajuda-nota { text-wrap: balance; margin: 10px 0 0; font-size: 13px; line-height: 1.45; text-align: center; color: var(--tinta-3); }
 .ajuda-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 16px; margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--linha); font-size: 13px; }
 .ajuda-links a, .ajuda-links button { padding: 0; border: 0; background: none; color: var(--tinta-3); font: inherit; text-decoration: none; cursor: pointer; }
 .ajuda-links a:hover, .ajuda-links button:hover { color: var(--tinta); }
@@ -123,17 +123,31 @@ body.sp { padding-top: 0; background: var(--noite); }
 .doca-ver.vendo .ic-editar { display: block; }
 .doca-ver.vendo { color: var(--laranja); }
 
-/* ---------- Boas-vindas (primeira visita) ---------- */
-.sp-boas { position: fixed; left: 50%; z-index: 63; width: min(420px, calc(100% - 24px)); display: grid; gap: 6px; padding: 18px 20px 20px; border: 1px solid var(--noite-linha); border-radius: var(--r-lg); background: var(--noite-2); box-shadow: 0 24px 48px -12px rgba(0, 0, 0, .55); opacity: 0; transform: translate(-50%, 12px); transition: opacity .3s ease, transform .3s cubic-bezier(.2, .7, .2, 1); }
-.sp-boas[hidden] { display: none; }
-.sp-boas.on { opacity: 1; transform: translate(-50%, 0); }
-.sp-boas p { margin: 0; font-size: 15px; line-height: 1.45; color: var(--sobre-noite-2); }
-.sp-boas .sp-boas-titulo { font: 800 24px/1.05 var(--f-display); font-stretch: 85%; letter-spacing: -0.02em; color: var(--sobre-noite); text-wrap: balance; }
-.sp-boas-ok { justify-self: start; min-height: 44px; margin-top: 10px; padding: 0 22px; border: 0; border-radius: var(--r-pill); background: var(--laranja); color: var(--laranja-tinta-txt); font: 700 15px var(--f-texto); cursor: pointer; }
+/* ---------- Boas-vindas (primeira visita): janela no meio, fundo escurecido e travado ---------- */
+.sp-boas { width: min(460px, calc(100% - 32px)); max-height: calc(100svh - 32px); margin: auto; padding: 30px 28px 28px; overflow: auto; border: 1px solid var(--noite-linha); border-radius: 28px; background: var(--noite-2); box-shadow: 0 40px 90px -24px rgba(0, 0, 0, .7); }
+.sp-boas[open] { animation: sp-boas-entra .4s cubic-bezier(.2, .7, .2, 1); }
+.sp-boas::backdrop { background: rgba(8, 9, 11, .7); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); animation: sp-boas-fundo .3s ease; }
+@keyframes sp-boas-entra { from { opacity: 0; transform: translateY(18px) scale(.97); } }
+@keyframes sp-boas-fundo { from { opacity: 0; } }
+html.sp-travado { overflow: hidden; }
+.sp-boas-marca { --w: 30px; }
+.sp-boas-titulo { margin: 20px 0 8px; font: 800 clamp(30px, 7vw, 38px)/1 var(--f-display); font-stretch: 82%; letter-spacing: -0.03em; color: var(--sobre-noite); text-wrap: balance; }
+.sp-boas-sub { margin: 0; font-size: 16px; line-height: 1.5; color: var(--sobre-noite-2); text-wrap: balance; }
+.sp-boas-passos { display: grid; gap: 12px; margin: 24px 0 0; padding: 0; list-style: none; }
+.sp-boas-passos li { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 14px; align-items: center; font-size: 15px; line-height: 1.4; color: var(--sobre-noite-2); text-wrap: balance; }
+.sp-boas-passos i { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: var(--noite); box-shadow: inset 0 0 0 1px var(--noite-linha); color: var(--laranja); }
+.sp-boas-passos svg { width: 20px; height: 20px; }
+.sp-boas-passos b { color: var(--sobre-noite); font-weight: 600; }
+.sp-boas-ok { width: 100%; min-height: 54px; margin-top: 28px; border: 0; border-radius: var(--r-pill); background: var(--laranja); color: var(--laranja-tinta-txt); font: 700 16px var(--f-texto); cursor: pointer; transition: background-color .15s ease, color .15s ease; }
 .sp-boas-ok:hover { background: var(--sobre-noite); color: var(--noite); }
+.sp-boas-ok:focus-visible { outline: 2px solid var(--sobre-noite); outline-offset: 3px; }
+
+/* "?" flutuante: só no celular e no tablet (no computador ele fica na barra) */
+.sp-ajuda-flutuante { display: none; }
 
 /* Aviso rápido (o que um botão faz na página de verdade), acima da barra */
 .sp-aviso { position: fixed; left: 50%; z-index: 95; width: min(calc(100% - 24px), 440px); padding: 14px 18px; border-radius: var(--r-lg); background: var(--noite); color: var(--sobre-noite-2); font-size: 14px; line-height: 1.45; box-shadow: var(--sombra); transform: translate(-50%, 24px); opacity: 0; visibility: hidden; transition: transform .35s cubic-bezier(.2, .7, .2, 1), opacity .25s ease, visibility .35s; pointer-events: none; }
+.sp-aviso { text-wrap: balance; }
 .sp-aviso b { display: block; margin-bottom: 2px; color: #fff; font-size: 15px; }
 .sp-aviso.on { transform: translate(-50%, 0); opacity: 1; visibility: visible; }
 
@@ -212,7 +226,7 @@ body.sp { padding-top: 0; background: var(--noite); }
     }
     .ferramentas[data-ativo] { opacity: 1; transform: translate(-50%, 0); }
     .ferramentas[data-ativo="ajuda"] { width: min(500px, calc(100vw - 32px)); }
-    .sp-boas, .sp-aviso { bottom: 100px; }
+    .sp-aviso { bottom: 100px; }
 }
 
 /* computador estreito: a barra chegaria no WhatsApp do negócio, então ele sobe */
@@ -225,7 +239,7 @@ body.sp { padding-top: 0; background: var(--noite); }
     .sp-folha { --pv-whats-baixo: calc(84px + env(safe-area-inset-bottom)); --pv-rodape-baixo: calc(96px + env(safe-area-inset-bottom)); }
     .doca {
         left: 0; right: 0; bottom: 0;
-        display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)) auto; align-items: center; gap: 2px;
+        display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)) auto; align-items: center; gap: 2px;
         padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); background: #0B0C0E; border-top: 1px solid var(--noite-linha);
         transform: translateY(110%);
     }
@@ -244,7 +258,16 @@ body.sp { padding-top: 0; background: var(--noite); }
         transform: translateY(calc(100% + 80px)); transition: transform .3s cubic-bezier(.2, .7, .2, 1), visibility .3s;
     }
     .ferramentas[data-ativo] { transform: none; }
-    .sp-boas { bottom: calc(80px + env(safe-area-inset-bottom)); }
+    /* o "?" sai da barra e flutua no canto esquerdo, acima dela (o WhatsApp do negócio fica no direito) */
+    .doca > .doca-ajuda { display: none; }
+    .sp-ajuda-flutuante {
+        position: fixed; left: 16px; bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 60;
+        width: 52px; height: 52px; display: grid; place-items: center; padding: 0;
+        border: 1px solid var(--noite-linha); border-radius: 50%; background: #0B0C0E; color: #fff;
+        box-shadow: 0 12px 28px -8px rgba(0, 0, 0, .55); cursor: pointer; -webkit-tap-highlight-color: transparent;
+    }
+    .sp-ajuda-flutuante svg { width: 26px; height: 26px; }
+    .sp-ajuda-flutuante[aria-expanded="true"] { color: var(--laranja); }
     .sp-aviso { bottom: calc(84px + env(safe-area-inset-bottom)); }
 }
 @media (max-width: 600px) {
@@ -253,12 +276,12 @@ body.sp { padding-top: 0; background: var(--noite); }
 }
 @media (max-width: 380px) {
     .doca { padding-inline: 4px; }
-    .doca > button { font-size: 10.5px; }
-    .doca > button svg { width: 21px; height: 21px; }
-    .doca-quero { margin-left: 2px; padding: 0 10px; }
+    .doca > button { font-size: 11px; }
+    .doca-quero { margin-left: 2px; padding: 0 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
-    .pv, .ferramentas, .doca, .sp-boas, .sp-aviso { transition: none; }
+    .pv, .ferramentas, .doca, .sp-aviso { transition: none; }
+    .sp-boas[open], .sp-boas::backdrop { animation: none; }
     .pv-sec.destaque { animation: none; }
 }
 
@@ -284,6 +307,11 @@ body.sp { padding-top: 0; background: var(--noite); }
 .pv.trocando { opacity: .35; }
 .pv * { box-sizing: border-box; }
 .pv h3, .pv h4, .pv .pv-nome, .pv .pv-h1 { font-family: var(--pv-title); letter-spacing: -0.02em; line-height: 1.05; margin: 0; }
+/* títulos com linhas equilibradas e textos sem uma palavra sozinha na última linha */
+.pv h3, .pv h4, .pv .pv-h1 { text-wrap: balance; }
+.pv p, .pv-item small, .pv-dif span { text-wrap: pretty; }
+/* textos curtos (até 3 ou 4 linhas): linhas do mesmo tamanho, sem "Com" sozinho no fim da linha */
+.pv-hero p, .pv-sub, .pv-final p, .pv-dif span { text-wrap: balance; }
 .pv p { margin: 0; }
 .pv svg { display: block; }
 
