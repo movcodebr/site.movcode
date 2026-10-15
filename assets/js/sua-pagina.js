@@ -620,13 +620,13 @@
         else {
             ferramentas.dataset.ativo = qual;
             gavetaTitulo.textContent = TITULOS[qual];
-            fecharBoas();
             rastrear('sp_ferramenta', { ferramenta: qual });
         }
-        doca.querySelectorAll('[data-abrir]').forEach((b) => b.setAttribute('aria-expanded', String(b.dataset.abrir === ferramentas.dataset.ativo)));
+        document.querySelectorAll('[data-abrir]').forEach((b) => b.setAttribute('aria-expanded', String(b.dataset.abrir === ferramentas.dataset.ativo)));
         document.documentElement.classList.toggle('sp-gaveta', Boolean(ferramentas.dataset.ativo));
     }
-    doca.querySelectorAll('[data-abrir]').forEach((b) => b.addEventListener('click', () => abrirGaveta(b.dataset.abrir)));
+    // botões da barra e o "?" flutuante do celular
+    document.querySelectorAll('[data-abrir]').forEach((b) => b.addEventListener('click', () => abrirGaveta(b.dataset.abrir)));
     document.querySelector('[data-fechar-gaveta]').addEventListener('click', () => abrirGaveta(null));
     document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && ferramentas.dataset.ativo) abrirGaveta(null); });
     // tocar na página fecha o painel (menos nas ferramentas de seção, que mexem nela)
@@ -643,21 +643,22 @@
     });
 
     // ---------- Boas-vindas: só na primeira visita ----------
+    // Janela modal: escurece e trava o resto da página; só o "Começar" libera (o Esc não fecha)
     const BOAS_CHAVE = 'sp-boas-vistas';
     function fecharBoas() {
-        if (boas.hidden) return;
-        boas.classList.remove('on');
-        setTimeout(() => { boas.hidden = true; }, 300);
+        if (!boas.open) return;
+        boas.close();
+        document.documentElement.classList.remove('sp-travado');
         try { localStorage.setItem(BOAS_CHAVE, '1'); } catch { /* segue */ }
     }
+    boas.addEventListener('cancel', (ev) => ev.preventDefault());
+    document.querySelector('[data-boas-ok]').addEventListener('click', fecharBoas);
     let jaViu = false;
     try { jaViu = Boolean(localStorage.getItem(BOAS_CHAVE)); } catch { /* segue mostrando */ }
-    if (!jaViu) {
-        boas.hidden = false;
-        setTimeout(() => boas.classList.add('on'), 400);
+    if (!jaViu && typeof boas.showModal === 'function') {
+        boas.showModal();
+        document.documentElement.classList.add('sp-travado');
     }
-    document.querySelector('[data-boas-ok]').addEventListener('click', fecharBoas);
-    preview.addEventListener('focusin', (ev) => { if (ev.target.closest('[data-e]')) fecharBoas(); });
 
     document.querySelectorAll('[data-quero]').forEach((a) => a.addEventListener('click', () => {
         rastrear('generate_lead', { servico: 'Landing page (sua-pagina)', nicho: estado.nicho, estilo: estado.estilo, pagina: window.location.pathname });

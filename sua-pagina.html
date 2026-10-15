@@ -67,12 +67,19 @@
             </div>
         </section>
 
-        <!-- Boas-vindas: só na primeira visita; some no "Começar" ou quando a pessoa usa uma ferramenta -->
-        <div class="sp-boas" data-boas hidden>
-            <p class="sp-boas-titulo" data-boas-titulo>Esta é a página do seu negócio.</p>
-            <p>Toque em qualquer texto sublinhado para mudar. Cor, estilo e seções ficam na barra aqui embaixo, e no <b>?</b> estão o preço e as dúvidas.</p>
+        <!-- Boas-vindas: janela no meio da tela, com o fundo escurecido e travado.
+             Só na primeira visita, e só o "Começar" libera a página. -->
+        <dialog class="sp-boas" data-boas aria-labelledby="sp-boas-titulo">
+            <span class="duo sp-boas-marca" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>
+            <h2 id="sp-boas-titulo" class="sp-boas-titulo" data-boas-titulo>Esta é a página do seu negócio.</h2>
+            <p class="sp-boas-sub">Monte do seu jeito e veja na hora como fica.</p>
+            <ul class="sp-boas-passos">
+                <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></i><span><b>Toque nos textos sublinhados</b> para escrever do seu jeito.</span></li>
+                <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.56-2.5 5.56-5.55C21.97 6.01 17.46 2 12 2z"/></svg></i><span><b>Use a barra aqui embaixo</b> para trocar cor, estilo e seções.</span></li>
+                <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></i><span><b>No botão&nbsp;?</b> estão o preço, o que vem junto e as dúvidas.</span></li>
+            </ul>
             <button type="button" class="sp-boas-ok" data-boas-ok>Começar</button>
-        </div>
+        </dialog>
 
         <aside class="ferramentas" data-ferramentas aria-label="Ferramentas da página">
             <div class="gaveta-topo">
@@ -111,22 +118,22 @@
             <!-- Preço e dúvidas (o botão "?" da barra): tudo o que antes ficava embaixo da página -->
             <section class="ferr ferr-ajuda" data-ferr="ajuda" aria-label="Preço e dúvidas">
                 <div class="ajuda-preco">
-                    <p class="ajuda-valor"><b>R$ 497</b> pagamento único</p>
-                    <p>Sem mensalidade. Do 2º ano em diante, R$ 149 por ano para manter o domínio e a hospedagem.</p>
+                    <p class="ajuda-valor"><b>R$&nbsp;497</b> pagamento único</p>
+                    <p>Sem mensalidade. Do 2º&nbsp;ano em diante, R$&nbsp;149 por&nbsp;ano para manter o domínio e a hospedagem.</p>
                 </div>
                 <h3 class="ajuda-titulo">O que vem junto</h3>
                 <ul class="ajuda-lista">
                     <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Página pronta pro celular e pro computador</b>, com serviços, fotos, endereço e botão de WhatsApp.</span></li>
                     <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Domínio próprio</b> (seunegocio.com.br), registrado no seu CPF ou CNPJ.</span></li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Domínio e hospedagem do 1º ano</b> já inclusos no preço.</span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Domínio e hospedagem do 1º&nbsp;ano</b> já inclusos no preço.</span></li>
                     <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Alterações simples sem custo</b>, como preço, foto ou horário.</span></li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>No ar em até 7 dias úteis</b> depois que você me mandar as fotos e os textos.</span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>No ar em até 7&nbsp;dias úteis</b> depois que você me mandar as fotos e os textos.</span></li>
                 </ul>
                 <h3 class="ajuda-titulo">Como funciona</h3>
                 <ol class="ajuda-passos">
                     <li><b>Monte aqui do seu jeito</b> e toque em "Quero a minha". O WhatsApp abre com tudo o que você escolheu.</li>
                     <li><b>Mande as fotos e as informações</b> pelo WhatsApp. Eu cuido do resto, inclusive do registro do domínio.</li>
-                    <li><b>No ar em até 7 dias úteis</b>, com os detalhes ajustados com você antes de publicar.</li>
+                    <li><b>No ar em até 7&nbsp;dias úteis</b>, com os detalhes ajustados com você antes de publicar.</li>
                 </ol>
                 <h3 class="ajuda-titulo">Dúvidas comuns</h3>
                 <div class="perguntas">
@@ -140,6 +147,9 @@
                 <p class="ajuda-links"><a href="/">MovCode</a><a href="/politica">Privacidade</a><a href="/termo">Termos de uso</a><button type="button" data-cookies>Cookies</button></p>
             </section>
         </aside>
+
+        <!-- No celular o "?" sai da barra e flutua no canto esquerdo, acima dela -->
+        <button type="button" class="sp-ajuda-flutuante" data-abrir="ajuda" aria-expanded="false" aria-label="Preço e dúvidas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></button>
 
         <!-- Barra de ferramentas: sempre presa embaixo. O "?" abre preço e dúvidas; "Quero" abre o WhatsApp -->
         <nav id="ferramentas-barra" class="doca" data-doca aria-label="Ferramentas">
@@ -156,7 +166,7 @@
             </div>
             <button type="button" class="doca-ver" data-ver><svg class="ic-ver" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><svg class="ic-editar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span data-ver-rotulo>Ver</span></button>
             <button type="button" class="doca-ajuda" data-abrir="ajuda" aria-expanded="false" title="Preço e dúvidas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Dúvidas</span></button>
-            <a class="doca-quero" href="https://wa.me/5516982157266" data-quero data-cta="sp_doca"><span>Quero<span class="so-largo"> a minha</span></span><small>R$ 497</small></a>
+            <a class="doca-quero" href="https://wa.me/5516982157266" data-quero data-cta="sp_doca"><span>Quero<span class="so-largo"> a minha</span></span><small>R$&nbsp;497</small></a>
         </nav>
     </main>
 
