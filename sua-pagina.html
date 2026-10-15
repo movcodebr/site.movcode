@@ -58,7 +58,8 @@
         <!-- ===== A página inteira é o montador =====
              A página do negócio ocupa a tela no tamanho real (versão computador no computador,
              versão celular no celular) e é editada direto nela. As ferramentas ficam numa barra
-             presa embaixo e abrem num painel, uma de cada vez. Preço e dúvidas vêm depois. -->
+             presa embaixo e abrem num painel, uma de cada vez. Não há nada da MovCode embaixo:
+             preço, o que vem junto e dúvidas ficam no botão "?" da barra. -->
         <section id="montador" class="montador" aria-labelledby="sp-titulo">
             <h1 id="sp-titulo" class="sr-only" data-titulo>Monte a página do seu negócio</h1>
             <div class="sp-pagina" data-tela data-modo="cel">
@@ -69,7 +70,7 @@
         <!-- Boas-vindas: só na primeira visita; some no "Começar" ou quando a pessoa usa uma ferramenta -->
         <div class="sp-boas" data-boas hidden>
             <p class="sp-boas-titulo" data-boas-titulo>Esta é a página do seu negócio.</p>
-            <p>Toque em qualquer texto sublinhado para mudar. Cor, estilo e seções ficam na barra aqui embaixo.</p>
+            <p>Toque em qualquer texto sublinhado para mudar. Cor, estilo e seções ficam na barra aqui embaixo, e no <b>?</b> estão o preço e as dúvidas.</p>
             <button type="button" class="sp-boas-ok" data-boas-ok>Começar</button>
         </div>
 
@@ -106,9 +107,41 @@
                 <p class="ferr-dica">Ligue, desligue e mude a ordem. Também dá para mexer direto na página.</p>
                 <div class="secoes" data-opcoes="sec"></div>
             </section>
+
+            <!-- Preço e dúvidas (o botão "?" da barra): tudo o que antes ficava embaixo da página -->
+            <section class="ferr ferr-ajuda" data-ferr="ajuda" aria-label="Preço e dúvidas">
+                <div class="ajuda-preco">
+                    <p class="ajuda-valor"><b>R$ 497</b> pagamento único</p>
+                    <p>Sem mensalidade. Do 2º ano em diante, R$ 149 por ano para manter o domínio e a hospedagem.</p>
+                </div>
+                <h3 class="ajuda-titulo">O que vem junto</h3>
+                <ul class="ajuda-lista">
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Página pronta pro celular e pro computador</b>, com serviços, fotos, endereço e botão de WhatsApp.</span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Domínio próprio</b> (seunegocio.com.br), registrado no seu CPF ou CNPJ.</span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Domínio e hospedagem do 1º ano</b> já inclusos no preço.</span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Alterações simples sem custo</b>, como preço, foto ou horário.</span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>No ar em até 7 dias úteis</b> depois que você me mandar as fotos e os textos.</span></li>
+                </ul>
+                <h3 class="ajuda-titulo">Como funciona</h3>
+                <ol class="ajuda-passos">
+                    <li><b>Monte aqui do seu jeito</b> e toque em "Quero a minha". O WhatsApp abre com tudo o que você escolheu.</li>
+                    <li><b>Mande as fotos e as informações</b> pelo WhatsApp. Eu cuido do resto, inclusive do registro do domínio.</li>
+                    <li><b>No ar em até 7 dias úteis</b>, com os detalhes ajustados com você antes de publicar.</li>
+                </ol>
+                <h3 class="ajuda-titulo">Dúvidas comuns</h3>
+                <div class="perguntas">
+                    <details class="pergunta"><summary>A página vai ficar igual à prévia?</summary><p>A prévia mostra o estilo e a organização. Na sua entram as suas fotos, os seus preços e os seus textos, e eu ajusto os detalhes com você antes de publicar.</p></details>
+                    <details class="pergunta"><summary>Posso pedir mudanças depois?</summary><p>Pode. Trocar preço, foto, horário ou telefone não tem custo. Mudanças maiores, como uma seção nova, saem a partir de R$ 50.</p></details>
+                    <details class="pergunta"><summary>Preciso entender de site?</summary><p>Não. Você me manda fotos e informações pelo WhatsApp e eu cuido do resto, inclusive do registro do domínio.</p></details>
+                    <details class="pergunta"><summary>Já tenho Instagram. Preciso de página?</summary><p>O Instagram continua. A página entra no link da bio e junta tudo num lugar só: serviços, preços, endereço e o botão que leva direto pro seu WhatsApp. Também é o que aparece quando alguém procura o seu negócio no Google.</p></details>
+                </div>
+                <a class="btn btn-acao ajuda-quero" href="https://wa.me/5516982157266" data-quero data-cta="sp_ajuda"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg>Quero a minha assim</a>
+                <p class="ajuda-nota">Abre o WhatsApp com o que você escolheu aqui. Quem responde sou eu, o Kaique.</p>
+                <p class="ajuda-links"><a href="/">MovCode</a><a href="/politica">Privacidade</a><a href="/termo">Termos de uso</a><button type="button" data-cookies>Cookies</button></p>
+            </section>
         </aside>
 
-        <!-- Barra de ferramentas: presa embaixo enquanto a página do negócio está na tela -->
+        <!-- Barra de ferramentas: sempre presa embaixo. O "?" abre preço e dúvidas; "Quero" abre o WhatsApp -->
         <nav id="ferramentas-barra" class="doca" data-doca aria-label="Ferramentas">
             <a class="doca-marca" href="/" aria-label="MovCode, página inicial"><span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></a>
             <span class="doca-div" aria-hidden="true"></span>
@@ -122,103 +155,10 @@
                 <button type="button" data-modo-btn="cel" aria-pressed="false" aria-label="Versão celular" title="Versão celular"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></button>
             </div>
             <button type="button" class="doca-ver" data-ver><svg class="ic-ver" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><svg class="ic-editar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span data-ver-rotulo>Ver</span></button>
-            <a class="doca-quero" href="#pedido" data-cta="sp_doca"><span>Quero<span class="so-largo"> a minha</span></span><small>R$ 497</small></a>
+            <button type="button" class="doca-ajuda" data-abrir="ajuda" aria-expanded="false" title="Preço e dúvidas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Dúvidas</span></button>
+            <a class="doca-quero" href="https://wa.me/5516982157266" data-quero data-cta="sp_doca"><span>Quero<span class="so-largo"> a minha</span></span><small>R$ 497</small></a>
         </nav>
-
-        <!-- ===== Preço e pedido ===== -->
-        <section id="pedido" class="pedido" aria-labelledby="pedido-titulo">
-            <div class="wrap">
-                <div class="pedido-caixa">
-                    <div class="pedido-preco">
-                        <h2 id="pedido-titulo" class="gigante">R$ 497,<br>pagamento único.</h2>
-                        <p>Sem mensalidade. Do 2º ano em diante, R$ 149 por ano para manter o domínio e a hospedagem.</p>
-                        <a class="btn btn-acao btn-quero" href="https://wa.me/5516982157266" data-quero data-cta="sp_quero">
-                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg>
-                            Quero a minha assim
-                        </a>
-                        <p class="pedido-nota">Abre o WhatsApp com o que você escolheu aqui. Quem responde sou eu, o Kaique.</p>
-                    </div>
-                    <div class="incluso">
-                        <h3>O que vem junto</h3>
-                        <ul>
-                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Página pronta pro celular e pro computador</b>, com serviços, fotos, endereço e botão de WhatsApp.</span></li>
-                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Domínio próprio</b> (seunegocio.com.br), registrado no seu CPF ou CNPJ.</span></li>
-                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Domínio e hospedagem do 1º ano</b> já inclusos no preço.</span></li>
-                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Alterações simples sem custo</b>, como preço, foto ou horário.</span></li>
-                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>No ar em até 7 dias úteis</b> depois que você me mandar as fotos e os textos.</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="duvidas" aria-labelledby="sp-duvidas">
-            <div class="wrap">
-                <h2 id="sp-duvidas" class="gigante">Dúvidas <em>comuns.</em></h2>
-                <div class="perguntas">
-                    <details class="pergunta"><summary>A página vai ficar igual à prévia?</summary><p>A prévia mostra o estilo e a organização. Na sua entram as suas fotos, os seus preços e os seus textos, e eu ajusto os detalhes com você antes de publicar.</p></details>
-                    <details class="pergunta"><summary>Posso pedir mudanças depois?</summary><p>Pode. Trocar preço, foto, horário ou telefone não tem custo. Mudanças maiores, como uma seção nova, saem a partir de R$ 50.</p></details>
-                    <details class="pergunta"><summary>Preciso entender de site?</summary><p>Não. Você me manda fotos e informações pelo WhatsApp e eu cuido do resto, inclusive do registro do domínio.</p></details>
-                    <details class="pergunta"><summary>Já tenho Instagram. Preciso de página?</summary><p>O Instagram continua. A página entra no link da bio e junta tudo num lugar só: serviços, preços, endereço e o botão que leva direto pro seu WhatsApp. Também é o que aparece quando alguém procura o seu negócio no Google.</p></details>
-                </div>
-            </div>
-        </section>
     </main>
-
-    <a href="https://wa.me/5516982157266" class="whats-flutuante" data-whatsapp data-cta="sp_flutuante" aria-label="Falar com a MovCode pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></a>
-
-    <footer class="rodape">
-        <div class="wrap">
-            <div class="rodape-gigante" aria-hidden="true"><span class="duo duo-vivo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>MovCode.</div>
-            <nav class="rodape-links" aria-label="Rodapé">
-                <div>
-                    <strong>Navegar</strong>
-                    <a href="/sobre">Sobre a MovCode</a>
-                    <a href="/projetos">Projetos</a>
-                    <a href="/#como-funciona">Como funciona</a>
-                    <a href="/sua-pagina">Sua página</a>
-                    <a href="/blog/">Blog</a>
-                    <a href="/#duvidas">Dúvidas</a>
-                    <a href="/diagnostico">Diagnóstico gratuito</a>
-                </div>
-                <div>
-                    <strong>Serviços</strong>
-                    <a href="/criacao-de-sites">Criação de sites</a>
-                    <a href="/sistema-para-mercadinho">Sistema para comércio</a>
-                    <a href="/automacoes">Automações</a>
-                    <a href="/integracoes">Integrações</a>
-                    <a href="/paineis">Painéis</a>
-                    <a href="/consultoria">Consultoria</a>
-                </div>
-                <div>
-                    <strong>Produtos</strong>
-                    <a href="https://www.forlabs.com.br" target="_blank" rel="noopener">ForLabs <span class="menu-externo" aria-hidden="true">↗</span></a>
-                    <a href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Lojinha Pronta <span class="menu-externo" aria-hidden="true">↗</span></a>
-                    <a href="/sistema-para-condominio">ForCondom <span class="rodape-breve">Em breve</span></a>
-                    <a href="/sistema-para-barbearia">ForBarber <span class="rodape-breve">Em breve</span></a>
-                    <a href="/cardapio-digital">Pratuca <span class="rodape-breve">Em breve</span></a>
-                </div>
-                <div>
-                    <strong>Termos</strong>
-                    <a href="/politica">Política de Privacidade</a>
-                    <a href="/termo">Termos de Uso</a>
-                    <a href="/politica#direitos">Seus direitos (LGPD)</a>
-                    <a href="/politica#seguranca">Segurança dos dados</a>
-                    <button type="button" class="rodape-cookies" data-cookies>Preferências de cookies</button>
-                </div>
-            </nav>
-            <div class="rodape-base">
-                <p class="rodape-legal"><span>MovCode · Tecnologia do tamanho do seu negócio.</span> <span>Ribeirão Preto, SP · <a href="mailto:contato@movcode.com.br">contato@movcode.com.br</a></span></p>
-                <p class="rodape-copia">&copy; <span data-ano>2026</span> MovCode</p>
-                <div class="rodape-sociais">
-                    <a href="https://wa.me/5516982157266" data-whatsapp data-cta="rodape" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></a>
-                    <a href="https://www.instagram.com/mov.code/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-                    <a href="https://github.com/movcodebr" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a>
-                    <a href="mailto:contato@movcode.com.br" aria-label="E-mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <script src="assets/js/site.js"></script>
     <script src="assets/js/sua-pagina.js"></script>
