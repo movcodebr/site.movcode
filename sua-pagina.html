@@ -52,143 +52,77 @@
     <link rel="stylesheet" href="assets/css/sua-pagina.css">
 </head>
 <body class="sp">
-    <a class="pular" href="#montador">Pular para o editor</a>
-    <header class="topo">
-        <div class="wrap">
-            <a href="/" class="marca" aria-label="MovCode, página inicial">
-                <span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>
-                <span>Mov<span class="code">Code</span><span class="ponto">.</span></span>
-            </a>
-            <button class="menu-botao" type="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
-                <svg class="abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-            </button>
-            <nav id="menu" class="menu" aria-label="Navegação principal">
-                <div class="menu-item">
-                    <button class="menu-gatilho" type="button" aria-expanded="false" aria-controls="menu-solucoes">Soluções <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-                    <div class="menu-painel" id="menu-solucoes">
-                        <div class="menu-coluna">
-                            <p class="menu-titulo">Serviços</p>
-                            <a href="/criacao-de-sites">Criação de sites</a>
-                            <a href="/sistema-para-mercadinho">Sistema para comércio</a>
-                            <a href="/automacoes">Automações</a>
-                            <a href="/integracoes">Integrações</a>
-                            <a href="/paineis">Painéis</a>
-                            <a href="/consultoria">Consultoria</a>
-                        </div>
-                        <div class="menu-coluna">
-                            <p class="menu-titulo">Produtos</p>
-                            <a href="https://www.forlabs.com.br" target="_blank" rel="noopener">ForLabs <span class="menu-externo" aria-hidden="true">↗</span></a>
-                            <a href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Lojinha Pronta <span class="menu-externo" aria-hidden="true">↗</span></a>
-                            <a href="/sistema-para-condominio">ForCondom <span class="rodape-breve">Em breve</span></a>
-                            <a href="/sistema-para-barbearia">ForBarber <span class="rodape-breve">Em breve</span></a>
-                            <a href="/cardapio-digital">Pratuca <span class="rodape-breve">Em breve</span></a>
-                        </div>
-                        <a class="menu-destaque" href="/sua-pagina" aria-current="page">
-                            <span class="menu-destaque-visual" aria-hidden="true">
-                                <span class="menu-palco"><span class="menu-celular"><i class="mc-capa"></i><i class="mc-foto"></i><i class="mc-nome"></i><i class="mc-texto"></i><b class="mc-link"></b><b class="mc-link"></b><b class="mc-whats"></b></span></span>
-                                <span class="menu-cores"><i></i><i></i><i></i><i></i><b></b></span>
-                            </span>
-                            <span class="menu-destaque-texto">
-                                <strong>Sua página</strong>
-                                <span>Monte a prévia da página do seu negócio: escolha as cores, edite os textos e veja como fica no celular.</span>
-                                <em>Montar agora <i aria-hidden="true">→</i></em>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-                <a href="/projetos">Projetos</a>
-                <a href="/sobre">Sobre</a>
-                <a href="/#contato">Contato</a>
-                <a href="#pedido" class="btn btn-acao btn-pequeno" data-cta="sp_menu">Quero a minha</a>
-            </nav>
-        </div>
-    </header>
+    <a class="pular" href="#ferramentas-barra">Pular para as ferramentas</a>
 
     <main id="conteudo">
-        <!-- ===== Editor: a página do cliente em tamanho real, editável direto nela =====
-             Celular: a prévia ocupa a tela e as ferramentas abrem numa gaveta presa embaixo.
-             Computador: uma bancada do tamanho da tela, com as ferramentas à esquerda e a
-             prévia numa moldura à direita, cada lado com a própria rolagem. -->
-        <section id="montador" class="montador escuro" aria-labelledby="sp-titulo">
-            <div class="wrap sp-intro">
-                <h1 id="sp-titulo" class="gigante" data-titulo>Monte a página do seu <em>negócio.</em></h1>
-                <p>Toque em qualquer texto da página para mudar. Cor, estilo e seções ficam nas ferramentas.</p>
-            </div>
-
-            <div class="editor" data-editor>
-                <aside class="ferramentas" data-ferramentas aria-label="Ferramentas da página">
-                    <div class="gaveta-topo">
-                        <strong data-gaveta-titulo>Negócio</strong>
-                        <button type="button" class="gaveta-fechar" data-fechar-gaveta aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-                    </div>
-
-                    <section class="ferr" data-ferr="negocio" aria-labelledby="f-negocio">
-                        <h2 id="f-negocio" class="ferr-titulo"><b>1</b>Seu negócio</h2>
-                        <div class="tipos" data-opcoes="nicho" role="group" aria-label="Tipo de negócio"></div>
-                        <div class="campos">
-                            <div class="campo">
-                                <label for="spNome">Nome</label>
-                                <input id="spNome" type="text" maxlength="36" autocomplete="organization" enterkeyhint="done" placeholder="Ex.: Barbearia do João">
-                            </div>
-                            <div class="campo">
-                                <label for="spBairro">Bairro <span>(opcional)</span></label>
-                                <input id="spBairro" type="text" maxlength="28" enterkeyhint="done" placeholder="Ex.: Centro">
-                            </div>
-                        </div>
-                        <button type="button" class="restaurar" data-restaurar hidden>Voltar os textos ao padrão</button>
-                    </section>
-
-                    <section class="ferr" data-ferr="cor" aria-labelledby="f-cor">
-                        <h2 id="f-cor" class="ferr-titulo"><b>2</b>Cor <span class="ferr-valor" data-cor-nome></span></h2>
-                        <div class="cores" data-opcoes="cor" role="group" aria-label="Cor principal"></div>
-                    </section>
-
-                    <section class="ferr" data-ferr="estilo" aria-labelledby="f-estilo">
-                        <h2 id="f-estilo" class="ferr-titulo"><b>3</b>Estilo</h2>
-                        <div class="estilos" data-opcoes="estilo" role="group" aria-label="Estilo"></div>
-                    </section>
-
-                    <section class="ferr" data-ferr="secoes" aria-labelledby="f-secoes">
-                        <h2 id="f-secoes" class="ferr-titulo"><b>4</b>Seções <span class="ferr-valor">ligue, desligue, mude a ordem</span></h2>
-                        <div class="secoes" data-opcoes="sec"></div>
-                    </section>
-
-                    <div class="ferr-pedido">
-                        <p><b>R$ 497</b> pagamento único, sem mensalidade.</p>
-                        <a class="btn btn-acao" href="https://wa.me/5516982157266" data-quero data-cta="sp_painel"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg>Quero a minha assim</a>
-                    </div>
-                </aside>
-
-                <div class="tela-area">
-                    <div class="tela-barra">
-                        <div class="seg" role="group" aria-label="Ver a página como">
-                            <button type="button" data-modo-btn="cel" aria-pressed="true" aria-label="Ver no celular"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span class="rot">Celular</span></button>
-                            <button type="button" data-modo-btn="pc" aria-pressed="false" aria-label="Ver no computador"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="11" rx="2"/><path d="M2 19h20"/></svg><span class="rot">Computador</span></button>
-                        </div>
-                        <p class="tela-dica" data-dica>Toque em qualquer texto sublinhado para editar.</p>
-                        <div class="seg" role="group" aria-label="Modo">
-                            <button type="button" data-edicao-btn="on" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span>Editar</span></button>
-                            <button type="button" data-edicao-btn="off" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span>Ver<span class="so-largo"> como cliente</span></span></button>
-                        </div>
-                    </div>
-                    <div class="tela" data-tela data-modo="cel">
-                        <div class="tela-escala" data-escala>
-                            <div class="tela-rolagem" data-rolagem>
-                                <div class="zoom" data-preview aria-label="Prévia da sua página"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- ===== A página inteira é o montador =====
+             A página do negócio ocupa a tela no tamanho real (versão computador no computador,
+             versão celular no celular) e é editada direto nela. As ferramentas ficam numa barra
+             presa embaixo e abrem num painel, uma de cada vez. Preço e dúvidas vêm depois. -->
+        <section id="montador" class="montador" aria-labelledby="sp-titulo">
+            <h1 id="sp-titulo" class="sr-only" data-titulo>Monte a página do seu negócio</h1>
+            <div class="sp-pagina" data-tela data-modo="cel">
+                <div class="sp-folha" data-preview aria-label="Prévia da sua página"></div>
             </div>
         </section>
 
-        <!-- Barra de ferramentas do celular (some quando a pessoa rola até o preço) -->
-        <nav class="doca" data-doca aria-label="Ferramentas">
+        <!-- Boas-vindas: só na primeira visita; some no "Começar" ou quando a pessoa usa uma ferramenta -->
+        <div class="sp-boas" data-boas hidden>
+            <p class="sp-boas-titulo" data-boas-titulo>Esta é a página do seu negócio.</p>
+            <p>Toque em qualquer texto sublinhado para mudar. Cor, estilo e seções ficam na barra aqui embaixo.</p>
+            <button type="button" class="sp-boas-ok" data-boas-ok>Começar</button>
+        </div>
+
+        <aside class="ferramentas" data-ferramentas aria-label="Ferramentas da página">
+            <div class="gaveta-topo">
+                <strong data-gaveta-titulo>Seu negócio</strong>
+                <button type="button" class="gaveta-fechar" data-fechar-gaveta aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+            </div>
+
+            <section class="ferr" data-ferr="negocio" aria-label="Seu negócio">
+                <div class="tipos" data-opcoes="nicho" role="group" aria-label="Tipo de negócio"></div>
+                <div class="campos">
+                    <div class="campo">
+                        <label for="spNome">Nome</label>
+                        <input id="spNome" type="text" maxlength="36" autocomplete="organization" enterkeyhint="done" placeholder="Ex.: Barbearia do João">
+                    </div>
+                    <div class="campo">
+                        <label for="spBairro">Bairro <span>(opcional)</span></label>
+                        <input id="spBairro" type="text" maxlength="28" enterkeyhint="done" placeholder="Ex.: Centro">
+                    </div>
+                </div>
+                <button type="button" class="restaurar" data-restaurar hidden>Voltar os textos ao padrão</button>
+            </section>
+
+            <section class="ferr" data-ferr="cor" aria-label="Cor">
+                <div class="cores" data-opcoes="cor" role="group" aria-label="Cor principal"></div>
+            </section>
+
+            <section class="ferr" data-ferr="estilo" aria-label="Estilo">
+                <div class="estilos" data-opcoes="estilo" role="group" aria-label="Estilo"></div>
+            </section>
+
+            <section class="ferr" data-ferr="secoes" aria-label="Seções">
+                <p class="ferr-dica">Ligue, desligue e mude a ordem. Também dá para mexer direto na página.</p>
+                <div class="secoes" data-opcoes="sec"></div>
+            </section>
+        </aside>
+
+        <!-- Barra de ferramentas: presa embaixo enquanto a página do negócio está na tela -->
+        <nav id="ferramentas-barra" class="doca" data-doca aria-label="Ferramentas">
+            <a class="doca-marca" href="/" aria-label="MovCode, página inicial"><span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></a>
+            <span class="doca-div" aria-hidden="true"></span>
             <button type="button" data-abrir="negocio" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg><span>Negócio</span></button>
             <button type="button" data-abrir="cor" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.56-2.5 5.56-5.55C21.97 6.01 17.46 2 12 2z"/></svg><span>Cor</span></button>
             <button type="button" data-abrir="estilo" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="m6 16 6-12 6 12"/><path d="M8 12h8"/></svg><span>Estilo</span></button>
             <button type="button" data-abrir="secoes" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="6" rx="1.5"/><rect x="3" y="13" width="18" height="8" rx="1.5"/></svg><span>Seções</span></button>
-            <a class="doca-quero" href="#pedido" data-cta="sp_doca">Quero<small>R$ 497</small></a>
+            <span class="doca-div" aria-hidden="true"></span>
+            <div class="doca-modo" role="group" aria-label="Ver a página como">
+                <button type="button" data-modo-btn="pc" aria-pressed="true" aria-label="Versão computador" title="Versão computador"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="11" rx="2"/><path d="M2 19h20"/></svg></button>
+                <button type="button" data-modo-btn="cel" aria-pressed="false" aria-label="Versão celular" title="Versão celular"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></button>
+            </div>
+            <button type="button" class="doca-ver" data-ver><svg class="ic-ver" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><svg class="ic-editar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span data-ver-rotulo>Ver</span></button>
+            <a class="doca-quero" href="#pedido" data-cta="sp_doca"><span>Quero<span class="so-largo"> a minha</span></span><small>R$ 497</small></a>
         </nav>
 
         <!-- ===== Preço e pedido ===== -->

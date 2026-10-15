@@ -1,8 +1,9 @@
 /* -------------------------------------------------------------------------
    MovCode — /sua-pagina
-   Editor de landing page. A prévia é a própria página do cliente: ele toca
-   num texto e edita ali mesmo; tipo, nome, cor, estilo e seções ficam nas
-   ferramentas (gaveta no celular, painel no computador).
+   Editor de landing page. A página inteira é o montador: a página do cliente
+   ocupa a tela no tamanho real (versão computador no computador, versão
+   celular no celular) e ele edita os textos direto nela. Tipo, nome, cor,
+   estilo e seções ficam numa barra presa embaixo, que abre um painel.
    "Quero a minha assim" abre o WhatsApp com as escolhas e o link da montagem,
    que reabre a página exatamente como ficou (textos editados vão no "t").
 
@@ -14,8 +15,6 @@
    sec:    precos,galeria,diferenciais,local  (as visíveis, na ordem em que aparecem)
 ------------------------------------------------------------------------- */
 (() => {
-    const L = 390; // largura "real" da prévia, em px
-
     // ---------- Ícones (traço 2px, 24×24) ----------
     const P = {
         barbearia: '<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/>',
@@ -37,12 +36,6 @@
     };
     const WHATS = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg>';
     const ic = (k, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ${extra}>${P[k]}</svg>`;
-    // Barra de status do aparelho (hora, ilha da câmera, sinal, Wi-Fi e bateria)
-    const STATUS = '<div class="pv-status" aria-hidden="true"><span class="pv-relogio">9:41</span><span class="pv-ilha"></span><span class="pv-sinais">'
-        + '<svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7.5" width="3" height="4.5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>'
-        + '<svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.6 4.4a9.2 9.2 0 0 1 12.8 0"/><path d="M4.4 7.3a5.2 5.2 0 0 1 7.2 0"/><circle cx="8" cy="10.2" r="1.3" fill="currentColor" stroke="none"/></svg>'
-        + '<svg width="27" height="13" viewBox="0 0 27 13" fill="currentColor"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2.4"/><path d="M25 4.4v4.2a2.2 2.2 0 0 0 0-4.2z" opacity=".45"/></svg>'
-        + '</span></div>';
 
     // ---------- Conteúdo por tipo de negócio ----------
     const NICHOS = {
@@ -203,14 +196,11 @@
     const veioPersonalizado = Boolean(q.get('nome'));
 
     // ---------- A página do cliente ----------
-    // Endereço de exemplo na barra do navegador: "Barbearia do João" -> barbeariadojoao.com.br
-    const dominio = (nome) => `${nome.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 28) || 'seunegocio'}.com.br`;
-    const CADEADO = '<svg width="12" height="13" viewBox="0 0 12 13" aria-hidden="true"><rect x="1" y="5.5" width="10" height="7.5" rx="2" fill="currentColor"/><path d="M3.5 5.5V4a2.5 2.5 0 0 1 5 0v1.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
     const LINKS = { precos: 'Serviços', galeria: 'Fotos', diferenciais: 'Sobre', local: 'Onde estamos' };
     const SETA = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d > 0 ? 'M12 5v14M6 13l6 6 6-6' : 'M12 19V5M6 11l6-6 6 6'}"/></svg>`;
     const OLHO_FECHADO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.9 4.24A9 9 0 0 1 12 4c6.5 0 10 8 10 8a17 17 0 0 1-2.16 3.19M6.6 6.6A17 17 0 0 0 2 12s3.5 8 10 8a9.7 9.7 0 0 0 5.4-1.6"/><path d="m2 2 20 20"/></svg>';
 
-    // modo 'cel' = página no celular (390px); 'pc' = a mesma página no computador (1200px)
+    // modo 'cel' = a página no celular; 'pc' = a mesma página no computador
     // editavel = mostra as ferramentas de cada seção e deixa os textos com data-e prontos para editar
     function pagina(e, modo, editavel) {
         const N = NICHOS[e.nicho];
@@ -227,7 +217,6 @@
         const estilo = `--ac:${C[0]};--ac-on:${sobre(C[0])};--ac-soft:${C[2]};--ac-ink:${C[3]}`;
         const botao = (cls = '') => `<span class="pv-btn${cls}" data-pv-acao>${WHATS}${t('cta')}</span>`;
         const vis = e.ordem.filter((s) => e.sec.has(s));
-        const navegador = pc ? `<div class="pv-navegador" aria-hidden="true"><span class="pv-janela"><i></i><i></i><i></i></span><span class="pv-url">${CADEADO}${esc(dominio(nome))}</span></div>` : '';
         const topoDireita = pc
             ? `<nav class="pv-links">${vis.map((s) => `<span>${LINKS[s]}</span>`).join('')}</nav>${botao(' pv-btn-topo')}`
             : `<span class="pv-menu">${ic('menu')}</span>`;
@@ -261,9 +250,7 @@
             : '';
 
         return `<div class="pv ${e.estilo}${pc ? ' pc' : ''}${editavel ? ' editando' : ''}" style="${estilo}">
-            ${navegador}
             <header class="pv-top">
-                ${pc ? '' : STATUS}
                 <div class="pv-logo"><i>${esc(iniciais(nome))}</i>${nomeEd('pv-nome')}</div>
                 ${topoDireita}
             </header>
@@ -301,26 +288,21 @@
     // ---------- Elementos ----------
     const montador = document.getElementById('montador');
     const tela = document.querySelector('[data-tela]');
-    const rolagem = tela.querySelector('[data-rolagem]');
     const preview = tela.querySelector('[data-preview]');
-    const dica = document.querySelector('[data-dica]');
     const ferramentas = document.querySelector('[data-ferramentas]');
     const doca = document.querySelector('[data-doca]');
     const gavetaTitulo = document.querySelector('[data-gaveta-titulo]');
     const nomeInput = document.getElementById('spNome');
     const bairroInput = document.getElementById('spBairro');
-    const corNome = document.querySelector('[data-cor-nome]');
     const restaurar = document.querySelector('[data-restaurar]');
+    const verBtn = document.querySelector('[data-ver]');
+    const boas = document.querySelector('[data-boas]');
     const telaGrande = window.matchMedia('(min-width: 1024px)');
     const cx = (sel) => document.querySelector(`[data-opcoes="${sel}"]`);
-    let modo = 'cel';
+    // no computador começa na versão computador; no celular e no tablet só existe a versão celular
+    let modo = telaGrande.matches ? 'pc' : 'cel';
     let editando = true;
-
-    // No computador o WhatsApp flutuante cobria o canto da prévia: sai da frente enquanto o montador está na tela
-    if ('IntersectionObserver' in window) {
-        new IntersectionObserver(([e]) => document.body.classList.toggle('montador-a-vista', e.intersectionRatio >= 0.6), { threshold: [0, 0.6] })
-            .observe(document.querySelector('[data-editor]'));
-    }
+    const podeEditar = () => editando;
 
     // contenteditable="plaintext-only" evita colar formatação; nem todo navegador aceita
     const SO_TEXTO = (() => { try { const d = document.createElement('div'); d.contentEditable = 'plaintext-only'; return d.contentEditable === 'plaintext-only'; } catch { return false; } })();
@@ -329,23 +311,9 @@
     if (veioPersonalizado) {
         const titulo = document.querySelector('[data-titulo]');
         if (titulo) titulo.textContent = `${estado.nome}, monte a página de vocês.`;
+        const boasTitulo = document.querySelector('[data-boas-titulo]');
+        if (boasTitulo) boasTitulo.textContent = `${estado.nome}, esta é a página de vocês.`;
     }
-
-    // ---------- Escala ----------
-    // Celular: a página no tamanho real, num celular de tamanho fixo. Computador: a página de 1200px
-    // encolhida para caber na janela. O transform não muda a altura ocupada, então a margem negativa
-    // tira a sobra (senão a rolagem continuaria pela altura da página sem encolher).
-    const escalaPc = () => Math.min(1, rolagem.clientWidth / 1200);
-    function escalar() {
-        if (modo !== 'pc') { tela.style.removeProperty('--k'); preview.style.removeProperty('margin-bottom'); return; }
-        const k = escalaPc();
-        tela.style.setProperty('--k', String(k));
-        preview.style.marginBottom = `${-Math.floor(preview.offsetHeight * (1 - k))}px`;
-    }
-    new ResizeObserver(escalar).observe(rolagem);
-    new ResizeObserver(escalar).observe(preview);
-    // no computador pequeno (ex.: celular no modo Computador) a página fica miúda demais para editar
-    const podeEditar = () => editando && (modo === 'cel' || escalaPc() >= 0.6);
 
     // ---------- Opções das ferramentas ----------
     const CURTO = { estetica: 'Estética', pilates: 'Pilates', oficina: 'Oficina', construcao: 'Construção', outro: 'Outro' };
@@ -375,7 +343,6 @@
         }).join('');
         document.querySelectorAll('[data-opcoes="nicho"] [data-v]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === estado.nicho)));
         document.querySelectorAll('[data-opcoes="cor"] [data-v]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === estado.cor)));
-        if (corNome) corNome.textContent = `· ${C[1]}`;
         nomeInput.placeholder = `Ex.: ${NICHOS[estado.nicho].exemplo}`;
         restaurar.hidden = !Object.keys(meus()).length;
     }
@@ -428,7 +395,6 @@
 
     // ---------- Desenho ----------
     function desenhar() {
-        // troca a moldura antes de medir: no modo Computador a largura que vale é a da janela
         tela.dataset.modo = modo;
         const ed = podeEditar();
         preview.innerHTML = pagina(estado, modo, ed);
@@ -440,12 +406,7 @@
                 el.setAttribute('aria-label', 'Texto da página (toque para editar)');
             });
         }
-        dica.textContent = !editando
-            ? 'Assim o seu cliente vê a página. Toque nos botões para ver o que acontece.'
-            : ed ? (telaGrande.matches ? 'Clique em qualquer texto sublinhado para editar.' : 'Toque em qualquer texto sublinhado para editar.')
-                : 'Para editar os textos, volte para Celular.';
         opcoes();
-        escalar();
         salvar();
     }
 
@@ -459,15 +420,10 @@
                 const alvo = preview.querySelector(`[data-sec="${foco}"]`);
                 if (alvo) {
                     alvo.classList.add('destaque');
-                    if (telaGrande.matches) {
-                        // no computador a prévia rola dentro da moldura: só ela anda, o site fica parado.
-                        // No celular o topo do negócio fica preso em cima, então a seção para logo abaixo dele.
-                        const topo = alvo.getBoundingClientRect().top - rolagem.getBoundingClientRect().top + rolagem.scrollTop;
-                        const folga = modo === 'cel' ? (preview.querySelector('.pv-top')?.offsetHeight || 0) : 72;
-                        rolagem.scrollTo({ top: Math.max(0, topo - folga), behavior: 'smooth' });
-                    } else if (!ferramentas.dataset.ativo) {
-                        alvo.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
+                    // a seção para logo abaixo do topo do negócio, que fica preso no alto
+                    const folga = preview.querySelector('.pv-top')?.offsetHeight || 0;
+                    const y = alvo.getBoundingClientRect().top + window.scrollY - folga;
+                    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
                 }
             }
         }, 120);
@@ -599,12 +555,13 @@
     aviso.setAttribute('role', 'status');
     document.body.appendChild(aviso);
     let avisoTempo;
-    function mostrarAviso() {
-        aviso.innerHTML = `<b>Na sua página, esse botão abre o seu WhatsApp</b>com a mensagem: “${esc(NICHOS[estado.nicho].msg)}”`;
+    function avisar(titulo, texto) {
+        aviso.innerHTML = `<b>${esc(titulo)}</b>${esc(texto)}`;
         aviso.classList.add('on');
         clearTimeout(avisoTempo);
         avisoTempo = setTimeout(() => aviso.classList.remove('on'), 3600);
     }
+    const mostrarAviso = () => avisar('Na sua página, esse botão abre o seu WhatsApp', `com a mensagem: “${NICHOS[estado.nicho].msg}”`);
     preview.addEventListener('click', (ev) => {
         const sec = ev.target.closest('[data-ed]');
         if (sec) {
@@ -623,28 +580,30 @@
         if (texto && !ev.target.closest('[data-e]')) { texto.focus(); cursorNoFim(texto); }
     });
 
-    // ---------- Celular / Computador e Editar / Ver ----------
-    function marcar(sel, attr, valor) {
-        document.querySelectorAll(sel).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset[attr] === valor)));
+    // ---------- Versão computador / celular e Ver como cliente ----------
+    function marcarModo() {
+        document.querySelectorAll('[data-modo-btn]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.modoBtn === modo)));
     }
     document.querySelectorAll('[data-modo-btn]').forEach((b) => b.addEventListener('click', () => {
         if (b.dataset.modoBtn === modo) return;
         modo = b.dataset.modoBtn;
-        marcar('[data-modo-btn]', 'modoBtn', modo);
+        marcarModo();
         trocar(() => {});
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         rastrear('sp_modo', { modo });
     }));
-    document.querySelectorAll('[data-edicao-btn]').forEach((b) => b.addEventListener('click', () => {
-        const on = b.dataset.edicaoBtn === 'on';
-        if (on === editando) return;
-        editando = on;
-        marcar('[data-edicao-btn]', 'edicaoBtn', on ? 'on' : 'off');
-        montador.classList.toggle('vendo', !on);
+    // "Ver" tira os sublinhados e as ferramentas de seção; os botões da página mostram o que fazem
+    verBtn.addEventListener('click', () => {
+        editando = !editando;
+        verBtn.classList.toggle('vendo', !editando);
+        verBtn.querySelector('[data-ver-rotulo]').textContent = editando ? 'Ver' : 'Editar';
+        abrirGaveta(null);
         desenhar();
-        rastrear('sp_edicao', { editando: on });
-    }));
+        if (!editando) avisar('Assim o seu cliente vê a página', 'Toque nos botões dela para ver o que acontece.');
+        rastrear('sp_edicao', { editando });
+    });
 
-    // ---------- Gaveta (celular) ----------
+    // ---------- Painel de ferramentas (uma de cada vez) ----------
     const TITULOS = { negocio: 'Seu negócio', cor: 'Cor', estilo: 'Estilo', secoes: 'Seções' };
     function abrirGaveta(qual) {
         const atual = ferramentas.dataset.ativo;
@@ -652,6 +611,7 @@
         else {
             ferramentas.dataset.ativo = qual;
             gavetaTitulo.textContent = TITULOS[qual];
+            fecharBoas();
             rastrear('sp_ferramenta', { ferramenta: qual });
         }
         doca.querySelectorAll('[data-abrir]').forEach((b) => b.setAttribute('aria-expanded', String(b.dataset.abrir === ferramentas.dataset.ativo)));
@@ -660,20 +620,44 @@
     doca.querySelectorAll('[data-abrir]').forEach((b) => b.addEventListener('click', () => abrirGaveta(b.dataset.abrir)));
     document.querySelector('[data-fechar-gaveta]').addEventListener('click', () => abrirGaveta(null));
     document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && ferramentas.dataset.ativo) abrirGaveta(null); });
-    // tocar na página fecha a gaveta (menos nas ferramentas de seção, que mexem nela)
+    // tocar na página fecha o painel (menos nas ferramentas de seção, que mexem nela)
     preview.addEventListener('pointerdown', (ev) => {
-        if (!telaGrande.matches && ferramentas.dataset.ativo && !ev.target.closest('[data-ed], [data-mostrar]')) abrirGaveta(null);
+        if (ferramentas.dataset.ativo && !ev.target.closest('[data-ed], [data-mostrar]')) abrirGaveta(null);
     });
-    // a barra de baixo só aparece enquanto o editor está na tela
+    // a barra só aparece enquanto a página do negócio está na tela; aí o WhatsApp da MovCode sai da frente
     new IntersectionObserver(([item]) => {
         doca.classList.toggle('on', item.isIntersecting);
+        document.body.classList.toggle('montador-a-vista', item.isIntersecting);
         if (!item.isIntersecting && ferramentas.dataset.ativo) abrirGaveta(null);
-    }, { rootMargin: '-80px 0px -40% 0px' }).observe(montador);
-    telaGrande.addEventListener('change', () => { abrirGaveta(null); desenhar(); });
+    }, { rootMargin: '-120px 0px -40% 0px' }).observe(montador);
+    telaGrande.addEventListener('change', () => {
+        modo = telaGrande.matches ? 'pc' : 'cel';
+        marcarModo();
+        abrirGaveta(null);
+        desenhar();
+    });
+
+    // ---------- Boas-vindas: só na primeira visita ----------
+    const BOAS_CHAVE = 'sp-boas-vistas';
+    function fecharBoas() {
+        if (boas.hidden) return;
+        boas.classList.remove('on');
+        setTimeout(() => { boas.hidden = true; }, 300);
+        try { localStorage.setItem(BOAS_CHAVE, '1'); } catch { /* segue */ }
+    }
+    let jaViu = false;
+    try { jaViu = Boolean(localStorage.getItem(BOAS_CHAVE)); } catch { /* segue mostrando */ }
+    if (!jaViu) {
+        boas.hidden = false;
+        setTimeout(() => boas.classList.add('on'), 400);
+    }
+    document.querySelector('[data-boas-ok]').addEventListener('click', fecharBoas);
+    preview.addEventListener('focusin', (ev) => { if (ev.target.closest('[data-e]')) fecharBoas(); });
 
     document.querySelectorAll('[data-quero]').forEach((a) => a.addEventListener('click', () => {
         rastrear('generate_lead', { servico: 'Landing page (sua-pagina)', nicho: estado.nicho, estilo: estado.estilo, pagina: window.location.pathname });
     }));
 
+    marcarModo();
     desenhar();
 })();
