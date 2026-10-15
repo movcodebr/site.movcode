@@ -630,6 +630,48 @@ body.rodape-a-vista .whats-flutuante { opacity: 0; visibility: hidden; }
 .whats-flutuante:hover { transform: scale(1.06); }
 .whats-flutuante svg { width: 28px; height: 28px; }
 
+/* ---------- Aviso de cookies (LGPD) ---------- */
+/* No canto, sem travar a pagina; Aceitar e Recusar do mesmo tamanho */
+.cookies {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 90;
+    width: min(380px, calc(100% - 32px));
+    display: grid;
+    gap: 14px;
+    padding: 18px;
+    border: 1px solid var(--noite-linha);
+    border-radius: var(--r-lg);
+    background: var(--noite);
+    color: var(--sobre-noite-2);
+    box-shadow: 0 24px 48px -16px rgba(0, 0, 0, .45);
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .3s ease, transform .3s cubic-bezier(.2, .7, .2, 1);
+}
+.cookies.on { opacity: 1; transform: none; }
+.cookies p { margin: 0; }
+.cookies a { color: var(--sobre-noite); text-underline-offset: 3px; }
+.cookies-botoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.cookies-botoes button { min-height: 44px; border: 0; border-radius: var(--r-pill); font: 600 14px var(--f-texto); cursor: pointer; transition: background-color .15s ease, color .15s ease; }
+.cookies-recusar { background: transparent; color: var(--sobre-noite); box-shadow: inset 0 0 0 1.5px var(--noite-linha); }
+.cookies-recusar:hover { box-shadow: inset 0 0 0 1.5px var(--sobre-noite-2); }
+.cookies-aceitar { background: var(--laranja); color: var(--laranja-tinta-txt); }
+.cookies-aceitar:hover { background: var(--sobre-noite); color: var(--noite); }
+.cookies :focus-visible { outline: 2px solid var(--laranja); outline-offset: 2px; }
+/* link do rodape que abre o aviso de novo */
+.rodape-cookies { padding: 0; border: 0; background: none; color: inherit; font: inherit; font-size: 15px; text-align: left; cursor: pointer; }
+.rodape-cookies:hover { color: var(--sobre-noite); }
+@media (max-width: 600px) {
+    .cookies { left: 12px; bottom: 12px; width: calc(100% - 24px); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .cookies { transition: none; }
+}
+
 /* ---------- Paginas internas (landing, termos) ---------- */
 .pagina-topo { padding: 64px 0 48px; }
 .pagina-topo .wrap { display: grid; gap: 18px; max-width: 860px; }

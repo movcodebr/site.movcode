@@ -10,8 +10,20 @@ window.MOVCODE_CONFIG = Object.freeze({
     metaPixelId: ''
 });
 
-// Meta Pixel: so carrega quando ha um ID configurado acima
-if (window.MOVCODE_CONFIG.metaPixelId) {
+// Cookies (LGPD): a escolha do aviso fica no navegador. O Analytics ja comeca negado no <head>
+// e so grava cookies depois do "Aceitar"; o Meta Pixel nem carrega antes disso.
+const COOKIES_CHAVE = 'movcode_cookies';
+const cookiesEscolha = () => {
+    try {
+        return localStorage.getItem(COOKIES_CHAVE);
+    } catch {
+        return null;
+    }
+};
+
+// Meta Pixel: so carrega quando ha um ID configurado acima e a pessoa aceitou os cookies
+function carregarPixel() {
+    if (!window.MOVCODE_CONFIG.metaPixelId || window.fbq) return;
     /* eslint-disable */
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -22,6 +34,7 @@ if (window.MOVCODE_CONFIG.metaPixelId) {
     window.fbq('init', window.MOVCODE_CONFIG.metaPixelId);
     window.fbq('track', 'PageView');
 }
+if (cookiesEscolha() === 'aceito') carregarPixel();
 
 // Origem da visita (utm_* / gclid / fbclid), guardada na sessao para o lead
 // chegar no WhatsApp dizendo de qual anuncio veio.
@@ -507,4 +520,53 @@ window.addEventListener('load', () => {
     window.addEventListener('pageshow', (event) => {
         if (event.persisted) cortina.classList.remove('cobrindo');
     });
+})();
+
+// Aviso de cookies: aparece na primeira visita, no canto, sem travar a pagina.
+// "Preferencias de cookies" no rodape abre de novo para mudar a escolha.
+(() => {
+    const PERMITIDO = { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted' };
+    const NEGADO = { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied' };
+    let aviso = null;
+
+    function fechar() {
+        if (!aviso) return;
+        const saindo = aviso;
+        aviso = null;
+        saindo.classList.remove('on');
+        setTimeout(() => saindo.remove(), 400);
+    }
+
+    function escolher(valor) {
+        try {
+            localStorage.setItem(COOKIES_CHAVE, valor);
+        } catch {
+            // segue sem guardar: o aviso volta na proxima visita
+        }
+        if (typeof window.gtag === 'function') window.gtag('consent', 'update', valor === 'aceito' ? PERMITIDO : NEGADO);
+        if (valor === 'aceito') carregarPixel();
+        fechar();
+    }
+
+    function mostrar() {
+        if (aviso) return;
+        aviso = document.createElement('section');
+        aviso.className = 'cookies';
+        aviso.setAttribute('aria-label', 'Aviso de cookies');
+        aviso.innerHTML = '<p>Usamos cookies do Google Analytics para medir as visitas e os nossos anúncios. <a href="/politica">Saiba mais</a></p>'
+            + '<div class="cookies-botoes"><button type="button" class="cookies-recusar" data-cookie="recusado">Recusar</button>'
+            + '<button type="button" class="cookies-aceitar" data-cookie="aceito">Aceitar</button></div>';
+        aviso.addEventListener('click', (event) => {
+            const botao = event.target.closest('[data-cookie]');
+            if (botao) escolher(botao.dataset.cookie);
+        });
+        document.body.appendChild(aviso);
+        requestAnimationFrame(() => requestAnimationFrame(() => aviso?.classList.add('on')));
+    }
+
+    if (!cookiesEscolha()) mostrar();
+    document.querySelectorAll('[data-cookies]').forEach((botao) => botao.addEventListener('click', () => {
+        mostrar();
+        aviso.querySelector('.cookies-aceitar').focus();
+    }));
 })();

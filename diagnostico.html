@@ -7,7 +7,10 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-1CKRK3S37W');
+        // LGPD: o Analytics só grava cookies depois do "Aceitar" no aviso de cookies (a escolha fica no navegador)
+        gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+        try { if (localStorage.getItem('movcode_cookies') === 'aceito') gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted' }); } catch (e) {}
+        gtag('config', 'G-1CKRK3S37W', { cookie_domain: 'none', cookie_flags: 'SameSite=Lax;Secure' });
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -450,6 +453,7 @@
                     <a href="/termo">Termos de Uso</a>
                     <a href="/politica#direitos">Seus direitos (LGPD)</a>
                     <a href="/politica#seguranca">Segurança dos dados</a>
+                    <button type="button" class="rodape-cookies" data-cookies>Preferências de cookies</button>
                 </div>
             </nav>
             <div class="rodape-base">
