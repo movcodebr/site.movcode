@@ -48,12 +48,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-    <!-- Fontes das marcas dos projetos (os mesmos cartões de /projetos). O parametro text baixa so as
-         letras usadas nos nomes e nas frases. Carrega sem travar a abertura. -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Cormorant+Garamond:wght@600&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Geist:wght@700&family=Inter:wght@400;700&family=Poppins:wght@700&text=%20%2C-.BCFLPSTabcdeghijlmnopqrstuv%C3%A7%C3%A9%C3%B3&display=swap" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="assets/css/site.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/interna.css">
+    <link rel="stylesheet" href="assets/css/sites.css">
     <script>
         // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
         try {
@@ -183,285 +181,175 @@
     <div class="cursor-anel" aria-hidden="true"><span></span></div>
 
     <main id="conteudo">
-        <section class="i-hero escuro">
-            <div class="wrap">
-                <div class="i-hero-texto">
-                    <h1 class="h-grande gigante i-titulo">Um site que <em>traz cliente.</em></h1>
-                    <p class="i-hero-sub i-entra">Não só aparece. Rápido, bonito no celular e pensado para o visitante chamar você no WhatsApp. Do comércio do bairro à empresa que vai anunciar.</p>
-                    <div class="i-acoes i-entra">
-                        <a href="#contato" class="btn btn-acao" data-cta="nicho_hero" data-servico="Site ou landing page" data-magnetico data-cursor="bora">Quero um site que vende <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                        <a class="h-caso-link" href="#sua-pagina">Veja a sua antes de pagar <span aria-hidden="true">↓</span></a>
+        <section class="s-topo" aria-labelledby="s-titulo">
+            <div class="wrap s-topo-grade">
+                <div class="s-topo-texto">
+                    <h1 id="s-titulo" class="s-titulo gigante i-entra">Um site que <em>traz cliente.</em></h1>
+                    <p class="s-topo-sub i-entra">Não só aparece. Rápido, bonito no celular e pensado para o visitante chamar você no WhatsApp. Do comércio do bairro à empresa que vai anunciar.</p>
+                    <div class="s-acoes i-entra">
+                        <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pela página de criação de sites e quero um site para o meu negócio." data-cta="sites_topo" data-magnetico data-cursor="bora">Quero um site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="s-link" href="/sua-pagina" data-cta="sites_topo_montar">Montar a minha página <span aria-hidden="true">→</span></a>
                     </div>
                 </div>
-                <div class="i-fluxo i-site i-entra" aria-hidden="true">
-                    <span class="duo i-fluxo-marca"><i><b></b><b></b></i><i><b></b><b></b></i></span>
-                    <span class="i-aviso"><b></b>Nova visita pelo Google<small>agora</small></span>
-                    <span class="i-aviso"><b></b>Clique no botão do WhatsApp<small>agora</small></span>
-                    <span class="i-aviso"><b></b>Pedido de orçamento<small>agora</small></span>
-                    <div class="i-cel">
-                        <span class="i-cel-ilha"></span>
-                        <span class="i-cel-topo"><i class="i-cel-ac"></i><b></b><b></b></span>
-                        <span class="i-cel-capa"><b></b><b></b><b></b><i class="i-cel-ac"></i></span>
-                        <span class="i-cel-foto"></span>
-                        <span class="i-cel-linhas"><i></i><i></i><i></i></span>
-                        <span class="i-cel-galeria"><i></i><i></i></span>
-                        <span class="i-cel-linhas"><i></i><i></i><i></i></span>
-                        <span class="i-cel-zap"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></span>
+                <div class="s-palco i-entra" aria-hidden="true">
+                    <div class="s-navegador">
+                        <div class="s-barra"><span class="s-janela"><i></i><i></i><i></i></span><span class="s-url"><svg viewBox="0 0 12 13" aria-hidden="true"><rect x="1" y="5.5" width="10" height="7.5" rx="2" fill="currentColor"/><path d="M3.5 5.5V4a2.5 2.5 0 0 1 5 0v1.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><b>seunegocio.com.br</b></span></div>
+                        <div class="s-pc">
+                            <div class="s-pc-topo"><i>B</i><b>Barbearia do João</b><span>Serviços</span><span>Fotos</span><span>Onde estamos</span><em><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg>Agendar</em></div>
+                            <div class="s-pc-abre">
+                                <div><strong>Corte e barba no seu horário.</strong><em><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg>Agendar pelo WhatsApp</em></div>
+                                <span class="s-foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></svg></span>
+                            </div>
+                            <div class="s-pc-precos"><span><b>Corte</b><i>R$ 40</i></span><span><b>Barba</b><i>R$ 30</i></span><span><b>Corte + barba</b><i>R$ 60</i></span></div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <a href="#conteudo-segue" class="h-rolar i-entra"><span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>Role para conhecer</a>
-        </section>
-
-        <section id="conteudo-segue" class="h-faixa" aria-label="O que um site da MovCode tem">
-            <div class="h-faixa-linha" aria-hidden="true"><span class="item">Celular<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Google<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">WhatsApp<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Velocidade<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Resultado<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Celular<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Google<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">WhatsApp<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Velocidade<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Resultado<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
-            <div class="h-faixa-linha contorno" aria-hidden="true"><span class="item">Celular<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Google<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">WhatsApp<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Velocidade<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Resultado<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Celular<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Google<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">WhatsApp<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Velocidade<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Resultado<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
-        </section>
-
-        <section class="h-conversa" aria-labelledby="conversa-titulo">
-            <div class="wrap">
-                <h2 id="conversa-titulo" class="h-grande gigante"><span class="junto">Seus clientes</span> <em class="junto">já te avisam.</em></h2>
-                <div class="chat">
-                    <p class="bolha">Vi o Instagram de vocês, mas não achei o site.<small>09:12</small></p>
-                    <p class="bolha">Tem como ver os preços antes de chamar?<small>10:47</small></p>
-                    <p class="bolha">O site abriu todo quebrado no meu celular.<small>14:05</small></p>
-                    <p class="bolha nossa">Bora fazer um site que vende?<small>MovCode</small></p>
+                    <div class="s-celular">
+                        <span class="s-ilha"></span>
+                        <div class="s-cel-topo"><i>B</i><b>Barbearia do João</b></div>
+                        <div class="s-cel-abre"><strong>Corte e barba no seu horário.</strong><em><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg>Agendar</em></div>
+                        <span class="s-foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></svg></span>
+                        <span class="s-cel-zap"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="exemplos" class="h-servicos escuro" aria-labelledby="exemplos-titulo">
-            <div class="h-servicos-pin">
-                <div class="h-servicos-trilho">
-                    <div class="h-servicos-intro">
-                        <h2 id="exemplos-titulo" class="h-grande gigante">Tudo que um site precisa <em>para gerar contato.</em></h2>
-                        <p>Do comércio do bairro à empresa que vai anunciar.</p>
-                    </div>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">01</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-sites-1" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-sites-1" startOffset="0" data-repete="celular · toque · rápido · ">celular · toque · rápido · celular · toque · rápido · celular · toque · rápido · celular · toque · rápido · celular · toque · rápido · celular · toque · rápido · </textPath></text></svg></div>
-                        <h3>Feito para o celular</h3>
-                        <p>A maioria dos seus clientes abre pelo telefone. O site é desenhado para ele primeiro.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">02</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-sites-2" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-sites-2" startOffset="0" data-repete="segundos · leve · direto · ">segundos · leve · direto · segundos · leve · direto · segundos · leve · direto · segundos · leve · direto · segundos · leve · direto · segundos · leve · direto · </textPath></text></svg></div>
-                        <h3>Rápido de verdade</h3>
-                        <p>Carrega em segundos, sem plataforma pesada por trás.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">03</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-sites-3" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-sites-3" startOffset="0" data-repete="WhatsApp · mensagem pronta · ">WhatsApp · mensagem pronta · WhatsApp · mensagem pronta · WhatsApp · mensagem pronta · WhatsApp · mensagem pronta · WhatsApp · mensagem pronta · WhatsApp · mensagem pronta · </textPath></text></svg></div>
-                        <h3>WhatsApp em todo lugar</h3>
-                        <p>Botões que abrem a conversa com a mensagem pronta.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">04</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-sites-4" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-sites-4" startOffset="0" data-repete="Google · busca · mapa do site · ">Google · busca · mapa do site · Google · busca · mapa do site · Google · busca · mapa do site · Google · busca · mapa do site · Google · busca · mapa do site · Google · busca · mapa do site · </textPath></text></svg></div>
-                        <h3>Pronto para o Google</h3>
-                        <p>Título, descrição, mapa do site e dados da empresa configurados para aparecer nas buscas.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">05</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-sites-5" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-sites-5" startOffset="0" data-repete="visitas · cliques · contatos · ">visitas · cliques · contatos · visitas · cliques · contatos · visitas · cliques · contatos · visitas · cliques · contatos · visitas · cliques · contatos · visitas · cliques · contatos · </textPath></text></svg></div>
-                        <h3>Resultado medido</h3>
-                        <p>Google Analytics instalado para você saber quantas visitas viraram contato.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">06</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-sites-6" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-sites-6" startOffset="0" data-repete=".com.br · no ar · ">.com.br · no ar · .com.br · no ar · .com.br · no ar · .com.br · no ar · .com.br · no ar · .com.br · no ar · </textPath></text></svg></div>
-                        <h3>Domínio e publicação</h3>
-                        <p>Ajudamos a registrar o .com.br e colocamos o site no ar.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="sua-pagina" class="i-montar" aria-labelledby="montar-titulo">
+        <section id="anatomia" class="s-anatomia" aria-labelledby="anatomia-titulo">
             <div class="wrap">
-                <div class="i-montar-texto">
-                    <h2 id="montar-titulo" class="h-grande gigante">Veja a sua <em>antes de pagar.</em></h2>
-                    <p class="i-montar-sub">Escolha o tipo do seu negócio, a cor e o estilo, mexa nos textos e veja na hora como a página fica no celular e no computador.</p>
-                    <ul class="i-montar-lista">
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Página pronta por R$&nbsp;497</b>, pagamento único</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Domínio e hospedagem do 1º&nbsp;ano</b> inclusos</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>No ar em até 7&nbsp;dias úteis</b> depois das fotos e dos textos</span></li>
-                    </ul>
-                    <div class="i-acoes">
-                        <a href="/sua-pagina" class="btn btn-acao" data-cta="sites_sua_pagina" data-magnetico data-cursor="bora">Montar a minha página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                        <a class="h-caso-link" href="#contato">Prefiro conversar <span aria-hidden="true">↓</span></a>
-                    </div>
-                </div>
-                <div class="i-montar-palco" aria-hidden="true">
-                    <div class="i-cel i-cel-cores">
-                        <span class="i-cel-ilha"></span>
-                        <span class="i-cel-topo"><i class="i-cel-ac"></i><b></b><b></b></span>
-                        <span class="i-cel-capa"><b></b><b></b><b></b><i class="i-cel-ac"></i></span>
-                        <span class="i-cel-foto"></span>
-                        <span class="i-cel-linhas"><i></i><i></i><i></i></span>
-                        <span class="i-cel-galeria"><i></i><i></i></span>
-                        <span class="i-cel-linhas"><i></i><i></i><i></i></span>
-                        <span class="i-cel-zap"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></span>
-                    </div>
-                    <span class="i-montar-doca"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M3 9h18M9 20v-6h6v6"/></svg></i><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></i><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h12M9 12h12M9 18h12"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></i><span class="i-montar-cores"><b></b><b></b><b></b><b></b></span><em>Quero</em></span>
-                </div>
-            </div>
-        </section>
-
-        <section id="provas" class="h-caso escuro i-projetos" aria-labelledby="provas-titulo">
-            <div class="wrap">
-                <h2 id="provas-titulo" class="h-grande gigante">Já está <em>no ar.</em></h2>
-                <p class="i-lista-sub">Não é promessa: abra e veja funcionando.</p>
-                <div class="i-projetos-lista">
-                    <article class="h-produto i-projeto h-marca-cordeirinhos">
-                        <img class="i-nuvem" src="assets/images/marcas/nuvem.webp" alt="" width="240" height="208" loading="lazy" aria-hidden="true"><img class="i-nuvem i-nuvem-2" src="assets/images/marcas/nuvem.webp" alt="" width="240" height="208" loading="lazy" aria-hidden="true">
-                        <div class="i-projeto-marca">
-                            <div class="h-produto-topo">
-                                <h3 class="h-produto-marca"><img class="i-projeto-logo" src="assets/images/marcas/cordeirinhos.webp" alt="Cordeirinhos de Cristo" width="520" height="249" loading="lazy"></h3>
-                                <em class="h-produto-status">No ar</em>
-                            </div>
-                            <p class="h-produto-frase">Toda criança é <em>bem-vinda</em> aqui.</p>
-                        </div>
-                        <div class="i-projeto-info">
-                            <span class="h-produto-para">Site</span>
-                            <p>Site do ministério infantil de uma igreja em Ribeirão Preto: quem somos, liderança, horários dos encontros e uma página para cada evento, com galeria de fotos.</p>
-                            <ul class="i-projeto-feito" aria-label="O que a MovCode fez"><li>Site</li><li>Eventos</li><li>Galeria de fotos</li></ul>
-                            <div class="h-produto-acoes">
-                                <a class="btn btn-acao" href="https://cordeirinhosdecristo.com.br" target="_blank" rel="noopener">Ver o site <span aria-hidden="true">↗</span></a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="h-produto i-projeto h-marca-forlabs">
-                        <div class="i-projeto-marca">
-                            <div class="h-produto-topo">
-                                <h3 class="h-produto-marca"><img src="assets/images/marcas/forlabs.svg" alt="" width="40" height="40" loading="lazy"><span><span>For</span>Labs</span></h3>
-                                <em class="h-produto-status">No ar</em>
-                            </div>
-                            <p class="h-produto-frase">Controle de qualidade laboratorial, <em>num só lugar.</em></p>
-                        </div>
-                        <div class="i-projeto-info">
-                            <span class="h-produto-para">Sistema e landing page</span>
-                            <p>Sistema de controle de qualidade para laboratórios: testes, análise de cor, laudos em PDF e histórico de quem fez o quê. Funciona no computador do escritório e no celular da bancada, e a landing page apresenta o produto com as telas do sistema.</p>
-                            <ul class="i-projeto-feito" aria-label="O que a MovCode fez"><li>Sistema web</li><li>Celular e computador</li><li>Laudos em PDF</li><li>Landing page</li></ul>
-                            <div class="h-produto-acoes">
-                                <a class="btn btn-acao" href="https://www.forlabs.com.br" target="_blank" rel="noopener">Ver o site <span aria-hidden="true">↗</span></a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="h-produto i-projeto h-marca-lojinha">
-                        <div class="i-projeto-marca">
-                            <div class="h-produto-topo">
-                                <h3 class="h-produto-marca"><span class="h-marca-icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 5 4.2h14l1.5 4.3"/><path d="M5 8.5v10.3h14V8.5"/><path d="m9.5 13 1.8 1.8 3.4-3.4"/></svg></span>Lojinha Pronta</h3>
-                                <em class="h-produto-status">No ar</em>
-                            </div>
-                            <p class="h-produto-frase"><span>Sua loja pronta</span> <span>pra vender</span></p>
-                        </div>
-                        <div class="i-projeto-info">
-                            <span class="h-produto-para">Loja virtual e landing page</span>
-                            <p>Loja virtual que já sai configurada: pagamento pelo Mercado Pago, entrega automática e e-mails que se mandam sozinhos. A landing page explica o pacote para quem vende online.</p>
-                            <ul class="i-projeto-feito" aria-label="O que a MovCode fez"><li>Loja virtual</li><li>Mercado Pago</li><li>Entrega automática</li><li>Landing page</li></ul>
-                            <div class="h-produto-acoes">
-                                <a class="btn btn-acao" href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Ver o site <span aria-hidden="true">↗</span></a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="como-funciona" class="h-processo" aria-labelledby="como-funciona-titulo">
-            <div class="wrap">
-                <h2 id="como-funciona-titulo" class="h-grande gigante">Do papo ao <em>site no ar.</em></h2>
-                <div class="h-passos-caixa">
-                    <span class="h-passos-linha" aria-hidden="true"></span>
-                    <ol class="h-passos">
-                    <li class="h-passo">
-                        <span class="h-passo-num">01</span>
-                        <h3>Conversa <small>grátis</small></h3>
-                        <p>Por chamada ou mensagem, para entender a sua rotina.</p>
-                    </li>
-                    <li class="h-passo">
-                        <span class="h-passo-num">02</span>
-                        <h3>Proposta</h3>
-                        <p>Escopo, prazo e preço fechados.</p>
-                    </li>
-                    <li class="h-passo">
-                        <span class="h-passo-num">03</span>
-                        <h3>Construção</h3>
-                        <p>Você testa e opina a cada etapa.</p>
-                    </li>
-                    <li class="h-passo">
-                        <span class="h-passo-num">04</span>
-                        <h3>No ar</h3>
-                        <p>Treinamos a equipe e seguimos junto.</p>
-                    </li>
+                <h2 id="anatomia-titulo" class="s-titulo gigante">O que faz um site <em>trazer cliente.</em></h2>
+                <p class="s-intro">Cada pedaço da página tem um trabalho. Role e veja um por um.</p>
+                <div class="s-anatomia-grade">
+                    <ol class="s-passos">
+                        <li class="s-passo" data-passo="1">
+                            <span class="s-passo-num">01</span>
+                            <h3>O nome e o WhatsApp no topo</h3>
+                            <p>Quem chega sabe na hora onde está, e o botão para chamar você já está ali, sem precisar procurar.</p>
+                        </li>
+                        <li class="s-passo" data-passo="2">
+                            <span class="s-passo-num">02</span>
+                            <h3>Um título que diz o que você faz</h3>
+                            <p>Em uma frase o visitante entende o que você vende. Sem enrolação e sem palavra difícil.</p>
+                        </li>
+                        <li class="s-passo" data-passo="3">
+                            <span class="s-passo-num">03</span>
+                            <h3>Serviços e preços à vista</h3>
+                            <p>Quem vê o que você faz e quanto custa chega no WhatsApp sabendo o que quer.</p>
+                        </li>
+                        <li class="s-passo" data-passo="4">
+                            <span class="s-passo-num">04</span>
+                            <h3>Fotos do seu trabalho</h3>
+                            <p>A foto do lugar e do que você faz mostra mais do que qualquer texto.</p>
+                        </li>
+                        <li class="s-passo" data-passo="5">
+                            <span class="s-passo-num">05</span>
+                            <h3>Endereço, mapa e horário</h3>
+                            <p>Quem quer ir até você acha o caminho e sabe se está aberto agora.</p>
+                        </li>
+                        <li class="s-passo" data-passo="6">
+                            <span class="s-passo-num">06</span>
+                            <h3>WhatsApp sempre à mão</h3>
+                            <p>Em qualquer parte da página, um toque abre a conversa com a mensagem pronta.</p>
+                        </li>
+                        <li class="s-passo" data-passo="7">
+                            <span class="s-passo-num">07</span>
+                            <h3>Pronto para o Google</h3>
+                            <p>Título, descrição e dados da empresa configurados para o site aparecer quando procuram por você.</p>
+                        </li>
                     </ol>
+                    <div class="s-anatomia-palco" aria-hidden="true">
+                        <div class="s-mock" data-mock>
+                            <div class="s-busca" data-parte="7">
+                                <small>seunegocio.com.br</small>
+                                <b>Barbearia do João | Corte e barba no seu horário</b>
+                                <p>Ambiente tranquilo, capricho em cada detalhe e horário marcado. Agende pelo WhatsApp.</p>
+                            </div>
+                            <div class="s-tel">
+                                <span class="s-ilha"></span>
+                                <div class="s-tel-tela">
+                                    <div class="s-tel-rola" data-rola>
+                                        <div class="s-tel-topo" data-parte="1"><i>B</i><b>Barbearia do João</b><em><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></em></div>
+                                        <div class="s-tel-abre" data-parte="2"><strong>Corte e barba no seu horário.</strong><p>Ambiente tranquilo e horário marcado, sem fila.</p><em><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg>Agendar pelo WhatsApp</em></div>
+                                        <div class="s-tel-precos" data-parte="3"><h4>Serviços e preços</h4><span><b>Corte<small>Máquina e tesoura</small></b><i>R$ 40</i></span><span><b>Barba<small>Toalha quente e navalha</small></b><i>R$ 30</i></span><span><b>Corte + barba<small>O combo completo</small></b><i>R$ 60</i></span></div>
+                                        <div class="s-tel-fotos" data-parte="4"><h4>Nossos cortes</h4><span class="s-foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></svg></span><span class="s-foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></svg></span></div>
+                                        <div class="s-tel-local" data-parte="5"><h4>Onde estamos</h4><span class="s-mapa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/></svg></span><p><b>Ribeirão Preto</b><span>Seg a sex <i>9h às 20h</i></span><span>Sábado <i>8h às 18h</i></span></p></div>
+                                    </div>
+                                    <span class="s-tel-zap" data-parte="6"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="duvidas" class="h-duvidas" aria-labelledby="duvidas-titulo">
+        <section id="caminhos" class="s-caminhos" aria-labelledby="caminhos-titulo">
             <div class="wrap">
-                <h2 id="duvidas-titulo" class="h-grande gigante">Perguntas <em>rápidas.</em></h2>
-                <div class="perguntas">
-                    <details class="pergunta">
-                        <summary>Quanto tempo leva para ficar pronto?</summary>
-                        <p>A página pronta fica no ar em até 7 dias úteis depois que você manda as fotos e os textos. Um site com mais páginas costuma levar poucas semanas, e o prazo exato vai por escrito na proposta.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Preciso ter domínio e hospedagem?</summary>
-                        <p>Não. Se ainda não tem, ajudamos a registrar o domínio .com.br e cuidamos da publicação.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Consigo mudar textos e fotos depois?</summary>
-                        <p>Sim. É só pedir pelo WhatsApp. Com o plano de manutenção, os ajustes do dia a dia ficam com a gente.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Quanto custa um site?</summary>
-                        <p>Para começar, a página pronta do seu negócio sai por R$&nbsp;497, pagamento único, com domínio e hospedagem do 1º ano inclusos, e dá para <a href="/sua-pagina">montar a prévia</a> antes. Um site com várias páginas depende do tamanho: depois de uma conversa rápida você recebe uma proposta com escopo, prazo e valor fechados.</p>
-                    </details>
+                <h2 id="caminhos-titulo" class="s-titulo gigante">Dois jeitos de <em>começar.</em></h2>
+                <div class="s-caminhos-grade">
+                    <article class="s-caminho s-caminho-pronta">
+                        <h3>Página pronta</h3>
+                        <p class="s-caminho-para">Para estar no ar logo, com o essencial bem feito.</p>
+                        <p class="s-preco"><b>R$&nbsp;497</b><span>pagamento único</span></p>
+                        <ul>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Serviços, fotos, endereço e botão de WhatsApp, no celular e no computador</span></li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Domínio e hospedagem do 1º&nbsp;ano</b> inclusos</span></li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>No ar em até 7&nbsp;dias úteis</b> depois das fotos e dos textos</span></li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Alterações simples sem custo, como preço, foto ou horário</span></li>
+                        </ul>
+                        <a href="/sua-pagina" class="btn btn-acao" data-cta="sites_caminho_pronta">Montar a minha agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <small class="s-caminho-nota">Você monta a prévia e vê como fica antes de pagar.</small>
+                    </article>
+                    <article class="s-caminho s-caminho-medida">
+                        <h3>Site sob medida</h3>
+                        <p class="s-caminho-para">Para várias páginas, a cara da marca e o que mais o negócio pedir.</p>
+                        <p class="s-preco"><b>Proposta fechada</b><span>escopo, prazo e valor por escrito</span></p>
+                        <ul>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Quantas páginas o negócio precisar, com a cara da sua marca</span></li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Pronto para o Google e com o Google Analytics para medir as visitas</span></li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Ajuda para registrar o .com.br e a publicação por nossa conta</span></li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>Pronto em poucas semanas</b>, com o prazo escrito na proposta</span></li>
+                        </ul>
+                        <a href="https://wa.me/5516982157266" class="btn s-btn-claro" data-whatsapp="Olá! Vim pela página de criação de sites e quero uma proposta de site sob medida." data-cta="sites_caminho_medida">Pedir uma proposta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <small class="s-caminho-nota">A conversa é gratuita e sem compromisso.</small>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section id="contato" class="h-contato" aria-labelledby="contato-titulo">
+        <section id="perguntas" class="s-perguntas" aria-labelledby="perguntas-titulo">
             <div class="wrap">
-                <div class="h-contato-texto">
-                    <h2 id="contato-titulo" class="h-contato-titulo gigante">Bora vender mais?</h2>
+                <h2 id="perguntas-titulo" class="s-titulo gigante">Perguntas <em>de sempre.</em></h2>
+                <dl class="s-qa-grade">
+                    <div class="s-qa">
+                        <dt>Quanto tempo leva para ficar pronto?</dt>
+                        <dd>A página pronta fica no ar em até 7 dias úteis depois que você manda as fotos e os textos. Um site com mais páginas costuma levar poucas semanas, e o prazo exato vai por escrito na proposta.</dd>
+                    </div>
+                    <div class="s-qa">
+                        <dt>Preciso ter domínio e hospedagem?</dt>
+                        <dd>Não. Se ainda não tem, ajudamos a registrar o domínio .com.br e cuidamos da publicação.</dd>
+                    </div>
+                    <div class="s-qa">
+                        <dt>Consigo mudar textos e fotos depois?</dt>
+                        <dd>Sim. É só pedir pelo WhatsApp. Com o plano de manutenção, os ajustes do dia a dia ficam com a gente.</dd>
+                    </div>
+                    <div class="s-qa">
+                        <dt>Quanto custa um site?</dt>
+                        <dd>Para começar, a página pronta do seu negócio sai por R$&nbsp;497, pagamento único, com domínio e hospedagem do 1º ano inclusos, e dá para <a href="/sua-pagina">montar a prévia</a> antes. Um site com várias páginas depende do tamanho: depois de uma conversa rápida você recebe uma proposta com escopo, prazo e valor fechados.</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <section id="contato" class="s-final" aria-labelledby="final-titulo">
+            <div class="wrap s-final-grade">
+                <h2 id="final-titulo" class="s-titulo gigante">Bora fazer <em>o seu?</em></h2>
+                <div class="s-final-texto">
                     <p>Conte como é o seu negócio. A gente responde no mesmo dia útil.</p>
-                    <ul class="contato-lista">
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg> Por chamada, presencial ou mensagem</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> Preço fechado na proposta</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Seus dados são seus</li>
-                    </ul>
+                    <div class="s-acoes">
+                        <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pela página de criação de sites e quero um site para o meu negócio." data-cta="sites_final" data-magnetico data-cursor="bora">Chamar no WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="s-link" href="/sua-pagina" data-cta="sites_final_montar">Montar a minha página <span aria-hidden="true">→</span></a>
+                    </div>
                 </div>
-                <form class="form" data-lead-form novalidate>
-                        <p class="form-titulo">Peça seu diagnóstico</p>
-                        <div class="campo">
-                            <label for="leadNome">Seu nome</label>
-                            <input id="leadNome" name="nome" type="text" autocomplete="name" required placeholder="Como podemos te chamar?">
-                        </div>
-                        <div class="campo">
-                            <label for="leadEmpresa">Empresa <span>(opcional)</span></label>
-                            <input id="leadEmpresa" name="empresa" type="text" autocomplete="organization" placeholder="Nome do seu negócio">
-                        </div>
-                        <fieldset class="opcoes">
-                            <legend>O que você precisa?</legend>
-                            <label><input type="radio" name="servico" value="Site ou landing page" required checked><span>Site ou landing page</span></label>
-                            <label><input type="radio" name="servico" value="Loja virtual"><span>Loja virtual</span></label>
-                            <label><input type="radio" name="servico" value="Sistema de gestão"><span>Sistema de gestão</span></label>
-                            <label><input type="radio" name="servico" value="Sistema sob medida"><span>Sistema sob medida</span></label>
-                            <label><input type="radio" name="servico" value="Automação ou integração"><span>Automação ou integração</span></label>
-                            <label><input type="radio" name="servico" value="Ainda não sei"><span>Ainda não sei</span></label>
-                        </fieldset>
-                        <div class="campo">
-                            <label for="leadMensagem">O que mais atrapalha hoje? <span>(opcional)</span></label>
-                            <textarea id="leadMensagem" name="mensagem" rows="3" placeholder="Ex.: tenho só o Instagram e quero um site para receber pedidos"></textarea>
-                        </div>
-                        <p class="form-erro" role="alert" hidden>Preencha seu nome e escolha o que você precisa.</p>
-                        <button type="submit" class="btn btn-acao">Enviar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-                        <p class="form-nota">Ao enviar, o WhatsApp abre com a sua mensagem pronta. Veja a nossa <a href="/politica">Política de Privacidade</a>.</p>
-                    </form>
             </div>
         </section>
     </main>
@@ -527,5 +415,6 @@
     <script src="assets/js/vendor/lenis.min.js"></script>
     <script src="assets/js/home.js"></script>
     <script src="assets/js/interna.js"></script>
+    <script src="assets/js/sites.js"></script>
 </body>
 </html>
