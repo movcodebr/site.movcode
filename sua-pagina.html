@@ -104,6 +104,17 @@
 
             <section class="ferr" data-ferr="cor" aria-label="Cor">
                 <div class="cores" data-opcoes="cor" role="group" aria-label="Cor principal"></div>
+                <!-- Qualquer cor: o círculo abre o seletor do navegador; o campo aceita o código da cor -->
+                <div class="cor-livre">
+                    <span class="cor-livre-amostra" data-cor-livre>
+                        <input type="color" id="spCor" value="#ff5a1f" aria-label="Escolher qualquer cor">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                    </span>
+                    <div class="campo">
+                        <label for="spCorHex">Ou qualquer cor <span>(toque no círculo ou digite o código)</span></label>
+                        <input id="spCorHex" type="text" maxlength="7" placeholder="#FF5A1F" spellcheck="false" autocomplete="off" autocapitalize="off" enterkeyhint="done">
+                    </div>
+                </div>
             </section>
 
             <section class="ferr" data-ferr="estilo" aria-label="Estilo">
