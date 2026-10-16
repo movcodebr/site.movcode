@@ -306,6 +306,8 @@
     let modo = telaGrande.matches ? 'pc' : 'cel';
     let editando = true;
     const podeEditar = () => editando;
+    // no computador, a versão celular fica numa janela do tamanho da tela e rola por dentro
+    const rolaPorDentro = () => modo === 'cel' && telaGrande.matches;
 
     // contenteditable="plaintext-only" evita colar formatação; nem todo navegador aceita
     const SO_TEXTO = (() => { try { const d = document.createElement('div'); d.contentEditable = 'plaintext-only'; return d.contentEditable === 'plaintext-only'; } catch { return false; } })();
@@ -428,10 +430,16 @@
                 const alvo = preview.querySelector(`[data-sec="${foco}"]`);
                 if (alvo) {
                     alvo.classList.add('destaque');
-                    // a seção para logo abaixo do topo do negócio, que fica preso no alto
+                    // a seção para logo abaixo do topo do negócio, que fica preso no alto. No computador,
+                    // na versão celular, quem rola é a janela da página (não o site)
                     const folga = preview.querySelector('.pv-top')?.offsetHeight || 0;
-                    const y = alvo.getBoundingClientRect().top + window.scrollY - folga;
-                    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+                    if (rolaPorDentro()) {
+                        const y = alvo.getBoundingClientRect().top - preview.getBoundingClientRect().top + preview.scrollTop - folga;
+                        preview.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+                    } else {
+                        const y = alvo.getBoundingClientRect().top + window.scrollY - folga;
+                        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+                    }
                 }
             }
         }, 120);
@@ -599,8 +607,14 @@
         marcarModo();
         trocar(() => {});
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        preview.scrollTop = 0;
         rastrear('sp_modo', { modo });
     }));
+    // na versão celular do computador a rodinha do mouse fora da janela também rola a página dela
+    tela.addEventListener('wheel', (ev) => {
+        if (!rolaPorDentro() || preview.contains(ev.target)) return;
+        preview.scrollBy({ top: ev.deltaY });
+    }, { passive: true });
     // "Ver" tira os sublinhados e as ferramentas de seção; os botões da página mostram o que fazem
     verBtn.addEventListener('click', () => {
         editando = !editando;

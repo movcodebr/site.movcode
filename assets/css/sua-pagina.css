@@ -186,11 +186,19 @@ html.sp-travado { overflow: hidden; }
     /* o WhatsApp do negócio fica no canto, na altura da barra; o rodapé da página sobra acima dela */
     .sp-folha { --pv-whats-baixo: 20px; --pv-rodape-baixo: 120px; }
     /* vendo a versão celular: a página de 390px no meio, sobre um fundo pontilhado */
-    .sp-pagina[data-modo="cel"] { padding: 48px 16px 64px; background: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, .07) 1px, transparent 0) 0 0 / 22px 22px, #0B0C0E; }
-    .sp-pagina[data-modo="cel"] .sp-folha { width: 390px; margin: 0 auto; }
-    .sp-pagina[data-modo="cel"] .pv { border-radius: 28px; box-shadow: 0 0 0 1px #2A2C31, 0 50px 90px -40px rgba(0, 0, 0, .85); }
+    /* vendo a versão celular: a página de 390px numa janela do alto da tela até logo acima da barra,
+       rolando por dentro, sobre um fundo pontilhado; nada passa da tela do computador */
+    .sp-pagina[data-modo="cel"] { box-sizing: border-box; height: 100svh; padding: 16px 16px 96px; overflow: hidden; background: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, .07) 1px, transparent 0) 0 0 / 22px 22px, #0B0C0E; }
+    .sp-pagina[data-modo="cel"] .sp-folha {
+        --pv-whats-baixo: 16px; --pv-rodape-baixo: 92px;
+        width: 390px; height: 100%; margin: 0 auto; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none;
+        border-radius: 28px; background: var(--noite); box-shadow: 0 0 0 1px #2A2C31, 0 50px 90px -40px rgba(0, 0, 0, .85);
+    }
+    .sp-pagina[data-modo="cel"] .sp-folha::-webkit-scrollbar { display: none; }
+    .sp-pagina[data-modo="cel"] .pv { min-height: 100%; }
+    /* o topo preso fica sempre na borda de cima da janela: o arredondado dele acompanha o dela
+       (o desfoque de fundo não respeita o recorte arredondado de quem rola) */
     .sp-pagina[data-modo="cel"] .pv-top { border-radius: 28px 28px 0 0; }
-    .sp-pagina[data-modo="cel"] .sp-folha { --pv-whats-baixo: 104px; }
 
     .doca {
         left: 50%; bottom: 20px; width: max-content; max-width: calc(100vw - 24px); display: flex; align-items: center; gap: 2px; padding: 6px;
