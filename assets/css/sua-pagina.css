@@ -57,12 +57,24 @@ body.sp { padding-top: 0; background: var(--noite); }
 .ferr .campo input:focus { outline: none; border-color: var(--laranja); box-shadow: 0 0 0 3px color-mix(in srgb, var(--laranja) 30%, transparent); }
 .restaurar { margin-top: 12px; padding: 0; border: 0; background: none; color: var(--destaque-noite); font: 600 14px var(--f-texto); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 
-.cores { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 8px; }
+/* padding em cima: o anel da cor escolhida passava por baixo do título fixo do painel e era cortado */
+.cores { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 10px 8px; padding-top: 7px; }
 .cor-op { width: 100%; max-width: 44px; aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); transition: box-shadow .15s ease, transform .15s ease; }
 .cor-op svg { width: 18px; height: 18px; opacity: 0; }
 .cor-op:hover { transform: scale(1.08); }
 .cor-op[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--noite-2), 0 0 0 5px #fff; }
 .cor-op[aria-pressed="true"] svg { opacity: 1; }
+/* qualquer cor: círculo com o arco-íris (ou a cor escolhida) e o campo do código */
+.cor-livre { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 14px; align-items: end; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--linha); }
+.cor-livre-amostra { position: relative; width: 48px; height: 48px; margin: 0 0 0 2px; display: grid; place-items: center; border-radius: 50%; background: conic-gradient(#FF5A1F, #F5C518, #22C55E, #0EA5E9, #6366F1, #D946EF, #FF5A1F); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); color: #fff; transition: transform .15s ease; }
+.cor-livre-amostra:hover { transform: scale(1.06); }
+.cor-livre-amostra input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; opacity: 0; cursor: pointer; }
+.cor-livre-amostra svg { width: 20px; height: 20px; opacity: 0; pointer-events: none; }
+.cor-livre-amostra.ativa { background: var(--cor-livre); box-shadow: 0 0 0 3px var(--noite-2), 0 0 0 5px #fff; }
+.cor-livre-amostra.ativa svg { opacity: 1; filter: drop-shadow(0 0 2px rgba(0, 0, 0, .5)); }
+.cor-livre-amostra:has(input:focus-visible) { outline: 2px solid var(--laranja); outline-offset: 4px; }
+.cor-livre .campo label { text-wrap: balance; }
+.cor-livre .campo input { font-family: var(--f-mono); text-transform: uppercase; letter-spacing: .04em; }
 
 .estilos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .estilo-op { display: grid; gap: 6px; padding: 5px 5px 10px; border: 1.5px solid var(--linha-forte); border-radius: 14px; background: transparent; color: var(--tinta); text-align: left; font: inherit; cursor: pointer; transition: border-color .15s ease, box-shadow .15s ease; }
@@ -314,6 +326,9 @@ html.sp-travado { overflow: hidden; }
     line-height: 1.5;
     min-height: 832px;
     position: relative;
+    /* segura dentro da página a margem de baixo do WhatsApp flutuante (o último item): sem isso ela
+       vazava e aparecia uma faixa escura no fim da página */
+    display: flow-root;
     transition: opacity .18s ease;
 }
 .pv.trocando { opacity: .35; }

@@ -11,7 +11,8 @@
    Link pronto para mandar a um lead (todos os parâmetros são opcionais):
    movcode.com.br/sua-pagina?nome=Box%2004%20Barbershop&nicho=barbearia&bairro=Centro
    nicho:  barbearia | estetica | pilates | oficina | construcao | contabilidade | petshop | outro
-   cor:    laranja | vermelho | rosa | roxo | azul | verde | dourado | grafite
+   cor:    laranja | coral | vermelho | vinho | rosa | lilas | roxo | marinho | azul | celeste |
+           turquesa | verde | limao | dourado | marrom | grafite, ou qualquer código (cor=%231A2B3C)
    estilo: moderno | elegante | vibrante | minimalista | noturno | aconchegante
    sec:    precos,galeria,diferenciais,local  (as visíveis, na ordem em que aparecem)
 ------------------------------------------------------------------------- */
@@ -120,15 +121,25 @@
         }
     };
 
-    // [cor, nome, fundo suave, cor de texto legível sobre claro]
+    // [cor, nome, fundo suave, cor de texto legível sobre claro]. As que não têm os dois últimos
+    // ganham os valores calculados (derivar), como a cor livre que a pessoa escolhe.
+    // A ordem é a da grade: duas linhas de oito, indo do quente ao frio.
     const CORES = {
         laranja: ['#FF5A1F', 'Laranja', '#FFE4D8', '#B53A0A'],
+        coral: ['#F26B5B', 'Coral'],
         vermelho: ['#DC2626', 'Vermelho', '#FDE2E2', '#B91C1C'],
+        vinho: ['#9F1239', 'Vinho'],
         rosa: ['#E0457B', 'Rosa', '#FCE3EC', '#B42A5C'],
+        lilas: ['#A855F7', 'Lilás'],
         roxo: ['#7C3AED', 'Roxo', '#EDE4FD', '#6D28D9'],
+        marinho: ['#1E3A8A', 'Marinho'],
         azul: ['#2563EB', 'Azul', '#DFE8FD', '#1D4ED8'],
+        celeste: ['#0284C7', 'Celeste'],
+        turquesa: ['#0D9488', 'Turquesa'],
         verde: ['#15803D', 'Verde', '#DDF1E4', '#15803D'],
+        limao: ['#65A30D', 'Limão'],
         dourado: ['#C99A2E', 'Dourado', '#F6EDD5', '#8A6514'],
+        marrom: ['#8B5A2B', 'Marrom'],
         grafite: ['#2B2E35', 'Grafite', '#E6E7EA', '#2B2E35']
     };
     const ESTILOS = {
@@ -154,6 +165,21 @@
     };
     // texto escuro ou branco sobre a cor, o que tiver mais contraste
     const sobre = (hex) => ((1.05) / (lum(hex) + 0.05) >= (lum(hex) + 0.05) / (0.0129 + 0.05) ? '#FFFFFF' : '#16181D');
+    // ---------- Cor livre: qualquer cor, com o fundo suave e o tom de texto calculados ----------
+    const mistura = (a, b, t) => `#${[1, 3, 5].map((i) => Math.round(parseInt(a.slice(i, i + 2), 16) * (1 - t) + parseInt(b.slice(i, i + 2), 16) * t).toString(16).padStart(2, '0')).join('')}`;
+    const contraste = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+    function derivar(hex, nome = 'Personalizada') {
+        const suave = mistura(hex, '#ffffff', 0.84);
+        // o tom de texto escurece a cor até ficar legível sobre o fundo claro da página
+        let tinta = hex;
+        for (let t = 0; contraste(tinta, '#F6F5F2') < 4.5 && t < 0.95;) { t += 0.05; tinta = mistura(hex, '#000000', t); }
+        return [hex, nome, suave, tinta];
+    }
+    Object.values(CORES).forEach((c) => { if (c.length < 4) c.push(...derivar(c[0].toLowerCase()).slice(2)); });
+    const HEX = /^#?([0-9a-f]{6})$/i;
+    // no link vale o nome de uma cor pronta ou um código (#1A2B3C ou 1A2B3C)
+    const corValida = (v) => { if (!v) return null; if (CORES[v]) return v; const m = HEX.exec(v.trim()); return m ? `#${m[1].toLowerCase()}` : null; };
+    const corInfo = (cor) => CORES[cor] || derivar(cor);
     const iniciais = (nome) => (nome.trim().match(/[A-Za-zÀ-ú]/) || ['M'])[0].toUpperCase();
     const rastrear = (evento, dados) => { if (typeof window.rastrear === 'function') window.rastrear(evento, dados); };
     const guardado = {
@@ -188,7 +214,7 @@
         nome: (q.get('nome') || '').slice(0, 36),
         bairro: (q.get('bairro') || '').slice(0, 28),
         nicho: NICHOS[q.get('nicho')] ? q.get('nicho') : 'barbearia',
-        cor: CORES[q.get('cor')] ? q.get('cor') : 'laranja',
+        cor: corValida(q.get('cor')) || 'laranja',
         estilo: ESTILOS[q.get('estilo')] ? q.get('estilo') : 'moderno',
         ordem: [...visiveis, ...TODAS.filter((s) => !visiveis.includes(s))],
         sec: new Set(visiveis),
@@ -215,7 +241,7 @@
     // moldura = a versão celular aparece num aparelho desenhado (no computador): ganha a barra de status
     function pagina(e, modo, editavel, moldura = false) {
         const N = NICHOS[e.nicho];
-        const C = CORES[e.cor];
+        const C = corInfo(e.cor);
         const pc = modo === 'pc';
         const base = padroes(N);
         const ov = e.textos[e.nicho] || {};
@@ -306,6 +332,9 @@
     const nomeInput = document.getElementById('spNome');
     const bairroInput = document.getElementById('spBairro');
     const restaurar = document.querySelector('[data-restaurar]');
+    const corLivre = document.getElementById('spCor');
+    const corHex = document.getElementById('spCorHex');
+    const amostraLivre = document.querySelector('[data-cor-livre]');
     const verBtn = document.querySelector('[data-ver]');
     const boas = document.querySelector('[data-boas]');
     const telaGrande = window.matchMedia('(min-width: 1024px)');
@@ -346,7 +375,7 @@
     cx('nicho').innerHTML = Object.entries(NICHOS).map(([k, n]) => `<button type="button" class="tipo" data-v="${k}" aria-pressed="false">${ic(k)}${CURTO[k] || n.rotulo}</button>`).join('');
     cx('cor').innerHTML = Object.entries(CORES).map(([k, c]) => `<button type="button" class="cor-op" data-v="${k}" aria-pressed="false" aria-label="${c[1]}" title="${c[1]}" style="background:${c[0]};color:${sobre(c[0])}">${ic('check')}</button>`).join('');
     function opcoes() {
-        const C = CORES[estado.cor];
+        const C = corInfo(estado.cor);
         const on = sobre(C[0]);
         // amostra de cada estilo: [fundo, letra, fonte, peso, botão, cantos do botão, borda]
         const AMOSTRA = {
@@ -374,6 +403,13 @@
         }).join('');
         document.querySelectorAll('[data-opcoes="nicho"] [data-v]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === estado.nicho)));
         document.querySelectorAll('[data-opcoes="cor"] [data-v]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === estado.cor)));
+        // cor livre: o círculo mostra a cor escolhida quando ela não é uma das prontas
+        const livre = !CORES[estado.cor];
+        amostraLivre.classList.toggle('ativa', livre);
+        amostraLivre.style.setProperty('--cor-livre', C[0]);
+        corLivre.value = C[0].toLowerCase();
+        corHex.placeholder = C[0].toUpperCase();
+        if (document.activeElement !== corHex) corHex.value = livre ? C[0].toUpperCase() : '';
         nomeInput.placeholder = `Ex.: ${NICHOS[estado.nicho].exemplo}`;
         restaurar.hidden = !Object.keys(meus()).length;
     }
@@ -390,14 +426,14 @@
     }
     function atualizarPedido() {
         const N = NICHOS[estado.nicho];
-        const C = CORES[estado.cor];
+        const C = corInfo(estado.cor);
         const nome = estado.nome.trim();
         const editados = Object.keys(meus()).length;
         const texto = [
             'Oi Kaique! Montei a minha página na prévia da MovCode:',
             `• Negócio: ${nome || '(ainda sem nome)'}${estado.bairro.trim() ? ` (${estado.bairro.trim()})` : ''}`,
             `• Tipo: ${N.rotulo}`,
-            `• Cor: ${C[1]}`,
+            `• Cor: ${C[1]}${CORES[estado.cor] ? '' : ` (${C[0].toUpperCase()})`}`,
             `• Estilo: ${ESTILOS[estado.estilo][0]}`,
             `• Seções: ${estado.ordem.filter((s) => estado.sec.has(s)).map((s) => SECOES[s][0]).join(', ') || 'só o topo'}`,
             ...(editados ? [`• Textos que mudei: ${editados}`] : []),
@@ -503,6 +539,22 @@
         trocar(() => { estado.cor = b.dataset.v; });
         rastrear('sp_escolha', { campo: 'cor', valor: b.dataset.v });
     });
+    // qualquer cor: o seletor do navegador (muda a página enquanto arrasta) ou o código digitado
+    let corQuadro;
+    corLivre.addEventListener('input', () => {
+        cancelAnimationFrame(corQuadro);
+        corQuadro = requestAnimationFrame(() => { estado.cor = corLivre.value.toLowerCase(); desenhar(); });
+    });
+    corLivre.addEventListener('change', () => rastrear('sp_escolha', { campo: 'cor', valor: 'livre' }));
+    corHex.addEventListener('input', () => {
+        const v = corValida(corHex.value);
+        if (!v || CORES[v] || v === estado.cor) return;
+        estado.cor = v;
+        desenhar();
+    });
+    corHex.addEventListener('change', () => { if (corValida(corHex.value)) rastrear('sp_escolha', { campo: 'cor', valor: 'livre' }); });
+    corHex.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); corHex.blur(); } });
+
     cx('estilo').addEventListener('click', (ev) => {
         const b = ev.target.closest('[data-v]');
         if (!b || b.dataset.v === estado.estilo) return;
