@@ -314,6 +314,9 @@ html.sp-travado { overflow: hidden; }
     line-height: 1.5;
     min-height: 832px;
     position: relative;
+    /* segura dentro da página a margem de baixo do WhatsApp flutuante (o último item): sem isso ela
+       vazava e aparecia uma faixa escura no fim da página */
+    display: flow-root;
     transition: opacity .18s ease;
 }
 .pv.trocando { opacity: .35; }
