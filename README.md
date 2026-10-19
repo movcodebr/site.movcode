@@ -24,7 +24,7 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 | `/paineis` | `paineis.html` | Painéis de gestão |
 | `/consultoria` | `consultoria.html` | Consultoria em tecnologia |
 | `/sobre` | `sobre.html` | Sobre a MovCode: como trabalhamos, produtos e segurança |
-| `/projetos` | `projetos.html` | Projetos no ar (Cordeirinhos de Cristo, ForLabs e Lojinha Pronta), cada um com a identidade do próprio site, e os produtos em construção |
+| `/produtos` | `produtos.html` | Os cinco produtos da MovCode (ForLabs, Lojinha Pronta, ForCondom, ForBarber e Pratuca), cada um com a identidade do próprio site e uma demonstração do que faz |
 | `/sua-pagina` | `sua-pagina.html` | Prévia editável da página do negócio (não indexada) |
 | `/blog/` | `blog/index.html` | Índice do blog |
 | `/blog/<guia>` | `blog/<guia>.html` | Guias do blog (fiado, site ou Instagram, custo de um sistema) |
@@ -32,7 +32,7 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 | `/termo` | `termo.html` | Termos de Uso |
 | — | `404.html` | Página de erro |
 
-`processo.html`, `servicos.html`, `loja-virtual.html` e `sistema-para-laboratorio.html` são endereços antigos: só redirecionam (para a seção certa da página inicial ou, no caso da Lojinha Pronta e do ForLabs, para o site próprio de cada um) e não são indexados.
+`processo.html`, `servicos.html`, `projetos.html`, `loja-virtual.html` e `sistema-para-laboratorio.html` são endereços antigos: só redirecionam (para a seção certa da página inicial, para `/produtos` ou, no caso da Lojinha Pronta e do ForLabs, para o site próprio de cada um) e não são indexados.
 
 ## Estrutura
 
