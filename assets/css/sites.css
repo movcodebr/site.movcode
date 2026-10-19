@@ -47,10 +47,10 @@
 
 .s-topo .s-acoes { grid-area: acoes; }
 
-/* palco: o navegador e, na frente dele, o celular */
-.s-palco { grid-area: palco; align-self: center; position: relative; container-type: inline-size; }
+/* palco: o navegador e o celular numa cena levemente inclinada, que acompanha o mouse (--mx e --my, de -1 a 1) */
+.s-palco { grid-area: palco; align-self: center; position: relative; container-type: inline-size; perspective: 1600px; }
 .s-palco::before { content: ""; position: absolute; inset: -4% -14% -4% 2%; z-index: -1; background: radial-gradient(closest-side, color-mix(in srgb, var(--s-ac) 30%, transparent), transparent); pointer-events: none; }
-.s-cena { position: relative; padding: 0 0 9%; }
+.s-cena { position: relative; padding: 0 0 9%; transform: rotateY(calc(-11deg + var(--mx, 0) * 5deg)) rotateX(calc(5deg - var(--my, 0) * 4deg)); transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .s-navegador { width: 88%; font-size: 1.9cqi; border-radius: 1.2em; background: #fff; box-shadow: 0 0 0 1px var(--linha), 0 50px 90px -40px rgba(22, 24, 29, 0.5); overflow: hidden; }
 .s-barra { display: flex; align-items: center; gap: 1.2em; padding: 0.9em 1.1em; background: #ECECEF; border-bottom: 1px solid #DCDCE0; }
 .s-janela { display: flex; gap: 0.45em; }
@@ -80,7 +80,7 @@
 .s-pc-precos b { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .s-pc-precos i, .s-cel-precos i { padding: 0.25em 0.6em; border-radius: 999px; background: var(--s-ac-suave); font: 700 0.95em var(--f-texto); font-style: normal; white-space: nowrap; }
 
-.s-celular { position: absolute; right: 0; bottom: 0; width: 31%; font-size: 1.6cqi; color: #16181D; font-family: var(--f-texto); }
+.s-celular { position: absolute; right: 0; bottom: 0; width: 31%; font-size: 1.6cqi; color: #16181D; font-family: var(--f-texto); transform: translateZ(70px); }
 .s-cel-tela { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: 0.8em; padding: 2.9em 0.9em 1em; }
 .s-cel-topo { display: flex; align-items: center; gap: 0.6em; }
 .s-cel-topo b { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font: 700 1em var(--f-display); letter-spacing: -0.02em; }
@@ -93,9 +93,12 @@
 .s-cel-zap { right: 0.8em; bottom: 0.9em; width: 2.6em; height: 2.6em; }
 .s-cel-zap svg, .s-tel-zap svg { width: 55%; height: 55%; }
 
-/* troca de tipo: os textos do site somem e voltam já com o tipo novo */
-.s-topo [data-troca] { transition: opacity 0.2s ease; }
-.s-topo.trocando [data-troca] { opacity: 0; }
+/* troca de tipo sem piscar: os blocos ficam e só mudam de cor (suave); os textos e o ícone sobem e somem,
+   e os novos entram de baixo */
+.s-topo [data-troca] { transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.s-topo.trocando [data-troca] { opacity: 0; transform: translateY(-0.35em); }
+.s-topo.entrando [data-troca] { opacity: 0; transform: translateY(0.35em); transition: none; }
+.s-foto > span { display: grid; place-items: center; width: 100%; height: 100%; }
 
 /* entrada: as partes do site aparecem uma a uma e o celular flutua de leve */
 @media (prefers-reduced-motion: no-preference) {
@@ -218,9 +221,10 @@
 /* ---------- Responsivo ---------- */
 @media (max-width: 1080px) {
     .s-final-grade { grid-template-columns: minmax(0, 1fr); }
-    /* topo empilhado: título, subtítulo, botões e o site trocando de tipo embaixo */
-    .s-topo-grade { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "titulo" "sub" "acoes" "palco"; }
-    .s-palco { width: 100%; max-width: 620px; margin: 48px auto 0; }
+    /* topo empilhado: título, subtítulo, o site trocando de tipo e os botões embaixo dele */
+    .s-topo-grade { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "titulo" "sub" "palco" "acoes"; }
+    .s-topo-sub { margin-bottom: 30px; }
+    .s-palco { width: 100%; max-width: 620px; margin: 0 auto 44px; }
     .s-caminhos-grade, .s-qa-grade { grid-template-columns: minmax(0, 1fr); }
 }
 /* anatomia em tela em pé: o aparelho fica preso no alto, com a altura de até 42% da tela e a mesma
@@ -244,15 +248,17 @@
     .s-topo { padding-top: 112px; }
     /* no celular só o aparelho, maior e no meio, com o endereço flutuando na frente dele */
     .s-navegador { display: none; }
-    .s-cena { padding: 46px 0 0; }
+    .s-cena { padding: 46px 0 0; transform: rotateY(-10deg) rotateX(4deg); }
     .s-celular { position: relative; width: min(62%, 250px); margin: 0 auto; font-size: min(3.2cqi, 12.9px); }
-    .s-dominio { display: flex; position: absolute; top: 0; left: 50%; max-width: 92%; font-size: 14px; padding: 9px 14px; border-radius: 999px; box-shadow: 0 0 0 1px var(--linha), 0 16px 30px -18px rgba(22, 24, 29, 0.5); transform: translateX(-50%); }
-    .s-palco { margin-top: 40px; }
+    .s-dominio { display: flex; position: absolute; top: 0; left: 50%; max-width: 92%; font-size: 14px; padding: 9px 14px; border-radius: 999px; box-shadow: 0 0 0 1px var(--linha), 0 16px 30px -18px rgba(22, 24, 29, 0.5); transform: translateX(-50%) translateZ(110px); }
+    .s-palco { margin-bottom: 36px; }
+    /* a etiqueta do endereço fica à frente na cena (translateZ) e sobe um pouco: folga maior embaixo do texto */
+    .s-topo-sub { margin-bottom: 46px; }
     .s-passo h3 { font-size: 26px; }
     .s-passo p { margin-top: 10px; font-size: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
-    .s-topo [data-troca] { transition: none; }
+    .s-cena, .s-topo [data-troca] { transition: none; }
     .s-passo { opacity: 1; }
     .s-tel-rola, .s-tel-rola::after, .s-busca, .s-mock [data-parte] { transition: none; }
     .s-mock[data-ativo="6"] .s-tel-zap { animation: none; }
