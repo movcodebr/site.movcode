@@ -1,0 +1,193 @@
+/* =========================================================================
+   MovCode — 404
+   A página sumiu num depósito escuro. O mouse (ou o toque) é a lanterna:
+   a luz revela a parede de tijolo, a estante, as caixas e sete coisas
+   escondidas para achar e um interruptor na parede. Sem texto na tela: só
+   o botão de voltar no canto. Sem JS a luz fica acesa.
+   A letra de mão do post-it e das caixas é a Caveat (só aqui).
+   ========================================================================= */
+
+@property --liga { syntax: "<number>"; inherits: true; initial-value: 1; }
+@property --forca { syntax: "<number>"; inherits: true; initial-value: 1; }
+
+.l-tela {
+    --raio: 150px;
+    --forca: 1;
+    --liga: 1;
+    --r: calc(var(--raio) * var(--forca) * var(--liga));
+    --lx: 70%;
+    --ly: 45%;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: max(100svh, 640px);
+    color: var(--sobre-noite);
+    transition: --forca 0.9s cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+.l-tela.l-forte { --forca: 1.6; }
+/* a lanterna ligando, com uma piscada */
+.l-tela.ligando { animation: l-liga 1.3s linear both; }
+@keyframes l-liga { 0% { --liga: 0; } 14% { --liga: 0.55; } 20% { --liga: 0.05; } 34% { --liga: 0.85; } 40% { --liga: 0.35; } 56%, 100% { --liga: 1; } }
+
+.l-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+
+/* ---------- O depósito: parede de tijolo, rodapé e chão de tábua ---------- */
+/* a parede é a seção inteira e as coisas ficam numa faixa de até 1500px no meio */
+.l-tela, .l-fundo {
+    --chao: 78%;
+    --parede:
+        linear-gradient(rgba(0, 0, 0, 0.4), transparent 30%),
+        linear-gradient(transparent var(--chao), #1B130E var(--chao), #1B130E calc(var(--chao) + 7px), transparent calc(var(--chao) + 7px)),
+        repeating-linear-gradient(90deg, transparent 0 148px, rgba(0, 0, 0, 0.34) 148px 150px) 0 100% / 100% calc(100% - var(--chao)) no-repeat,
+        linear-gradient(#433023, #2A1D14) 0 100% / 100% calc(100% - var(--chao)) no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32'%3E%3Cpath d='M0 1h64M0 17h64M32 1v16M0 17v16M64 17v16' fill='none' stroke='%232A1C16' stroke-width='2'/%3E%3C/svg%3E") 0 0 / 64px 32px,
+        #4D352C;
+}
+.l-tela { background: var(--parede); }
+.l-fundo { --k: 1; position: absolute; top: 0; bottom: 0; left: max(0px, calc(50% - 750px)); right: max(0px, calc(50% - 750px)); overflow: hidden; }
+.l-fundo svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+/* cada coisa é posicionada pelo centro (--x, --y) com o próprio tamanho (--w, --h).
+   Sem transform: assim os olhos que brilham no escuro conseguem ficar por cima da escuridão */
+.l-obj { position: absolute; left: var(--x); top: var(--y); width: calc(var(--w) * var(--k)); height: calc(var(--h) * var(--k)); margin: calc(var(--h) * var(--k) / -2) 0 0 calc(var(--w) * var(--k) / -2); padding: 0; border: 0; background: none; color: inherit; font: inherit; }
+button.l-obj, .l-gato, .l-caneca { cursor: pointer; }
+.l-fundo button:focus-visible { outline: 2px dashed #FFE08A; outline-offset: 5px; border-radius: 6px; }
+
+/* a lâmpada do teto (apagada até alguém acender) */
+.l-lampada { position: absolute; left: 50%; top: 84px; width: calc(190px * var(--k)); height: 12px; margin-left: calc(-95px * var(--k)); }
+.l-lampada::before, .l-lampada::after { content: ""; position: absolute; bottom: 100%; width: 2px; height: 300px; background: #24262C; }
+.l-lampada::before { left: 18px; }
+.l-lampada::after { right: 18px; }
+.l-lampada i { position: absolute; inset: 0; border-radius: 6px; background: #3A3D45; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.3); transition: background 0.2s ease, box-shadow 0.2s ease; }
+.l-tela.acesa .l-lampada i { background: #FFF7E0; box-shadow: 0 0 24px 6px rgba(255, 240, 200, 0.6), 0 40px 160px 60px rgba(255, 236, 190, 0.18); }
+
+/* teia no canto e a aranha que sobe quando a luz chega */
+.l-teia { position: absolute; right: 0; top: 66px; width: calc(150px * var(--k)); height: calc(150px * var(--k)); }
+.l-aranha { position: absolute; left: 63%; top: 66px; width: 2px; height: var(--fio, 96px); margin-left: -1px; background: linear-gradient(rgba(230, 230, 240, 0.5), rgba(230, 230, 240, 0.22)); transition: height 0.9s cubic-bezier(0.5, 0, 0.3, 1); }
+.l-aranha.sobe { height: 16px; transition-duration: 0.35s; }
+.l-aranha i { position: absolute; left: 50%; bottom: -17px; width: 26px; height: 22px; margin-left: -13px; transform-origin: 50% -10px; animation: l-balanca 3.4s ease-in-out infinite alternate; }
+@keyframes l-balanca { from { transform: rotate(-9deg); } to { transform: rotate(9deg); } }
+
+/* o 404 pichado na parede */
+.l-404 { position: absolute; left: 50%; top: 40%; display: flex; color: #FF5A1F; font: 800 min(15vw, 30svh, 250px)/0.8 var(--f-display); font-stretch: 80%; letter-spacing: -0.02em; opacity: 0.88; text-shadow: 0 0 2px rgba(255, 90, 31, 0.7), 0 0 22px rgba(255, 90, 31, 0.25); transform: translate(-50%, -50%) rotate(-4deg); pointer-events: none; }
+.l-404 span { position: relative; }
+.l-404 span::after { content: ""; position: absolute; left: 44%; top: 86%; width: 5px; height: var(--pinga); border-radius: 3px; background: currentColor; opacity: 0.8; }
+
+/* o post-it e o interruptor */
+.l-postit { --x: 30%; --y: 27%; --w: 96px; --h: 92px; display: grid; place-items: center; padding: 10px; background: #FDE68A; color: #4A3A10; box-shadow: 0 10px 14px -8px rgba(0, 0, 0, 0.6); transform: rotate(-5deg); font: 700 calc(21px * var(--k))/0.95 "Caveat", "Segoe Print", cursive; text-align: center; }
+.l-interruptor { --x: 24%; --y: 52%; --w: 30px; --h: 46px; border-radius: 6px; background: #D9D4CC; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25), 0 6px 10px -4px rgba(0, 0, 0, 0.6); }
+.l-interruptor i { position: absolute; left: 50%; top: 50%; width: 10px; height: 18px; margin: -9px 0 0 -5px; border-radius: 3px; background: linear-gradient(#F4F1EC 50%, #BDB6AA 50%); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
+.l-interruptor[aria-pressed="true"] i { background: linear-gradient(#BDB6AA 50%, #F4F1EC 50%); }
+
+/* a estante de aço, com o gato na caixa lá em cima */
+.l-estante { --x: 82%; --y: calc(84% - 145px * var(--k)); --w: 200px; --h: 290px; border-inline: 7px solid #474D59; background: linear-gradient(#5B6270, #5B6270) 0 0 / 100% 7px no-repeat, linear-gradient(#5B6270, #5B6270) 0 34% / 100% 7px no-repeat, linear-gradient(#5B6270, #5B6270) 0 68% / 100% 7px no-repeat, linear-gradient(#5B6270, #5B6270) 0 100% / 100% 7px no-repeat, rgba(0, 0, 0, 0.18); }
+.l-estante-moveis i { position: absolute; display: block; }
+.l-pasta { bottom: 66%; width: 13%; height: 26%; border-radius: 2px; background: var(--c); box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.2), inset 0 10px 0 rgba(255, 255, 255, 0.08); }
+.l-pasta:nth-child(1) { left: 8%; }
+.l-pasta:nth-child(2) { left: 23%; height: 23%; }
+.l-pasta:nth-child(3) { left: 38%; transform: rotate(8deg); transform-origin: bottom left; }
+.l-rolo { left: 64%; bottom: 66%; width: 24%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #2A2C33 0 22%, #C46A2B 24% 62%, #8F4A1C 64%); }
+.l-caixinha { left: 8%; bottom: 32%; width: 40%; height: 22%; border-radius: 2px; background: linear-gradient(90deg, transparent 44%, rgba(201, 162, 111, 0.6) 44% 56%, transparent 56%), #A27447; }
+.l-caixinha-2 { left: 54%; width: 34%; height: 16%; background: linear-gradient(90deg, transparent 44%, rgba(201, 162, 111, 0.6) 44% 56%, transparent 56%), #8E6339; }
+.l-gato { position: absolute; left: 6%; bottom: calc(100% - 4px); width: 88%; aspect-ratio: 120 / 90; padding: 0; border: 0; background: none; }
+.l-gato .g-zzz { animation: l-zzz 3s ease-in-out infinite; }
+@keyframes l-zzz { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+
+/* a pilha de caixas com a caneca em cima */
+.l-caixas { --x: 68%; --y: calc(86% - 75px * var(--k)); --w: 150px; --h: 150px; }
+.l-caixas span { position: absolute; display: grid; place-items: center; border-radius: 2px; background: linear-gradient(90deg, transparent 45%, rgba(201, 162, 111, 0.55) 45% 55%, transparent 55%), #A27447; box-shadow: inset 0 4px 0 #86602F; color: #4A2F14; font: 700 calc(19px * var(--k))/1 "Caveat", "Segoe Print", cursive; }
+.l-caixas span:nth-child(1) { left: 0; bottom: 0; width: 100%; height: 44%; }
+.l-caixas span:nth-child(2) { left: 7%; bottom: 44%; width: 84%; height: 31%; background-color: #96693D; }
+.l-caixas span:nth-child(3) { left: 16%; bottom: 75%; width: 64%; height: 25%; font-size: calc(16px * var(--k)); }
+.l-caneca { position: absolute; left: 52%; bottom: calc(100% - 2px); width: calc(40px * var(--k)); height: calc(40px * var(--k)); padding: 0; border: 0; background: none; }
+
+/* a caixa "frágil" com os dois bonequinhos do símbolo atrás */
+.l-dupla { --x: 47%; --y: calc(96% - 69px * var(--k)); --w: 170px; --h: 138px; }
+.l-dupla .d-bonecos { transition: transform 0.3s cubic-bezier(0.5, 0, 0.4, 1.3); }
+.l-dupla.escondida .d-bonecos { transform: translateY(52px); }
+.l-tela.l-fim .l-dupla .d-bonecos { animation: l-pula 0.5s cubic-bezier(0.3, 0, 0.5, 1) infinite alternate; }
+@keyframes l-pula { from { transform: translateY(0); } to { transform: translateY(-28px); } }
+
+/* a página perdida, a pilha e o rato */
+.l-pagina { --x: 33%; --y: 90%; --w: 70px; --h: 87px; }
+.l-pagina svg { transform: rotate(14deg); }
+.l-pilha { --x: 59%; --y: 94%; --w: 46px; --h: 22px; }
+.l-pilha svg { transform: rotate(-18deg); }
+.l-pilha.pego { visibility: hidden; }
+.l-rato { --x: var(--rx, 70%); --y: calc(83% - 14px * var(--k)); --w: 56px; --h: 28px; transition: left 0.7s cubic-bezier(0.45, 0, 0.25, 1); }
+.l-rato.vira svg { scale: -1 1; }
+.l-rato.correndo svg { animation: l-trote 0.12s linear infinite alternate; }
+@keyframes l-trote { to { translate: 0 -3px; } }
+
+
+/* ---------- A escuridão com o furo da lanterna ---------- */
+.l-facho, .l-escuro { position: absolute; inset: 0; z-index: 1; pointer-events: none; transition: opacity 0.5s ease; }
+.l-facho { background: radial-gradient(circle var(--r) at var(--lx) var(--ly), rgba(255, 214, 150, 0.16), transparent 75%); }
+.l-escuro {
+    background: rgba(4, 5, 8, 0.955);
+    -webkit-mask-image: radial-gradient(circle var(--r) at var(--lx) var(--ly), transparent 0, transparent 40%, rgba(0, 0, 0, 0.6) 72%, #000 100%);
+    mask-image: radial-gradient(circle var(--r) at var(--lx) var(--ly), transparent 0, transparent 40%, rgba(0, 0, 0, 0.6) 72%, #000 100%);
+}
+.l-tela.acesa .l-escuro, .l-tela.acesa .l-facho { opacity: 0; }
+.l-tela.piscando .l-escuro { animation: l-pisca 1s steps(1) both; }
+.l-tela.piscando .l-lampada i { animation: l-pisca-lampada 1s steps(1) both; }
+@keyframes l-pisca { 0% { opacity: 1; } 10% { opacity: 0.25; } 18% { opacity: 1; } 30% { opacity: 0.1; } 38% { opacity: 0.9; } 52% { opacity: 0; } 62% { opacity: 0.55; } 72%, 100% { opacity: 0; } }
+@keyframes l-pisca-lampada { 0%, 18%, 38%, 62% { background: #3A3D45; box-shadow: none; } 10%, 30%, 52%, 72%, 100% { background: #FFF7E0; } }
+html:not(.l-js) .l-escuro, html:not(.l-js) .l-facho { display: none; }
+
+/* olhos que brilham no escuro (por cima da escuridão): o gato, os bonequinhos e o rato */
+.l-olho { position: absolute; z-index: 2; left: var(--ox); top: var(--oy); pointer-events: none; opacity: 0; transition: opacity 0.25s ease; }
+.l-olho-gato { width: 8px; height: 9px; margin: -4.5px 0 0 -4px; border-radius: 50%; background: linear-gradient(90deg, #B8F55A 38%, #10120A 38% 62%, #B8F55A 62%); box-shadow: 0 0 10px 3px rgba(184, 245, 90, 0.5); }
+.l-olho-dupla { --oy: 29.2%; width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; border-radius: 50%; background: radial-gradient(circle at var(--px, 50%) var(--py, 55%), #111 0 30%, #fff 34%); box-shadow: 0 0 9px 2px rgba(255, 255, 255, 0.3); }
+.l-olho-rato { --ox: 80%; --oy: 54%; width: 4px; height: 4px; margin: -2px 0 0 -2px; border-radius: 50%; background: #FF4D4D; box-shadow: 0 0 6px 2px rgba(255, 77, 77, 0.6); }
+.l-rato.vira .l-olho-rato { --ox: 20%; }
+.l-gato.olhando .l-olho-gato, .l-dupla.olhando .l-olho-dupla, .l-rato.olhando .l-olho-rato { opacity: 1; }
+
+
+/* ---------- O botão de voltar (sempre à vista, no canto) ---------- */
+.l-voltar { position: absolute; z-index: 3; left: var(--borda); bottom: 40px; }
+
+
+/* o balão de quando acha alguma coisa */
+.l-balao { position: absolute; z-index: 4; left: var(--bx, 50%); top: var(--by, 50%); width: max-content; max-width: 250px; margin: 0; padding: 10px 14px; border-radius: 14px; background: #fff; color: #16181D; font: 600 15px/1.4 var(--f-texto); box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.6); opacity: 0; visibility: hidden; pointer-events: none; transform: translate(-50%, calc(-100% - 14px)) scale(0.92); transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.3, 1.4, 0.5, 1), visibility 0s linear 0.25s; }
+.l-balao::after { content: ""; position: absolute; left: calc(50% + var(--cauda, 0px)); top: 100%; border: 8px solid transparent; border-top-color: #fff; transform: translateX(-50%); }
+.l-balao.baixo { transform: translate(-50%, 14px) scale(0.92); }
+.l-balao.baixo::after { top: auto; bottom: 100%; border-top-color: transparent; border-bottom-color: #fff; }
+.l-balao.on { opacity: 1; visibility: visible; transform: translate(-50%, calc(-100% - 14px)); transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.3, 1.4, 0.5, 1); }
+.l-balao.baixo.on { transform: translate(-50%, 14px); }
+
+
+/* ---------- Responsivo ---------- */
+/* tela grande: as coisas crescem junto */
+@media (min-width: 1500px) and (min-height: 820px) {
+    .l-fundo { --k: 1.3; }
+    .l-postit { --y: 21%; }
+    .l-lampada { top: 92px; }
+}
+@media (max-width: 900px) {
+    .l-tela, .l-fundo { --chao: 74%; }
+    .l-tela { --raio: 105px; }
+    .l-voltar { left: 50%; bottom: 24px; transform: translateX(-50%); white-space: nowrap; }
+    .l-lampada { top: 96px; width: 130px; margin-left: -65px; }
+    .l-teia { top: 76px; width: 100px; height: 100px; }
+    .l-aranha { left: 86%; top: 76px; --fio: 80px; }
+    .l-404 { top: 34%; font-size: 120px; }
+    .l-postit { --x: 22%; --y: 19%; --w: 74px; --h: 70px; font-size: 17px; padding: 6px; }
+    .l-interruptor { --x: 10%; --y: 52%; --w: 24px; --h: 38px; }
+    .l-interruptor i { width: 8px; height: 15px; margin: -7.5px 0 0 -4px; }
+    .l-estante { --x: 82%; --y: calc(78% - 100px); --w: 110px; --h: 200px; border-inline-width: 5px; }
+    .l-caixas { --x: 55%; --y: calc(79% - 48px); --w: 92px; --h: 96px; }
+    .l-caixas span { font-size: 13px; }
+    .l-caixas span:nth-child(3) { font-size: 11px; }
+    .l-caneca { width: 30px; height: 30px; }
+    .l-dupla { --x: 24%; --y: calc(87% - 51px); --w: 126px; --h: 102px; }
+    .l-pagina { --x: 62%; --y: 85%; --w: 52px; --h: 64px; }
+    .l-pilha { --x: 86%; --y: 87%; --w: 38px; --h: 18px; }
+    .l-rato { --y: calc(78% - 12px); --w: 46px; --h: 23px; }
+    .l-balao { max-width: 220px; font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .l-tela, .l-rato, .l-aranha, .l-dupla .d-bonecos, .l-escuro, .l-facho, .l-balao { transition: none; }
+    .l-tela.ligando, .l-tela.piscando .l-escuro, .l-tela.piscando .l-lampada i, .l-aranha i, .l-gato .g-zzz, .l-rato.correndo svg, .l-tela.l-fim .l-dupla .d-bonecos { animation: none; }
+}

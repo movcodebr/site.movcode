@@ -47,10 +47,15 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/site.css">
     <link rel="stylesheet" href="/assets/css/home.css">
     <link rel="stylesheet" href="/assets/css/interna.css">
+    <link rel="stylesheet" href="/assets/css/erro.css">
+    <script>
+        // Com JS a sala começa no escuro (sem JS a luz fica acesa)
+        document.documentElement.classList.add('l-js');
+    </script>
     <script>
         // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
         try {
@@ -121,71 +126,63 @@
     <div class="cursor-anel" aria-hidden="true"><span></span></div>
 
     <main id="conteudo">
-        <section class="i-hero escuro">
-            <div class="wrap">
-                <div class="i-hero-texto">
-                    <h1 class="h-grande gigante i-titulo">Essa página <em>não existe.</em></h1>
-                    <p class="i-hero-sub i-entra">O link pode estar quebrado ou a página mudou de lugar. Mas o seu projeto pode existir.</p>
-                    <div class="i-acoes i-entra">
-                        <a href="/" class="btn btn-acao" data-cta="404_inicio" data-magnetico data-cursor="bora">Ir para o início <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                        <a href="https://wa.me/5516982157266" class="btn btn-escuro" data-whatsapp="Olá! Vim pelo site da MovCode." data-cta="404">Falar no WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                    </div>
+        <section class="l-tela" aria-labelledby="l-titulo" data-l-tela>
+            <h1 id="l-titulo" class="l-sr">Página não encontrada</h1>
+            <div class="l-fundo">
+                <span class="l-lampada" aria-hidden="true"><i></i></span>
+                <span class="l-teia" aria-hidden="true"><svg viewBox="0 0 160 160" aria-hidden="true"><g stroke="rgba(230,230,240,.32)" stroke-width="1" fill="none"><path d="M160 0 0 0M160 0 20 60M160 0 60 120M160 0 110 160M160 0 160 160"/><path d="M130 0q2 14 8 22 10 4 22 0M100 0q4 28 16 44 22 8 44 0M70 0q6 42 26 66 32 12 64 2M40 0q8 56 34 88 40 18 86 4"/></g></svg></span>
+                <span class="l-aranha" aria-hidden="true" data-l-aranha><i><svg viewBox="0 0 26 22" aria-hidden="true"><g stroke="#1A1A20" stroke-width="1.6" fill="none" stroke-linecap="round"><path d="M9 9 2 4M9 11 1 11M9 13 2 18M10 14 5 21M17 9l7-5M17 11h8M17 13l7 5M16 14l5 7"/></g><ellipse cx="13" cy="12" rx="5" ry="6" fill="#1A1A20"/><circle cx="11.4" cy="10" r="1" fill="#E33"/><circle cx="14.6" cy="10" r="1" fill="#E33"/></svg></i></span>
+                <span class="l-404" aria-hidden="true"><span style="--pinga:34px">4</span><span style="--pinga:16px">0</span><span style="--pinga:52px">4</span></span>
+                <button class="l-obj l-postit" type="button" data-achado="postit" aria-label="Post-it na parede"><span>consertar o link quebrado!!</span></button>
+                <button class="l-obj l-interruptor" type="button" data-l-interruptor aria-label="Interruptor da luz" aria-pressed="false"><i></i></button>
+                <div class="l-obj l-estante">
+                    <span class="l-estante-moveis" aria-hidden="true"><i class="l-pasta" style="--c:#3D5A80"></i><i class="l-pasta" style="--c:#7A3B3B"></i><i class="l-pasta" style="--c:#4F6B45"></i><i class="l-caixinha"></i><i class="l-caixinha l-caixinha-2"></i><i class="l-rolo"></i></span>
+                    <button class="l-gato" type="button" data-achado="gato" data-l-gato aria-label="Gato dormindo numa caixa">
+                        <svg viewBox="0 0 120 90" aria-hidden="true">
+                                <path d="M100 52c11 0 16 9 10 17" stroke="#26262E" stroke-width="7" fill="none" stroke-linecap="round"/>
+                                <path d="M24 54c0-17 17-28 38-28s38 9 40 26" fill="#26262E"/>
+                                <path d="M20 37l3-13 10 9zM43 33l9-9 1 13z" fill="#30303A"/>
+                                <path d="M16 56c-2-15 6-25 19-25s21 9 21 21" fill="#30303A"/>
+                                <path class="g-sono" d="M26 46q3.5 2.5 7 0M39 46q3.5 2.5 7 0" stroke="#0E0E12" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                <path d="M34.5 50.5l1.8 1.8 1.8-1.8z" fill="#D98C96"/>
+                                <path d="M8 40l26 6 3 8H6z" fill="#B88752"/>
+                                <path d="M112 40l-26 6-3 8h31z" fill="#B88752"/>
+                                <path d="M6 53h108l-6 36H12z" fill="#A27447"/>
+                                <path d="M6 53h108" stroke="#86602F" stroke-width="3"/>
+                                <text class="g-zzz" x="66" y="20" font-family="Caveat, cursive" font-weight="700" font-size="16" fill="#C9C3B6">z z</text>
+                            </svg>
+                        <span class="l-olho l-olho-gato" style="--ox:25%;--oy:49%"></span><span class="l-olho l-olho-gato" style="--ox:35.8%;--oy:49%"></span>
+                    </button>
                 </div>
-                <p class="i-erro i-entra" aria-hidden="true"><span style="--s:.7">4</span><span style="--s:1">0</span><span style="--s:1.35">4</span></p>
+                <div class="l-obj l-caixas">
+                    <span aria-hidden="true">backup</span><span aria-hidden="true">site antigo</span><span aria-hidden="true">links quebrados</span>
+                    <button class="l-caneca" type="button" data-achado="cafe" aria-label="Caneca de café"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M33 17h3.5a5.5 5.5 0 0 1 0 11H33" stroke="#E4E0D9" stroke-width="4" fill="none"/><path d="M6 11h27v23a6 6 0 0 1-6 6H12a6 6 0 0 1-6-6z" fill="#E4E0D9"/><ellipse cx="19.5" cy="11.5" rx="13.5" ry="3.2" fill="#3A2416"/><g fill="#FF5A1F"><circle cx="16.5" cy="21" r="2.3"/><circle cx="21.7" cy="21" r="2.3"/><rect x="14.2" y="24" width="4.6" height="7" rx="2.3"/><rect x="19.4" y="24" width="4.6" height="7" rx="2.3"/></g></svg></button>
+                </div>
+                <button class="l-obj l-dupla" type="button" data-achado="dupla" data-l-dupla aria-label="Caixa de papelão escrito frágil">
+                    <svg viewBox="0 0 160 130" aria-hidden="true">
+                            <clipPath id="l-atras-da-caixa"><rect x="0" y="-80" width="160" height="208"/></clipPath>
+                            <g clip-path="url(#l-atras-da-caixa)"><g class="d-bonecos">
+                                <circle cx="58" cy="40" r="17" fill="#FF5A1F"/><rect x="41" y="59" width="34" height="56" rx="17" fill="#FF5A1F"/>
+                                <circle cx="102" cy="40" r="17" fill="#FF5A1F"/><rect x="85" y="59" width="34" height="56" rx="17" fill="#FF5A1F"/>
+                                <g fill="#fff"><circle cx="52" cy="38" r="4.4"/><circle cx="64" cy="38" r="4.4"/><circle cx="96" cy="38" r="4.4"/><circle cx="108" cy="38" r="4.4"/></g>
+                                <g fill="#111"><circle cx="53" cy="39" r="2.1"/><circle cx="65" cy="39" r="2.1"/><circle cx="97" cy="39" r="2.1"/><circle cx="109" cy="39" r="2.1"/></g>
+                            </g></g>
+                            <rect x="8" y="64" width="144" height="64" rx="3" fill="#A27447"/>
+                            <path d="M8 64h144" stroke="#86602F" stroke-width="4"/>
+                            <rect x="64" y="64" width="32" height="64" fill="#C9A26F" opacity=".55"/>
+                            <text x="34" y="104" font-family="Caveat, cursive" font-weight="700" font-size="17" fill="#5A3B1C" transform="rotate(-6 34 104)">FRÁGIL</text>
+                        </svg>
+                    <span class="l-olho l-olho-dupla" style="--ox:32.5%"></span><span class="l-olho l-olho-dupla" style="--ox:40%"></span><span class="l-olho l-olho-dupla" style="--ox:60%"></span><span class="l-olho l-olho-dupla" style="--ox:67.5%"></span>
+                </button>
+                <button class="l-obj l-pagina" type="button" data-achado="pagina" aria-label="Folha de papel no chão"><svg viewBox="0 0 74 92" aria-hidden="true"><path d="M4 4h48l18 18v66H4z" fill="#ECE7DC"/><path d="M52 4v18h18z" fill="#CFC7B8"/><path d="M14 36h44M14 46h44M14 56h28" stroke="#BDB5A6" stroke-width="2.2" stroke-linecap="round"/><text x="37" y="80" text-anchor="middle" font-family="Caveat, cursive" font-weight="700" font-size="21" fill="#E2531B">404?</text></svg></button>
+                <button class="l-obj l-pilha" type="button" data-achado="pilha" aria-label="Pilha no chão"><svg viewBox="0 0 52 24" aria-hidden="true"><rect x="2" y="3" width="42" height="18" rx="3.5" fill="#26282F"/><rect x="2" y="3" width="15" height="18" rx="3.5" fill="#FF5A1F"/><rect x="13" y="3" width="4" height="18" fill="#FF5A1F"/><rect x="44" y="8" width="5" height="8" rx="1.5" fill="#B9BCC4"/><path d="M30 9v6M27 12h6" stroke="#E8E8EC" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+                <button class="l-obj l-rato" type="button" data-achado="rato" data-l-rato aria-label="Rato"><svg viewBox="0 0 56 28" aria-hidden="true"><path d="M14 20c-5 1-8 4-13 3" stroke="#77727B" stroke-width="2" fill="none" stroke-linecap="round"/><ellipse cx="27" cy="18" rx="15" ry="8.5" fill="#5C5861"/><path d="M36 11c7 0 13 4 17 9-5 2-11 3-17 2z" fill="#67636C"/><circle cx="37" cy="10" r="4.8" fill="#7B7681"/><circle cx="37" cy="10" r="2.5" fill="#D98C96"/><circle cx="53" cy="20" r="1.5" fill="#D98C96"/><circle cx="45" cy="15" r="1.4" fill="#111"/><path d="M20 26h4M32 26h4" stroke="#4A464E" stroke-width="2" stroke-linecap="round"/></svg><span class="l-olho l-olho-rato"></span></button>
             </div>
-        </section>
-
-        <section id="paginas" class="h-caso escuro i-lista" aria-labelledby="paginas-titulo">
-            <div class="wrap">
-                <h2 id="paginas-titulo" class="h-grande gigante">Talvez você <em>procure:</em></h2>
-                <ul class="h-lista">
-                    <li class="h-proj">
-                        <a class="h-proj-linha" href="/diagnostico">
-                            <span class="h-proj-num">01</span>
-                            <span class="h-proj-nome">Diagnóstico gratuito</span>
-                            <p class="h-proj-desc">Uma conversa para entender a sua operação, por chamada ou mensagem.</p>
-                            <span class="h-proj-tipo">Grátis</span>
-                            <span class="h-proj-seta" aria-hidden="true">↗</span>
-                        </a>
-                    </li>
-                    <li class="h-proj">
-                        <a class="h-proj-linha" href="/criacao-de-sites">
-                            <span class="h-proj-num">02</span>
-                            <span class="h-proj-nome">Criação de sites</span>
-                            <p class="h-proj-desc">Sites rápidos, bonitos no celular e feitos para gerar contato.</p>
-                            <span class="h-proj-tipo">Serviço</span>
-                            <span class="h-proj-seta" aria-hidden="true">↗</span>
-                        </a>
-                    </li>
-                    <li class="h-proj">
-                        <a class="h-proj-linha" href="/sistema-para-mercadinho">
-                            <span class="h-proj-num">03</span>
-                            <span class="h-proj-nome">Sistema para comércio</span>
-                            <p class="h-proj-desc">Estoque, caixa e fiado num lugar só.</p>
-                            <span class="h-proj-tipo">Serviço</span>
-                            <span class="h-proj-seta" aria-hidden="true">↗</span>
-                        </a>
-                    </li>
-                    <li class="h-proj">
-                        <a class="h-proj-linha" href="/sobre">
-                            <span class="h-proj-num">04</span>
-                            <span class="h-proj-nome">Sobre a MovCode</span>
-                            <p class="h-proj-desc">Como a gente trabalha e os nossos produtos.</p>
-                            <span class="h-proj-tipo">Empresa</span>
-                            <span class="h-proj-seta" aria-hidden="true">↗</span>
-                        </a>
-                    </li>
-                    <li class="h-proj">
-                        <a class="h-proj-linha" href="/blog/">
-                            <span class="h-proj-num">05</span>
-                            <span class="h-proj-nome">Blog</span>
-                            <p class="h-proj-desc">Guias práticos, sem tecniquês.</p>
-                            <span class="h-proj-tipo">Guias</span>
-                            <span class="h-proj-seta" aria-hidden="true">↗</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <div class="l-facho" aria-hidden="true"></div>
+            <div class="l-escuro" aria-hidden="true"></div>
+            <div class="l-voltar"><a href="/" class="btn btn-acao" data-cta="404_inicio" data-magnetico data-cursor="bora">Voltar para o início <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+            <p class="l-balao" aria-hidden="true" data-l-balao></p>
+            <p class="l-sr" aria-live="polite" data-l-aviso></p>
         </section>
     </main>
 
@@ -250,5 +247,6 @@
     <script src="/assets/js/vendor/lenis.min.js"></script>
     <script src="/assets/js/home.js"></script>
     <script src="/assets/js/interna.js"></script>
+    <script src="/assets/js/erro.js"></script>
 </body>
 </html>
