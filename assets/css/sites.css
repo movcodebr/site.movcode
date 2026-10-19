@@ -1,7 +1,7 @@
 /* =========================================================================
    MovCode — /criacao-de-sites
-   Estrutura própria (não usa os blocos da home): topo claro em que o nome e
-   o tipo do negócio montam o site na hora, anatomia de um site que vende (as partes acendem ao rolar),
+   Estrutura própria (não usa os blocos da home): topo claro em que o site de
+   exemplo troca de tipo sozinho, anatomia de um site que vende (as partes acendem ao rolar),
    dois jeitos de começar, perguntas abertas e o fechamento.
    O exemplo é a "Barbearia do João", o mesmo da /sua-pagina.
    ========================================================================= */
@@ -18,14 +18,18 @@
 .s-foto svg { width: 34%; max-width: 64px; opacity: 0.9; }
 /* Moldura do iPhone 17 Pro (SVG de 880×1832 com a tela vazada) por cima de tudo; o site de exemplo fica
    embaixo, no vão da tela, com os mesmos cantos. A proporção é sempre a do aparelho. */
-.s-celular, .s-tel { isolation: isolate; aspect-ratio: 880 / 1832; border-radius: 26% / 12.5%; }
+.s-celular, .s-tel { isolation: isolate; aspect-ratio: 880 / 1832; }
+/* a sombra segue o desenho do aparelho: a caixa é um pouco maior que a moldura do SVG (sobra transparente de
+   8 de 880 nos lados e 12 de 1832 em cima e embaixo), e uma sombra de caixa deixaria uma faixa clara em volta */
+.s-celular { filter: drop-shadow(0 26px 30px rgba(22, 24, 29, 0.32)); }
+.s-tel { filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6)); }
 .s-celular::after, .s-tel::after { content: ""; position: absolute; inset: 0; z-index: 5; background: url(../images/iphone-17-pro.svg) center / 100% 100% no-repeat; pointer-events: none; }
 /* a tela passa um pouco por baixo da borda preta (o vão do SVG começa em 38×42 de 880×1832) e tem o canto
    mais fechado que o dele, que é contínuo como o da Apple: assim cobre o vão inteiro, sem fresta nos cantos */
 .s-cel-tela, .s-tel-tela { position: absolute; inset: 1.86% 3.41%; overflow: hidden; border-radius: 15.85% / 7.37%; background: #F6F5F2; }
 
 
-/* ---------- 1. Topo: o nome e o tipo do negócio montam o site na hora ---------- */
+/* ---------- 1. Topo: o site de exemplo troca de tipo sozinho ---------- */
 /* a cor do tipo escolhido (sites.js troca) passa suave pelo título, pelo brilho e pelo site de exemplo */
 @property --s-ac { syntax: "<color>"; inherits: true; initial-value: #FF5A1F; }
 @property --s-ac-suave { syntax: "<color>"; inherits: true; initial-value: #FFE4D8; }
@@ -35,31 +39,18 @@
 /* papel pontilhado, como uma mesa de trabalho, que some nas bordas */
 .s-topo::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(circle at 1px 1px, rgba(22, 24, 29, 0.13) 1px, transparent 0) 0 0 / 22px 22px; -webkit-mask-image: radial-gradient(ellipse 65% 85% at 72% 50%, #000 25%, transparent 78%); mask-image: radial-gradient(ellipse 65% 85% at 72% 50%, #000 25%, transparent 78%); pointer-events: none; }
 .s-topo .s-titulo em { color: var(--s-ac-texto); }
-/* o texto vira linhas da grade (display: contents) para, no celular, o aparelho entrar logo depois do subtítulo */
-.s-topo-grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-rows: 1fr auto auto auto auto 1fr; grid-template-areas: ". palco" "titulo palco" "sub palco" "teste palco" "acoes palco" ". palco"; column-gap: clamp(32px, 5vw, 72px); }
+/* o texto vira linhas da grade (display: contents): no computador fica no meio, ao lado do palco */
+.s-topo-grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-rows: 1fr auto auto auto 1fr; grid-template-areas: ". palco" "titulo palco" "sub palco" "acoes palco" ". palco"; column-gap: clamp(32px, 5vw, 72px); }
 .s-topo-texto { display: contents; }
 .s-topo .s-titulo { grid-area: titulo; }
-.s-topo-sub { grid-area: sub; margin: 22px 0 24px; max-width: 44ch; font-size: clamp(17px, 1.35vw, 19px); line-height: 1.55; color: var(--tinta-2); text-wrap: pretty; }
+.s-topo-sub { grid-area: sub; margin: 24px 0 34px; max-width: 44ch; font-size: clamp(17px, 1.35vw, 19px); line-height: 1.55; color: var(--tinta-2); text-wrap: pretty; }
 
-/* o teste: o nome do negócio e o tipo */
-.s-teste { grid-area: teste; display: grid; gap: 10px; max-width: 520px; margin-bottom: 26px; }
-.s-teste-nome { color: var(--tinta); font: 600 15px var(--f-texto); }
-.s-campo { display: flex; align-items: center; gap: 10px; height: 56px; padding: 0 18px; border: 1.5px solid var(--linha); border-radius: 16px; background: #fff; box-shadow: 0 12px 28px -20px rgba(22, 24, 29, 0.4); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
-.s-campo:focus-within { border-color: var(--s-ac); box-shadow: 0 0 0 4px color-mix(in srgb, var(--s-ac) 18%, transparent); }
-.s-campo svg { flex: none; width: 18px; height: 18px; color: var(--tinta-2); }
-.s-campo input { flex: 1; min-width: 0; height: 100%; padding: 0; border: 0; outline: 0; background: transparent; color: var(--tinta); font: 600 17px var(--f-texto); }
-.s-campo input::placeholder { color: #8A8D94; font-weight: 500; opacity: 1; }
-.s-tipos { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-.s-tipos button { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; padding: 0 12px; border: 1.5px solid var(--linha); border-radius: 999px; background: #fff; color: var(--tinta); font: 600 13.5px var(--f-texto); cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
-.s-tipos button::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
-.s-tipos button:hover { border-color: var(--tinta-2); }
-.s-tipos button[aria-pressed="true"] { border-color: var(--tinta); background: var(--tinta); color: #fff; }
 .s-topo .s-acoes { grid-area: acoes; }
 
-/* palco: o navegador e o celular numa cena levemente inclinada, que acompanha o mouse (--mx e --my, de -1 a 1) */
-.s-palco { grid-area: palco; align-self: center; position: relative; container-type: inline-size; perspective: 1600px; }
+/* palco: o navegador e, na frente dele, o celular */
+.s-palco { grid-area: palco; align-self: center; position: relative; container-type: inline-size; }
 .s-palco::before { content: ""; position: absolute; inset: -4% -14% -4% 2%; z-index: -1; background: radial-gradient(closest-side, color-mix(in srgb, var(--s-ac) 30%, transparent), transparent); pointer-events: none; }
-.s-cena { position: relative; padding: 0 0 9%; transform: rotateY(calc(-11deg + var(--mx, 0) * 5deg)) rotateX(calc(5deg - var(--my, 0) * 4deg)); transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.s-cena { position: relative; padding: 0 0 9%; }
 .s-navegador { width: 88%; font-size: 1.9cqi; border-radius: 1.2em; background: #fff; box-shadow: 0 0 0 1px var(--linha), 0 50px 90px -40px rgba(22, 24, 29, 0.5); overflow: hidden; }
 .s-barra { display: flex; align-items: center; gap: 1.2em; padding: 0.9em 1.1em; background: #ECECEF; border-bottom: 1px solid #DCDCE0; }
 .s-janela { display: flex; gap: 0.45em; }
@@ -89,7 +80,7 @@
 .s-pc-precos b { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .s-pc-precos i, .s-cel-precos i { padding: 0.25em 0.6em; border-radius: 999px; background: var(--s-ac-suave); font: 700 0.95em var(--f-texto); font-style: normal; white-space: nowrap; }
 
-.s-celular { position: absolute; right: 0; bottom: 0; width: 31%; font-size: 1.6cqi; box-shadow: 0 40px 70px -30px rgba(0, 0, 0, 0.55); color: #16181D; font-family: var(--f-texto); transform: translateZ(70px); }
+.s-celular { position: absolute; right: 0; bottom: 0; width: 31%; font-size: 1.6cqi; color: #16181D; font-family: var(--f-texto); }
 .s-cel-tela { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: 0.8em; padding: 2.9em 0.9em 1em; }
 .s-cel-topo { display: flex; align-items: center; gap: 0.6em; }
 .s-cel-topo b { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font: 700 1em var(--f-display); letter-spacing: -0.02em; }
@@ -139,7 +130,7 @@
 .s-anatomia-palco { position: sticky; top: 0; display: grid; place-items: center; height: 100svh; }
 /* o tamanho do aparelho segue a altura da tela; a proporção é a da moldura */
 .s-mock { --tel-w: min(300px, calc((100svh - 112px) * 880 / 1832)); position: relative; display: grid; justify-items: center; }
-.s-tel { position: relative; width: var(--tel-w); font-size: calc(var(--tel-w) / 26); box-shadow: 0 50px 90px -40px rgba(0, 0, 0, 0.8); }
+.s-tel { position: relative; width: var(--tel-w); font-size: calc(var(--tel-w) / 26); }
 .s-tel-rola { position: relative; display: grid; gap: 1.2em; padding: 3.6em 1em 6em; color: #16181D; font-family: var(--f-texto); transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .s-tel-rola h4 { margin: 0 0 0.8em; font: 700 1.5em var(--f-display); letter-spacing: -0.02em; }
 .s-tel-topo { display: flex; align-items: center; gap: 0.7em; padding: 0.4em; }
@@ -227,9 +218,9 @@
 /* ---------- Responsivo ---------- */
 @media (max-width: 1080px) {
     .s-final-grade { grid-template-columns: minmax(0, 1fr); }
-    /* topo empilhado: título, subtítulo, o site montado, o teste e os botões */
-    .s-topo-grade { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "titulo" "sub" "palco" "teste" "acoes"; }
-    .s-palco { width: 100%; max-width: 620px; margin: 4px auto 44px; }
+    /* topo empilhado: título, subtítulo, botões e o site trocando de tipo embaixo */
+    .s-topo-grade { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "titulo" "sub" "acoes" "palco"; }
+    .s-palco { width: 100%; max-width: 620px; margin: 48px auto 0; }
     .s-caminhos-grade, .s-qa-grade { grid-template-columns: minmax(0, 1fr); }
 }
 /* anatomia em tela em pé: o aparelho fica preso no alto, com a altura de até 42% da tela e a mesma
@@ -253,15 +244,15 @@
     .s-topo { padding-top: 112px; }
     /* no celular só o aparelho, maior e no meio, com o endereço flutuando na frente dele */
     .s-navegador { display: none; }
-    .s-cena { padding: 46px 0 0; transform: rotateY(-10deg) rotateX(4deg); }
+    .s-cena { padding: 46px 0 0; }
     .s-celular { position: relative; width: min(62%, 250px); margin: 0 auto; font-size: min(3.2cqi, 12.9px); }
-    .s-dominio { display: flex; position: absolute; top: 0; left: 50%; max-width: 92%; font-size: 14px; padding: 9px 14px; border-radius: 999px; box-shadow: 0 0 0 1px var(--linha), 0 16px 30px -18px rgba(22, 24, 29, 0.5); transform: translateX(-50%) translateZ(110px); }
-    .s-palco { margin-bottom: 36px; }
+    .s-dominio { display: flex; position: absolute; top: 0; left: 50%; max-width: 92%; font-size: 14px; padding: 9px 14px; border-radius: 999px; box-shadow: 0 0 0 1px var(--linha), 0 16px 30px -18px rgba(22, 24, 29, 0.5); transform: translateX(-50%); }
+    .s-palco { margin-top: 40px; }
     .s-passo h3 { font-size: 26px; }
     .s-passo p { margin-top: 10px; font-size: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
-    .s-cena, .s-topo [data-troca] { transition: none; }
+    .s-topo [data-troca] { transition: none; }
     .s-passo { opacity: 1; }
     .s-tel-rola, .s-tel-rola::after, .s-busca, .s-mock [data-parte] { transition: none; }
     .s-mock[data-ativo="6"] .s-tel-zap { animation: none; }
