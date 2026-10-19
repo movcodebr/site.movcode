@@ -1,0 +1,41 @@
+/* =========================================================================
+   MovCode — peças comuns das páginas de serviço com estrutura própria
+   (/automacoes, /integracoes, /paineis, /consultoria). Cada página tem o
+   seu CSS com a ideia dela; aqui só o que se repete: títulos, links, o
+   topo em grade e o fechamento.
+   ========================================================================= */
+
+.sv-titulo { margin: 0; font-size: clamp(44px, 6.2vw, 100px); line-height: 0.9; letter-spacing: -0.035em; text-wrap: balance; }
+.sv-titulo em { font-style: normal; }
+.sv-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; }
+.sv-link { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 3px; border-bottom: 1.5px solid currentColor; color: inherit; font: 600 16px var(--f-texto); text-decoration: none; }
+.sv-link span, .sv-link svg { width: 1em; height: 1em; transition: transform 0.25s ease; }
+.sv-link:hover span { transform: translateY(3px); }
+.sv-link:hover svg { transform: translateX(4px); }
+.sv-sub { margin: 24px 0 34px; max-width: 44ch; font-size: clamp(17px, 1.35vw, 19px); line-height: 1.55; text-wrap: pretty; }
+.sv-intro { margin: 22px 0 0; max-width: 48ch; font-size: clamp(17px, 1.45vw, 20px); line-height: 1.55; text-wrap: pretty; }
+
+/* topo: o texto vira linhas da grade (display: contents) e fica no meio ao lado do palco; no celular o
+   palco entra depois do subtítulo e os botões ficam embaixo dele */
+.sv-topo { position: relative; isolation: isolate; padding: clamp(112px, 14svh, 150px) 0 clamp(64px, 8vw, 112px); overflow: hidden; }
+.sv-topo-grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-rows: 1fr auto auto auto 1fr; grid-template-areas: ". palco" "titulo palco" "sub palco" "acoes palco" ". palco"; column-gap: clamp(32px, 5vw, 72px); }
+.sv-topo-texto { display: contents; }
+.sv-topo .sv-titulo { grid-area: titulo; }
+.sv-topo .sv-sub { grid-area: sub; }
+.sv-topo .sv-acoes { grid-area: acoes; }
+.sv-palco { grid-area: palco; align-self: center; position: relative; container-type: inline-size; }
+
+/* fechamento: título no meio da altura do texto e dos botões */
+.sv-final { position: relative; overflow: hidden; padding: clamp(80px, 11vw, 150px) 0; }
+.sv-final-grade { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); gap: 32px clamp(40px, 6vw, 96px); align-items: center; }
+.sv-final-texto p { margin: 0 0 28px; max-width: 36ch; font-size: clamp(17px, 1.45vw, 20px); line-height: 1.55; text-wrap: pretty; }
+
+@media (max-width: 1080px) {
+    .sv-topo-grade { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "titulo" "sub" "palco" "acoes"; }
+    .sv-sub { margin-bottom: 30px; }
+    .sv-palco { width: 100%; max-width: 620px; margin: 0 auto 40px; }
+    .sv-final-grade { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+    .sv-topo { padding-top: 112px; }
+}

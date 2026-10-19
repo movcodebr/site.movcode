@@ -1,0 +1,149 @@
+/* =========================================================================
+   MovCode — /automacoes
+   A planilha que se preenche sozinha, a semana virando automática e as
+   receitas "Quando... Então...". O verde é o "rodando sozinho".
+   ========================================================================= */
+
+.au-topo, .au-receitas, .au-final { --au-fundo: #0C1210; --au-verde: #34D399; background: var(--au-fundo); color: #fff; }
+.au-topo .sv-titulo em, .au-receitas .sv-titulo em, .au-final .sv-titulo em { color: var(--au-verde); }
+.au-topo .sv-sub, .au-final .sv-final-texto p { color: #B9C4BF; }
+/* grade fina de fundo, que some nas bordas */
+.au-topo::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(rgba(52, 211, 153, 0.07) 1px, transparent 1px) 0 0 / 32px 32px, linear-gradient(90deg, rgba(52, 211, 153, 0.07) 1px, transparent 1px) 0 0 / 32px 32px; -webkit-mask-image: radial-gradient(ellipse 60% 80% at 74% 50%, #000 25%, transparent 75%); mask-image: radial-gradient(ellipse 60% 80% at 74% 50%, #000 25%, transparent 75%); pointer-events: none; }
+
+
+/* ---------- Topo: a planilha que se preenche sozinha ---------- */
+.au-palco { aspect-ratio: 1 / 0.84; font-family: var(--f-texto); }
+.au-origem, .au-aviso { position: absolute; z-index: 2; display: flex; align-items: center; gap: 2cqi; padding: 2cqi 2.8cqi 2cqi 2cqi; border-radius: 2.6cqi; background: #fff; color: #16181D; font-size: 2.6cqi; box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.7); white-space: nowrap; }
+.au-origem i, .au-aviso i { display: grid; place-items: center; flex: none; width: 6cqi; height: 6cqi; border-radius: 1.8cqi; font-style: normal; }
+.au-origem svg, .au-aviso svg { width: 55%; height: 55%; }
+.au-origem b, .au-aviso b { display: block; font-weight: 700; }
+.au-origem small, .au-aviso small { color: #50535B; font-size: 2.2cqi; }
+.au-origem em { font-style: normal; font-weight: 700; color: #16181D; }
+.au-origem { left: 2%; top: 0; }
+.au-origem i { background: #FFE4D8; color: #B53A0A; }
+/* o fio que leva o pedido da loja até a planilha */
+.au-fio { position: absolute; left: 10%; top: 12.5%; width: 2px; height: 9%; background: repeating-linear-gradient(transparent 0 4px, rgba(52, 211, 153, 0.55) 4px 8px); }
+.au-fio i { position: absolute; left: 50%; top: 0; width: 1.6cqi; height: 1.6cqi; border-radius: 50%; background: var(--au-verde); box-shadow: 0 0 1.4cqi var(--au-verde); opacity: 0; transform: translate(-50%, 0); }
+.au-fio.vai i { animation: au-desce 0.55s ease-in both; }
+@keyframes au-desce { 0% { opacity: 1; top: 0; } 100% { opacity: 1; top: 100%; } }
+
+.au-planilha { position: absolute; left: 4%; right: 4%; top: 21%; overflow: hidden; border-radius: 2.4cqi; background: #fff; color: #16181D; font-size: 2.5cqi; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 40px 80px -36px rgba(0, 0, 0, 0.8); }
+.au-barra { display: flex; align-items: center; gap: 2cqi; padding: 1.8cqi 2.4cqi; background: #EEF1EF; border-bottom: 1px solid #DFE4E1; }
+.au-janela { display: flex; gap: 0.9cqi; }
+.au-janela i { width: 1.5cqi; height: 1.5cqi; border-radius: 50%; background: #FF5F57; }
+.au-janela i:nth-child(2) { background: #FEBC2E; }
+.au-janela i:nth-child(3) { background: #28C840; }
+.au-barra b { margin-right: auto; font: 600 2.4cqi var(--f-mono); color: #3B403D; }
+.au-rodando { display: inline-flex; align-items: center; gap: 1.2cqi; padding: 0.7cqi 1.8cqi; border-radius: 999px; background: #DCFCE7; color: #065F46; font: 700 2.2cqi var(--f-texto); font-style: normal; }
+.au-rodando i { width: 1.4cqi; height: 1.4cqi; border-radius: 50%; background: #10B981; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); animation: au-pulso 1.6s ease-out infinite; }
+@keyframes au-pulso { 70% { box-shadow: 0 0 0 1.6cqi rgba(16, 185, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
+.au-grade { display: grid; }
+.au-cab, .au-linha { display: grid; grid-template-columns: 0.8fr 1.5fr 1fr 0.45fr; align-items: center; gap: 1.6cqi; padding: 0 2.4cqi; border-bottom: 1px solid #ECEFED; }
+.au-cab { height: 5.6cqi; background: #F6F8F7; color: #6B716E; font-size: 2.2cqi; font-weight: 600; }
+.au-linha { height: 6.6cqi; font-variant-numeric: tabular-nums; transition: background-color 1.2s ease; }
+.au-linha span:first-child { font-family: var(--f-mono); font-size: 2.3cqi; color: #50535B; }
+.au-linha span:nth-child(3) { font-weight: 700; }
+.au-ok { display: grid; place-items: center; justify-self: end; width: 4cqi; height: 4cqi; border-radius: 50%; background: #DCFCE7; color: #059669; }
+.au-ok svg { width: 60%; height: 60%; }
+.au-vazia { height: 6.6cqi; background: repeating-linear-gradient(90deg, transparent 0 2.4cqi, #F2F4F3 2.4cqi calc(100% - 2.4cqi), transparent calc(100% - 2.4cqi)) 0 50% / 100% 1.2cqi no-repeat; }
+.au-aviso-1 { right: 0; top: 69%; }
+.au-aviso-1 i { background: #E0EAFF; color: #1D4ED8; }
+.au-aviso-2 { left: 0; top: 83%; }
+.au-aviso-2 i { background: #DCFCE7; color: #059669; }
+/* com animação: as linhas se digitam célula por célula e os avisos chegam depois */
+.au-anima .au-linha > span { opacity: 0; transform: translateY(0.6cqi); transition: opacity 0.25s ease, transform 0.3s ease; }
+.au-anima .au-linha.on { background: #ECFDF5; }
+.au-anima .au-linha.on.assentou { background: transparent; }
+.au-anima .au-linha.on > span { opacity: 1; transform: none; }
+.au-anima .au-linha.on > span:nth-child(2) { transition-delay: 0.12s; }
+.au-anima .au-linha.on > span:nth-child(3) { transition-delay: 0.24s; }
+.au-anima .au-linha.on > span:nth-child(4) { transition-delay: 0.38s; }
+.au-anima [data-au-aviso] { opacity: 0; transform: translateY(2cqi) scale(0.97); transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.au-anima [data-au-aviso].on { opacity: 1; transform: none; }
+
+
+/* ---------- A semana no automático ---------- */
+.au-semana { padding: var(--secao) 0; background: var(--papel); color: var(--tinta); }
+.au-semana .sv-titulo em { color: #047857; }
+.au-semana .sv-intro { color: var(--tinta-2); }
+.au-semana-grade { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.au-contador { display: flex; align-items: baseline; gap: 12px; margin: 30px 0 0; color: var(--tinta-2); font-size: 17px; font-weight: 600; }
+.au-contador b { color: #047857; font: 800 clamp(48px, 5vw, 72px)/1 var(--f-display); font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+.au-quadro { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; padding: 18px; border-radius: 24px; background: #fff; box-shadow: 0 0 0 1px var(--linha), 0 30px 60px -36px rgba(22, 24, 29, 0.35); }
+.au-dia { display: grid; align-content: start; gap: 8px; }
+.au-dia > b { padding: 2px 4px 6px; color: var(--tinta-2); font: 700 14px var(--f-texto); }
+.au-tarefa { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 7px; min-height: 72px; padding: 10px 10px; border: 1.5px solid #E4E2DC; border-radius: 14px; background: #F5F4F1; color: #50535B; font: 600 13px/1.25 var(--f-texto); transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s cubic-bezier(0.3, 1.5, 0.5, 1); }
+.au-tarefa i { display: grid; place-items: center; width: 22px; height: 22px; grid-row: 1; grid-column: 1; border-radius: 7px; font-style: normal; transition: opacity 0.25s ease, transform 0.35s ease; }
+.au-tarefa svg { width: 15px; height: 15px; }
+.au-mao { background: #E9E7E1; color: #6B6E76; }
+.au-raio { background: #10B981; color: #fff; opacity: 0; transform: scale(0.5); }
+/* uma por uma, as tarefas passam para o automático */
+.au-tarefa.auto { border-color: #6EE7B7; background: #ECFDF5; color: #065F46; transform: scale(1.03); }
+.au-tarefa.auto.assentou { transform: none; }
+.au-tarefa.auto .au-mao { opacity: 0; transform: scale(0.5); }
+.au-tarefa.auto .au-raio { opacity: 1; transform: none; }
+
+
+/* ---------- Receitas: Quando... Então... ---------- */
+.au-receitas { padding: var(--secao) 0; }
+.au-receitas-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: clamp(32px, 5vw, 64px); }
+.au-receita { display: grid; align-content: start; padding: 26px 24px; border: 1px solid #1F2C27; border-radius: 22px; background: #111A16; }
+.au-receita h3 { margin: 0 0 18px; font: 800 22px/1.1 var(--f-display); font-stretch: 90%; letter-spacing: -0.02em; }
+.au-quando, .au-entao { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 12px; margin: 0; color: #B9C4BF; font-size: 16px; line-height: 1.5; }
+.au-quando b, .au-entao b { color: #fff; }
+.au-quando i, .au-entao i { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; font-style: normal; }
+.au-quando i { background: #1C2823; color: #B9C4BF; }
+.au-entao i { background: rgba(52, 211, 153, 0.16); color: var(--au-verde); }
+.au-quando svg, .au-entao svg { width: 18px; height: 18px; }
+/* a ligação entre o gatilho e a ação, com o sinal descendo */
+.au-liga { position: relative; display: block; width: 2px; height: 26px; margin: 6px 0 6px 16px; background: #24332D; overflow: hidden; }
+.au-liga i { position: absolute; left: 0; top: -40%; width: 2px; height: 40%; background: linear-gradient(transparent, var(--au-verde)); animation: au-sinal 2.4s ease-in-out infinite; animation-delay: calc(var(--k) * 0.35s); }
+@keyframes au-sinal { 0% { top: -40%; } 55%, 100% { top: 110%; } }
+
+
+/* ---------- Perguntas: a lista de checagem ---------- */
+.au-perguntas { padding: var(--secao) 0; background: #fff; color: var(--tinta); }
+.au-perguntas .sv-titulo em { color: #047857; }
+.au-perguntas-grade { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.au-perguntas-grade > .sv-titulo { position: sticky; top: 120px; }
+.au-lista { display: grid; gap: 4px; }
+.au-pergunta { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--linha); }
+.au-check { display: grid; place-items: center; grid-row: span 2; width: 34px; height: 34px; border-radius: 50%; background: #DCFCE7; color: #059669; }
+.au-check svg { width: 18px; height: 18px; }
+.au-pergunta h3 { margin: 4px 0 0; font: 700 20px/1.25 var(--f-texto); }
+.au-pergunta p { margin: 8px 0 0; color: var(--tinta-2); font-size: 17px; line-height: 1.6; }
+
+
+/* ---------- Fechamento: a chave do automático ---------- */
+.au-chave { display: inline-flex; align-items: center; gap: 16px; margin-bottom: 28px; color: #B9C4BF; font: 700 18px var(--f-texto); }
+.au-chave-trilho { position: relative; width: 104px; height: 56px; border-radius: 999px; background: #24332D; box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4); transition: background-color 0.5s ease; }
+.au-chave-trilho i { position: absolute; left: 6px; top: 6px; width: 44px; height: 44px; border-radius: 50%; background: #fff; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4); transition: transform 0.55s cubic-bezier(0.3, 1.4, 0.5, 1); }
+.au-chave b::after { content: " desligado"; color: #6B7A73; font-weight: 600; }
+.au-chave.ligado .au-chave-trilho { background: var(--au-verde); }
+.au-chave.ligado .au-chave-trilho i { transform: translateX(48px); }
+.au-chave.ligado b::after { content: " ligado"; color: var(--au-verde); }
+
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1080px) {
+    .au-semana-grade, .au-perguntas-grade { grid-template-columns: minmax(0, 1fr); }
+    .au-perguntas-grade > .sv-titulo { position: static; }
+    .au-receitas-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+    .au-palco { aspect-ratio: 1 / 0.98; }
+    .au-planilha { left: 0; right: 0; font-size: 2.9cqi; }
+    .au-cab, .au-linha { grid-template-columns: 0.9fr 1.5fr 1.1fr 0.4fr; }
+    .au-aviso-1 { top: 70%; }
+    .au-aviso-2 { top: 86%; }
+    /* a semana vira linhas: o dia na frente e as tarefas do lado */
+    .au-quadro { grid-template-columns: minmax(0, 1fr); padding: 14px; }
+    .au-dia { grid-template-columns: 38px repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 6px; }
+    .au-dia > b { align-self: center; padding: 0; }
+    .au-tarefa { grid-template-columns: minmax(0, 1fr); justify-items: start; gap: 6px; min-height: 0; padding: 8px; font-size: 12px; }
+    .au-receitas-grade { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .au-rodando i, .au-liga i { animation: none; }
+    .au-tarefa, .au-chave-trilho, .au-chave-trilho i { transition: none; }
+}

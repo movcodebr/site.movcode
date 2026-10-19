@@ -1,0 +1,121 @@
+/* =========================================================================
+   MovCode — /integracoes
+   A rede dos sistemas com os dados correndo nos fios, uma venda descendo
+   o mapa do metrô e as conexões de dois em dois. O azul é o dado passando.
+   ========================================================================= */
+
+.in-topo, .in-perguntas { --in-azul: #2563EB; background: #F3F6FB; color: var(--tinta); }
+.in-topo .sv-titulo em, .in-perguntas .sv-titulo em, .in-pares-secao .sv-titulo em { color: #1D4ED8; }
+.in-topo .sv-sub { color: var(--tinta-2); }
+.in-topo::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(circle at 1px 1px, rgba(29, 78, 216, 0.16) 1px, transparent 0) 0 0 / 22px 22px; -webkit-mask-image: radial-gradient(ellipse 60% 85% at 74% 50%, #000 25%, transparent 78%); mask-image: radial-gradient(ellipse 60% 85% at 74% 50%, #000 25%, transparent 78%); pointer-events: none; }
+
+
+/* ---------- Topo: a rede dos sistemas ---------- */
+.in-palco { aspect-ratio: 100 / 80; font-family: var(--f-texto); }
+.in-rede { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; }
+.in-fio { fill: none; stroke: #C5D2E8; stroke-width: 0.45; stroke-linecap: round; transition: stroke 0.3s ease, stroke-width 0.3s ease; }
+.in-fio.ativo { stroke: #2563EB; stroke-width: 0.7; stroke-dasharray: 1.6 1.2; animation: in-corre 0.8s linear infinite; }
+@keyframes in-corre { to { stroke-dashoffset: -2.8; } }
+.in-pacote { fill: #2563EB; stroke: #fff; stroke-width: 0.5; }
+.in-no { position: absolute; left: calc(var(--x) * 1%); top: calc(var(--y) / 80 * 100%); z-index: 2; display: inline-flex; align-items: center; gap: 1.4cqi; padding: 1.4cqi 2.2cqi 1.4cqi 1.4cqi; border-radius: 999px; background: #fff; color: #16181D; font: 700 2.5cqi var(--f-texto); white-space: nowrap; box-shadow: 0 0 0 1px #DCE4F2, 0 14px 28px -16px rgba(29, 78, 216, 0.45); transform: translate(-50%, -50%); transition: box-shadow 0.3s ease; }
+.in-no i { display: grid; place-items: center; width: 5cqi; height: 5cqi; border-radius: 50%; background: #E8EFFE; color: #1D4ED8; font-style: normal; }
+.in-no svg { width: 55%; height: 55%; }
+.in-no.recebe { box-shadow: 0 0 0 1px #2563EB, 0 0 0 1.2cqi rgba(37, 99, 235, 0.16), 0 14px 28px -16px rgba(29, 78, 216, 0.45); }
+/* o que sai de um sistema e o aviso que aparece no outro */
+.in-evento, .in-aviso { position: absolute; left: calc(var(--x) * 1%); top: calc(var(--y) / 80 * 100%); z-index: 3; display: none; align-items: center; gap: 1cqi; padding: 1cqi 1.8cqi; border-radius: 1.4cqi; font: 700 2.2cqi var(--f-texto); white-space: nowrap; }
+.in-evento { background: #16181D; color: #fff; transform: translate(-50%, -235%); }
+.in-aviso { background: #DCFCE7; color: #065F46; box-shadow: 0 10px 22px -12px rgba(6, 95, 70, 0.5); transform: translate(-50%, 115%); }
+.in-aviso svg { width: 2.4cqi; height: 2.4cqi; }
+.in-anima .in-evento, .in-anima .in-aviso { display: inline-flex; opacity: 0; transition: opacity 0.35s ease; }
+.in-anima .in-evento.on, .in-anima .in-aviso.on { opacity: 1; }
+
+
+/* ---------- Uma venda, do começo ao fim: o mapa do metrô ---------- */
+.in-venda { padding: var(--secao) 0; background: #0E1626; color: #fff; }
+.in-venda .sv-titulo em { color: #60A5FA; }
+.in-venda .sv-intro { color: #AFBAD0; }
+.in-mapa { --p: 1; position: relative; margin-top: clamp(40px, 6vw, 80px); }
+.in-trilho { position: absolute; left: 50%; top: var(--ini, 95px); height: var(--alt, calc(100% - 190px)); width: 6px; border-radius: 6px; background: #1E2A44; transform: translateX(-50%); }
+.in-trilho i { position: absolute; left: 0; top: 0; width: 100%; height: calc(var(--p) * 100%); border-radius: inherit; background: linear-gradient(#93C5FD, #2563EB); }
+.in-trem { position: absolute; left: 50%; top: calc(var(--ini, 95px) + var(--p) * var(--alt, calc(100% - 190px))); z-index: 2; width: 26px; height: 26px; border: 5px solid #2563EB; border-radius: 50%; background: #fff; box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.22); transform: translate(-50%, -50%); }
+.in-linha { margin: 0; padding: 0; list-style: none; }
+.in-estacao { display: grid; grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1fr); align-items: center; min-height: 190px; }
+.in-parada { grid-column: 2; justify-self: center; display: grid; place-items: center; width: 64px; height: 64px; border: 4px solid #60A5FA; border-radius: 50%; background: #13213D; color: #93C5FD; transition: border-color 0.4s ease, color 0.4s ease, background-color 0.4s ease; }
+.in-parada i { display: grid; place-items: center; font-style: normal; }
+.in-parada svg { width: 26px; height: 26px; }
+.in-estacao-texto { grid-row: 1; max-width: 380px; }
+.in-estacao:nth-child(odd) .in-estacao-texto { grid-column: 1; justify-self: end; text-align: right; }
+.in-estacao:nth-child(even) .in-estacao-texto { grid-column: 3; justify-self: start; }
+.in-estacao h3 { margin: 0; font: 800 clamp(24px, 2.4vw, 32px)/1.05 var(--f-display); font-stretch: 90%; letter-spacing: -0.02em; }
+.in-estacao p { margin: 10px 0 14px; color: #AFBAD0; font-size: 17px; line-height: 1.55; }
+.in-status { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: #DCFCE7; color: #065F46; font: 700 13px var(--f-texto); transition: background-color 0.4s ease, color 0.4s ease; }
+.in-status svg { width: 15px; height: 15px; }
+/* com o JS, a estação acende quando o trem passa por ela (sem JS fica tudo aceso) */
+.in-vivo .in-estacao:not(.passou) .in-parada { border-color: #1E2A44; background: #0E1626; color: #6B7894; }
+.in-vivo .in-estacao:not(.passou) .in-status { background: #18223A; color: #6B7894; }
+.in-fim { display: flex; justify-content: center; align-items: center; gap: 12px; margin: clamp(24px, 4vw, 48px) 0 0; color: #fff; font: 800 clamp(22px, 2.4vw, 32px) var(--f-display); font-stretch: 90%; letter-spacing: -0.02em; text-align: center; }
+.in-fim svg { flex: none; width: 30px; height: 30px; padding: 5px; border-radius: 50%; background: #34D399; color: #052e1f; }
+
+
+/* ---------- O que a gente conecta: de dois em dois ---------- */
+.in-pares-secao { padding: var(--secao) 0; background: #fff; color: var(--tinta); }
+.in-pares { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: clamp(32px, 5vw, 64px); }
+.in-par { padding: 24px; border-radius: 22px; background: #F6F8FC; box-shadow: inset 0 0 0 1px #E3E9F4; }
+.in-par-cabo { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 8px; margin-bottom: 22px; }
+.in-par-cabo > span { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border-radius: 999px; background: #fff; color: #16181D; font: 700 14px var(--f-texto); white-space: nowrap; box-shadow: 0 0 0 1px #DCE4F2; }
+.in-par-cabo i { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #E8EFFE; color: #1D4ED8; font-style: normal; }
+.in-par-cabo svg { width: 16px; height: 16px; }
+.in-par-cabo > svg { width: 100%; height: 22px; overflow: visible; }
+.in-par-cabo > svg path { fill: none; stroke: #2563EB; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 3 6; vector-effect: non-scaling-stroke; animation: in-corre-cabo 1.4s linear infinite; animation-delay: calc(var(--k) * -0.2s); }
+@keyframes in-corre-cabo { to { stroke-dashoffset: -18; } }
+.in-par h3 { margin: 0; font: 800 22px/1.1 var(--f-display); font-stretch: 90%; letter-spacing: -0.02em; }
+.in-par p { margin: 10px 0 0; color: var(--tinta-2); font-size: 16px; line-height: 1.6; }
+
+
+/* ---------- Perguntas ---------- */
+.in-perguntas { padding: var(--secao) 0; }
+.in-perguntas-grade { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.in-perguntas-grade > .sv-titulo { position: sticky; top: 120px; }
+.in-lista { display: grid; gap: 28px; }
+.in-pergunta { position: relative; padding-left: 28px; border-left: 2px solid #BFD0F0; }
+.in-pergunta::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #2563EB; box-shadow: 0 0 0 4px #F3F6FB; }
+.in-pergunta h3 { margin: 0; font: 700 20px/1.25 var(--f-texto); }
+.in-pergunta p { margin: 8px 0 0; color: var(--tinta-2); font-size: 17px; line-height: 1.6; }
+
+
+/* ---------- Fechamento: os dois sistemas se ligando ---------- */
+.in-final { background: #0E1626; color: #fff; }
+.in-final .sv-titulo em { color: #60A5FA; }
+.in-final .sv-final-texto p { color: #AFBAD0; }
+.in-tomada { display: inline-flex; align-items: center; margin-bottom: 28px; }
+.in-tomada i { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; background: #13213D; color: #93C5FD; box-shadow: 0 0 0 1px #24324F; font-style: normal; }
+.in-tomada svg { width: 26px; height: 26px; }
+.in-tomada b { position: relative; width: 110px; height: 3px; background: #1E2A44; }
+.in-tomada b::after { content: ""; position: absolute; inset: 0; background: #60A5FA; transform: scaleX(0); transform-origin: left; transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.in-tomada b::before { content: ""; position: absolute; left: 0; top: 50%; width: 9px; height: 9px; border-radius: 50%; background: #fff; opacity: 0; transform: translate(-50%, -50%); }
+.in-tomada.ligado b::after { transform: scaleX(1); }
+.in-tomada.ligado b::before { animation: in-dado 1.6s ease-in-out 0.8s infinite; }
+@keyframes in-dado { 0% { left: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1080px) {
+    .in-pares { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .in-perguntas-grade { grid-template-columns: minmax(0, 1fr); }
+    .in-perguntas-grade > .sv-titulo { position: static; }
+}
+@media (max-width: 760px) {
+    /* o mapa do metrô no celular: a linha à esquerda e as estações do lado */
+    .in-trilho, .in-trem { left: 32px; }
+    .in-estacao { grid-template-columns: 64px minmax(0, 1fr); column-gap: 18px; min-height: 0; padding: 22px 0; }
+    .in-parada { grid-column: 1; width: 56px; height: 56px; }
+    .in-estacao:nth-child(odd) .in-estacao-texto, .in-estacao:nth-child(even) .in-estacao-texto { grid-column: 2; justify-self: start; text-align: left; }
+    .in-pares { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+    .in-no { font-size: 3cqi; }
+    .in-evento, .in-aviso { font-size: 2.8cqi; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .in-fio.ativo, .in-par-cabo path, .in-tomada.ligado b::before { animation: none; }
+}
