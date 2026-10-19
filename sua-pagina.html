@@ -10,7 +10,8 @@
         // LGPD: o Analytics só grava cookies depois do "Aceitar" no aviso de cookies (a escolha fica no navegador)
         gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
         try { if (localStorage.getItem('movcode_cookies') === 'aceito') gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted' }); } catch (e) {}
-        gtag('config', 'G-1CKRK3S37W', { cookie_domain: 'none', cookie_flags: 'SameSite=Lax;Secure' });
+        // o cookie dura 400 dias, o máximo que os navegadores aceitam (sem isso o Firefox avisa que cortou a validade)
+        gtag('config', 'G-1CKRK3S37W', { cookie_domain: 'none', cookie_flags: 'SameSite=Lax;Secure', cookie_expires: 34560000 });
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
