@@ -2,8 +2,8 @@
    MovCode — 404
    A página sumiu num depósito escuro. O mouse (ou o toque) é a lanterna:
    a luz revela a parede de tijolo, a estante, as caixas e sete coisas
-   escondidas para achar. Interruptor na parede, botão de acender a luz e o
-   caminho de volta sempre à vista. Sem JS a luz fica acesa.
+   escondidas para achar e um interruptor na parede. Sem texto na tela: só
+   o botão de voltar no canto. Sem JS a luz fica acesa.
    A letra de mão do post-it e das caixas é a Caveat (só aqui).
    ========================================================================= */
 
@@ -20,10 +20,7 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    display: grid;
-    align-items: center;
     min-height: max(100svh, 640px);
-    padding: 112px 0 56px;
     color: var(--sobre-noite);
     transition: --forca 0.9s cubic-bezier(0.3, 1.5, 0.5, 1);
 }
@@ -36,8 +33,7 @@
 
 
 /* ---------- O depósito: parede de tijolo, rodapé e chão de tábua ---------- */
-/* no computador a parede é a seção inteira e as coisas ficam numa faixa de até 1500px no meio;
-   no celular o depósito é o bloco de baixo, depois do texto */
+/* a parede é a seção inteira e as coisas ficam numa faixa de até 1500px no meio */
 .l-tela, .l-fundo {
     --chao: 78%;
     --parede:
@@ -59,7 +55,7 @@ button.l-obj, .l-gato, .l-caneca { cursor: pointer; }
 .l-fundo button:focus-visible { outline: 2px dashed #FFE08A; outline-offset: 5px; border-radius: 6px; }
 
 /* a lâmpada do teto (apagada até alguém acender) */
-.l-lampada { position: absolute; left: 71%; top: 84px; width: calc(190px * var(--k)); height: 12px; margin-left: calc(-95px * var(--k)); }
+.l-lampada { position: absolute; left: 50%; top: 84px; width: calc(190px * var(--k)); height: 12px; margin-left: calc(-95px * var(--k)); }
 .l-lampada::before, .l-lampada::after { content: ""; position: absolute; bottom: 100%; width: 2px; height: 300px; background: #24262C; }
 .l-lampada::before { left: 18px; }
 .l-lampada::after { right: 18px; }
@@ -68,24 +64,24 @@ button.l-obj, .l-gato, .l-caneca { cursor: pointer; }
 
 /* teia no canto e a aranha que sobe quando a luz chega */
 .l-teia { position: absolute; right: 0; top: 66px; width: calc(150px * var(--k)); height: calc(150px * var(--k)); }
-.l-aranha { position: absolute; left: 80%; top: 66px; width: 2px; height: var(--fio, 96px); margin-left: -1px; background: linear-gradient(rgba(230, 230, 240, 0.5), rgba(230, 230, 240, 0.22)); transition: height 0.9s cubic-bezier(0.5, 0, 0.3, 1); }
+.l-aranha { position: absolute; left: 63%; top: 66px; width: 2px; height: var(--fio, 96px); margin-left: -1px; background: linear-gradient(rgba(230, 230, 240, 0.5), rgba(230, 230, 240, 0.22)); transition: height 0.9s cubic-bezier(0.5, 0, 0.3, 1); }
 .l-aranha.sobe { height: 16px; transition-duration: 0.35s; }
 .l-aranha i { position: absolute; left: 50%; bottom: -17px; width: 26px; height: 22px; margin-left: -13px; transform-origin: 50% -10px; animation: l-balanca 3.4s ease-in-out infinite alternate; }
 @keyframes l-balanca { from { transform: rotate(-9deg); } to { transform: rotate(9deg); } }
 
 /* o 404 pichado na parede */
-.l-404 { position: absolute; left: 64%; top: 39%; display: flex; color: #FF5A1F; font: 800 min(15vw, 30svh, 250px)/0.8 var(--f-display); font-stretch: 80%; letter-spacing: -0.02em; opacity: 0.88; text-shadow: 0 0 2px rgba(255, 90, 31, 0.7), 0 0 22px rgba(255, 90, 31, 0.25); transform: translate(-50%, -50%) rotate(-4deg); pointer-events: none; }
+.l-404 { position: absolute; left: 50%; top: 40%; display: flex; color: #FF5A1F; font: 800 min(15vw, 30svh, 250px)/0.8 var(--f-display); font-stretch: 80%; letter-spacing: -0.02em; opacity: 0.88; text-shadow: 0 0 2px rgba(255, 90, 31, 0.7), 0 0 22px rgba(255, 90, 31, 0.25); transform: translate(-50%, -50%) rotate(-4deg); pointer-events: none; }
 .l-404 span { position: relative; }
 .l-404 span::after { content: ""; position: absolute; left: 44%; top: 86%; width: 5px; height: var(--pinga); border-radius: 3px; background: currentColor; opacity: 0.8; }
 
 /* o post-it e o interruptor */
-.l-postit { --x: 52%; --y: 27%; --w: 96px; --h: 92px; display: grid; place-items: center; padding: 10px; background: #FDE68A; color: #4A3A10; box-shadow: 0 10px 14px -8px rgba(0, 0, 0, 0.6); transform: rotate(-5deg); font: 700 calc(21px * var(--k))/0.95 "Caveat", "Segoe Print", cursive; text-align: center; }
-.l-interruptor { --x: 49%; --y: 51%; --w: 30px; --h: 46px; border-radius: 6px; background: #D9D4CC; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25), 0 6px 10px -4px rgba(0, 0, 0, 0.6); }
+.l-postit { --x: 30%; --y: 27%; --w: 96px; --h: 92px; display: grid; place-items: center; padding: 10px; background: #FDE68A; color: #4A3A10; box-shadow: 0 10px 14px -8px rgba(0, 0, 0, 0.6); transform: rotate(-5deg); font: 700 calc(21px * var(--k))/0.95 "Caveat", "Segoe Print", cursive; text-align: center; }
+.l-interruptor { --x: 24%; --y: 52%; --w: 30px; --h: 46px; border-radius: 6px; background: #D9D4CC; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25), 0 6px 10px -4px rgba(0, 0, 0, 0.6); }
 .l-interruptor i { position: absolute; left: 50%; top: 50%; width: 10px; height: 18px; margin: -9px 0 0 -5px; border-radius: 3px; background: linear-gradient(#F4F1EC 50%, #BDB6AA 50%); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
 .l-interruptor[aria-pressed="true"] i { background: linear-gradient(#BDB6AA 50%, #F4F1EC 50%); }
 
 /* a estante de aço, com o gato na caixa lá em cima */
-.l-estante { --x: 91%; --y: calc(84% - 145px * var(--k)); --w: 200px; --h: 290px; border-inline: 7px solid #474D59; background: linear-gradient(#5B6270, #5B6270) 0 0 / 100% 7px no-repeat, linear-gradient(#5B6270, #5B6270) 0 34% / 100% 7px no-repeat, linear-gradient(#5B6270, #5B6270) 0 68% / 100% 7px no-repeat, linear-gradient(#5B6270, #5B6270) 0 100% / 100% 7px no-repeat, rgba(0, 0, 0, 0.18); }
+.l-estante { --x: 82%; --y: calc(84% - 145px * var(--k)); --w: 200px; --h: 290px; border-inline: 7px solid #474D59; background: linear-gradient(#5B6270, #5B6270) 0 0 / 100% 7px no-repeat, linear-gradient(#5B6270, #5B6270) 0 34% / 100% 7px no-repeat, linear-gradient(#5B6270, #5B6270) 0 68% / 100% 7px no-repeat, linear-gradient(#5B6270, #5B6270) 0 100% / 100% 7px no-repeat, rgba(0, 0, 0, 0.18); }
 .l-estante-moveis i { position: absolute; display: block; }
 .l-pasta { bottom: 66%; width: 13%; height: 26%; border-radius: 2px; background: var(--c); box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.2), inset 0 10px 0 rgba(255, 255, 255, 0.08); }
 .l-pasta:nth-child(1) { left: 8%; }
@@ -99,7 +95,7 @@ button.l-obj, .l-gato, .l-caneca { cursor: pointer; }
 @keyframes l-zzz { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
 
 /* a pilha de caixas com a caneca em cima */
-.l-caixas { --x: 77%; --y: calc(86% - 75px * var(--k)); --w: 150px; --h: 150px; }
+.l-caixas { --x: 68%; --y: calc(86% - 75px * var(--k)); --w: 150px; --h: 150px; }
 .l-caixas span { position: absolute; display: grid; place-items: center; border-radius: 2px; background: linear-gradient(90deg, transparent 45%, rgba(201, 162, 111, 0.55) 45% 55%, transparent 55%), #A27447; box-shadow: inset 0 4px 0 #86602F; color: #4A2F14; font: 700 calc(19px * var(--k))/1 "Caveat", "Segoe Print", cursive; }
 .l-caixas span:nth-child(1) { left: 0; bottom: 0; width: 100%; height: 44%; }
 .l-caixas span:nth-child(2) { left: 7%; bottom: 44%; width: 84%; height: 31%; background-color: #96693D; }
@@ -107,16 +103,16 @@ button.l-obj, .l-gato, .l-caneca { cursor: pointer; }
 .l-caneca { position: absolute; left: 52%; bottom: calc(100% - 2px); width: calc(40px * var(--k)); height: calc(40px * var(--k)); padding: 0; border: 0; background: none; }
 
 /* a caixa "frágil" com os dois bonequinhos do símbolo atrás */
-.l-dupla { --x: 62%; --y: calc(96% - 69px * var(--k)); --w: 170px; --h: 138px; }
+.l-dupla { --x: 47%; --y: calc(96% - 69px * var(--k)); --w: 170px; --h: 138px; }
 .l-dupla .d-bonecos { transition: transform 0.3s cubic-bezier(0.5, 0, 0.4, 1.3); }
 .l-dupla.escondida .d-bonecos { transform: translateY(52px); }
 .l-tela.l-fim .l-dupla .d-bonecos { animation: l-pula 0.5s cubic-bezier(0.3, 0, 0.5, 1) infinite alternate; }
 @keyframes l-pula { from { transform: translateY(0); } to { transform: translateY(-28px); } }
 
 /* a página perdida, a pilha e o rato */
-.l-pagina { --x: 48%; --y: 91%; --w: 70px; --h: 87px; }
+.l-pagina { --x: 33%; --y: 90%; --w: 70px; --h: 87px; }
 .l-pagina svg { transform: rotate(14deg); }
-.l-pilha { --x: 71%; --y: 94%; --w: 46px; --h: 22px; }
+.l-pilha { --x: 59%; --y: 94%; --w: 46px; --h: 22px; }
 .l-pilha svg { transform: rotate(-18deg); }
 .l-pilha.pego { visibility: hidden; }
 .l-rato { --x: var(--rx, 70%); --y: calc(83% - 14px * var(--k)); --w: 56px; --h: 28px; transition: left 0.7s cubic-bezier(0.45, 0, 0.25, 1); }
@@ -149,25 +145,9 @@ html:not(.l-js) .l-escuro, html:not(.l-js) .l-facho { display: none; }
 .l-gato.olhando .l-olho-gato, .l-dupla.olhando .l-olho-dupla, .l-rato.olhando .l-olho-rato { opacity: 1; }
 
 
-/* ---------- O texto (sempre à vista) ---------- */
-.l-conteudo { position: relative; z-index: 3; pointer-events: none; }
-.l-texto { max-width: 540px; pointer-events: auto; }
-.l-titulo { margin: 0; font-size: clamp(42px, 5.4vw, 78px); line-height: 0.95; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6); }
-.l-titulo em { color: var(--destaque-noite); font-style: normal; }
-.l-sub { max-width: 46ch; margin: 20px 0 0; color: var(--sobre-noite-2); font-size: clamp(17px, 1.3vw, 19px); line-height: 1.6; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.8); }
-.l-acoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-.l-jogo { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 22px; }
-.l-placar { margin: 0; color: var(--sobre-noite-2); font: 600 15px/1.3 var(--f-texto); }
-.l-placar b { color: #fff; font-variant-numeric: tabular-nums; }
-.l-tela.l-fim .l-placar b { color: var(--destaque-noite); }
-.l-luz { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 8px 16px; border: 1px solid var(--noite-linha); border-radius: var(--r-pill); background: transparent; color: #fff; font: 600 15px/1 var(--f-texto); cursor: pointer; transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
-.l-luz:hover { border-color: rgba(255, 255, 255, 0.5); }
-.l-luz svg { width: 18px; height: 18px; }
-.l-luz[aria-pressed="true"] { border-color: transparent; background: #FFF3C4; color: #16181D; }
-.l-atalhos { margin: 18px 0 0; color: var(--sobre-noite-2); font-size: 15px; line-height: 1.6; }
-.l-atalhos a { color: #fff; text-decoration-color: rgba(255, 255, 255, 0.35); text-underline-offset: 3px; }
-.l-atalhos a:hover { text-decoration-color: currentColor; }
-html:not(.l-js) .l-jogo { display: none; }
+/* ---------- O botão de voltar (sempre à vista, no canto) ---------- */
+.l-voltar { position: absolute; z-index: 3; left: var(--borda); bottom: 40px; }
+
 
 /* o balão de quando acha alguma coisa */
 .l-balao { position: absolute; z-index: 4; left: var(--bx, 50%); top: var(--by, 50%); width: max-content; max-width: 250px; margin: 0; padding: 10px 14px; border-radius: 14px; background: #fff; color: #16181D; font: 600 15px/1.4 var(--f-texto); box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.6); opacity: 0; visibility: hidden; pointer-events: none; transform: translate(-50%, calc(-100% - 14px)) scale(0.92); transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.3, 1.4, 0.5, 1), visibility 0s linear 0.25s; }
@@ -185,34 +165,25 @@ html:not(.l-js) .l-jogo { display: none; }
     .l-postit { --y: 21%; }
     .l-lampada { top: 92px; }
 }
-@media (max-width: 1180px) {
-    .l-texto { max-width: 440px; }
-    .l-titulo { font-size: clamp(42px, 5vw, 60px); }
-    .l-404 { left: 68%; font-size: min(13vw, 28svh); }
-    .l-postit { --x: 56%; --y: 22%; }
-    .l-interruptor { --x: 51%; }
-    .l-pagina { --x: 53%; }
-    .l-aranha { left: 84%; }
-}
 @media (max-width: 900px) {
-    .l-tela { --raio: 105px; align-items: start; min-height: 0; padding: 104px 0 500px; background: #0B0C10; }
-    .l-fundo { --chao: 72%; top: auto; left: 0; right: 0; height: 480px; background: var(--parede); }
-    .l-texto { max-width: none; }
-    .l-lampada { left: 50%; top: 8px; width: 130px; margin-left: -65px; }
-    .l-teia { top: 0; width: 100px; height: 100px; }
-    .l-aranha { left: 93%; top: 0; --fio: 70px; }
-    .l-404 { top: 25%; left: 50%; font-size: 104px; }
-    .l-postit { --x: 16%; --y: 16%; --w: 74px; --h: 70px; font-size: 17px; padding: 6px; }
-    .l-interruptor { --x: 8%; --y: 44%; --w: 24px; --h: 38px; }
+    .l-tela, .l-fundo { --chao: 74%; }
+    .l-tela { --raio: 105px; }
+    .l-voltar { left: 50%; bottom: 24px; transform: translateX(-50%); white-space: nowrap; }
+    .l-lampada { top: 96px; width: 130px; margin-left: -65px; }
+    .l-teia { top: 76px; width: 100px; height: 100px; }
+    .l-aranha { left: 86%; top: 76px; --fio: 80px; }
+    .l-404 { top: 34%; font-size: 120px; }
+    .l-postit { --x: 22%; --y: 19%; --w: 74px; --h: 70px; font-size: 17px; padding: 6px; }
+    .l-interruptor { --x: 10%; --y: 52%; --w: 24px; --h: 38px; }
     .l-interruptor i { width: 8px; height: 15px; margin: -7.5px 0 0 -4px; }
-    .l-estante { --x: 85%; --y: calc(78% - 100px); --w: 110px; --h: 200px; border-inline-width: 5px; }
-    .l-caixas { --x: 60%; --y: calc(80% - 48px); --w: 92px; --h: 96px; }
+    .l-estante { --x: 82%; --y: calc(78% - 100px); --w: 110px; --h: 200px; border-inline-width: 5px; }
+    .l-caixas { --x: 55%; --y: calc(79% - 48px); --w: 92px; --h: 96px; }
     .l-caixas span { font-size: 13px; }
     .l-caixas span:nth-child(3) { font-size: 11px; }
     .l-caneca { width: 30px; height: 30px; }
-    .l-dupla { --x: 25%; --y: calc(95% - 51px); --w: 126px; --h: 102px; }
-    .l-pagina { --x: 63%; --y: 91%; --w: 52px; --h: 64px; }
-    .l-pilha { --x: 88%; --y: 94%; --w: 38px; --h: 18px; }
+    .l-dupla { --x: 24%; --y: calc(87% - 51px); --w: 126px; --h: 102px; }
+    .l-pagina { --x: 62%; --y: 85%; --w: 52px; --h: 64px; }
+    .l-pilha { --x: 86%; --y: 87%; --w: 38px; --h: 18px; }
     .l-rato { --y: calc(78% - 12px); --w: 46px; --h: 23px; }
     .l-balao { max-width: 220px; font-size: 14px; }
 }

@@ -19,9 +19,7 @@
     const gato = $('[data-l-gato]');
     const rato = $('[data-l-rato]');
     const aranha = $('[data-l-aranha]');
-    const botaoLuz = $('[data-l-luz]');
     const interruptor = $('[data-l-interruptor]');
-    const placar = $('[data-l-achados]');
     const balao = $('[data-l-balao]');
     const aviso = $('[data-l-aviso]');
     const itens = [...tela.querySelectorAll('[data-achado]')];
@@ -42,7 +40,7 @@
     const pos = {};
     let regiao = { x0: 0, y0: 0, x1: 0, y1: 0 };
     // onde o rato pode se esconder, rente ao rodapé (em % da largura)
-    const tocas = () => (estreito ? [10, 46, 90] : [51, 72, 96]);
+    const tocas = () => (estreito ? [8, 46, 92] : [22, 56, 91]);
     let toca = 1;
     const xToca = (p) => pos.fundoX + (p / 100) * pos.fundoW;
     function medir() {
@@ -225,7 +223,6 @@
         const id = el.dataset.achado;
         const novo = !achados.has(id);
         achados.add(id);
-        placar.textContent = String(achados.size);
         if (id === 'pilha') { tela.classList.add('l-forte'); el.classList.add('pego'); }
         mostrarBalao(el, TEXTOS[id]);
         aviso.textContent = `${TEXTOS[id]} ${achados.size} de ${itens.length} coisas achadas.`;
@@ -246,8 +243,6 @@
     function acender(ligar) {
         aceso = ligar;
         tela.classList.toggle('acesa', ligar);
-        botaoLuz.setAttribute('aria-pressed', String(ligar));
-        botaoLuz.querySelector('span').textContent = ligar ? 'Apagar a luz' : 'Acender a luz';
         interruptor.setAttribute('aria-pressed', String(ligar));
         if (ligar && !calmo) {
             tela.classList.remove('piscando');
@@ -258,7 +253,6 @@
         reagir();
         if (!ligar) acordar();
     }
-    botaoLuz.addEventListener('click', () => acender(!aceso));
     interruptor.addEventListener('click', () => acender(!aceso));
 
     // o anel do cursor do site não vira bola laranja em cima das coisas do depósito (cobriria o que achou)
