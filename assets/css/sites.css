@@ -19,10 +19,13 @@
 /* Moldura do iPhone 17 Pro (SVG de 880×1832 com a tela vazada) por cima de tudo; o site de exemplo fica
    embaixo, no vão da tela, com os mesmos cantos. A proporção é sempre a do aparelho. */
 .s-celular, .s-tel { isolation: isolate; aspect-ratio: 880 / 1832; }
-/* a sombra segue o desenho do aparelho: a caixa é um pouco maior que a moldura do SVG (sobra transparente de
-   8 de 880 nos lados e 12 de 1832 em cima e embaixo), e uma sombra de caixa deixaria uma faixa clara em volta */
-.s-celular { filter: drop-shadow(0 26px 30px rgba(22, 24, 29, 0.32)); }
-.s-tel { filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6)); }
+/* a sombra fica numa camada do tamanho do desenho do aparelho: a caixa é um pouco maior que a moldura do SVG
+   (sobra transparente de 8 de 880 nos lados e 12 de 1832 em cima e embaixo), e a sombra na própria caixa
+   deixava uma faixa clara em volta. O canto da camada é mais redondo que o do aparelho, então ela nunca passa
+   da moldura. Sem filter: drop-shadow, que o Firefox redesenha a cada troca de cor e faz a tela piscar. */
+.s-celular::before, .s-tel::before { content: ""; position: absolute; inset: 1% 1.4%; z-index: -1; border-radius: 20% / 9.7%; pointer-events: none; }
+.s-celular::before { box-shadow: 0 26px 44px -16px rgba(22, 24, 29, 0.42); }
+.s-tel::before { box-shadow: 0 40px 70px -26px rgba(0, 0, 0, 0.8); }
 .s-celular::after, .s-tel::after { content: ""; position: absolute; inset: 0; z-index: 5; background: url(../images/iphone-17-pro.svg) center / 100% 100% no-repeat; pointer-events: none; }
 /* a tela passa um pouco por baixo da borda preta (o vão do SVG começa em 38×42 de 880×1832) e tem o canto
    mais fechado que o dele, que é contínuo como o da Apple: assim cobre o vão inteiro, sem fresta nos cantos */
