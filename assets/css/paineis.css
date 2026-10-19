@@ -104,7 +104,8 @@
 .pa-w-vendas svg { width: 100%; height: 56px; }
 .pa-w-vendas em { font-size: 13px; }
 .pa-metas { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
-.pa-metas li { display: grid; grid-template-columns: 74px minmax(0, 1fr) 38px; align-items: center; gap: 10px; font-weight: 600; }
+.pa-metas li { display: grid; grid-template-columns: 96px minmax(0, 1fr) 38px; align-items: center; gap: 10px; font-weight: 600; }
+.pa-metas span { white-space: nowrap; }
 .pa-metas i { height: 10px; border-radius: 999px; background: linear-gradient(90deg, var(--pa-tq) var(--v), #263044 var(--v)); }
 .pa-metas b { color: #fff; font-variant-numeric: tabular-nums; text-align: right; }
 .pa-conta { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
