@@ -2,8 +2,9 @@
    MovCode — /produtos
    O palco preso na tela: cada tela de rolagem é um estado (0 é a abertura,
    1 a 5 são os produtos). Da tela inicial o app abre de dentro do ícone;
-   de um produto para o outro o celular gira; voltando para a abertura o
-   app fecha de volta no ícone. Dentro de cada app um dedo vai tocando e a
+   de um produto para o outro o dedo arrasta a barrinha de baixo e os apps
+   trocam como no iPhone (o app vira um cartão, desliza e o próximo abre);
+   voltando para a abertura o app fecha de volta no ícone. Dentro de cada app um dedo vai tocando e a
    demonstração anda passo a passo, sem parar, enquanto ele está na tela.
    Com movimento reduzido tudo troca na hora e cada app já mostra o último
    passo.
@@ -17,7 +18,6 @@
 
     const palco = show.querySelector('[data-pr-palco]');
     const cena = show.querySelector('[data-pr-cena]');
-    const tel = show.querySelector('[data-pr-tel]');
     const caixa = show.querySelector('[data-pr-telas]');
     const telas = [...show.querySelectorAll('[data-pr-tela]')];
     const textos = [...show.querySelectorAll('[data-pr-texto]')];
@@ -28,7 +28,7 @@
     const icones = [...show.querySelectorAll('[data-pr-icone]')];
     const dedo = show.querySelector('[data-pr-toque]');
 
-    // posição de um elemento dentro da tela do celular, sem contar giros e inclinações
+    // posição de um elemento dentro da tela do celular, sem contar inclinações e animações
     const centro = (el) => {
         let x = el.offsetWidth / 2;
         let y = el.offsetHeight / 2;
@@ -158,15 +158,29 @@
         t.classList.remove('ativa', 'fechando');
         telas[0].classList.remove('voltando');
     }
-    async function virar(de, para) {
-        const classe = para > de ? 'virando' : 'virando-volta';
-        tel.classList.remove('virando', 'virando-volta');
-        void tel.offsetWidth;
-        tel.classList.add(classe);
-        await espera(450);
-        mostrarTela(para);
-        await espera(470);
-        tel.classList.remove(classe);
+    // a troca de apps do iPhone: o dedo arrasta a barrinha, o app encolhe num cartão, os cartões
+    // deslizam e o próximo abre
+    async function trocarApp(de, para) {
+        const frente = para > de;
+        const sai = telas[de];
+        const entra = telas[para];
+        dedo.style.left = `${caixa.offsetWidth * (frente ? 0.7 : 0.3)}px`;
+        dedo.style.top = `${caixa.offsetHeight - caixa.offsetWidth * 0.04}px`;
+        dedo.classList.remove('toca', 'arrasta', 'arrasta-volta');
+        void dedo.offsetWidth;
+        dedo.classList.add(frente ? 'arrasta' : 'arrasta-volta');
+        motores[para]?.zerar();
+        caixa.classList.add('trocando');
+        caixa.classList.toggle('volta', !frente);
+        caixa.dataset.tela = '0';
+        sai.classList.add(frente ? 'sai' : 'sai-volta');
+        entra.classList.add('ativa', frente ? 'entra' : 'entra-volta');
+        await espera(1000);
+        sai.classList.remove('ativa', 'sai', 'sai-volta');
+        entra.classList.remove('entra', 'entra-volta');
+        caixa.classList.remove('trocando', 'volta');
+        caixa.dataset.tela = String(para);
+        dedo.classList.remove('arrasta', 'arrasta-volta');
     }
     async function trocarTela() {
         if (ocupado) return;
@@ -178,7 +192,7 @@
             if (calmo) mostrarTela(para);
             else if (de === 0) await abrir(para);
             else if (para === 0) await fechar(de);
-            else await virar(de, para);
+            else await trocarApp(de, para);
             atual = para;
         }
         ocupado = false;
