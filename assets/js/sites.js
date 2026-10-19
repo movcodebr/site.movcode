@@ -70,7 +70,8 @@
     function aplicar(novo, animar) {
         tipo = novo;
         const t = TIPOS[tipo];
-        // a cor passa suave (as variáveis são registradas no CSS); os textos somem e voltam já trocados
+        // a cor passa suave (as variáveis são registradas no CSS); os blocos ficam, e só os textos e o ícone
+        // sobem e somem (trocando) e os novos entram de baixo (entrando), sem piscar a tela
         [['--s-ac', t.ac], ['--s-ac-suave', t.suave], ['--s-ac-texto', t.texto], ['--s-ac-on', t.on]].forEach(([k, v]) => topo.style.setProperty(k, v));
         const trocar = () => {
             todos('[data-titulo]', (el) => { el.textContent = t.titulo; });
@@ -80,7 +81,10 @@
             todos('[data-icone]', (el) => { el.innerHTML = ICONE(t.icone); });
             todos('[data-nome-site]', (el) => { el.textContent = t.nome; });
             todos('[data-letra]', (el) => { el.textContent = t.nome[0]; });
-            topo.classList.remove('trocando');
+            if (!topo.classList.contains('trocando')) return;
+            topo.classList.replace('trocando', 'entrando');
+            void topo.offsetWidth;
+            topo.classList.remove('entrando');
         };
         escreverEndereco(animar);
         if (animar && !calmo) { topo.classList.add('trocando'); setTimeout(trocar, 200); } else trocar();
@@ -98,6 +102,17 @@
     new IntersectionObserver(([item]) => { visivel = item.isIntersecting; girar(); }).observe(topo);
     document.addEventListener('visibilitychange', girar);
     setTimeout(() => escreverEndereco(true), 500);
+
+    // a cena inclina de leve para o lado do mouse
+    const cena = topo.querySelector('.s-cena');
+    if (cena && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        topo.addEventListener('pointermove', (ev) => {
+            const r = topo.getBoundingClientRect();
+            cena.style.setProperty('--mx', (((ev.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
+            cena.style.setProperty('--my', (((ev.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
+        });
+        topo.addEventListener('pointerleave', () => { cena.style.setProperty('--mx', '0'); cena.style.setProperty('--my', '0'); });
+    }
 
 })();
 
