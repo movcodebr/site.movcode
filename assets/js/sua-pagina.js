@@ -343,11 +343,11 @@
     let modo = telaGrande.matches ? 'pc' : 'cel';
     let editando = true;
     const podeEditar = () => editando;
-    // No computador, a versão celular fica num celular desenhado com a proporção de um de verdade
-    // (tela de 390×844 numa moldura de 410×864), que rola por dentro. Se a tela do computador for
-    // baixa, o aparelho inteiro diminui (--kc) para caber entre o alto da tela e a barra, sem achatar.
+    // No computador, a versão celular fica dentro da moldura do iPhone 17 Pro (tela de 390×848 numa
+    // moldura de 427×889), que rola por dentro. Se a tela do computador for baixa, o aparelho
+    // inteiro diminui (--kc) para caber entre o alto da tela e a barra, sem achatar.
     const rolaPorDentro = () => modo === 'cel' && telaGrande.matches;
-    const CEL = { largura: 410, altura: 864, cima: 12, baixo: 94 };
+    const CEL = { largura: 427, altura: 889, cima: 12, baixo: 94 };
     let kc = 1;
     function escalarCel() {
         if (!rolaPorDentro()) { kc = 1; tela.style.removeProperty('--kc'); tela.style.removeProperty('--cel-topo'); return; }
@@ -492,7 +492,7 @@
                     // na versão celular, quem rola é a janela da página (não o site)
                     const folga = preview.querySelector('.pv-top')?.offsetHeight || 0;
                     if (rolaPorDentro()) {
-                        // o aparelho pode estar encolhido (kc) e tem a moldura (clientTop) em volta da tela
+                        // o aparelho pode estar encolhido (kc)
                         const y = (alvo.getBoundingClientRect().top - preview.getBoundingClientRect().top) / kc - preview.clientTop + preview.scrollTop - folga;
                         preview.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
                     } else {

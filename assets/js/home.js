@@ -15,6 +15,8 @@
 
     const { gsap, ScrollTrigger } = window;
     gsap.registerPlugin(ScrollTrigger);
+    // as paginas internas usam este arquivo sem as pecas do topo da home: sem aviso de alvo vazio no console
+    gsap.config({ nullTargetWarn: false });
     html.classList.add('anima');
 
     const ponteiroFino = window.matchMedia('(pointer: fine)').matches;

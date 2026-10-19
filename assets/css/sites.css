@@ -1,7 +1,7 @@
 /* =========================================================================
    MovCode — /criacao-de-sites
-   Estrutura própria (não usa os blocos da home): topo claro com o site se
-   montando, anatomia de um site que vende (as partes acendem ao rolar),
+   Estrutura própria (não usa os blocos da home): topo claro em que o nome e
+   o tipo do negócio montam o site na hora, anatomia de um site que vende (as partes acendem ao rolar),
    dois jeitos de começar, perguntas abertas e o fechamento.
    O exemplo é a "Barbearia do João", o mesmo da /sua-pagina.
    ========================================================================= */
@@ -14,7 +14,7 @@
 .s-link:hover span { transform: translateX(4px); }
 
 /* Peças do site de exemplo, usadas no topo e na anatomia */
-.s-foto { position: relative; display: grid; place-items: center; overflow: hidden; color: #fff; background: radial-gradient(120% 90% at 85% 10%, rgba(255, 90, 31, 0.55), transparent 55%), radial-gradient(90% 80% at 10% 100%, rgba(255, 90, 31, 0.3), transparent 60%), #24252A; }
+.s-foto { position: relative; display: grid; place-items: center; overflow: hidden; color: #fff; background: radial-gradient(120% 90% at 85% 10%, color-mix(in srgb, var(--s-ac) 55%, transparent), transparent 55%), radial-gradient(90% 80% at 10% 100%, color-mix(in srgb, var(--s-ac) 30%, transparent), transparent 60%), #24252A; }
 .s-foto svg { width: 34%; max-width: 64px; opacity: 0.9; }
 /* Moldura do iPhone 17 Pro (SVG de 880×1832 com a tela vazada) por cima de tudo; o site de exemplo fica
    embaixo, no vão da tela, com os mesmos cantos. A proporção é sempre a do aparelho. */
@@ -25,62 +25,102 @@
 .s-cel-tela, .s-tel-tela { position: absolute; inset: 1.86% 3.41%; overflow: hidden; border-radius: 15.85% / 7.37%; background: #F6F5F2; }
 
 
-/* ---------- 1. Topo: claro, com o endereço digitando e o site se montando ---------- */
-.s-topo { padding: clamp(120px, 15svh, 160px) 0 var(--secao); background: var(--papel); color: var(--tinta); overflow: hidden; }
-.s-topo-grade { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
-.s-topo-sub { margin: 26px 0 34px; max-width: 44ch; font-size: clamp(17px, 1.45vw, 20px); line-height: 1.55; color: var(--tinta-2); text-wrap: pretty; }
+/* ---------- 1. Topo: o nome e o tipo do negócio montam o site na hora ---------- */
+/* a cor do tipo escolhido (sites.js troca) passa suave pelo título, pelo brilho e pelo site de exemplo */
+@property --s-ac { syntax: "<color>"; inherits: true; initial-value: #FF5A1F; }
+@property --s-ac-suave { syntax: "<color>"; inherits: true; initial-value: #FFE4D8; }
+@property --s-ac-texto { syntax: "<color>"; inherits: true; initial-value: #B53A0A; }
+@property --s-ac-on { syntax: "<color>"; inherits: true; initial-value: #1A0800; }
+.s-topo { --s-ac: #FF5A1F; --s-ac-suave: #FFE4D8; --s-ac-texto: #B53A0A; --s-ac-on: #1A0800; position: relative; isolation: isolate; padding: clamp(112px, 14svh, 150px) 0 clamp(64px, 8vw, 112px); background: var(--papel); color: var(--tinta); overflow: hidden; transition: --s-ac 0.6s ease, --s-ac-suave 0.6s ease, --s-ac-texto 0.6s ease, --s-ac-on 0.6s ease; }
+/* papel pontilhado, como uma mesa de trabalho, que some nas bordas */
+.s-topo::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(circle at 1px 1px, rgba(22, 24, 29, 0.13) 1px, transparent 0) 0 0 / 22px 22px; -webkit-mask-image: radial-gradient(ellipse 65% 85% at 72% 50%, #000 25%, transparent 78%); mask-image: radial-gradient(ellipse 65% 85% at 72% 50%, #000 25%, transparent 78%); pointer-events: none; }
+.s-topo .s-titulo em { color: var(--s-ac-texto); }
+/* o texto vira linhas da grade (display: contents) para, no celular, o aparelho entrar logo depois do subtítulo */
+.s-topo-grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-rows: 1fr auto auto auto auto 1fr; grid-template-areas: ". palco" "titulo palco" "sub palco" "teste palco" "acoes palco" ". palco"; column-gap: clamp(32px, 5vw, 72px); }
+.s-topo-texto { display: contents; }
+.s-topo .s-titulo { grid-area: titulo; }
+.s-topo-sub { grid-area: sub; margin: 22px 0 24px; max-width: 44ch; font-size: clamp(17px, 1.35vw, 19px); line-height: 1.55; color: var(--tinta-2); text-wrap: pretty; }
 
-.s-palco { position: relative; container-type: inline-size; padding: 0 0 8% 0; }
-.s-navegador { width: 88%; font-size: 1.9cqi; border-radius: 1.2em; background: #fff; box-shadow: 0 0 0 1px var(--linha), 0 40px 80px -40px rgba(22, 24, 29, 0.45); overflow: hidden; }
+/* o teste: o nome do negócio e o tipo */
+.s-teste { grid-area: teste; display: grid; gap: 10px; max-width: 520px; margin-bottom: 26px; }
+.s-teste-nome { color: var(--tinta); font: 600 15px var(--f-texto); }
+.s-campo { display: flex; align-items: center; gap: 10px; height: 56px; padding: 0 18px; border: 1.5px solid var(--linha); border-radius: 16px; background: #fff; box-shadow: 0 12px 28px -20px rgba(22, 24, 29, 0.4); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.s-campo:focus-within { border-color: var(--s-ac); box-shadow: 0 0 0 4px color-mix(in srgb, var(--s-ac) 18%, transparent); }
+.s-campo svg { flex: none; width: 18px; height: 18px; color: var(--tinta-2); }
+.s-campo input { flex: 1; min-width: 0; height: 100%; padding: 0; border: 0; outline: 0; background: transparent; color: var(--tinta); font: 600 17px var(--f-texto); }
+.s-campo input::placeholder { color: #8A8D94; font-weight: 500; opacity: 1; }
+.s-tipos { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.s-tipos button { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; padding: 0 12px; border: 1.5px solid var(--linha); border-radius: 999px; background: #fff; color: var(--tinta); font: 600 13.5px var(--f-texto); cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+.s-tipos button::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.s-tipos button:hover { border-color: var(--tinta-2); }
+.s-tipos button[aria-pressed="true"] { border-color: var(--tinta); background: var(--tinta); color: #fff; }
+.s-topo .s-acoes { grid-area: acoes; }
+
+/* palco: o navegador e o celular numa cena levemente inclinada, que acompanha o mouse (--mx e --my, de -1 a 1) */
+.s-palco { grid-area: palco; align-self: center; position: relative; container-type: inline-size; perspective: 1600px; }
+.s-palco::before { content: ""; position: absolute; inset: -4% -14% -4% 2%; z-index: -1; background: radial-gradient(closest-side, color-mix(in srgb, var(--s-ac) 30%, transparent), transparent); pointer-events: none; }
+.s-cena { position: relative; padding: 0 0 9%; transform: rotateY(calc(-11deg + var(--mx, 0) * 5deg)) rotateX(calc(5deg - var(--my, 0) * 4deg)); transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.s-navegador { width: 88%; font-size: 1.9cqi; border-radius: 1.2em; background: #fff; box-shadow: 0 0 0 1px var(--linha), 0 50px 90px -40px rgba(22, 24, 29, 0.5); overflow: hidden; }
 .s-barra { display: flex; align-items: center; gap: 1.2em; padding: 0.9em 1.1em; background: #ECECEF; border-bottom: 1px solid #DCDCE0; }
 .s-janela { display: flex; gap: 0.45em; }
 .s-janela i { width: 0.8em; height: 0.8em; border-radius: 50%; background: #FF5F57; }
 .s-janela i:nth-child(2) { background: #FEBC2E; }
 .s-janela i:nth-child(3) { background: #28C840; }
-.s-url { display: flex; align-items: center; gap: 0.6em; flex: 1; max-width: 22em; padding: 0.45em 0.9em; border-radius: 0.6em; background: #fff; color: #50535B; font: 500 1em var(--f-texto); }
-.s-url svg { width: 0.75em; height: 0.8em; flex: none; color: #8A8D94; }
-.s-url b { display: inline-block; overflow: hidden; white-space: nowrap; font-weight: 500; border-right: 1.5px solid transparent; }
-.s-pc { display: grid; gap: 1.3em; padding: 1.2em 1.6em 1.8em; background: #F6F5F2; color: #16181D; font-family: var(--f-texto); }
+.s-url, .s-dominio { display: flex; align-items: center; gap: 0.6em; min-width: 0; padding: 0.45em 0.9em; border-radius: 0.6em; background: #fff; color: #50535B; font: 500 1em var(--f-texto); }
+.s-url { flex: 1; max-width: 24em; }
+.s-url svg, .s-dominio svg { flex: none; width: 0.75em; height: 0.8em; color: #8A8D94; }
+.s-url b, .s-dominio b { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 500; }
+/* o endereço se digita a cada troca de tipo, com o cursor piscando */
+.s-url b.s-digitando, .s-dominio b.s-digitando { overflow: visible; border-right: 1.5px solid currentColor; animation: s-cursor 0.8s step-end infinite; }
+@keyframes s-cursor { 50% { border-right-color: transparent; } }
+.s-dominio { display: none; }
+.s-pc { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.3em; padding: 1.2em 1.6em 1.8em; background: #F6F5F2; color: #16181D; font-family: var(--f-texto); }
 .s-pc-topo { display: flex; align-items: center; gap: 1.1em; font-size: 0.95em; }
-.s-pc-topo i, .s-cel-topo i, .s-tel-topo i { display: grid; place-items: center; flex: none; width: 2em; height: 2em; border-radius: 0.6em; background: var(--laranja); color: var(--laranja-tinta-txt); font: 800 1em var(--f-display); font-style: normal; }
-.s-pc-topo b { margin-right: auto; font: 700 1.15em var(--f-display); letter-spacing: -0.02em; }
-.s-pc-topo span { color: #50535B; font-weight: 600; }
-.s-pc-topo em, .s-pc-abre em, .s-cel-abre em, .s-tel-abre em { display: inline-flex; align-items: center; justify-content: center; gap: 0.5em; padding: 0.7em 1.1em; border-radius: 999px; background: var(--laranja); color: var(--laranja-tinta-txt); font: 700 0.95em var(--f-texto); font-style: normal; white-space: nowrap; }
-.s-pc-topo em svg, .s-pc-abre em svg, .s-cel-abre em svg, .s-tel-abre em svg { width: 1.1em; height: 1.1em; }
+.s-pc-topo i, .s-cel-topo i, .s-tel-topo i { display: grid; place-items: center; flex: none; width: 2em; height: 2em; border-radius: 0.6em; background: var(--s-ac); color: var(--s-ac-on); font: 800 1em var(--f-display); font-style: normal; }
+.s-pc-topo b { margin-right: auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font: 700 1.15em var(--f-display); letter-spacing: -0.02em; }
+.s-pc-topo span { color: #50535B; font-weight: 600; white-space: nowrap; }
+.s-pc-topo em, .s-pc-abre em, .s-cel-abre em, .s-tel-abre em { display: inline-flex; align-items: center; justify-content: center; gap: 0.5em; padding: 0.7em 1.1em; border-radius: 999px; background: var(--s-ac); color: var(--s-ac-on); font: 700 0.95em var(--f-texto); font-style: normal; white-space: nowrap; }
+.s-pc-topo em svg, .s-pc-abre em svg, .s-cel-abre em svg, .s-tel-abre em svg { flex: none; width: 1.1em; height: 1.1em; }
 .s-pc-abre { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.6em; align-items: center; padding: 2em; border-radius: 1.6em; background: #111214; color: #fff; }
-.s-pc-abre small { display: block; color: #B7BAC2; font: 700 0.75em var(--f-texto); letter-spacing: 0.1em; text-transform: uppercase; }
-.s-pc-abre strong { display: block; margin: 0.4em 0 0.9em; font: 800 2.3em/1.02 var(--f-display); letter-spacing: -0.03em; }
+.s-pc-abre strong { display: block; margin: 0 0 0.9em; font: 800 2.3em/1.02 var(--f-display); letter-spacing: -0.03em; text-wrap: balance; }
 .s-pc-abre .s-foto { aspect-ratio: 4 / 3; border-radius: 1.2em; }
 .s-pc-precos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8em; }
 .s-pc-precos span { display: flex; justify-content: space-between; align-items: center; gap: 0.6em; padding: 0.9em 1em; border-radius: 0.9em; background: #fff; box-shadow: inset 0 0 0 1px #E4E2DD; font-size: 0.9em; }
-.s-pc-precos i { padding: 0.25em 0.6em; border-radius: 999px; background: #FFE4D8; font: 700 0.95em var(--f-texto); font-style: normal; white-space: nowrap; }
+.s-pc-precos b { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.s-pc-precos i, .s-cel-precos i { padding: 0.25em 0.6em; border-radius: 999px; background: var(--s-ac-suave); font: 700 0.95em var(--f-texto); font-style: normal; white-space: nowrap; }
 
-.s-celular { position: absolute; right: 0; bottom: 0; width: 30%; font-size: 1.55cqi; box-shadow: 0 40px 70px -30px rgba(0, 0, 0, 0.55); color: #16181D; font-family: var(--f-texto); }
-.s-cel-tela { display: grid; align-content: start; gap: 0.8em; padding: 2.9em 0.9em 1em; }
+.s-celular { position: absolute; right: 0; bottom: 0; width: 31%; font-size: 1.6cqi; box-shadow: 0 40px 70px -30px rgba(0, 0, 0, 0.55); color: #16181D; font-family: var(--f-texto); transform: translateZ(70px); }
+.s-cel-tela { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: 0.8em; padding: 2.9em 0.9em 1em; }
 .s-cel-topo { display: flex; align-items: center; gap: 0.6em; }
-.s-cel-topo b { font: 700 1em var(--f-display); letter-spacing: -0.02em; white-space: nowrap; }
+.s-cel-topo b { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font: 700 1em var(--f-display); letter-spacing: -0.02em; }
 .s-cel-abre { display: grid; gap: 0.8em; padding: 1.2em 1em; border-radius: 1.2em; background: #111214; color: #fff; }
 .s-cel-abre strong { font: 800 1.6em/1.02 var(--f-display); letter-spacing: -0.03em; }
 .s-celular .s-foto { aspect-ratio: 4 / 3; border-radius: 1em; }
+.s-cel-precos { display: grid; padding: 0 0.3em; }
+.s-cel-precos span { display: flex; justify-content: space-between; align-items: center; gap: 0.5em; padding: 0.7em 0; border-bottom: 1px solid #E4E2DD; font-size: 0.9em; }
 .s-cel-zap, .s-tel-zap { position: absolute; display: grid; place-items: center; border-radius: 50%; background: #1FAF54; color: #fff; box-shadow: 0 8px 18px -6px rgba(31, 175, 84, 0.7); }
 .s-cel-zap { right: 0.8em; bottom: 0.9em; width: 2.6em; height: 2.6em; }
 .s-cel-zap svg, .s-tel-zap svg { width: 55%; height: 55%; }
 
-/* entrada: o endereço se digita e as partes do site aparecem uma a uma */
+/* troca de tipo: os textos do site somem e voltam já com o tipo novo */
+.s-topo [data-troca] { transition: opacity 0.2s ease; }
+.s-topo.trocando [data-troca] { opacity: 0; }
+
+/* entrada: as partes do site aparecem uma a uma e o celular flutua de leve */
 @media (prefers-reduced-motion: no-preference) {
-    .s-url b { width: 17ch; animation: s-digita 1.3s steps(17, end) 0.5s both, s-cursor 0.8s step-end 0.5s 3; }
     .s-pc > *, .s-cel-tela > * { animation: s-surge 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-    .s-pc > :nth-child(1) { animation-delay: 1.9s; }
-    .s-pc > :nth-child(2) { animation-delay: 2.15s; }
-    .s-pc > :nth-child(3) { animation-delay: 2.4s; }
-    .s-cel-tela > :nth-child(1) { animation-delay: 2.7s; }
-    .s-cel-tela > :nth-child(2) { animation-delay: 2.85s; }
-    .s-cel-tela > :nth-child(3) { animation-delay: 3s; }
-    .s-cel-tela > :nth-child(4) { animation-delay: 3.3s; }
+    .s-pc > :nth-child(1) { animation-delay: 0.7s; }
+    .s-pc > :nth-child(2) { animation-delay: 0.85s; }
+    .s-pc > :nth-child(3) { animation-delay: 1s; }
+    .s-cel-tela > :nth-child(1) { animation-delay: 1.1s; }
+    .s-cel-tela > :nth-child(2) { animation-delay: 1.2s; }
+    .s-cel-tela > :nth-child(3) { animation-delay: 1.3s; }
+    .s-cel-tela > :nth-child(4) { animation-delay: 1.4s; }
+    .s-cel-tela > :nth-child(5) { animation-delay: 1.6s; }
+    .s-celular { animation: s-flutua 5s ease-in-out infinite alternate; }
 }
-@keyframes s-digita { from { width: 0; } }
-@keyframes s-cursor { 50% { border-right-color: #50535B; } }
 @keyframes s-surge { from { opacity: 0; transform: translateY(14px); } }
+@keyframes s-flutua { to { translate: 0 -10px; } }
 
 
 /* ---------- 2. Anatomia: os passos à esquerda, o celular preso à direita ---------- */
@@ -186,8 +226,10 @@
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 1080px) {
-    .s-topo-grade, .s-final-grade { grid-template-columns: minmax(0, 1fr); }
-    .s-palco { max-width: 640px; }
+    .s-final-grade { grid-template-columns: minmax(0, 1fr); }
+    /* topo empilhado: título, subtítulo, o site montado, o teste e os botões */
+    .s-topo-grade { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "titulo" "sub" "palco" "teste" "acoes"; }
+    .s-palco { width: 100%; max-width: 620px; margin: 4px auto 44px; }
     .s-caminhos-grade, .s-qa-grade { grid-template-columns: minmax(0, 1fr); }
 }
 /* anatomia em tela em pé: o aparelho fica preso no alto, com a altura de até 42% da tela e a mesma
@@ -209,15 +251,17 @@
 }
 @media (max-width: 640px) {
     .s-topo { padding-top: 112px; }
-    .s-navegador { width: 94%; font-size: 2.1cqi; }
-    .s-pc-topo span { display: none; }
-    .s-pc-precos { grid-template-columns: repeat(2, 1fr); }
-    .s-pc-precos span:nth-child(3) { display: none; }
-    .s-celular { width: 36%; font-size: 1.85cqi; }
+    /* no celular só o aparelho, maior e no meio, com o endereço flutuando na frente dele */
+    .s-navegador { display: none; }
+    .s-cena { padding: 46px 0 0; transform: rotateY(-10deg) rotateX(4deg); }
+    .s-celular { position: relative; width: min(62%, 250px); margin: 0 auto; font-size: min(3.2cqi, 12.9px); }
+    .s-dominio { display: flex; position: absolute; top: 0; left: 50%; max-width: 92%; font-size: 14px; padding: 9px 14px; border-radius: 999px; box-shadow: 0 0 0 1px var(--linha), 0 16px 30px -18px rgba(22, 24, 29, 0.5); transform: translateX(-50%) translateZ(110px); }
+    .s-palco { margin-bottom: 36px; }
     .s-passo h3 { font-size: 26px; }
     .s-passo p { margin-top: 10px; font-size: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
+    .s-cena, .s-topo [data-troca] { transition: none; }
     .s-passo { opacity: 1; }
     .s-tel-rola, .s-tel-rola::after, .s-busca, .s-mock [data-parte] { transition: none; }
     .s-mock[data-ativo="6"] .s-tel-zap { animation: none; }
