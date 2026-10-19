@@ -1,0 +1,223 @@
+/* =========================================================================
+   MovCode — telas de Em breve do ForBarber, do ForCondom e do Pratuca
+   Uma tela só por app, com as cores, a fonte e a marca de cada um (as
+   variáveis --p-* das classes .h-marca-* da home) e uma cena animada:
+   o poste de barbeiro girando no chão quadriculado, o condomínio com as
+   janelas acendendo e os vizinhos anunciando, a cozinha com as comandas
+   no trilho e a marmita no fogo. A cena acompanha o mouse (--mx/--my e
+   --f vêm do embreve.js) e cada uma tem um toque escondido.
+   ========================================================================= */
+
+.eb { position: relative; isolation: isolate; display: grid; align-items: center; min-height: 100svh; padding: 112px 0 56px; overflow: hidden; background-color: var(--p-fundo); color: var(--p-texto); }
+.eb::before { content: none; }
+.eb-grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.eb-so-leitor { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.eb-marca { display: inline-flex; align-items: center; gap: 12px; margin: 0; font: 700 30px/1 var(--p-fonte); }
+.eb-icone { display: block; flex: none; width: 48px; height: 48px; border-radius: 13px; }
+.eb-titulo { margin: clamp(16px, 3svh, 30px) 0 0; font-family: var(--p-fonte); font-size: clamp(72px, min(10vw, 21svh), 132px); line-height: 0.86; }
+.eb-titulo em { font-style: normal; }
+.eb-frase { max-width: 18ch; margin: clamp(16px, 3svh, 28px) 0 0; font: 700 clamp(26px, 2.5vw, 38px)/1.1 var(--p-fonte); text-wrap: balance; }
+.eb-frase em { font-style: normal; }
+.eb-descricao { max-width: 44ch; margin: 14px 0 0; color: var(--p-texto-2); font-size: clamp(16px, 1.3vw, 18px); line-height: 1.55; text-wrap: pretty; }
+.eb-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; margin-top: clamp(22px, 4svh, 36px); }
+.eb .btn-acao { background: var(--p-botao); color: var(--p-botao-txt); }
+.eb .btn-acao:hover { background: var(--p-botao-hover); }
+.eb :focus-visible { outline-color: var(--p-foco); }
+.eb-link { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 3px; border-bottom: 1.5px solid currentColor; color: inherit; font: 600 16px var(--f-texto); text-decoration: none; }
+.eb-link svg, .eb-link span { width: 1em; height: 1em; transition: transform 0.25s ease; }
+.eb-link:hover svg, .eb-link:hover span { transform: translateX(4px); }
+.eb-arte { position: relative; display: grid; place-items: center; min-height: min(560px, calc(100svh - 168px)); }
+.eb-arte svg { flex: none; }
+/* as peças da cena andam com o mouse, cada uma numa profundidade (--f) */
+[data-eb-fundo] { translate: calc(var(--mx, 0) * var(--f, 0) * 12px) calc(var(--my, 0) * var(--f, 0) * 9px); }
+.eb-chao { display: none; }
+
+/* a chegada: o texto sobe em sequência e a cena cresce */
+@media (prefers-reduced-motion: no-preference) {
+    .eb-texto > * { animation: eb-sobe 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .eb-texto > :nth-child(2) { animation-delay: 0.08s; }
+    .eb-texto > :nth-child(3) { animation-delay: 0.16s; }
+    .eb-texto > :nth-child(4) { animation-delay: 0.24s; }
+    .eb-texto > :nth-child(5) { animation-delay: 0.32s; }
+    .eb-arte { animation: eb-chega 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both; }
+}
+@keyframes eb-sobe { from { opacity: 0; transform: translateY(36px); } }
+@keyframes eb-chega { from { opacity: 0; transform: translateY(50px) scale(0.94); } }
+@keyframes eb-boia { 50% { transform: translateY(-12px); } }
+
+
+/* ---------- ForBarber: marinho, marfim e vinho, o poste girando no chão quadriculado ---------- */
+.eb-forbarber { --p-botao: #9B2730; --p-botao-txt: #F4EFE6; --p-botao-hover: #B3323C; background: radial-gradient(55% 70% at 76% 46%, rgba(155, 39, 48, 0.3), transparent 70%), radial-gradient(50% 60% at 0% 100%, rgba(47, 74, 138, 0.26), transparent 70%), #0B1220; }
+/* o piso preto e branco das barbearias, em perspectiva e sumindo no fundo */
+.eb-forbarber .eb-chao { position: absolute; left: -30%; right: -30%; bottom: -2%; z-index: -1; display: block; height: 52%; background: repeating-conic-gradient(rgba(244, 239, 230, 0.09) 0 25%, transparent 0 50%) 0 0 / 92px 92px; transform: perspective(620px) rotateX(64deg); transform-origin: 50% 100%; -webkit-mask-image: linear-gradient(transparent, #000 75%); mask-image: linear-gradient(transparent, #000 75%); }
+.eb-forbarber .eb-marca { font-size: 40px; font-weight: 600; }
+.eb-ic-poste { display: grid; place-items: center; background: #0B1220; box-shadow: inset 0 0 0 1px rgba(244, 239, 230, 0.22); }
+.eb-ic-poste i { width: 24%; height: 64%; border-radius: 99px; background: repeating-linear-gradient(-45deg, #9B2730 0 3px, #F4EFE6 3px 6px, #2F4A8A 6px 9px, #F4EFE6 9px 12px); box-shadow: 0 0 0 1.5px #F4EFE6; }
+.eb-forbarber .eb-titulo { font-size: clamp(76px, min(11vw, 22svh), 160px); font-weight: 700; letter-spacing: -0.02em; }
+.eb-forbarber .eb-titulo em { color: #D0646B; font-style: italic; }
+.eb-forbarber .eb-frase { font-size: clamp(30px, 3vw, 46px); font-weight: 600; line-height: 1; }
+.eb-forbarber .eb-frase em { color: #D0646B; font-style: italic; }
+/* a luz que cai de cima no poste */
+.eb-luz { position: absolute; top: -30%; left: 50%; z-index: 0; width: 520px; height: 135%; margin-left: -260px; background: linear-gradient(rgba(244, 239, 230, 0.14), rgba(244, 239, 230, 0) 78%); clip-path: polygon(43% 0, 57% 0, 100% 100%, 0 100%); pointer-events: none; }
+.eb-poste { position: relative; z-index: 1; display: grid; justify-items: center; cursor: pointer; }
+.eb-poste-bola { position: relative; z-index: 2; width: 46px; height: 46px; margin-bottom: -8px; border-radius: 50%; background: radial-gradient(circle at 34% 30%, #FFFFFF, #C9CED8 38%, #6B7385 72%, #2E3442); }
+.eb-poste-tampa { position: relative; z-index: 2; width: 156px; height: 36px; border-radius: 20px 20px 8px 8px; background: linear-gradient(90deg, #4A5060, #DDE1E8 32%, #FFFFFF 42%, #9AA1B0 70%, #3A4050); box-shadow: 0 8px 14px rgba(0, 0, 0, 0.35); }
+.eb-poste-tampa-baixo { border-radius: 8px 8px 20px 20px; box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.25); }
+.eb-poste-vidro { position: relative; width: 118px; height: clamp(230px, 42svh, 400px); margin: -4px 0; overflow: hidden; background: #F4EFE6; box-shadow: 0 0 100px -6px rgba(208, 100, 107, 0.55); }
+/* as listras descem uma volta inteira e recomeçam no mesmo lugar: parece que o poste gira */
+.eb-poste-listras { position: absolute; left: 0; right: 0; top: -140px; bottom: -140px; background: repeating-linear-gradient(-45deg, #9B2730 0 26px, #F4EFE6 26px 46px, #2F4A8A 46px 72px, #F4EFE6 72px 92px); animation: eb-gira 1.8s linear infinite; }
+.eb-poste.rapido .eb-poste-listras { animation-duration: 0.4s; }
+@keyframes eb-gira { to { transform: translateY(130.11px); } }
+/* o vidro redondo: sombra nas bordas e o brilho de cima a baixo */
+.eb-poste-vidro::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11, 18, 32, 0.6), rgba(11, 18, 32, 0.12) 22%, rgba(255, 255, 255, 0.55) 36%, rgba(255, 255, 255, 0) 50%, rgba(11, 18, 32, 0.14) 74%, rgba(11, 18, 32, 0.62)); }
+.eb-poste-base { width: 74px; height: 20px; border-radius: 0 0 12px 12px; background: linear-gradient(90deg, #3A4050, #C9CED8 40%, #6B7385); }
+.eb-poste::after { content: ""; position: absolute; left: 50%; bottom: -26px; width: 240px; height: 30px; margin-left: -120px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.55), transparent); z-index: -1; }
+.eb-flutua { position: absolute; z-index: 2; display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 16px; background: #111A2C; color: #F4EFE6; box-shadow: 0 24px 40px -18px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(244, 239, 230, 0.12); font: 14px/1.3 var(--f-texto); animation: eb-boia 6s ease-in-out infinite; }
+.eb-flutua b { display: block; font: 700 19px/1.1 var(--p-fonte); }
+.eb-flutua small { display: block; color: rgba(244, 239, 230, 0.68); font-size: 13px; }
+.eb-flutua-a { top: 12%; left: 0; }
+.eb-flutua-b { right: 0; top: 46%; animation-delay: -3s; }
+.eb-flutua-c { bottom: 10%; left: 4%; animation-delay: -1.5s; }
+.eb-ok { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 50%; background: #9B2730; }
+.eb-ok-azul { background: #2F4A8A; }
+.eb-ok svg { width: 18px; height: 18px; stroke-width: 2.6; }
+.eb-hora { flex: none; padding: 8px 10px; border-radius: 10px; background: rgba(155, 39, 48, 0.3); color: #F0C3C6; font: 700 14px/1 var(--f-mono); }
+
+
+/* ---------- ForCondom: creme e laranja queimado, o condomínio ---------- */
+.eb-forcondom { --p-botao: #C2410C; --p-botao-txt: #FFFFFF; --p-botao-hover: #9A3412; background: radial-gradient(55% 60% at 80% 30%, rgba(194, 65, 12, 0.12), transparent 70%), linear-gradient(#FBF4EA, #FAF7F2 60%); }
+.eb-forcondom .eb-marca { font-size: 32px; letter-spacing: -0.035em; }
+.eb-forcondom .eb-titulo { font-weight: 800; letter-spacing: -0.065em; }
+.eb-forcondom .eb-titulo em { color: #C2410C; }
+.eb-forcondom .eb-frase { letter-spacing: -0.04em; }
+.eb-forcondom .eb-frase em { color: #C2410C; }
+.eb-predio { position: relative; z-index: 1; width: auto; height: min(500px, calc(100svh - 200px)); max-width: 100%; overflow: visible; }
+.eb-predio-fundo { fill: #F1E6D8; }
+.eb-predio-janela-fundo { fill: #E8DAC8; }
+.eb-predio-corpo { fill: #FFFFFF; stroke: #E8E1D6; stroke-width: 2; }
+.eb-predio-teto, .eb-predio-porta, .eb-toldo { fill: #C2410C; }
+.eb-caixa rect { fill: #F4EEE6; stroke: #D9CFC2; stroke-width: 2; }
+.eb-caixa path, .eb-antena { fill: none; stroke: #B8AC9C; stroke-width: 3; stroke-linecap: round; }
+.eb-planta rect { fill: #C2410C; }
+.eb-planta circle { fill: #7FB77E; }
+.eb-arvore rect { fill: #9C7A5B; }
+.eb-arvore circle { fill: #8CC08A; }
+.eb-arvore circle:nth-child(3) { fill: #7FB77E; }
+.eb-calcada { fill: #E8E1D6; }
+/* as janelas acendem e apagam cada uma no seu tempo; com o mouse (ou um toque) acendem na hora */
+.eb-janela { fill: #F4EEE6; cursor: pointer; animation: eb-luz 7.7s ease-in-out infinite; animation-delay: calc(var(--d) * -1); transition: fill 0.2s ease; }
+.eb-janela:hover, .eb-janela.acesa { fill: #FDBA74; animation: none; }
+@keyframes eb-luz { 0%, 38% { fill: #F4EEE6; } 46%, 84% { fill: #FDBA74; } 92%, 100% { fill: #F4EEE6; } }
+.eb-nuvem { position: absolute; z-index: 0; width: 120px; height: 38px; border-radius: 30px; background: #FFFFFF; box-shadow: 26px -16px 0 4px #FFFFFF, 60px -4px 0 2px #FFFFFF; opacity: 0.95; animation: eb-nuvem 22s ease-in-out infinite alternate; }
+.eb-nuvem-a { top: 8%; left: 2%; }
+.eb-nuvem-b { top: 30%; right: -2%; scale: 0.7; animation-duration: 28s; animation-delay: -9s; }
+@keyframes eb-nuvem { to { transform: translateX(46px); } }
+.eb-balao { position: absolute; z-index: 2; display: flex; align-items: center; gap: 10px; width: max-content; max-width: 250px; padding: 10px 14px 10px 10px; border: 1px solid #EFE8DD; border-radius: 16px; background: #FFFFFF; box-shadow: 0 24px 40px -20px rgba(31, 27, 22, 0.35); font: 14px/1.25 var(--p-fonte); pointer-events: none; animation: eb-balao 9s ease-in-out infinite both; }
+.eb-balao::after { content: ""; position: absolute; bottom: -7px; width: 14px; height: 14px; border-right: 1px solid #EFE8DD; border-bottom: 1px solid #EFE8DD; background: #FFFFFF; transform: rotate(45deg); }
+.eb-balao b { display: block; font-weight: 600; letter-spacing: -0.02em; }
+.eb-balao small { display: block; color: #6B635A; font-size: 12px; }
+.eb-balao em { margin-left: 6px; font-style: normal; font-weight: 700; white-space: nowrap; }
+.eb-balao-foto { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 11px; background: var(--c); color: #1F1B16; }
+.eb-balao-foto svg { width: 21px; height: 21px; }
+.eb-balao-a { top: 6%; left: 4%; }
+.eb-balao-a::after { left: 68%; }
+.eb-balao-b { top: calc(50% - 120px); right: 0; animation-delay: 3s; }
+.eb-balao-b::after { left: 22%; }
+.eb-balao-c { top: 46%; left: 0; animation-delay: 6s; }
+.eb-balao-c::after { left: 74%; }
+@keyframes eb-balao { 0% { opacity: 0; transform: translateY(14px) scale(0.92); } 6%, 42% { opacity: 1; transform: none; } 50%, 100% { opacity: 0; transform: translateY(-10px) scale(0.96); } }
+
+
+/* ---------- Pratuca: o laranja da marca, a cozinha e a marmita no fogo ---------- */
+.eb-pratuca { --p-botao: #29231F; --p-botao-txt: #FFF3E5; --p-botao-hover: #3D332C; --p-linha: rgba(41, 35, 31, 0.4); background: radial-gradient(50% 55% at 74% 60%, rgba(255, 243, 229, 0.5), transparent 70%), #F28C38; }
+/* o azulejo da parede da cozinha, mais forte do lado da cena */
+.eb-pratuca::before { content: ""; position: absolute; inset: 0; z-index: -1; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cpath d='M0 1H72M0 37H72M1 0V36M37 36V72' fill='none' stroke='rgba(41,35,31,0.08)' stroke-width='2'/%3E%3C/svg%3E"); -webkit-mask-image: linear-gradient(90deg, transparent 25%, #000 70%); mask-image: linear-gradient(90deg, transparent 25%, #000 70%); }
+.eb-pratuca .eb-marca { gap: 10px; font-size: 36px; letter-spacing: -0.025em; }
+.eb-ic-pratuca { width: 54px; height: auto; border-radius: 0; }
+.eb-pratuca .eb-titulo { font-weight: 800; letter-spacing: -0.06em; }
+.eb-pratuca .eb-titulo em { color: #FFF3E5; }
+.eb-pratuca .eb-frase { letter-spacing: -0.04em; }
+.eb-pratuca .eb-frase em { color: #FFF3E5; }
+.eb-arte-marmita { align-content: end; }
+/* as comandas dos pedidos penduradas no trilho, balançando */
+.eb-trilho { position: absolute; top: 2%; left: 0; right: 0; z-index: 3; display: flex; justify-content: space-between; padding: 0 2%; }
+.eb-trilho::before { content: ""; position: absolute; top: 0; left: -2%; right: -2%; height: 10px; border-radius: 5px; background: linear-gradient(#F4EEE6, #9AA1B0); box-shadow: 0 6px 12px -6px rgba(41, 35, 31, 0.5); }
+.eb-comanda { --z: 6px; position: relative; display: grid; gap: 3px; width: 168px; margin-top: 4px; padding: 18px 13px 20px; background: #FFF8EF; color: #29231F; box-shadow: 0 18px 26px -18px rgba(41, 35, 31, 0.6); font: 13px/1.3 var(--f-texto); transform-origin: 50% 0; animation: eb-balanca 4.2s ease-in-out infinite; -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / calc(2 * var(--z)) 100%; mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / calc(2 * var(--z)) 100%; }
+.eb-comanda-1 { animation-delay: -2.1s; }
+@keyframes eb-balanca { 0%, 100% { transform: rotate(2.5deg); } 50% { transform: rotate(-2.5deg); } }
+.eb-prendedor { position: absolute; top: 0; left: 50%; width: 28px; height: 12px; margin-left: -14px; border-radius: 0 0 4px 4px; background: #9AA1B0; }
+.eb-comanda small { display: flex; align-items: center; justify-content: space-between; color: #7A6A5E; font: 600 12px/1 var(--f-mono); }
+.eb-comanda small span { display: inline-flex; align-items: center; gap: 4px; padding: 3px 7px; border-radius: 99px; background: #DCF8C6; color: #1F7A3E; font: 700 10px/1 var(--f-texto); }
+.eb-comanda small svg { width: 11px; height: 11px; }
+.eb-comanda b { margin-top: 6px; font: 600 15px/1.2 var(--p-fonte); }
+.eb-comanda > span { color: #7A6A5E; font-size: 12px; }
+.eb-comanda em { margin-top: 6px; padding-top: 6px; border-top: 1.5px dashed rgba(41, 35, 31, 0.2); font-style: normal; font-weight: 700; text-align: right; }
+.eb-marmita { position: relative; z-index: 1; display: grid; justify-items: center; width: min(320px, 76%); margin-top: min(150px, 19svh); cursor: pointer; }
+.eb-vapor { width: 50%; height: auto; margin-bottom: -18px; overflow: visible; fill: none; stroke: #FFF3E5; stroke-width: 9; stroke-linecap: round; }
+.eb-vapor path { opacity: 0; transform-box: fill-box; transform-origin: 50% 100%; animation: eb-vapor 3.2s ease-in infinite; }
+.eb-vapor path:nth-child(2) { animation-delay: 1s; }
+.eb-vapor path:nth-child(3) { animation-delay: 2.1s; }
+@keyframes eb-vapor { 0% { opacity: 0; transform: translateY(26px) scaleY(0.7); } 30% { opacity: 0.85; } 100% { opacity: 0; transform: translateY(-34px) scaleY(1.1); } }
+/* a tampa com o chapéu da marca de puxador, pulando de tempos em tempos (e no clique) */
+.eb-tampa { position: relative; z-index: 2; display: grid; justify-items: center; width: 104%; animation: eb-tampa 2.6s ease-in-out infinite; transform-origin: 30% 100%; }
+.eb-tampa svg { width: min(84px, 11svh); height: auto; margin-bottom: -12px; }
+.eb-tampa::after { content: ""; width: 100%; height: 40px; border-radius: 30px 30px 10px 10px; background: linear-gradient(#4A3E35, #29231F); box-shadow: inset 0 3px 0 rgba(255, 243, 229, 0.12); }
+@keyframes eb-tampa { 0%, 56%, 100% { transform: none; } 62% { transform: translateY(-18px) rotate(-5deg); } 68% { transform: none; } 74% { transform: translateY(-9px) rotate(3deg); } 80% { transform: none; } }
+.eb-marmita.puf .eb-tampa { animation: eb-tampa-puf 0.9s cubic-bezier(0.3, 1.4, 0.5, 1); }
+.eb-marmita.puf .eb-vapor path { animation: eb-vapor-puf 1s ease-out; }
+@keyframes eb-tampa-puf { 30% { transform: translateY(-60px) rotate(-14deg); } 60% { transform: translateY(0) rotate(4deg); } 80% { transform: translateY(-10px) rotate(-2deg); } }
+@keyframes eb-vapor-puf { 0% { opacity: 0; transform: translateY(30px) scale(0.6); } 25% { opacity: 1; } 100% { opacity: 0; transform: translateY(-70px) scale(1.4); } }
+.eb-pote { position: relative; width: 100%; height: min(160px, 20svh); margin-top: -4px; border-radius: 6px 6px 50px 50px; background: linear-gradient(90deg, #1E1915, #3D332C 30%, #4A3E35 42%, #29231F 75%, #1A1512); }
+.eb-pote::before, .eb-pote::after { content: ""; position: absolute; top: 26px; width: 34px; height: 22px; border: 8px solid #29231F; }
+.eb-pote::before { right: 100%; margin-right: -6px; border-right: 0; border-radius: 12px 0 0 12px; }
+.eb-pote::after { left: 100%; margin-left: -6px; border-left: 0; border-radius: 0 12px 12px 0; }
+.eb-pote i { position: absolute; left: 10%; right: 10%; top: 50px; height: 12px; border-radius: 6px; background: #F28C38; opacity: 0.9; }
+.eb-fogo { display: flex; justify-content: center; gap: 14px; width: 70%; margin-top: 14px; padding-bottom: 12px; border-bottom: 10px solid #29231F; border-radius: 0 0 8px 8px; }
+.eb-fogo i { width: 24px; height: 36px; border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%; background: radial-gradient(circle at 50% 72%, #FFF3E5 0 22%, #FFD08A 46%, #E2541C 86%); transform-origin: 50% 100%; animation: eb-chama 0.5s ease-in-out infinite alternate; }
+.eb-fogo i:nth-child(2) { animation-delay: -0.2s; height: 42px; }
+.eb-fogo i:nth-child(3) { animation-delay: -0.35s; height: 46px; }
+.eb-fogo i:nth-child(4) { animation-delay: -0.1s; height: 42px; }
+.eb-fogo i:nth-child(5) { animation-delay: -0.3s; }
+@keyframes eb-chama { from { transform: scaleY(0.82) scaleX(1.05); } to { transform: scaleY(1.08) scaleX(0.94); } }
+
+
+/* ---------- Celular: o texto em cima e a cena embaixo ---------- */
+@media (max-width: 900px) {
+    .eb { padding: 104px 0 44px; }
+    .eb-grade { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+    .eb-titulo, .eb-forbarber .eb-titulo { font-size: clamp(60px, 18vw, 120px); }
+    .eb-marca { font-size: 24px; }
+    .eb-icone { width: 40px; height: 40px; border-radius: 11px; }
+    .eb-forbarber .eb-marca { font-size: 32px; }
+    .eb-pratuca .eb-marca { font-size: 28px; }
+    .eb-ic-pratuca { width: 44px; }
+    .eb-frase { font-size: clamp(24px, 6.4vw, 32px); }
+    .eb-forbarber .eb-frase { font-size: clamp(28px, 8vw, 40px); }
+    .eb-arte { min-height: 440px; }
+    .eb-forbarber .eb-chao { height: 34%; }
+    .eb-poste-vidro { width: 100px; height: 260px; }
+    .eb-poste-tampa { width: 134px; }
+    .eb-flutua { padding: 10px 12px; font-size: 13px; }
+    .eb-flutua b { font-size: 17px; }
+    .eb-flutua-a { top: 6%; }
+    .eb-flutua-b { top: auto; bottom: 22%; }
+    .eb-flutua-c { display: none; }
+    .eb-luz { top: -6%; height: 112%; }
+    .eb-predio { height: 420px; }
+    .eb-balao { max-width: 220px; font-size: 13px; }
+    .eb-comanda { width: 146px; padding: 16px 11px 18px; }
+    .eb-marmita { width: min(270px, 72%); margin-top: 170px; }
+    .eb-pote { height: 130px; }
+}
+@media (max-width: 380px) {
+    .eb-comanda-1 { display: none; }
+    .eb-trilho { justify-content: center; }
+}
+
+/* ---------- Movimento reduzido: a cena parada, os balões todos à vista ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .eb-poste-listras, .eb-janela, .eb-flutua, .eb-tampa, .eb-vapor path, .eb-fogo i, .eb-comanda, .eb-nuvem { animation: none !important; }
+    .eb-balao { animation: none; opacity: 1; }
+    .eb-vapor path { opacity: 0.7; }
+    .eb-janela:nth-child(3n) { fill: #FDBA74; }
+}

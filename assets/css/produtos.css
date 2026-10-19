@@ -16,7 +16,7 @@
 @property --gy { syntax: "<percentage>"; inherits: false; initial-value: 46%; }
 
 /* ---------- O palco ---------- */
-.pr-show { position: relative; margin-top: -88px; background: var(--noite); }
+.pr-show { position: relative; background: var(--noite); }
 html.pr-js .pr-show { overflow: clip; }
 .pr-palco {
     --tel-h: min(640px, calc(100svh - 120px));
@@ -449,7 +449,6 @@ html.pr-js .ap-forlabs .fl-res:not(.ve) { display: inline-flex; visibility: hidd
 .pr-final .sv-final-texto p { color: var(--sobre-noite-2); }
 
 /* ---------- Sem JS: os produtos um embaixo do outro, o celular parado ao lado ---------- */
-html:not(.pr-js) .pr-show { margin-top: 0; }
 html:not(.pr-js) .pr-grade { align-items: start; padding-block: 48px var(--secao); }
 html:not(.pr-js) .pr-textos { display: grid; gap: 20px; }
 html:not(.pr-js) .pr-texto:not(.pr-intro) { padding: clamp(24px, 3vw, 40px); border: 1px solid var(--p-linha); border-radius: var(--r-xl); background: var(--p-fundo); }

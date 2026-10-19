@@ -24,7 +24,7 @@
         } catch (e) {}
     </script>
     <title>Pratuca: cardápio digital com pedido no WhatsApp | MovCode</title>
-    <meta name="description" content="Cardápio digital com link próprio, pedido direto no WhatsApp e painel de pedidos, sem comissão. Pratuca, um produto MovCode para marmitarias e delivery. Em breve.">
+    <meta name="description" content="Pratuca, da MovCode, chega em breve: cardápio digital com link próprio, pedido direto no WhatsApp e painel de pedidos, sem comissão.">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#111214">
     <link rel="canonical" href="https://movcode.com.br/cardapio-digital">
@@ -32,7 +32,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="MovCode">
     <meta property="og:title" content="Pratuca: cardápio digital com pedido no WhatsApp | MovCode">
-    <meta property="og:description" content="Cardápio digital com link próprio, pedido direto no WhatsApp e painel de pedidos, sem comissão. Pratuca, um produto MovCode para marmitarias e delivery. Em breve.">
+    <meta property="og:description" content="Pratuca, da MovCode, chega em breve: cardápio digital com link próprio, pedido direto no WhatsApp e painel de pedidos, sem comissão.">
     <meta property="og:url" content="https://movcode.com.br/cardapio-digital">
     <meta property="og:image" content="https://movcode.com.br/assets/images/og/movcode-og.png">
     <meta property="og:image:width" content="1200">
@@ -48,10 +48,11 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/interna.css">
+    <link rel="stylesheet" href="assets/css/embreve.css">
     <script>
         // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
         try {
@@ -61,51 +62,18 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "SoftwareApplication",
-                "name": "Pratuca",
-                "applicationCategory": "BusinessApplication",
-                "operatingSystem": "Web",
-                "description": "Cardápio digital com link próprio, pedido direto no WhatsApp e painel de pedidos, sem comissão. Pratuca, um produto MovCode para marmitarias e delivery. Em breve.",
-                "url": "https://movcode.com.br/cardapio-digital",
-                "publisher": {
-                    "@type": "ProfessionalService",
-                    "@id": "https://movcode.com.br/#empresa",
-                    "name": "MovCode",
-                    "url": "https://movcode.com.br/"
-                }
-            },
-            {
-                "@type": "FAQPage",
-                "mainEntity": [
-                    {
-                        "@type": "Question",
-                        "name": "Quando o Pratuca fica disponível?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Estamos finalizando. Chame a gente no WhatsApp e você recebe o aviso assim que abrir."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "O Pratuca cobra comissão por pedido?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Não. O Pratuca não cobra porcentagem dos seus pedidos."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Como o pedido chega para mim?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Direto no seu WhatsApp, já com o que o cliente escolheu no cardápio."
-                        }
-                    }
-                ]
-            }
-        ]
+        "@type": "SoftwareApplication",
+        "name": "Pratuca",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Pratuca, da MovCode, chega em breve: cardápio digital com link próprio, pedido direto no WhatsApp e painel de pedidos, sem comissão.",
+        "url": "https://movcode.com.br/cardapio-digital",
+        "publisher": {
+            "@type": "ProfessionalService",
+            "@id": "https://movcode.com.br/#empresa",
+            "name": "MovCode",
+            "url": "https://movcode.com.br/"
+        }
     }
     </script>
 </head>
@@ -156,7 +124,7 @@
                 </div>
                 <a href="/produtos">Produtos</a>
                 <a href="/sobre">Sobre</a>
-                <a href="#contato">Contato</a>
+                <a href="/#contato">Contato</a>
             </nav>
         </div>
     </header>
@@ -165,126 +133,27 @@
     <div class="cursor-anel" aria-hidden="true"><span></span></div>
 
     <main id="conteudo">
-        <section class="i-hero escuro">
-            <div class="wrap">
-                <div class="i-hero-texto">
-                    <h1 class="h-grande gigante i-titulo">Seu delivery, <em>sem bagunça.</em></h1>
-                    <p class="i-hero-sub i-entra">Cardápio digital com link próprio, pedido direto no WhatsApp e um painel para acompanhar cada pedido. Sem comissão. Chega em breve.</p>
-                    <div class="i-acoes i-entra">
-                        <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando o Pratuca estiver disponível." data-cta="produto_pratuca_hero" data-magnetico data-cursor="bora">Quero ser avisado <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                        <a class="h-caso-link" href="#recursos">Ver os recursos <span aria-hidden="true">↓</span></a>
+        <section class="eb eb-pratuca h-marca-pratuca" aria-labelledby="eb-titulo" data-eb>
+            <i class="eb-chao" aria-hidden="true"></i>
+            <div class="wrap eb-grade">
+                <div class="eb-texto">
+                    <p class="eb-marca"><svg class="eb-icone eb-ic-pratuca" viewBox="0 0 64 56" aria-hidden="true"><g fill="#fff3e5"><circle cx="19" cy="22" r="12"/><circle cx="32" cy="15" r="14"/><circle cx="45" cy="22" r="12"/><rect x="13" y="20" width="38" height="26" rx="9"/></g><path d="M22.5 37.5c6-4.6 13.5-5.6 20-3" fill="none" stroke="#f28c38" stroke-width="4" stroke-linecap="round"/><circle cx="21.5" cy="38.3" r="3" fill="#f28c38"/></svg><span>pratuca</span></p>
+                    <h1 id="eb-titulo" class="eb-titulo"><span class="eb-so-leitor">Pratuca: </span>em&nbsp;<em>breve.</em></h1>
+                    <p class="eb-frase">Seu delivery, <em>sem&nbsp;bagunça.</em></p>
+                    <p class="eb-descricao">Cardápio digital com link próprio, pedido direto no&nbsp;WhatsApp e&nbsp;um&nbsp;painel para acompanhar cada pedido. Sem&nbsp;comissão.</p>
+                    <div class="eb-acoes">
+                        <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando o Pratuca estiver disponível." data-cta="embreve_pratuca" data-magnetico data-cursor="bora">Quero ser avisado <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="eb-link" href="/produtos" data-cta="embreve_pratuca_produtos">Ver os&nbsp;outros produtos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                     </div>
                 </div>
-                <div class="i-fluxo i-entra" aria-hidden="true">
-                    <span class="duo i-fluxo-marca"><i><b></b><b></b></i><i><b></b><b></b></i></span>
-                    <span class="i-aviso"><b></b>Novo pedido: 2 marmitas<small>agora</small></span>
-                    <span class="i-aviso"><b></b>Pedido enviado no WhatsApp<small>agora</small></span>
-                    <span class="i-aviso"><b></b>Em produção<small>agora</small></span>
-                </div>
-            </div>
-            <a href="#conteudo-segue" class="h-rolar i-entra"><span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>Role para conhecer</a>
-        </section>
-
-        <section id="conteudo-segue" class="h-faixa" aria-label="O que o Pratuca organiza">
-            <div class="h-faixa-linha" aria-hidden="true"><span class="item">Cardápio<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Pedidos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">WhatsApp<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Painel<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Sem comissão<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Cardápio<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Pedidos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">WhatsApp<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Painel<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Sem comissão<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
-            <div class="h-faixa-linha contorno" aria-hidden="true"><span class="item">Cardápio<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Pedidos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">WhatsApp<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Painel<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Sem comissão<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Cardápio<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Pedidos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">WhatsApp<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Painel<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Sem comissão<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
-        </section>
-
-        <section class="h-conversa" aria-labelledby="conversa-titulo">
-            <div class="wrap">
-                <h2 id="conversa-titulo" class="h-grande gigante"><span class="junto">A hora do almoço</span> <em class="junto">já te avisa.</em></h2>
-                <div class="chat">
-                    <p class="bolha">Qual o cardápio de hoje?<small>09:12</small></p>
-                    <p class="bolha">Tem marmita fit?<small>10:47</small></p>
-                    <p class="bolha">Quero 2, mas troca o arroz por salada.<small>14:05</small></p>
-                    <p class="bolha nossa">Pede pelo link, já chega certinho.<small>MovCode</small></p>
-                </div>
-            </div>
-        </section>
-
-        <section id="recursos" class="h-servicos escuro" aria-labelledby="recursos-titulo">
-            <div class="h-servicos-pin">
-                <div class="h-servicos-trilho">
-                    <div class="h-servicos-intro">
-                        <h2 id="recursos-titulo" class="h-grande gigante">Do cardápio ao <em>pedido pronto.</em></h2>
-                        <p>Feito para marmitarias e delivery que vendem todo dia.</p>
+                <div class="eb-arte eb-arte-marmita" aria-hidden="true">
+                    <div class="eb-trilho" data-eb-fundo="-1"><div class="eb-comanda eb-comanda-0"><i class="eb-prendedor"></i><small><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>WhatsApp</span>#12</small><b>2x Frango grelhado</b><span>Troca o&nbsp;arroz por salada</span><em>R$&nbsp;44</em></div><div class="eb-comanda eb-comanda-1"><i class="eb-prendedor"></i><small><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>WhatsApp</span>#13</small><b>1x Marmita fit</b><span>Sem cebola</span><em>R$&nbsp;24</em></div></div>
+                    <div class="eb-marmita" data-eb-panela>
+                        <svg class="eb-vapor" viewBox="0 0 200 140"><path d="M60 130c-16-22 14-34 0-56s12-34 0-56"/><path d="M100 130c-16-22 14-34 0-56s12-34 0-56"/><path d="M140 130c-16-22 14-34 0-56s12-34 0-56"/></svg>
+                        <div class="eb-tampa"><svg viewBox="0 0 64 56"><g fill="#fff3e5"><circle cx="19" cy="22" r="12"/><circle cx="32" cy="15" r="14"/><circle cx="45" cy="22" r="12"/><rect x="13" y="20" width="38" height="26" rx="9"/></g><path d="M22.5 37.5c6-4.6 13.5-5.6 20-3" fill="none" stroke="#f28c38" stroke-width="4" stroke-linecap="round"/><circle cx="21.5" cy="38.3" r="3" fill="#f28c38"/></svg></div>
+                        <div class="eb-pote"><i></i></div>
+                        <div class="eb-fogo"><i></i><i></i><i></i><i></i><i></i></div>
                     </div>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">01</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-produto_pratuca-1" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-produto_pratuca-1" startOffset="0" data-repete="cardápio · link · bio · ">cardápio · link · bio · cardápio · link · bio · cardápio · link · bio · cardápio · link · bio · cardápio · link · bio · cardápio · link · bio · </textPath></text></svg></div>
-                        <h3>Cardápio com link próprio</h3>
-                        <p>Um endereço do seu delivery para colocar na bio e mandar para os clientes.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">02</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-produto_pratuca-2" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-produto_pratuca-2" startOffset="0" data-repete="pedido · WhatsApp · pronto · ">pedido · WhatsApp · pronto · pedido · WhatsApp · pronto · pedido · WhatsApp · pronto · pedido · WhatsApp · pronto · pedido · WhatsApp · pronto · pedido · WhatsApp · pronto · </textPath></text></svg></div>
-                        <h3>Pedido no WhatsApp</h3>
-                        <p>O cliente monta o pedido no cardápio e ele chega pronto no seu WhatsApp.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">03</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h12M9 12h12M9 18h12"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-produto_pratuca-3" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-produto_pratuca-3" startOffset="0" data-repete="recebido · em produção · ">recebido · em produção · recebido · em produção · recebido · em produção · recebido · em produção · recebido · em produção · recebido · em produção · </textPath></text></svg></div>
-                        <h3>Painel de pedidos</h3>
-                        <p>Todos os pedidos num lugar só, com o andamento de cada um.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">04</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-produto_pratuca-4" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-produto_pratuca-4" startOffset="0" data-repete="sem comissão · seu lucro · ">sem comissão · seu lucro · sem comissão · seu lucro · sem comissão · seu lucro · sem comissão · seu lucro · sem comissão · seu lucro · sem comissão · seu lucro · </textPath></text></svg></div>
-                        <h3>Sem comissão</h3>
-                        <p>Nada de porcentagem sobre o que você vende.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">05</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-produto_pratuca-5" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-produto_pratuca-5" startOffset="0" data-repete="sem anotar errado · ">sem anotar errado · sem anotar errado · sem anotar errado · sem anotar errado · sem anotar errado · sem anotar errado · </textPath></text></svg></div>
-                        <h3>Menos erro</h3>
-                        <p>O pedido chega escrito pelo próprio cliente, sem telefone sem fio.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">06</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-produto_pratuca-6" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-produto_pratuca-6" startOffset="0" data-repete="seu cliente · sua conversa · ">seu cliente · sua conversa · seu cliente · sua conversa · seu cliente · sua conversa · seu cliente · sua conversa · seu cliente · sua conversa · seu cliente · sua conversa · </textPath></text></svg></div>
-                        <h3>O cliente continua seu</h3>
-                        <p>Os pedidos chegam no seu WhatsApp, então a conversa fica com você.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="duvidas" class="h-duvidas" aria-labelledby="duvidas-titulo">
-            <div class="wrap">
-                <h2 id="duvidas-titulo" class="h-grande gigante">Perguntas <em>rápidas.</em></h2>
-                <div class="perguntas">
-                    <details class="pergunta">
-                        <summary>Quando o Pratuca fica disponível?</summary>
-                        <p>Estamos finalizando. Chame a gente no WhatsApp e você recebe o aviso assim que abrir.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>O Pratuca cobra comissão por pedido?</summary>
-                        <p>Não. O Pratuca não cobra porcentagem dos seus pedidos.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Como o pedido chega para mim?</summary>
-                        <p>Direto no seu WhatsApp, já com o que o cliente escolheu no cardápio.</p>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <section id="contato" class="h-contato" aria-labelledby="contato-titulo">
-            <div class="wrap">
-                <div class="h-contato-texto">
-                    <h2 id="contato-titulo" class="h-contato-titulo gigante">Quer ser o primeiro?</h2>
-                    <p>Estamos finalizando. Chame a gente no WhatsApp e avisamos assim que abrir.</p>
-                    <ul class="contato-lista">
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg> Aviso assim que abrir</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg> Direto no seu WhatsApp</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Sem compromisso</li>
-                    </ul>
-                </div>
-                <div class="i-cartao">
-                    <strong>Entre na lista do Pratuca</strong>
-                    <p>Quem chamar agora fica sabendo primeiro quando o cardápio abrir.</p>
-                    <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando o Pratuca estiver disponível." data-cta="produto_pratuca_contato">Quero ser avisado <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                    <small>Um toque e o WhatsApp abre com a mensagem pronta.</small>
                 </div>
             </div>
         </section>
@@ -351,5 +220,6 @@
     <script src="assets/js/vendor/lenis.min.js"></script>
     <script src="assets/js/home.js"></script>
     <script src="assets/js/interna.js"></script>
+    <script src="assets/js/embreve.js"></script>
 </body>
 </html>
