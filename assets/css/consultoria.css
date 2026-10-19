@@ -1,0 +1,95 @@
+/* =========================================================================
+   MovCode — /consultoria
+   A planta da operação com o gargalo marcado, do mapa ao plano em três
+   pranchas, as fichas e a diferença para o diagnóstico gratuito.
+   Papel de planta (azul com grade), traço branco, marca vermelha e o
+   amarelo de quem anota. A anotação à mão é a Caveat (só nesta página).
+   ========================================================================= */
+
+.co-topo, .co-mapa, .co-final { --co-planta: #0F2B4C; --co-amarelo: #FCD34D; --co-vermelho: #F87171; background: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 24px 24px, linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 24px 24px, linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px) 0 0 / 120px 120px, linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px) 0 0 / 120px 120px, var(--co-planta); color: #fff; }
+.co-topo .sv-titulo em, .co-mapa .sv-titulo em, .co-final .sv-titulo em { color: var(--co-amarelo); }
+.co-topo .sv-sub, .co-mapa .sv-intro, .co-final .sv-final-texto p { color: #B8C7DC; }
+
+/* a planta (SVG de 100 x 88): caixas e setas a traço branco */
+.co-planta { display: block; width: 100%; height: auto; overflow: visible; }
+.co-planta rect { fill: rgba(255, 255, 255, 0.04); stroke: rgba(255, 255, 255, 0.85); stroke-width: 0.45; }
+.co-planta text { fill: #fff; font: 600 3.1px var(--f-texto); text-anchor: middle; }
+.co-seta { fill: none; stroke: rgba(255, 255, 255, 0.7); stroke-width: 0.45; }
+.co-planta marker path { fill: rgba(255, 255, 255, 0.8); }
+.co-marca circle { fill: var(--co-vermelho); }
+.co-marca text { fill: #fff; font-weight: 800; font-size: 3.6px; }
+.co-marca .co-marca-rotulo { fill: #FECACA; font-weight: 700; font-size: 2.7px; }
+.co-degrau rect { fill: rgba(252, 211, 77, 0.12); stroke: var(--co-amarelo); stroke-width: 0.5; }
+.co-degrau text { fill: #fff; font-size: 3px; }
+
+/* desenho a traço quando aparece (sem JS ou com movimento reduzido fica tudo desenhado) */
+.co-anima .co-planta rect, .co-anima .co-seta { stroke-dasharray: 1.02; stroke-dashoffset: 1.02; }
+.co-anima .co-planta text, .co-anima .co-marca { opacity: 0; }
+.co-anima.visto .co-planta rect { stroke-dashoffset: 0; transition: stroke-dashoffset 0.7s ease calc(var(--atraso, 0s) + var(--k, 0) * 0.22s); }
+.co-anima.visto .co-seta { stroke-dashoffset: 0; transition: stroke-dashoffset 0.5s ease calc(var(--atraso, 0s) + 0.3s + var(--k, 0) * 0.22s); }
+.co-anima.visto .co-planta text { opacity: 1; transition: opacity 0.4s ease calc(var(--atraso, 0s) + 0.3s + var(--k, 0) * 0.22s); }
+.co-anima.visto .co-marca { opacity: 1; transition: opacity 0.4s ease calc(var(--atraso, 0s) + 1.4s + var(--k, 0) * 0.35s); }
+
+
+/* ---------- Topo: o gargalo marcado ---------- */
+.co-palco { font-family: var(--f-texto); }
+.co-gargalo { position: absolute; left: 86%; top: 25%; width: 32cqi; height: 19cqi; border: 0.7cqi solid var(--co-vermelho); border-radius: 50%; transform: translate(-50%, -50%) rotate(-4deg); }
+.co-anotacao { position: absolute; left: 54%; top: 42%; color: #FECACA; font: 700 7cqi/1 "Caveat", "Segoe Print", cursive; transform: rotate(-6deg); white-space: nowrap; }
+.co-anotacao::after { content: ""; position: absolute; left: 100%; top: -40%; width: 12cqi; height: 8cqi; border-top: 0.6cqi solid #FECACA; border-right: 0.6cqi solid #FECACA; border-radius: 0 100% 0 0; }
+.co-anima .co-gargalo, .co-anima .co-anotacao { opacity: 0; }
+.co-anima.visto .co-gargalo { opacity: 1; animation: co-marca 0.6s cubic-bezier(0.3, 1.4, 0.5, 1) 2s both, co-pulso 2.2s ease-in-out 2.8s infinite; }
+.co-anima.visto .co-anotacao { opacity: 1; transition: opacity 0.5s ease 2.4s; }
+@keyframes co-marca { from { opacity: 0; transform: translate(-50%, -50%) rotate(-4deg) scale(1.4); } to { opacity: 1; transform: translate(-50%, -50%) rotate(-4deg) scale(1); } }
+@keyframes co-pulso { 50% { transform: translate(-50%, -50%) rotate(-4deg) scale(1.06); } }
+
+
+/* ---------- Do mapa ao plano: três pranchas ---------- */
+.co-mapa { padding: var(--secao) 0; }
+.co-pranchas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: clamp(32px, 5vw, 64px) 0 0; padding: 0; list-style: none; counter-reset: prancha; }
+.co-prancha { --atraso: calc(var(--k) * 0.8s); padding: 20px 20px 26px; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 22px; background: rgba(8, 24, 44, 0.55); }
+.co-prancha-desenho { margin-bottom: 18px; padding: 10px; border: 1px dashed rgba(255, 255, 255, 0.18); border-radius: 14px; }
+.co-prancha h3 { margin: 0; font: 800 24px/1.1 var(--f-display); font-stretch: 90%; letter-spacing: -0.02em; }
+.co-prancha p { margin: 10px 0 0; color: #B8C7DC; font-size: 16px; line-height: 1.6; }
+.co-prancha + .co-prancha { position: relative; }
+.co-prancha + .co-prancha::before { content: "→"; position: absolute; left: -15px; top: 30%; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--co-amarelo); color: #0F2B4C; font: 800 16px var(--f-texto); transform: translateY(-50%); }
+
+
+/* ---------- Sem empurrar sistema: as fichas ---------- */
+.co-fichas-secao { padding: var(--secao) 0; background: var(--papel); color: var(--tinta); }
+.co-fichas-secao .sv-titulo em, .co-diferenca .sv-titulo em { color: #1D4E89; }
+.co-fichas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: clamp(32px, 5vw, 64px); }
+.co-ficha { position: relative; padding: 34px 26px 28px; border-radius: 6px; background: #fff; box-shadow: 0 0 0 1px var(--linha), 0 24px 40px -30px rgba(22, 24, 29, 0.4); transform: rotate(calc((var(--k) - 1) * 1.2deg)); }
+.co-ficha:nth-child(2) { transform: rotate(0.8deg) translateY(10px); }
+/* o clipe de papel */
+.co-clipe { position: absolute; left: 24px; top: -14px; width: 16px; height: 42px; border: 3px solid #9AA3B2; border-bottom: 0; border-radius: 8px 8px 0 0; }
+.co-clipe::after { content: ""; position: absolute; left: 2px; top: 6px; width: 6px; height: 28px; border: 3px solid #9AA3B2; border-top: 0; border-radius: 0 0 6px 6px; }
+.co-ficha i { display: grid; place-items: center; width: 46px; height: 46px; margin-bottom: 18px; border-radius: 14px; background: #E5EEF9; color: #1D4E89; font-style: normal; }
+.co-ficha svg { width: 22px; height: 22px; }
+.co-ficha h3 { margin: 0; font: 800 23px/1.1 var(--f-display); font-stretch: 90%; letter-spacing: -0.02em; }
+.co-ficha p { margin: 10px 0 0; color: var(--tinta-2); font-size: 16px; line-height: 1.6; }
+
+
+/* ---------- Diagnóstico ou consultoria? ---------- */
+.co-diferenca { padding: var(--secao) 0; background: #fff; color: var(--tinta); }
+.co-diferenca .sv-intro { color: var(--tinta-2); }
+.co-lados { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: clamp(32px, 5vw, 56px); }
+.co-lado { display: flex; flex-direction: column; align-items: flex-start; padding: 32px; border-radius: 24px; background: #F5F7FA; box-shadow: inset 0 0 0 1px #E3E8EF; }
+.co-lado h3 { margin: 0; font: 800 clamp(26px, 2.6vw, 36px)/1 var(--f-display); font-stretch: 90%; letter-spacing: -0.02em; }
+.co-lado p { flex: 1; margin: 14px 0 26px; max-width: 40ch; color: var(--tinta-2); font-size: 17px; line-height: 1.6; }
+.co-lado-forte { background: #0F2B4C; color: #fff; box-shadow: none; }
+.co-lado-forte p { color: #B8C7DC; }
+.co-outras { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 48px; margin-top: clamp(40px, 5vw, 64px); padding-top: clamp(28px, 4vw, 44px); border-top: 1px solid var(--linha); }
+.co-outra h3 { margin: 0; font: 700 20px/1.25 var(--f-texto); }
+.co-outra p { margin: 8px 0 0; color: var(--tinta-2); font-size: 17px; line-height: 1.6; }
+
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1080px) {
+    .co-pranchas, .co-fichas { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
+    .co-prancha + .co-prancha::before { content: "↓"; left: 50%; top: -15px; transform: translateX(-50%); }
+    .co-ficha, .co-ficha:nth-child(2) { transform: none; }
+    .co-lados, .co-outras { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .co-anima.visto .co-gargalo { animation: none; }
+}

@@ -47,10 +47,12 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/interna.css">
+    <link rel="stylesheet" href="assets/css/servico.css">
+    <link rel="stylesheet" href="assets/css/consultoria.css">
     <script>
         // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
         try {
@@ -172,83 +174,67 @@
     <div class="cursor-anel" aria-hidden="true"><span></span></div>
 
     <main id="conteudo">
-        <section class="i-hero escuro">
-            <div class="wrap">
-                <div class="i-hero-texto">
-                    <h1 class="h-grande gigante i-titulo">O gargalo mapeado <em>antes do código.</em></h1>
-                    <p class="i-hero-sub i-entra">Antes de comprar sistema ou contratar desenvolvimento, vale entender onde a operação trava. A gente mapeia e aponta o caminho.</p>
-                    <div class="i-acoes i-entra">
-                        <a href="#contato" class="btn btn-acao" data-cta="consultoria_hero" data-servico="Ainda não sei" data-magnetico data-cursor="bora">Quero mapear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                        <a class="h-caso-link" href="#exemplos">Ver exemplos <span aria-hidden="true">↓</span></a>
+        <section class="sv-topo co-topo" aria-labelledby="co-topo-titulo">
+            <div class="wrap sv-topo-grade">
+                <div class="sv-topo-texto">
+                    <h1 id="co-topo-titulo" class="sv-titulo gigante i-entra">O gargalo mapeado <em>antes do código.</em></h1>
+                    <p class="sv-sub i-entra">Antes de comprar sistema ou contratar desenvolvimento, vale entender onde a operação trava. A gente mapeia e aponta o caminho.</p>
+                    <div class="sv-acoes i-entra">
+                        <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pela página de consultoria e quero entender onde a minha operação trava." data-cta="consultoria_topo" data-magnetico data-cursor="bora">Quero mapear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="sv-link" href="#mapa" data-cta="consultoria_topo_ver">Ver como a gente mapeia <span aria-hidden="true">↓</span></a>
                     </div>
                 </div>
-                <div class="i-fluxo i-entra" aria-hidden="true">
-                    <span class="duo i-fluxo-marca"><i><b></b><b></b></i><i><b></b><b></b></i></span>
-                    <span class="i-aviso"><b></b>Processo mapeado<small>passo a passo</small></span>
-                    <span class="i-aviso"><b></b>Gargalo encontrado<small>passo a passo</small></span>
-                    <span class="i-aviso"><b></b>Plano em etapas<small>passo a passo</small></span>
-                </div>
-            </div>
-            <a href="#conteudo-segue" class="h-rolar i-entra"><span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>Role para conhecer</a>
-        </section>
-
-        <section id="conteudo-segue" class="h-faixa" aria-label="Consultoria em tecnologia: o que entra">
-            <div class="h-faixa-linha" aria-hidden="true"><span class="item">Processo<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Gargalo<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Plano<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Prioridade<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Etapas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Processo<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Gargalo<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Plano<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Prioridade<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Etapas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
-            <div class="h-faixa-linha contorno" aria-hidden="true"><span class="item">Processo<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Gargalo<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Plano<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Prioridade<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Etapas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Processo<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Gargalo<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Plano<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Prioridade<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Etapas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
-        </section>
-
-        <section class="h-conversa" aria-labelledby="conversa-titulo">
-            <div class="wrap">
-                <h2 id="conversa-titulo" class="h-grande gigante"><span class="junto">Sua operação</span> <em class="junto">já te avisa.</em></h2>
-                <div class="chat">
-                    <p class="bolha">Comprei um sistema e ninguém usa.<small>09:12</small></p>
-                    <p class="bolha">Não sei se preciso de site, de sistema ou dos dois.<small>10:47</small></p>
-                    <p class="bolha">Cada setor controla de um jeito.<small>14:05</small></p>
-                    <p class="bolha nossa">Bora mapear antes de gastar?<small>MovCode</small></p>
+                <div class="sv-palco co-palco i-entra" aria-hidden="true" data-co-palco>
+                    <svg class="co-planta co-planta-topo" viewBox="0 0 100 88" aria-hidden="true"><defs><marker id="co-ponta" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L6 3 L0 6 z"/></marker></defs><path class="co-seta" d="M26.0 22 L36.5 22" style="--k:0" pathLength="1" marker-end="url(#co-ponta)"/><path class="co-seta" d="M62.0 22 L72.5 22" style="--k:1" pathLength="1" marker-end="url(#co-ponta)"/><path class="co-seta" d="M86 27.5 L86 59.0" style="--k:2" pathLength="1" marker-end="url(#co-ponta)"/><path class="co-seta" d="M74.0 66 L63.5 66" style="--k:3" pathLength="1" marker-end="url(#co-ponta)"/><path class="co-seta" d="M38.0 66 L27.5 66" style="--k:4" pathLength="1" marker-end="url(#co-ponta)"/><g class="co-caixa" style="--k:0"><rect x="2.0" y="16.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="14" y="23.3">Pedido chega</text></g><g class="co-caixa" style="--k:1"><rect x="38.0" y="16.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="50" y="23.3">Separação</text></g><g class="co-caixa" style="--k:2"><rect x="74.0" y="16.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="86" y="23.3">Conferência</text></g><g class="co-caixa" style="--k:3"><rect x="74.0" y="60.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="86" y="67.3">Entrega</text></g><g class="co-caixa" style="--k:4"><rect x="38.0" y="60.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="50" y="67.3">Cobrança</text></g><g class="co-caixa" style="--k:5"><rect x="2.0" y="60.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="14" y="67.3">Planilha do setor</text></g></svg>
+                    <span class="co-gargalo"></span>
+                    <span class="co-anotacao">aqui trava</span>
                 </div>
             </div>
         </section>
 
-        <section id="exemplos" class="h-servicos escuro" aria-labelledby="exemplos-titulo">
-            <div class="h-servicos-pin">
-                <div class="h-servicos-trilho">
-                    <div class="h-servicos-intro">
-                        <h2 id="exemplos-titulo" class="h-grande gigante">O que você <em>recebe.</em></h2>
-                        <p>Um retrato claro da operação e um plano do tamanho do seu negócio.</p>
-                    </div>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">01</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-consultoria-1" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-consultoria-1" startOffset="0" data-repete="tarefas · pessoas · informação · ">tarefas · pessoas · informação · tarefas · pessoas · informação · tarefas · pessoas · informação · tarefas · pessoas · informação · tarefas · pessoas · informação · tarefas · pessoas · informação · </textPath></text></svg></div>
+        <section id="mapa" class="co-mapa" aria-labelledby="mapa-titulo" data-co-mapa>
+            <div class="wrap">
+                <h2 id="mapa-titulo" class="sv-titulo gigante">Do mapa <em>ao plano.</em></h2>
+                <p class="sv-intro">Um retrato claro da operação e um plano do tamanho do seu negócio.</p>
+                <ol class="co-pranchas">
+                    <li class="co-prancha" style="--k:0">
+                        <div class="co-prancha-desenho"><svg class="co-planta" viewBox="0 0 100 88" aria-hidden="true"><defs><marker id="co-ponta" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L6 3 L0 6 z"/></marker></defs><path class="co-seta" d="M26.0 22 L36.5 22" style="--k:0" pathLength="1" marker-end="url(#co-ponta)"/><path class="co-seta" d="M62.0 22 L72.5 22" style="--k:1" pathLength="1" marker-end="url(#co-ponta)"/><path class="co-seta" d="M86 27.5 L86 59.0" style="--k:2" pathLength="1" marker-end="url(#co-ponta)"/><path class="co-seta" d="M74.0 66 L63.5 66" style="--k:3" pathLength="1" marker-end="url(#co-ponta)"/><path class="co-seta" d="M38.0 66 L27.5 66" style="--k:4" pathLength="1" marker-end="url(#co-ponta)"/><g class="co-caixa" style="--k:0"><rect x="2.0" y="16.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="14" y="23.3">Pedido chega</text></g><g class="co-caixa" style="--k:1"><rect x="38.0" y="16.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="50" y="23.3">Separação</text></g><g class="co-caixa" style="--k:2"><rect x="74.0" y="16.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="86" y="23.3">Conferência</text></g><g class="co-caixa" style="--k:3"><rect x="74.0" y="60.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="86" y="67.3">Entrega</text></g><g class="co-caixa" style="--k:4"><rect x="38.0" y="60.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="50" y="67.3">Cobrança</text></g><g class="co-caixa" style="--k:5"><rect x="2.0" y="60.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="14" y="67.3">Planilha do setor</text></g></svg></div>
                         <h3>Mapa da operação</h3>
                         <p>Como as tarefas, as pessoas e as informações circulam hoje, desenhado de forma simples.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">02</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-consultoria-2" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-consultoria-2" startOffset="0" data-repete="tempo · dinheiro · retrabalho · ">tempo · dinheiro · retrabalho · tempo · dinheiro · retrabalho · tempo · dinheiro · retrabalho · tempo · dinheiro · retrabalho · tempo · dinheiro · retrabalho · tempo · dinheiro · retrabalho · </textPath></text></svg></div>
+                    </li>
+                    <li class="co-prancha" style="--k:1">
+                        <div class="co-prancha-desenho"><svg class="co-planta" viewBox="0 0 100 88" aria-hidden="true"><defs><marker id="co-ponta" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L6 3 L0 6 z"/></marker></defs><path class="co-seta" d="M26.0 22 L36.5 22" style="--k:0" pathLength="1" marker-end="url(#co-ponta)"/><path class="co-seta" d="M62.0 22 L72.5 22" style="--k:1" pathLength="1" marker-end="url(#co-ponta)"/><path class="co-seta" d="M86 27.5 L86 59.0" style="--k:2" pathLength="1" marker-end="url(#co-ponta)"/><path class="co-seta" d="M74.0 66 L63.5 66" style="--k:3" pathLength="1" marker-end="url(#co-ponta)"/><path class="co-seta" d="M38.0 66 L27.5 66" style="--k:4" pathLength="1" marker-end="url(#co-ponta)"/><g class="co-caixa" style="--k:0"><rect x="2.0" y="16.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="14" y="23.3">Pedido chega</text></g><g class="co-caixa" style="--k:1"><rect x="38.0" y="16.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="50" y="23.3">Separação</text></g><g class="co-caixa" style="--k:2"><rect x="74.0" y="16.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="86" y="23.3">Conferência</text></g><g class="co-caixa" style="--k:3"><rect x="74.0" y="60.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="86" y="67.3">Entrega</text></g><g class="co-caixa" style="--k:4"><rect x="38.0" y="60.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="50" y="67.3">Cobrança</text></g><g class="co-caixa" style="--k:5"><rect x="2.0" y="60.5" width="24" height="11" rx="1.6" pathLength="1"/><text x="14" y="67.3">Planilha do setor</text></g><g class="co-marca" style="--k:1"><circle cx="94" cy="16" r="3.4"/><text x="94" y="17.1">1</text><text class="co-marca-rotulo" x="88" y="10.5">retrabalho</text></g><g class="co-marca" style="--k:2"><circle cx="58" cy="60" r="3.4"/><text x="58" y="61.1">2</text><text class="co-marca-rotulo" x="52" y="54.5">dinheiro parado</text></g><g class="co-marca" style="--k:3"><circle cx="58" cy="16" r="3.4"/><text x="58" y="17.1">3</text><text class="co-marca-rotulo" x="52" y="10.5">tempo</text></g></svg></div>
                         <h3>Os gargalos</h3>
                         <p>Onde se perde tempo, dinheiro ou informação, em ordem de impacto.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">03</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h5v-5h5v-5h5V5h3"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-consultoria-3" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-consultoria-3" startOffset="0" data-repete="primeiro · depois · nunca · ">primeiro · depois · nunca · primeiro · depois · nunca · primeiro · depois · nunca · primeiro · depois · nunca · primeiro · depois · nunca · primeiro · depois · nunca · </textPath></text></svg></div>
+                    </li>
+                    <li class="co-prancha" style="--k:2">
+                        <div class="co-prancha-desenho"><svg class="co-planta" viewBox="0 0 100 88" aria-hidden="true"><defs><marker id="co-ponta" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L6 3 L0 6 z"/></marker></defs><g class="co-degrau" style="--k:0"><rect x="10" y="64" width="26" height="26" rx="1.4" pathLength="1"/><text x="23" y="61">Primeiro</text></g><g class="co-degrau" style="--k:1"><rect x="38" y="50" width="26" height="40" rx="1.4" pathLength="1"/><text x="51" y="47">Depois</text></g><g class="co-degrau" style="--k:2"><rect x="66" y="36" width="26" height="54" rx="1.4" pathLength="1"/><text x="79" y="33">Nem precisa de tecnologia</text></g></svg></div>
                         <h3>Plano em etapas</h3>
                         <p>O que resolver primeiro, o que pode esperar e o que nem precisa de tecnologia.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">04</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13l3 3a2 2 0 0 0 3-3l-3-3"/><path d="M14 10l2-2a2 2 0 0 1 3 0l2 2-6 6"/><path d="M3 10l3-3 5 5-3 3a2 2 0 0 1-3 0l-2-2z"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-consultoria-4" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-consultoria-4" startOffset="0" data-repete="pronto · sob medida · planilha · ">pronto · sob medida · planilha · pronto · sob medida · planilha · pronto · sob medida · planilha · pronto · sob medida · planilha · pronto · sob medida · planilha · pronto · sob medida · planilha · </textPath></text></svg></div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="co-fichas-secao" aria-labelledby="fichas-titulo">
+            <div class="wrap co-fichas-grade">
+                <h2 id="fichas-titulo" class="sv-titulo gigante">Sem empurrar <em>sistema.</em></h2>
+                <div class="co-fichas">
+                    <article class="co-ficha" style="--k:0">
+                        <span class="co-clipe" aria-hidden="true"></span>
+                        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13l3 3a2 2 0 0 0 3-3l-3-3"/><path d="M14 10l2-2a2 2 0 0 1 3 0l2 2-6 6"/><path d="M3 10l3-3 5 5-3 3a2 2 0 0 1-3 0l-2-2z"/></svg></i>
                         <h3>Recomendação honesta</h3>
                         <p>Às vezes a resposta é um sistema pronto, ou uma planilha bem feita. A gente diz.</p>
                     </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">05</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-consultoria-5" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-consultoria-5" startOffset="0" data-repete="escopo · prazo · valor · ">escopo · prazo · valor · escopo · prazo · valor · escopo · prazo · valor · escopo · prazo · valor · escopo · prazo · valor · escopo · prazo · valor · </textPath></text></svg></div>
+                    <article class="co-ficha" style="--k:1">
+                        <span class="co-clipe" aria-hidden="true"></span>
+                        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></i>
                         <h3>Prazo e valor por escrito</h3>
                         <p>Cada etapa com escopo, prazo e valor fechados, para você decidir com calma.</p>
                     </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">06</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-consultoria-6" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-consultoria-6" startOffset="0" data-repete="grátis · sem compromisso · ">grátis · sem compromisso · grátis · sem compromisso · grátis · sem compromisso · grátis · sem compromisso · grátis · sem compromisso · grátis · sem compromisso · </textPath></text></svg></div>
+                    <article class="co-ficha" style="--k:2">
+                        <span class="co-clipe" aria-hidden="true"></span>
+                        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></i>
                         <h3>Começa de graça</h3>
                         <p>O primeiro passo é o diagnóstico gratuito e sem compromisso, por chamada ou mensagem.</p>
                     </article>
@@ -256,95 +242,45 @@
             </div>
         </section>
 
-        <section id="como-funciona" class="h-processo" aria-labelledby="como-funciona-titulo">
+        <section class="co-diferenca" aria-labelledby="diferenca-titulo">
             <div class="wrap">
-                <h2 id="como-funciona-titulo" class="h-grande gigante">Do papo ao <em>sistema no ar.</em></h2>
-                <div class="h-passos-caixa">
-                    <span class="h-passos-linha" aria-hidden="true"></span>
-                    <ol class="h-passos">
-                    <li class="h-passo">
-                        <span class="h-passo-num">01</span>
-                        <h3>Conversa <small>grátis</small></h3>
-                        <p>Por chamada ou mensagem, para entender a sua rotina.</p>
-                    </li>
-                    <li class="h-passo">
-                        <span class="h-passo-num">02</span>
-                        <h3>Proposta</h3>
-                        <p>Escopo, prazo e preço fechados.</p>
-                    </li>
-                    <li class="h-passo">
-                        <span class="h-passo-num">03</span>
-                        <h3>Construção</h3>
-                        <p>Você testa e opina a cada etapa.</p>
-                    </li>
-                    <li class="h-passo">
-                        <span class="h-passo-num">04</span>
-                        <h3>No ar</h3>
-                        <p>Treinamos a equipe e seguimos junto.</p>
-                    </li>
-                    </ol>
+                <h2 id="diferenca-titulo" class="sv-titulo gigante">Diagnóstico <em>ou consultoria?</em></h2>
+                <p class="sv-intro">O diagnóstico é uma conversa gratuita, por chamada ou mensagem, para entender o cenário e apontar o caminho. Quando o caso pede mais, a consultoria aprofunda o mapeamento e entrega o plano completo.</p>
+                <div class="co-lados">
+                    <div class="co-lado">
+                        <h3>Diagnóstico gratuito</h3>
+                        <p>Uma conversa por chamada ou mensagem para entender o cenário e apontar o caminho.</p>
+                        <a class="sv-link" href="/diagnostico" data-cta="consultoria_lado_diagnostico">Ver o diagnóstico <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                    </div>
+                    <div class="co-lado co-lado-forte">
+                        <h3>Consultoria</h3>
+                        <p>Aprofunda o mapeamento e entrega o plano completo, com escopo, prazo e valor por escrito.</p>
+                        <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pela página de consultoria e quero entender onde a minha operação trava." data-cta="consultoria_lado" data-magnetico data-cursor="bora">Quero mapear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <section id="duvidas" class="h-duvidas" aria-labelledby="duvidas-titulo">
-            <div class="wrap">
-                <h2 id="duvidas-titulo" class="h-grande gigante">Perguntas <em>rápidas.</em></h2>
-                <div class="perguntas">
-                    <details class="pergunta">
-                        <summary>Qual a diferença para o diagnóstico gratuito?</summary>
-                        <p>O diagnóstico é uma conversa gratuita, por chamada ou mensagem, para entender o cenário e apontar o caminho. Quando o caso pede mais, a consultoria aprofunda o mapeamento e entrega o plano completo.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Vocês atendem fora de Ribeirão Preto?</summary>
+                <div class="co-outras">
+                    <div class="co-outra">
+                        <h3>Vocês atendem fora de Ribeirão Preto?</h3>
                         <p>Sim. Estamos em Ribeirão Preto e atendemos empresas de todo o Brasil, com reuniões por vídeo.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Quanto custa?</summary>
+                    </div>
+                    <div class="co-outra">
+                        <h3>Quanto custa?</h3>
                         <p>Depende do tamanho da operação. Depois do diagnóstico gratuito você recebe uma proposta com escopo, prazo e valor fechados.</p>
-                    </details>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contato" class="h-contato" aria-labelledby="contato-titulo">
-            <div class="wrap">
-                <div class="h-contato-texto">
-                    <h2 id="contato-titulo" class="h-contato-titulo gigante">Bora mapear?</h2>
+        <section id="contato" class="sv-final co-final" aria-labelledby="co-final-titulo">
+            <div class="wrap sv-final-grade">
+                <div class="sv-final-cabeca"><h2 id="co-final-titulo" class="sv-titulo gigante">Bora mapear <em>antes de gastar?</em></h2></div>
+                <div class="sv-final-texto">
                     <p>Conte onde a sua operação trava. A gente responde no mesmo dia útil.</p>
-                    <ul class="contato-lista">
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg> Por chamada, presencial ou mensagem</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> Preço fechado na proposta</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Seus dados são seus</li>
-                    </ul>
+                    <div class="sv-acoes">
+                        <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pela página de consultoria e quero entender onde a minha operação trava." data-cta="consultoria_final" data-magnetico data-cursor="bora">Quero mapear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="sv-link" href="/diagnostico" data-cta="consultoria_diagnostico">Prefiro um diagnóstico gratuito <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                    </div>
                 </div>
-                <form class="form" data-lead-form novalidate>
-                        <p class="form-titulo">Peça seu diagnóstico</p>
-                        <div class="campo">
-                            <label for="leadNome">Seu nome</label>
-                            <input id="leadNome" name="nome" type="text" autocomplete="name" required placeholder="Como podemos te chamar?">
-                        </div>
-                        <div class="campo">
-                            <label for="leadEmpresa">Empresa <span>(opcional)</span></label>
-                            <input id="leadEmpresa" name="empresa" type="text" autocomplete="organization" placeholder="Nome do seu negócio">
-                        </div>
-                        <fieldset class="opcoes">
-                            <legend>O que você precisa?</legend>
-                            <label><input type="radio" name="servico" value="Site ou landing page" required><span>Site ou landing page</span></label>
-                            <label><input type="radio" name="servico" value="Loja virtual"><span>Loja virtual</span></label>
-                            <label><input type="radio" name="servico" value="Sistema de gestão"><span>Sistema de gestão</span></label>
-                            <label><input type="radio" name="servico" value="Sistema sob medida"><span>Sistema sob medida</span></label>
-                            <label><input type="radio" name="servico" value="Automação ou integração"><span>Automação ou integração</span></label>
-                            <label><input type="radio" name="servico" value="Ainda não sei" checked><span>Ainda não sei</span></label>
-                        </fieldset>
-                        <div class="campo">
-                            <label for="leadMensagem">O que mais atrapalha hoje? <span>(opcional)</span></label>
-                            <textarea id="leadMensagem" name="mensagem" rows="3" placeholder="Ex.: cada setor controla de um jeito e nada bate no fim do mês"></textarea>
-                        </div>
-                        <p class="form-erro" role="alert" hidden>Preencha seu nome e escolha o que você precisa.</p>
-                        <button type="submit" class="btn btn-acao">Enviar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-                        <p class="form-nota">Ao enviar, o WhatsApp abre com a sua mensagem pronta. Veja a nossa <a href="/politica">Política de Privacidade</a>.</p>
-                    </form>
             </div>
         </section>
     </main>
@@ -410,5 +346,6 @@
     <script src="assets/js/vendor/lenis.min.js"></script>
     <script src="assets/js/home.js"></script>
     <script src="assets/js/interna.js"></script>
+    <script src="assets/js/servicos.js"></script>
 </body>
 </html>

@@ -211,7 +211,7 @@
 /* ---------- 6. Fechamento ---------- */
 .c-final { padding: clamp(80px, 11vw, 150px) 0; background: var(--laranja); color: var(--laranja-tinta-txt); }
 .c-final .c-titulo em { color: #fff; }
-.c-final-grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); gap: 32px clamp(40px, 6vw, 96px); align-items: end; }
+.c-final-grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); gap: 32px clamp(40px, 6vw, 96px); align-items: center; }
 .c-final-texto p { margin: 0 0 28px; max-width: 36ch; color: rgba(26, 8, 0, 0.82); font-size: clamp(17px, 1.45vw, 20px); line-height: 1.55; text-wrap: pretty; }
 
 

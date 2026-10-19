@@ -51,6 +51,8 @@
     <link rel="stylesheet" href="assets/css/site.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/interna.css">
+    <link rel="stylesheet" href="assets/css/servico.css">
+    <link rel="stylesheet" href="assets/css/paineis.css">
     <script>
         // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
         try {
@@ -180,186 +182,124 @@
     <div class="cursor-anel" aria-hidden="true"><span></span></div>
 
     <main id="conteudo">
-        <section class="i-hero escuro">
-            <div class="wrap">
-                <div class="i-hero-texto">
-                    <h1 class="h-grande gigante i-titulo">Os números do negócio <em>sempre em dia.</em></h1>
-                    <p class="i-hero-sub i-entra">Vendas, metas, estoque e lucro numa tela só, puxados direto dos seus sistemas. Sem montar planilha toda segunda-feira.</p>
-                    <div class="i-acoes i-entra">
-                        <a href="#contato" class="btn btn-acao" data-cta="paineis_hero" data-servico="Sistema sob medida" data-magnetico data-cursor="bora">Quero meu painel <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                        <a class="h-caso-link" href="#exemplos">Ver exemplos <span aria-hidden="true">↓</span></a>
+        <section class="sv-topo pa-topo" aria-labelledby="pa-topo-titulo">
+            <div class="wrap sv-topo-grade">
+                <div class="sv-topo-texto">
+                    <h1 id="pa-topo-titulo" class="sv-titulo gigante i-entra">Os números do negócio <em>sempre em dia.</em></h1>
+                    <p class="sv-sub i-entra">Vendas, metas, estoque e lucro numa tela só, puxados direto dos seus sistemas. Sem montar planilha toda segunda-feira.</p>
+                    <div class="sv-acoes i-entra">
+                        <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pela página de painéis e quero ver os números do meu negócio numa tela só." data-cta="paineis_topo" data-magnetico data-cursor="bora">Quero meu painel <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="sv-link" href="#segunda" data-cta="paineis_topo_ver">Ver o painel se montando <span aria-hidden="true">↓</span></a>
                     </div>
                 </div>
-                <div class="i-painel i-entra" aria-hidden="true">
-                    <div class="i-painel-topo">Vendas da semana <i>ao vivo</i></div>
-                    <div class="i-barras"><span style="--h:38%"></span><span style="--h:52%"></span><span style="--h:44%"></span><span style="--h:63%"></span><span style="--h:58%"></span><span style="--h:74%"></span><span style="--h:86%"></span><i class="i-meta-linha"><em>meta</em></i></div>
-                    <div class="i-painel-pes">
-                        <span><small>Vendas</small>do dia</span>
-                        <span><small>Meta</small>do mês</span>
-                        <span><small>Estoque</small>em falta</span>
+                <div class="sv-palco pa-palco i-entra" aria-hidden="true" data-pa-palco>
+                    <div class="pa-painel">
+                        <div class="pa-cab"><b>Painel</b><span>outubro</span><em class="pa-vivo"><i></i>atualizado agora</em></div>
+                        <div class="pa-kpis">
+                            <div class="pa-kpi"><small>Vendas do mês</small><b data-pa-num="48320" data-pa-real>R$ 48.320</b><span class="pa-sobe">↑ 12% sobre setembro</span></div>
+                            <div class="pa-kpi"><small>Lucro</small><b data-pa-num="9870" data-pa-real>R$ 9.870</b><span>receita menos custos</span></div>
+                            <div class="pa-kpi pa-meta"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.5"/><circle class="pa-anel" cx="18" cy="18" r="15.5" pathLength="100" style="--v:76"/></svg><span><b data-pa-num="76" data-pa-pct>76%</b><small>da meta</small></span></div>
+                        </div>
+                        <div class="pa-grafico">
+                            <small>Vendas por dia</small>
+                            <svg viewBox="0 0 300 90" preserveAspectRatio="none"><path class="pa-area" d="M0.0 62.9 L23.1 52.3 L46.2 57.6 L69.2 45.2 L92.3 50.5 L115.4 36.4 L138.5 41.7 L161.5 31.1 L184.6 38.2 L207.7 24.1 L230.8 29.4 L253.8 17.0 L276.9 22.3 L300.0 10.0 L300 90 L0 90 Z"/><path class="pa-traco" d="M0.0 62.9 L23.1 52.3 L46.2 57.6 L69.2 45.2 L92.3 50.5 L115.4 36.4 L138.5 41.7 L161.5 31.1 L184.6 38.2 L207.7 24.1 L230.8 29.4 L253.8 17.0 L276.9 22.3 L300.0 10.0" pathLength="1"/></svg>
+                        </div>
+                        <div class="pa-baixo">
+                            <div class="pa-mais"><small>Mais vendidos</small><ul><li><span>Pão de queijo</span><i style="--v:100%"></i></li><li><span>Café coado</span><i style="--v:78%"></i></li><li><span>Suco natural</span><i style="--v:55%"></i></li></ul></div>
+                            <div class="pa-falta"><small>Em falta</small><p>Copo descartável</p><p>Açúcar sachê</p></div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <a href="#conteudo-segue" class="h-rolar i-entra"><span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>Role para conhecer</a>
-        </section>
-
-        <section id="conteudo-segue" class="h-faixa" aria-label="Painéis de gestão: o que entra">
-            <div class="h-faixa-linha" aria-hidden="true"><span class="item">Vendas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Metas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Lucro<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Estoque<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Tempo real<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Vendas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Metas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Lucro<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Estoque<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Tempo real<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
-            <div class="h-faixa-linha contorno" aria-hidden="true"><span class="item">Vendas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Metas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Lucro<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Estoque<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Tempo real<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Vendas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Metas<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Lucro<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Estoque<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Tempo real<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
-        </section>
-
-        <section class="h-conversa" aria-labelledby="conversa-titulo">
-            <div class="wrap">
-                <h2 id="conversa-titulo" class="h-grande gigante"><span class="junto">O fim do mês</span> <em class="junto">já te avisa.</em></h2>
-                <div class="chat">
-                    <p class="bolha">Quanto a gente vendeu esse mês?<small>09:12</small></p>
-                    <p class="bolha">Espera eu juntar as planilhas...<small>10:47</small></p>
-                    <p class="bolha">Qual produto mais sai? Ninguém sabe ao certo.<small>14:05</small></p>
-                    <p class="bolha nossa">Bora ver isso numa tela só?<small>MovCode</small></p>
                 </div>
             </div>
         </section>
 
-        <section id="exemplos" class="h-servicos escuro" aria-labelledby="exemplos-titulo">
-            <div class="h-servicos-pin">
-                <div class="h-servicos-trilho">
-                    <div class="h-servicos-intro">
-                        <h2 id="exemplos-titulo" class="h-grande gigante">O que entra <em>no painel.</em></h2>
-                        <p>Os números que ajudam a decidir, sem ninguém montar relatório.</p>
-                    </div>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">01</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-paineis-1" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-paineis-1" startOffset="0" data-repete="hoje · semana · mês · ">hoje · semana · mês · hoje · semana · mês · hoje · semana · mês · hoje · semana · mês · hoje · semana · mês · hoje · semana · mês · </textPath></text></svg></div>
-                        <h3>Vendas do dia e do mês</h3>
-                        <p>Comparadas com o período anterior, para você saber se está indo bem.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">02</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-paineis-2" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-paineis-2" startOffset="0" data-repete="meta · vendedor · loja · ">meta · vendedor · loja · meta · vendedor · loja · meta · vendedor · loja · meta · vendedor · loja · meta · vendedor · loja · meta · vendedor · loja · </textPath></text></svg></div>
-                        <h3>Metas</h3>
-                        <p>Quanto falta para bater a meta, por vendedor ou por loja.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">03</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="M15.5 9.2A6 6 0 1 1 9.2 15.5"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-paineis-3" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-paineis-3" startOffset="0" data-repete="receita · custo · lucro · ">receita · custo · lucro · receita · custo · lucro · receita · custo · lucro · receita · custo · lucro · receita · custo · lucro · receita · custo · lucro · </textPath></text></svg></div>
-                        <h3>Lucro de verdade</h3>
-                        <p>Receita menos custos, não só o faturamento.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">04</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-paineis-4" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-paineis-4" startOffset="0" data-repete="parado · em falta · giro · ">parado · em falta · giro · parado · em falta · giro · parado · em falta · giro · parado · em falta · giro · parado · em falta · giro · parado · em falta · giro · </textPath></text></svg></div>
-                        <h3>Estoque parado e em falta</h3>
-                        <p>O que não gira e o que está para acabar.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">05</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-paineis-5" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-paineis-5" startOffset="0" data-repete="tempo real · direto da fonte · ">tempo real · direto da fonte · tempo real · direto da fonte · tempo real · direto da fonte · tempo real · direto da fonte · tempo real · direto da fonte · tempo real · direto da fonte · </textPath></text></svg></div>
-                        <h3>Sempre atualizado</h3>
-                        <p>Os números vêm direto da fonte, sem ninguém montar relatório.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">06</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-paineis-6" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-paineis-6" startOffset="0" data-repete="celular · computador · ">celular · computador · celular · computador · celular · computador · celular · computador · celular · computador · celular · computador · </textPath></text></svg></div>
-                        <h3>De onde você estiver</h3>
-                        <p>O painel abre no celular e no computador.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="como-funciona" class="h-processo" aria-labelledby="como-funciona-titulo">
-            <div class="wrap">
-                <h2 id="como-funciona-titulo" class="h-grande gigante">Do papo ao <em>sistema no ar.</em></h2>
-                <div class="h-passos-caixa">
-                    <span class="h-passos-linha" aria-hidden="true"></span>
-                    <ol class="h-passos">
-                    <li class="h-passo">
-                        <span class="h-passo-num">01</span>
-                        <h3>Conversa <small>grátis</small></h3>
-                        <p>Por chamada ou mensagem, para entender a sua rotina.</p>
-                    </li>
-                    <li class="h-passo">
-                        <span class="h-passo-num">02</span>
-                        <h3>Proposta</h3>
-                        <p>Escopo, prazo e preço fechados.</p>
-                    </li>
-                    <li class="h-passo">
-                        <span class="h-passo-num">03</span>
-                        <h3>Construção</h3>
-                        <p>Você testa e opina a cada etapa.</p>
-                    </li>
-                    <li class="h-passo">
-                        <span class="h-passo-num">04</span>
-                        <h3>No ar</h3>
-                        <p>Treinamos a equipe e seguimos junto.</p>
-                    </li>
+        <section id="segunda" class="pa-segunda" aria-labelledby="segunda-titulo" data-pa-segunda>
+            <div class="wrap pa-segunda-grade">
+                <div class="pa-segunda-texto">
+                    <h2 id="segunda-titulo" class="sv-titulo gigante">Segunda-feira <em>de manhã.</em></h2>
+                    <ol class="pa-passos">
+                        <li class="pa-passo" data-pa-passo="0"><h3>Antes: juntar as planilhas</h3><p>Três planilhas, cada uma de um jeito, e alguém juntando tudo para saber quanto o mês vendeu.</p></li>
+                        <li class="pa-passo" data-pa-passo="1"><h3>O painel puxa da fonte</h3><p>Os números vêm direto dos sistemas e das planilhas que você já usa, sem ninguém montar relatório.</p></li>
+                        <li class="pa-passo" data-pa-passo="2"><h3>Agora: abre e está lá</h3><p>No celular ou no computador, o total do mês já aparece, sempre atualizado.</p></li>
                     </ol>
                 </div>
+                <div class="pa-mesa" aria-hidden="true" data-pa-mesa data-passo="0">
+                        <div class="pa-folha" data-folha="0" style="--r:-14deg"><div class="pa-folha-barra"><span></span>vendas_loja1.xlsx</div><div class="pa-celulas"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+                        <div class="pa-folha" data-folha="1" style="--r:6deg"><div class="pa-folha-barra"><span></span>vendas_loja2_FINAL.xlsx</div><div class="pa-celulas"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+                        <div class="pa-folha" data-folha="2" style="--r:-4deg"><div class="pa-folha-barra"><span></span>estoque_atualizado_v3.xlsx</div><div class="pa-celulas"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+                    <span class="pa-fonte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></svg></span>
+                    <div class="pa-total"><small>Vendas do mês</small><b>R$ 48.320</b><span><i></i>atualizado agora</span></div>
+                </div>
             </div>
         </section>
 
-        <section id="duvidas" class="h-duvidas" aria-labelledby="duvidas-titulo">
+        <section class="pa-entra" aria-labelledby="entra-titulo">
             <div class="wrap">
-                <h2 id="duvidas-titulo" class="h-grande gigante">Perguntas <em>rápidas.</em></h2>
-                <div class="perguntas">
-                    <details class="pergunta">
-                        <summary>De onde vêm os números?</summary>
+                <h2 id="entra-titulo" class="sv-titulo gigante">O que entra <em>no painel.</em></h2>
+                <p class="sv-intro">Os números que ajudam a decidir, sem ninguém montar relatório.</p>
+                <div class="pa-mosaico">
+                    <article class="pa-w pa-w-vendas">
+                        <div class="pa-w-vis"><div class="pa-w-numeros"><span><small>Hoje</small><b>R$ 1.640</b></span><span><small>Mês</small><b>R$ 48.320</b></span></div><svg viewBox="0 0 160 46" preserveAspectRatio="none"><path class="pa-area" d="M0.0 27.4 L22.9 22.6 L45.7 25.8 L68.6 17.9 L91.4 21.1 L114.3 13.2 L137.1 16.3 L160.0 10.0 L160 46 L0 46 Z"/><path class="pa-traco" d="M0.0 27.4 L22.9 22.6 L45.7 25.8 L68.6 17.9 L91.4 21.1 L114.3 13.2 L137.1 16.3 L160.0 10.0" pathLength="1"/></svg><em class="pa-sobe">↑ 12% sobre o mês passado</em></div>
+                        <h3>Vendas do dia e do mês</h3><p>Comparadas com o período anterior, para você saber se está indo bem.</p>
+                    </article>
+                    <article class="pa-w pa-w-metas">
+                        <div class="pa-w-vis"><ul class="pa-metas"><li><span>Ana</span><i style="--v:92%"></i><b>92%</b></li><li><span>Bruno</span><i style="--v:71%"></i><b>71%</b></li><li><span>Loja Centro</span><i style="--v:64%"></i><b>64%</b></li></ul></div>
+                        <h3>Metas</h3><p>Quanto falta para bater a meta, por vendedor ou por loja.</p>
+                    </article>
+                    <article class="pa-w pa-w-lucro">
+                        <div class="pa-w-vis"><ul class="pa-conta"><li><span>Receita</span><b>R$ 48.320</b></li><li><span>Custos</span><b>− R$ 38.450</b></li><li class="pa-conta-total"><span>Lucro</span><b>R$ 9.870</b></li></ul></div>
+                        <h3>Lucro de verdade</h3><p>Receita menos custos, não só o faturamento.</p>
+                    </article>
+                    <article class="pa-w pa-w-estoque">
+                        <div class="pa-w-vis pa-estoque"><div><small>Parado</small><p><span>Garrafa térmica</span><b>60 dias</b></p><p><span>Caneca de louça</span><b>45 dias</b></p></div><div><small>Em falta</small><p><span>Copo descartável</span><b class="pa-zero">0</b></p><p><span>Açúcar sachê</span><b class="pa-zero">0</b></p></div></div>
+                        <h3>Estoque parado e em falta</h3><p>O que não gira e o que está para acabar.</p>
+                    </article>
+                    <article class="pa-w pa-w-vivo">
+                        <div class="pa-w-vis"><span class="pa-girando"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></svg></span><b>atualizado há 1 min</b><small>direto da fonte</small></div>
+                        <h3>Sempre atualizado</h3><p>Os números vêm direto da fonte, sem ninguém montar relatório.</p>
+                    </article>
+                    <article class="pa-w pa-w-celular">
+                        <div class="pa-w-vis"><span class="pa-mini-cel"><small>Vendas do mês</small><b>R$ 48.320</b><i></i><i></i><i></i></span></div>
+                        <h3>De onde você estiver</h3><p>O painel abre no celular e no computador.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="pa-perguntas" aria-labelledby="pa-perguntas-titulo">
+            <div class="wrap">
+                <h2 id="pa-perguntas-titulo" class="sv-titulo gigante">Antes de abrir <em>o painel.</em></h2>
+                <div class="pa-lista">
+                    <div class="pa-pergunta">
+                        <h3>De onde vêm os números?</h3>
                         <p>Dos sistemas e planilhas que você já usa. A gente conecta as fontes e o painel se atualiza sozinho.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Preciso ter um sistema de gestão?</summary>
+                    </div>
+                    <div class="pa-pergunta">
+                        <h3>Preciso ter um sistema de gestão?</h3>
                         <p>Não necessariamente. Dá para começar com as planilhas que você já tem e evoluir depois.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Quem pode ver o painel?</summary>
+                    </div>
+                    <div class="pa-pergunta">
+                        <h3>Quem pode ver o painel?</h3>
                         <p>Quem você liberar. Cada pessoa entra com o próprio acesso.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Quanto custa?</summary>
+                    </div>
+                    <div class="pa-pergunta">
+                        <h3>Quanto custa?</h3>
                         <p>Depende de quantas fontes de dados e indicadores entram no painel. Depois do diagnóstico gratuito você recebe uma proposta com escopo, prazo e valor fechados.</p>
-                    </details>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contato" class="h-contato" aria-labelledby="contato-titulo">
-            <div class="wrap">
-                <div class="h-contato-texto">
-                    <h2 id="contato-titulo" class="h-contato-titulo gigante">Bora medir?</h2>
+        <section id="contato" class="sv-final pa-final" aria-labelledby="pa-final-titulo">
+            <div class="wrap sv-final-grade">
+                <div class="sv-final-cabeca"><svg class="pa-final-linha" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 62.9 L23.1 52.3 L46.2 57.6 L69.2 45.2 L92.3 50.5 L115.4 36.4 L138.5 41.7 L161.5 31.1 L184.6 38.2 L207.7 24.1 L230.8 29.4 L253.8 17.0 L276.9 22.3 L300.0 10.0" pathLength="1"/></svg><h2 id="pa-final-titulo" class="sv-titulo gigante">Bora ver isso <em>numa tela só?</em></h2></div>
+                <div class="sv-final-texto">
                     <p>Conte quais números você queria ver todo dia. A gente responde no mesmo dia útil.</p>
-                    <ul class="contato-lista">
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg> Por chamada, presencial ou mensagem</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> Preço fechado na proposta</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Seus dados são seus</li>
-                    </ul>
+                    <div class="sv-acoes">
+                        <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pela página de painéis e quero ver os números do meu negócio numa tela só." data-cta="paineis_final" data-magnetico data-cursor="bora">Quero meu painel <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="sv-link" href="/diagnostico" data-cta="paineis_diagnostico">Prefiro um diagnóstico gratuito <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                    </div>
                 </div>
-                <form class="form" data-lead-form novalidate>
-                        <p class="form-titulo">Peça seu diagnóstico</p>
-                        <div class="campo">
-                            <label for="leadNome">Seu nome</label>
-                            <input id="leadNome" name="nome" type="text" autocomplete="name" required placeholder="Como podemos te chamar?">
-                        </div>
-                        <div class="campo">
-                            <label for="leadEmpresa">Empresa <span>(opcional)</span></label>
-                            <input id="leadEmpresa" name="empresa" type="text" autocomplete="organization" placeholder="Nome do seu negócio">
-                        </div>
-                        <fieldset class="opcoes">
-                            <legend>O que você precisa?</legend>
-                            <label><input type="radio" name="servico" value="Site ou landing page" required><span>Site ou landing page</span></label>
-                            <label><input type="radio" name="servico" value="Loja virtual"><span>Loja virtual</span></label>
-                            <label><input type="radio" name="servico" value="Sistema de gestão"><span>Sistema de gestão</span></label>
-                            <label><input type="radio" name="servico" value="Sistema sob medida" checked><span>Sistema sob medida</span></label>
-                            <label><input type="radio" name="servico" value="Automação ou integração"><span>Automação ou integração</span></label>
-                            <label><input type="radio" name="servico" value="Ainda não sei"><span>Ainda não sei</span></label>
-                        </fieldset>
-                        <div class="campo">
-                            <label for="leadMensagem">O que mais atrapalha hoje? <span>(opcional)</span></label>
-                            <textarea id="leadMensagem" name="mensagem" rows="3" placeholder="Ex.: tenho as vendas em três planilhas e nunca sei o total do mês"></textarea>
-                        </div>
-                        <p class="form-erro" role="alert" hidden>Preencha seu nome e escolha o que você precisa.</p>
-                        <button type="submit" class="btn btn-acao">Enviar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-                        <p class="form-nota">Ao enviar, o WhatsApp abre com a sua mensagem pronta. Veja a nossa <a href="/politica">Política de Privacidade</a>.</p>
-                    </form>
             </div>
         </section>
     </main>
@@ -425,5 +365,6 @@
     <script src="assets/js/vendor/lenis.min.js"></script>
     <script src="assets/js/home.js"></script>
     <script src="assets/js/interna.js"></script>
+    <script src="assets/js/servicos.js"></script>
 </body>
 </html>
