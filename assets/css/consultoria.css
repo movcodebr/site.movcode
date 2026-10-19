@@ -61,8 +61,7 @@
 .co-ficha { position: relative; padding: 34px 26px 28px; border-radius: 6px; background: #fff; box-shadow: 0 0 0 1px var(--linha), 0 24px 40px -30px rgba(22, 24, 29, 0.4); transform: rotate(calc((var(--k) - 1) * 1.2deg)); }
 .co-ficha:nth-child(2) { transform: rotate(0.8deg) translateY(10px); }
 /* o clipe de papel */
-.co-clipe { position: absolute; left: 24px; top: -14px; width: 16px; height: 42px; border: 3px solid #9AA3B2; border-bottom: 0; border-radius: 8px 8px 0 0; }
-.co-clipe::after { content: ""; position: absolute; left: 2px; top: 6px; width: 6px; height: 28px; border: 3px solid #9AA3B2; border-top: 0; border-radius: 0 0 6px 6px; }
+.co-clipe { position: absolute; left: 22px; top: -20px; width: 20px; height: 50px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 60'%3E%3Cpath d='M8 18V44a4 4 0 0 0 8 0V10a6 6 0 0 0-12 0V48a8 8 0 0 0 16 0V22' fill='none' stroke='%238C95A5' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat; }
 .co-ficha i { display: grid; place-items: center; width: 46px; height: 46px; margin-bottom: 18px; border-radius: 14px; background: #E5EEF9; color: #1D4E89; font-style: normal; }
 .co-ficha svg { width: 22px; height: 22px; }
 .co-ficha h3 { margin: 0; font: 800 23px/1.1 var(--f-display); font-stretch: 90%; letter-spacing: -0.02em; }

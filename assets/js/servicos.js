@@ -227,6 +227,14 @@
         }, { rootMargin: faixa });
         passos.forEach((p) => obs.observe(p));
         ativar(passos[0]);
+        // no celular, enquanto a mesa está presa no alto (o título já passou), o fundo dela cobre até a borda da tela
+        let pedido = false;
+        const presa = () => {
+            pedido = false;
+            mesa.classList.toggle('presa', mesa.getBoundingClientRect().top <= parseFloat(getComputedStyle(mesa).top) + 1);
+        };
+        window.addEventListener('scroll', () => { if (!pedido) { pedido = true; requestAnimationFrame(presa); } }, { passive: true });
+        presa();
     }
 
     // ---------- Painéis: a linha do mês no fechamento ----------

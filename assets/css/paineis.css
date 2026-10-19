@@ -151,9 +151,18 @@
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 1080px) {
-    /* a mesa fica presa no alto e os passos passam embaixo dela */
+    /* o título primeiro, depois a mesa presa no alto e os passos passando embaixo dela */
+    .pa-segunda { overflow-x: clip; }
     .pa-segunda-grade { grid-template-columns: minmax(0, 1fr); gap: 0; }
-    .pa-mesa { order: -1; top: 76px; z-index: 2; width: min(100%, 460px); margin: 24px auto 0; box-shadow: 0 0 0 24px var(--papel), 0 0 0 100vmax var(--papel); clip-path: inset(-24px -100vmax); background: var(--papel); }
+    .pa-segunda-texto { display: contents; }
+    .pa-segunda .sv-titulo { order: -2; }
+    .pa-mesa { order: -1; top: 76px; z-index: 2; width: min(100%, 460px); margin: 24px auto 0; clip-path: inset(-24px -100vmax -64px); background: var(--papel); }
+    /* o fundo cobre um pouco em volta da mesa e o texto que passa por baixo some num degradê em vez de cortar seco */
+    .pa-mesa::before, .pa-mesa::after { content: ""; position: absolute; left: -100vmax; right: -100vmax; pointer-events: none; }
+    .pa-mesa::before { z-index: -1; top: -24px; bottom: -24px; background: var(--papel); }
+    .pa-mesa.presa { clip-path: inset(-76px -100vmax -64px); }
+    .pa-mesa.presa::before { top: -76px; }
+    .pa-mesa::after { top: calc(100% + 24px); height: 40px; background: linear-gradient(var(--papel), rgba(244, 244, 242, 0)); }
     .pa-passos { padding: 6svh 0 20svh; }
     .pa-passo { min-height: 46svh; }
     .pa-mosaico { grid-template-columns: repeat(2, minmax(0, 1fr)); }
