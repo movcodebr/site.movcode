@@ -16,7 +16,13 @@
 /* Peças do site de exemplo, usadas no topo e na anatomia */
 .s-foto { position: relative; display: grid; place-items: center; overflow: hidden; color: #fff; background: radial-gradient(120% 90% at 85% 10%, rgba(255, 90, 31, 0.55), transparent 55%), radial-gradient(90% 80% at 10% 100%, rgba(255, 90, 31, 0.3), transparent 60%), #24252A; }
 .s-foto svg { width: 34%; max-width: 64px; opacity: 0.9; }
-.s-ilha { position: absolute; top: 0.55em; left: 50%; z-index: 3; width: 32%; height: 1.15em; border-radius: 999px; background: #000; transform: translateX(-50%); }
+/* Moldura do iPhone 17 Pro (SVG de 880×1832 com a tela vazada) por cima de tudo; o site de exemplo fica
+   embaixo, no vão da tela, com os mesmos cantos. A proporção é sempre a do aparelho. */
+.s-celular, .s-tel { isolation: isolate; aspect-ratio: 880 / 1832; border-radius: 26% / 12.5%; }
+.s-celular::after, .s-tel::after { content: ""; position: absolute; inset: 0; z-index: 5; background: url(../images/iphone-17-pro.svg) center / 100% 100% no-repeat; pointer-events: none; }
+/* a tela passa um pouco por baixo da borda preta (o vão do SVG começa em 38×42 de 880×1832) e tem o canto
+   mais fechado que o dele, que é contínuo como o da Apple: assim cobre o vão inteiro, sem fresta nos cantos */
+.s-cel-tela, .s-tel-tela { position: absolute; inset: 1.86% 3.41%; overflow: hidden; border-radius: 15.85% / 7.37%; background: #F6F5F2; }
 
 
 /* ---------- 1. Topo: claro, com o endereço digitando e o site se montando ---------- */
@@ -49,7 +55,8 @@
 .s-pc-precos span { display: flex; justify-content: space-between; align-items: center; gap: 0.6em; padding: 0.9em 1em; border-radius: 0.9em; background: #fff; box-shadow: inset 0 0 0 1px #E4E2DD; font-size: 0.9em; }
 .s-pc-precos i { padding: 0.25em 0.6em; border-radius: 999px; background: #FFE4D8; font: 700 0.95em var(--f-texto); font-style: normal; white-space: nowrap; }
 
-.s-celular { position: absolute; right: 0; bottom: 0; width: 30%; font-size: 1.55cqi; display: grid; align-content: start; gap: 0.8em; aspect-ratio: 9 / 18.5; padding: 2.4em 0.9em 1em; border: 0.55em solid #060607; border-radius: 2.6em; background: #F6F5F2; box-shadow: 0 0 0 1px #3A3C41, 0 40px 70px -30px rgba(0, 0, 0, 0.55); overflow: hidden; color: #16181D; font-family: var(--f-texto); }
+.s-celular { position: absolute; right: 0; bottom: 0; width: 30%; font-size: 1.55cqi; box-shadow: 0 40px 70px -30px rgba(0, 0, 0, 0.55); color: #16181D; font-family: var(--f-texto); }
+.s-cel-tela { display: grid; align-content: start; gap: 0.8em; padding: 2.9em 0.9em 1em; }
 .s-cel-topo { display: flex; align-items: center; gap: 0.6em; }
 .s-cel-topo b { font: 700 1em var(--f-display); letter-spacing: -0.02em; white-space: nowrap; }
 .s-cel-abre { display: grid; gap: 0.8em; padding: 1.2em 1em; border-radius: 1.2em; background: #111214; color: #fff; }
@@ -62,14 +69,14 @@
 /* entrada: o endereço se digita e as partes do site aparecem uma a uma */
 @media (prefers-reduced-motion: no-preference) {
     .s-url b { width: 17ch; animation: s-digita 1.3s steps(17, end) 0.5s both, s-cursor 0.8s step-end 0.5s 3; }
-    .s-pc > *, .s-celular > :not(.s-ilha) { animation: s-surge 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    .s-pc > *, .s-cel-tela > * { animation: s-surge 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
     .s-pc > :nth-child(1) { animation-delay: 1.9s; }
     .s-pc > :nth-child(2) { animation-delay: 2.15s; }
     .s-pc > :nth-child(3) { animation-delay: 2.4s; }
-    .s-celular > :nth-child(2) { animation-delay: 2.7s; }
-    .s-celular > :nth-child(3) { animation-delay: 2.85s; }
-    .s-celular > :nth-child(4) { animation-delay: 3s; }
-    .s-celular > :nth-child(5) { animation-delay: 3.3s; }
+    .s-cel-tela > :nth-child(1) { animation-delay: 2.7s; }
+    .s-cel-tela > :nth-child(2) { animation-delay: 2.85s; }
+    .s-cel-tela > :nth-child(3) { animation-delay: 3s; }
+    .s-cel-tela > :nth-child(4) { animation-delay: 3.3s; }
 }
 @keyframes s-digita { from { width: 0; } }
 @keyframes s-cursor { 50% { border-right-color: #50535B; } }
@@ -90,10 +97,10 @@
 .s-passo p { margin: 14px 0 0; max-width: 38ch; font-size: 18px; line-height: 1.55; color: var(--sobre-noite-2); text-wrap: pretty; }
 
 .s-anatomia-palco { position: sticky; top: 0; display: grid; place-items: center; height: 100svh; }
-.s-mock { --tel-w: 300px; position: relative; display: grid; justify-items: center; }
-.s-tel { position: relative; width: var(--tel-w); aspect-ratio: 9 / 18.5; font-size: calc(var(--tel-w) / 26); border: 0.75em solid #060607; border-radius: 3.6em; background: #F6F5F2; box-shadow: 0 0 0 1.5px #3A3C41, 0 50px 90px -40px rgba(0, 0, 0, 0.8); overflow: hidden; }
-.s-tel-tela { position: absolute; inset: 0; overflow: hidden; border-radius: 2.85em; }
-.s-tel-rola { position: relative; display: grid; gap: 1.2em; padding: 3em 1em 6em; color: #16181D; font-family: var(--f-texto); transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+/* o tamanho do aparelho segue a altura da tela; a proporção é a da moldura */
+.s-mock { --tel-w: min(300px, calc((100svh - 112px) * 880 / 1832)); position: relative; display: grid; justify-items: center; }
+.s-tel { position: relative; width: var(--tel-w); font-size: calc(var(--tel-w) / 26); box-shadow: 0 50px 90px -40px rgba(0, 0, 0, 0.8); }
+.s-tel-rola { position: relative; display: grid; gap: 1.2em; padding: 3.6em 1em 6em; color: #16181D; font-family: var(--f-texto); transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .s-tel-rola h4 { margin: 0 0 0.8em; font: 700 1.5em var(--f-display); letter-spacing: -0.02em; }
 .s-tel-topo { display: flex; align-items: center; gap: 0.7em; padding: 0.4em; }
 .s-tel-topo b { margin-right: auto; font: 700 1.15em var(--f-display); letter-spacing: -0.02em; }
@@ -181,15 +188,24 @@
 @media (max-width: 1080px) {
     .s-topo-grade, .s-final-grade { grid-template-columns: minmax(0, 1fr); }
     .s-palco { max-width: 640px; }
-    /* anatomia no celular: o aparelho fica preso no alto e os passos passam embaixo dele */
-    .s-anatomia-grade { grid-template-columns: minmax(0, 1fr); gap: 0; }
-    .s-anatomia-palco { order: -1; top: 0; z-index: 2; height: auto; padding: 76px 0 18px; background: linear-gradient(var(--noite) 88%, transparent); }
-    .s-mock { --tel-w: min(46vw, 230px); }
-    .s-tel { aspect-ratio: 9 / 13; }
-    .s-busca { top: 6%; width: min(92vw, 360px); }
-    .s-passos { padding: 4svh 0 34svh; }
-    .s-passo { min-height: 40svh; padding: 0; }
     .s-caminhos-grade, .s-qa-grade { grid-template-columns: minmax(0, 1fr); }
+}
+/* anatomia em tela em pé: o aparelho fica preso no alto, com a altura de até 42% da tela e a mesma
+   proporção do computador, e os passos passam embaixo dele. Tela deitada continua em duas colunas. */
+@media (max-width: 1080px) and (orientation: portrait) {
+    .s-anatomia-grade { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .s-anatomia-palco { order: -1; top: 0; z-index: 2; height: auto; padding: 14px 0 18px; background: var(--noite); transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .s-anatomia-palco::before, .s-anatomia-palco::after { content: ""; position: absolute; left: 0; right: 0; pointer-events: none; }
+    .s-anatomia-palco::after { top: 100%; height: 28px; background: linear-gradient(var(--noite), transparent); }
+    /* quando a cápsula do menu volta (rolando para cima), o aparelho preso desce para não ficar atrás dela */
+    .topo:not(.escondido) ~ main .s-anatomia-palco.preso { transform: translateY(var(--desce, 68px)); }
+    .s-anatomia-palco.preso::before { bottom: 100%; height: 100px; background: var(--noite); }
+    .s-mock { --tel-w: calc(min(42svh, 400px) * 880 / 1832); }
+    .s-busca { top: 8%; width: min(calc(100vw - 32px), 360px); }
+    /* cada passo tem a altura do espaço que sobra abaixo do aparelho menos o texto: assim o texto do
+       passo aceso fica sempre à vista, e a seção acaba logo depois do último passo */
+    .s-passos { padding: 0 0 4svh; }
+    .s-passo { min-height: max(0px, calc(100svh - 32px - min(42svh, 400px) - 170px)); padding: 12px 0; }
 }
 @media (max-width: 640px) {
     .s-topo { padding-top: 112px; }
@@ -198,7 +214,8 @@
     .s-pc-precos { grid-template-columns: repeat(2, 1fr); }
     .s-pc-precos span:nth-child(3) { display: none; }
     .s-celular { width: 36%; font-size: 1.85cqi; }
-    .s-mock { --tel-w: min(52vw, 210px); }
+    .s-passo h3 { font-size: 26px; }
+    .s-passo p { margin-top: 10px; font-size: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
     .s-passo { opacity: 1; }
