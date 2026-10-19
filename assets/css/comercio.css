@@ -1,0 +1,256 @@
+/* =========================================================================
+   MovCode — /sistema-para-mercadinho
+   Estrutura própria (não usa os blocos da home): topo laranja em que o
+   caderno de fiado vira sistema, um dia no balcão (o relógio anda e o céu
+   muda ao rolar), a prateleira dos módulos, o guia numa folha arrancada,
+   as perguntas num cupom de caixa e o fechamento.
+   A letra de mão do caderno é a Caveat (Google Fonts, só nesta página).
+   ========================================================================= */
+
+.c-titulo { margin: 0; font-size: clamp(44px, 6.2vw, 100px); line-height: 0.9; letter-spacing: -0.035em; text-wrap: balance; }
+.c-titulo em { font-style: normal; }
+.c-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; }
+.c-link { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 3px; border-bottom: 1.5px solid currentColor; color: inherit; font: 600 16px var(--f-texto); text-decoration: none; }
+.c-link span, .c-link svg { width: 1em; height: 1em; transition: transform 0.25s ease; }
+.c-link:hover span { transform: translateY(3px); }
+.c-link:hover svg { transform: translateX(4px); }
+/* botão escuro sobre o laranja (topo e fechamento) */
+.c-topo .btn-acao, .c-final .btn-acao { background: var(--tinta); color: #fff; }
+.c-topo .btn-acao:hover, .c-final .btn-acao:hover { background: #000; }
+/* papel pautado do caderno (o mesmo no topo e na folha do guia) */
+.c-caderno, .c-folha { --pauta: 34px; --margem: 44px; background: linear-gradient(90deg, transparent var(--margem), rgba(214, 64, 64, 0.5) var(--margem), rgba(214, 64, 64, 0.5) calc(var(--margem) + 1.5px), transparent calc(var(--margem) + 1.5px)), repeating-linear-gradient(transparent 0, transparent calc(var(--pauta) - 1px), #C4D6EC calc(var(--pauta) - 1px), #C4D6EC var(--pauta)), #FFFDF7; }
+
+
+/* ---------- 1. Topo: o caderno de fiado vira sistema ---------- */
+.c-topo { position: relative; isolation: isolate; padding: clamp(112px, 14svh, 150px) 0 clamp(64px, 8vw, 112px); background: var(--laranja); color: var(--laranja-tinta-txt); overflow: hidden; }
+.c-topo::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(circle at 1px 1px, rgba(26, 8, 0, 0.16) 1px, transparent 0) 0 0 / 22px 22px; -webkit-mask-image: radial-gradient(ellipse 60% 85% at 74% 50%, #000 20%, transparent 75%); mask-image: radial-gradient(ellipse 60% 85% at 74% 50%, #000 20%, transparent 75%); pointer-events: none; }
+.c-topo .c-titulo em { color: #fff; }
+/* o texto vira linhas da grade (display: contents): no computador fica no meio, ao lado do palco;
+   no celular o palco entra depois do subtítulo e os botões ficam embaixo dele */
+.c-topo-grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-rows: 1fr auto auto auto 1fr; grid-template-areas: ". palco" "titulo palco" "sub palco" "acoes palco" ". palco"; column-gap: clamp(32px, 5vw, 72px); }
+.c-topo-texto { display: contents; }
+.c-topo .c-titulo { grid-area: titulo; }
+.c-topo-sub { grid-area: sub; margin: 24px 0 34px; max-width: 44ch; font-size: clamp(17px, 1.35vw, 19px); line-height: 1.55; color: rgba(26, 8, 0, 0.82); text-wrap: pretty; }
+.c-topo .c-acoes { grid-area: acoes; }
+
+.c-palco { grid-area: palco; align-self: center; position: relative; container-type: inline-size; aspect-ratio: 1 / 0.86; }
+/* a folha do caderno, com os furos da espiral (vazados no laranja) e a letra de mão */
+.c-caderno { --pauta: 6.4cqi; --margem: 8.6cqi; position: absolute; left: 0; top: 3%; width: 60%; padding: 9cqi 4cqi 5cqi 11cqi; border-radius: 1.4cqi; background-position: 0 0, 0 2.6cqi, 0 0; color: #23408F; font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive; transform: rotate(-3deg); box-shadow: 0 34px 60px -30px rgba(26, 8, 0, 0.65); }
+.c-caderno::before { content: ""; position: absolute; left: 5cqi; right: 5cqi; top: 2.6cqi; height: 2.2cqi; background: radial-gradient(circle, var(--laranja) 0 0.95cqi, transparent calc(0.95cqi + 1px)) 0 50% / 4.6cqi 100% repeat-x; }
+.c-cad-titulo { margin: 0; font-size: 5.6cqi; font-weight: 700; line-height: var(--pauta); color: #16181D; }
+.c-cad-linhas { margin: 0; padding: 0; list-style: none; }
+.c-cad-linha { display: flex; align-items: baseline; gap: 3cqi; font-size: 4.9cqi; font-weight: 500; line-height: var(--pauta); white-space: nowrap; }
+.c-cad-linha b { font-weight: 700; }
+.c-cad-linha span { padding: 0 0.15em; border-radius: 0.2em; transition: background-color 0.4s ease; }
+.c-riscado { color: #6C7DB0; }
+.c-riscado span, .c-riscado b { text-decoration: line-through; text-decoration-thickness: 0.12em; }
+/* a linha que a leitura já passou ganha um marca-texto */
+.c-cad-linha.lido span { background: rgba(255, 90, 31, 0.24); }
+.c-leitura { position: absolute; left: 4%; right: 4%; top: 30%; height: 2px; border-radius: 2px; background: var(--laranja); box-shadow: 0 0 1.6cqi 0.3cqi rgba(255, 90, 31, 0.65); opacity: 0; transition: top 0.55s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.3s ease; pointer-events: none; }
+.c-leitura::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 5cqi; background: linear-gradient(transparent, rgba(255, 90, 31, 0.16)); }
+.c-leitura.on { opacity: 1; }
+
+/* o sistema: o mesmo fiado, arrumado */
+.c-sistema { position: absolute; right: 0; top: 19%; width: 52%; padding: 3.4cqi; border-radius: 3.2cqi; background: #fff; color: #16181D; font: 500 2.6cqi var(--f-texto); box-shadow: 0 44px 80px -34px rgba(26, 8, 0, 0.6); }
+.c-sis-topo { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.4cqi; }
+.c-sis-topo span { display: inline-flex; align-items: center; gap: 1.2cqi; font: 700 3.4cqi var(--f-display); letter-spacing: -0.02em; }
+.c-sis-topo svg { width: 1em; height: 1em; color: var(--laranja-texto); }
+.c-sis-topo small { padding: 0.5cqi 1.6cqi; border-radius: 999px; background: #F2F1EE; color: #50535B; font-size: 2.2cqi; font-weight: 600; }
+.c-sis-linha { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1.8cqi; padding: 1.7cqi 0; border-top: 1px solid #ECEAE5; }
+.c-sis-linha i { display: grid; place-items: center; width: 5.6cqi; height: 5.6cqi; border-radius: 50%; background: #FFE4D8; color: #B53A0A; font: 800 2.6cqi var(--f-display); font-style: normal; }
+.c-sis-linha b { display: block; font-weight: 700; }
+.c-sis-linha small { color: #50535B; font-size: 2.2cqi; }
+.c-sis-linha em { font-style: normal; font-weight: 700; white-space: nowrap; }
+.c-sis-total { display: flex; justify-content: space-between; align-items: center; margin-top: 1.2cqi; padding: 2cqi 2.4cqi; border-radius: 2.2cqi; background: var(--tinta); color: #C9CBD1; }
+.c-sis-total b { color: #fff; font: 800 3.6cqi var(--f-display); font-variant-numeric: tabular-nums; }
+
+/* os avisos do estoque que saem das duas últimas linhas do caderno */
+.c-aviso { position: absolute; display: flex; align-items: center; gap: 1.8cqi; padding: 2cqi 2.6cqi 2cqi 2cqi; border-radius: 2.4cqi; background: #fff; color: #16181D; font: 500 2.5cqi var(--f-texto); box-shadow: 0 26px 50px -26px rgba(26, 8, 0, 0.6); white-space: nowrap; }
+.c-aviso i { display: grid; place-items: center; flex: none; width: 5.6cqi; height: 5.6cqi; border-radius: 1.6cqi; font-style: normal; }
+.c-aviso svg { width: 55%; height: 55%; }
+.c-aviso b { display: block; font-weight: 700; }
+.c-aviso small { color: #50535B; font-size: 2.2cqi; }
+.c-aviso-acabando { left: 6%; top: 75%; }
+.c-aviso-acabando i { background: #FFE4D8; color: #B53A0A; }
+.c-aviso-entrada { right: 8%; top: 85%; }
+.c-aviso-entrada i { background: #DDF1E4; color: #15803D; }
+
+/* com animação (sites sem JS ou com movimento reduzido veem tudo pronto): as peças entram quando a
+   leitura passa pela linha de mesmo número */
+.c-anima [data-peca] { opacity: 0; transform: translateY(1.6cqi) scale(0.97); transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.c-anima [data-peca].on { opacity: 1; transform: none; }
+
+
+/* ---------- 2. Um dia no balcão: o fundo vai da manhã à noite ---------- */
+.c-dia { --ceu: #FFF4E5; --c-tx: var(--tinta); --c-tx2: var(--tinta-2); --c-em: var(--laranja-texto); padding: var(--secao) 0; background: var(--ceu); color: var(--c-tx); transition: background-color 0.9s ease, color 0.9s ease; }
+.c-dia[data-ceu="cedo"] { --ceu: #FFECD4; }
+.c-dia[data-ceu="meio"] { --ceu: #FFE2BF; }
+.c-dia[data-ceu="tarde"] { --ceu: #FFD3A3; }
+.c-dia[data-ceu="poente"] { --ceu: #F6AE72; --c-tx2: #3B2410; --c-em: #8F2C05; }
+.c-dia[data-ceu="noite"] { --ceu: #1D1931; --c-tx: #fff; --c-tx2: #C9C6D9; --c-em: var(--laranja); }
+.c-dia[data-ceu="mes"] { --ceu: var(--noite); --c-tx: #fff; --c-tx2: var(--sobre-noite-2); --c-em: var(--laranja); }
+.c-dia .c-titulo em { color: var(--c-em); transition: color 0.9s ease; }
+.c-intro { margin: 22px 0 0; max-width: 46ch; font-size: clamp(17px, 1.45vw, 20px); line-height: 1.55; color: var(--c-tx2); transition: color 0.9s ease; }
+.c-dia-grade { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(32px, 6vw, 96px); margin-top: clamp(24px, 4vw, 48px); }
+/* o relógio fica preso no meio da tela enquanto os momentos passam ao lado */
+.c-relogio { position: sticky; top: 0; display: flex; flex-direction: column; justify-content: center; height: 100svh; }
+.c-relogio-hora { font: 800 clamp(96px, 12.5vw, 196px)/0.85 var(--f-display); font-stretch: 85%; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.c-relogio-rotulo { margin-top: 20px; color: var(--c-tx2); font: 700 clamp(20px, 2vw, 28px) var(--f-texto); transition: color 0.9s ease; }
+.c-relogio-hora, .c-relogio-rotulo { transition: opacity 0.18s ease, transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.9s ease; }
+.c-relogio.trocando .c-relogio-hora, .c-relogio.trocando .c-relogio-rotulo { opacity: 0; transform: translateY(-0.12em); }
+.c-relogio.entrando .c-relogio-hora, .c-relogio.entrando .c-relogio-rotulo { opacity: 0; transform: translateY(0.12em); transition: none; }
+.c-momentos { margin: 0; padding: 0 0 14svh; list-style: none; }
+.c-momento { display: flex; flex-direction: column; justify-content: center; min-height: 72svh; }
+.c-dia.anima .c-momento { opacity: 0.32; transition: opacity 0.45s ease; }
+.c-dia.anima .c-momento.ativo { opacity: 1; }
+.c-momento time { display: none; }
+.c-momento h3 { margin: 0; font: 800 clamp(28px, 3vw, 44px)/1 var(--f-display); font-stretch: 85%; letter-spacing: -0.03em; }
+.c-momento p { margin: 12px 0 24px; max-width: 40ch; font-size: 18px; line-height: 1.55; color: var(--c-tx2); text-wrap: pretty; transition: color 0.9s ease; }
+
+/* a telinha do sistema em cada momento */
+.c-ui { width: min(100%, 440px); padding: 20px; border-radius: 22px; background: #fff; color: #16181D; font: 500 15px var(--f-texto); box-shadow: 0 30px 60px -30px rgba(26, 8, 0, 0.45); }
+.c-ui-topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
+.c-ui-topo span { display: inline-flex; align-items: center; gap: 9px; font: 700 17px var(--f-display); letter-spacing: -0.01em; }
+.c-ui-topo svg { width: 18px; height: 18px; color: var(--laranja-texto); }
+.c-ui-topo small { padding: 4px 10px; border-radius: 999px; background: #F2F1EE; color: #50535B; font-size: 12px; font-weight: 600; }
+.c-ui-lista { margin: 0; padding: 0; list-style: none; }
+.c-ui-lista li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid #EEECE8; }
+.c-ui-lista small { color: #8A8D94; font: 600 12px var(--f-mono); }
+.c-ui-lista b { font-weight: 700; white-space: nowrap; }
+.c-ui-pe { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 4px; padding-top: 12px; border-top: 1px dashed #D9D6CF; color: #50535B; }
+.c-ui-pe b { color: #16181D; font: 800 20px var(--f-display); white-space: nowrap; }
+.c-ui-pe-forte { margin-top: 12px; padding: 14px 16px; border: 0; border-radius: 14px; background: var(--tinta); color: #C9CBD1; }
+.c-ui-pe-forte b { color: #fff; }
+.c-ui-pe-forte span { display: inline-flex; align-items: center; gap: 8px; }
+.c-ui-pe-forte svg { width: 16px; height: 16px; color: #4ADE80; }
+.c-ui-destaque { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; background: #F6F5F2; }
+.c-ui-destaque b { font-weight: 700; }
+.c-mais { color: #15803D; font: 800 24px var(--f-display); }
+.c-ui-barra { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; color: #50535B; }
+.c-ui-barra b { color: #16181D; font: 800 22px var(--f-display); }
+.c-ui-barra i { margin: 0 4px; color: var(--laranja-texto); font-style: normal; }
+.c-ui-alerta { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; background: #FFE4D8; color: #8F2C05; font-weight: 700; }
+.c-ui-alerta b { color: #16181D; }
+.c-ui-alerta + .c-ui-alerta { margin-top: 8px; }
+.c-ui-alerta-leve { background: #F6F5F2; color: #50535B; }
+.c-ui-pedidos li, .c-ui-conta li { grid-template-columns: minmax(0, 1fr) auto; }
+.c-status { padding: 4px 10px; border-radius: 999px; font-size: 12px; font-style: normal; font-weight: 700; white-space: nowrap; }
+.c-status-ok { background: #DDF1E4; color: #15803D; }
+.c-status-falta { background: #FFF0C7; color: #7A5200; }
+.c-status-novo { background: #EEF0F4; color: #50535B; }
+.c-ui-barras { display: grid; gap: 12px; margin: 6px 0 0; padding: 0; list-style: none; }
+.c-ui-barras li { display: grid; grid-template-columns: 104px minmax(0, 1fr); align-items: center; gap: 12px; font-weight: 600; }
+.c-ui-barras i { position: relative; height: 12px; border-radius: 999px; background: #F2F1EE; overflow: hidden; }
+.c-ui-barras i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--v); border-radius: inherit; background: var(--laranja); transform-origin: left; transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s; }
+.c-dia.anima .c-momento:not(.ativo) .c-ui-barras i::after { transform: scaleX(0); }
+.c-dia-nota { display: flex; align-items: center; gap: 14px; max-width: 62ch; margin: clamp(32px, 5vw, 64px) 0 0; color: var(--c-tx2); font-size: clamp(16px, 1.3vw, 18px); line-height: 1.5; transition: color 0.9s ease; }
+.c-dia-nota svg { flex: none; width: 26px; height: 26px; color: var(--c-em); }
+
+
+/* ---------- 3. Comece pelo que mais dói: a prateleira ---------- */
+.c-comece { padding: var(--secao) 0; background: var(--papel); color: var(--tinta); overflow: hidden; }
+.c-comece .c-titulo em, .c-guia .c-titulo em { color: var(--laranja-texto); }
+.c-comece-grade, .c-guia-grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.c-comece-texto p { margin: 24px 0 0; max-width: 42ch; color: var(--tinta-2); font-size: clamp(17px, 1.45vw, 20px); line-height: 1.55; text-wrap: pretty; }
+.c-prateleira { position: relative; display: grid; gap: 46px; padding: 64px 0 14px; }
+.c-tabua { position: relative; display: flex; justify-content: center; align-items: flex-end; gap: 14px; padding: 0 12px; }
+/* a tábua de madeira embaixo dos módulos */
+.c-tabua::after { content: ""; position: absolute; left: 0; right: 0; bottom: -16px; height: 16px; border-radius: 4px; background: linear-gradient(#CF9459, #A9713A); box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.25), 0 16px 26px -14px rgba(60, 30, 0, 0.45); }
+.c-modulo { display: grid; justify-items: center; align-content: center; gap: 10px; width: 124px; aspect-ratio: 1; border-radius: 18px; background: var(--tinta); color: #fff; font: 700 16px var(--f-texto); box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.28), 0 12px 22px -14px rgba(0, 0, 0, 0.55); }
+.c-modulo i { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: rgba(255, 255, 255, 0.12); }
+.c-modulo svg { width: 22px; height: 22px; }
+.c-modulo-primeiro { background: var(--laranja); color: var(--laranja-tinta-txt); }
+.c-modulo-primeiro i { background: rgba(26, 8, 0, 0.12); }
+.c-bilhete { position: absolute; top: 4px; left: calc(50% - 170px); color: var(--laranja-texto); font: 700 32px/1 "Caveat", "Segoe Print", cursive; transform: rotate(-5deg); }
+.c-bilhete::after { content: "↓"; display: inline-block; margin-left: 8px; font-family: var(--f-texto); font-size: 24px; transform: rotate(-20deg); }
+/* os módulos caem na prateleira um a um quando ela aparece (primeiro o fiado e o estoque) */
+.c-prateleira.c-anima .c-modulo { opacity: 0; transform: translateY(-70px) rotate(-6deg); }
+.c-prateleira.c-anima .c-bilhete { opacity: 0; }
+.c-prateleira.c-anima.visto .c-modulo { opacity: 1; transform: none; transition: transform 0.7s cubic-bezier(0.3, 1.45, 0.5, 1) calc(var(--k) * 0.22s + 0.1s), opacity 0.25s ease calc(var(--k) * 0.22s + 0.1s); }
+.c-prateleira.c-anima.visto .c-bilhete { opacity: 1; transition: opacity 0.5s ease 0.7s; }
+
+
+/* ---------- 4. O guia numa folha arrancada do caderno ---------- */
+.c-guia { padding: 0 0 var(--secao); background: var(--papel); color: var(--tinta); }
+.c-folha { --pauta: 34px; --margem: 40px; position: relative; display: grid; gap: 16px; padding: 52px 36px 34px 64px; background-position: 0 0, 0 18px, 0 0; color: var(--tinta); text-decoration: none; transform: rotate(1.5deg); box-shadow: 0 30px 60px -30px rgba(22, 24, 29, 0.45); transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s ease; }
+.c-folha:hover { transform: rotate(0deg) translateY(-4px); box-shadow: 0 40px 70px -30px rgba(22, 24, 29, 0.5); }
+/* a borda de cima rasgada */
+.c-folha::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 10px; background: linear-gradient(135deg, var(--papel) 50%, transparent 50%) 0 0 / 14px 10px, linear-gradient(225deg, var(--papel) 50%, transparent 50%) 0 0 / 14px 10px; }
+.c-fita { position: absolute; top: -16px; left: 50%; width: 128px; height: 32px; background: rgba(255, 214, 122, 0.78); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); transform: translateX(-50%) rotate(-3deg); }
+.c-folha strong { font: 800 clamp(24px, 2.4vw, 34px)/1.05 var(--f-display); letter-spacing: -0.02em; text-wrap: balance; }
+.c-folha-texto { color: var(--tinta-2); font-size: 17px; line-height: 1.6; }
+.c-folha-ler { display: inline-flex; align-items: center; gap: 8px; color: var(--laranja-texto); font-weight: 700; }
+.c-folha-ler svg { width: 18px; height: 18px; transition: transform 0.25s ease; }
+.c-folha:hover .c-folha-ler svg { transform: translateX(4px); }
+
+
+/* ---------- 5. Perguntas num cupom de caixa ---------- */
+.c-perguntas { padding: var(--secao) 0; background: var(--noite); color: var(--sobre-noite); }
+.c-perguntas .c-titulo em { color: var(--laranja); }
+.c-perguntas-grade { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.c-perguntas-texto { position: sticky; top: 120px; }
+.c-perguntas-texto p { margin: 24px 0 0; max-width: 34ch; color: var(--sobre-noite-2); font-size: clamp(17px, 1.45vw, 20px); line-height: 1.55; }
+.c-cupom { position: relative; justify-self: center; width: min(100%, 520px); margin: 12px 0; padding: 34px 32px 26px; background: #FBFAF6; color: #1E1F23; font: 500 15px/1.6 var(--f-mono); box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.75); }
+/* serrilhado de bobina em cima e embaixo */
+.c-cupom::before, .c-cupom::after { content: ""; position: absolute; left: 0; right: 0; height: 12px; }
+.c-cupom::before { top: -12px; background: radial-gradient(circle at 8px 0, transparent 7px, #FBFAF6 7.5px) 0 0 / 16px 12px repeat-x; }
+.c-cupom::after { bottom: -12px; background: radial-gradient(circle at 8px 12px, transparent 7px, #FBFAF6 7.5px) 0 0 / 16px 12px repeat-x; }
+.c-cupom-cabeca { display: grid; justify-items: center; gap: 6px; padding-bottom: 18px; border-bottom: 1.5px dashed #BDB9AE; text-align: center; }
+.c-cupom-cabeca .duo { --w: 30px; }
+.c-cupom-cabeca b { font: 800 22px var(--f-display); letter-spacing: -0.02em; }
+.c-cupom-cabeca small { color: #6B6E76; }
+.c-cupom-lista { margin: 0; }
+.c-cupom-qa { padding: 18px 0; border-bottom: 1.5px dashed #BDB9AE; }
+.c-cupom-qa dt { color: #111; font-weight: 600; }
+.c-cupom-qa dd { margin: 6px 0 0; color: #45474D; }
+.c-cupom-qa a { color: var(--laranja-texto); }
+.c-cupom-pe { margin: 18px 0 14px; color: #6B6E76; text-align: center; }
+.c-barras { display: block; width: 72%; height: 46px; margin: 0 auto; background: repeating-linear-gradient(90deg, #1E1F23 0 2px, transparent 2px 4px, #1E1F23 4px 7px, transparent 7px 9px, #1E1F23 9px 10px, transparent 10px 13px, #1E1F23 13px 16px, transparent 16px 17px); }
+
+
+/* ---------- 6. Fechamento ---------- */
+.c-final { padding: clamp(80px, 11vw, 150px) 0; background: var(--laranja); color: var(--laranja-tinta-txt); }
+.c-final .c-titulo em { color: #fff; }
+.c-final-grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); gap: 32px clamp(40px, 6vw, 96px); align-items: end; }
+.c-final-texto p { margin: 0 0 28px; max-width: 36ch; color: rgba(26, 8, 0, 0.82); font-size: clamp(17px, 1.45vw, 20px); line-height: 1.55; text-wrap: pretty; }
+
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1080px) {
+    .c-topo-grade { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "titulo" "sub" "palco" "acoes"; }
+    .c-topo-sub { margin-bottom: 28px; }
+    .c-palco { width: 100%; max-width: 620px; margin: 0 auto 40px; }
+    /* um dia no balcão no celular: sem o relógio preso; cada momento mostra a hora dele */
+    .c-dia-grade { grid-template-columns: minmax(0, 1fr); }
+    .c-relogio { display: none; }
+    .c-momentos { padding: 8px 0 0; }
+    .c-momento { min-height: 0; padding: 36px 0; }
+    .c-dia.anima .c-momento { opacity: 1; }
+    .c-momento time { display: block; margin-bottom: 10px; font: 800 clamp(52px, 13vw, 84px)/0.9 var(--f-display); font-stretch: 85%; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+    .c-comece-grade, .c-guia-grade, .c-perguntas-grade, .c-final-grade { grid-template-columns: minmax(0, 1fr); }
+    .c-perguntas-texto { position: static; }
+    .c-prateleira { max-width: 520px; width: 100%; margin: 0 auto; }
+    .c-folha { max-width: 560px; }
+}
+@media (max-width: 640px) {
+    .c-topo { padding-top: 112px; }
+    /* no celular o cartão do sistema desce e cobre só o fim da folha */
+    .c-palco { aspect-ratio: 1 / 1.2; }
+    .c-caderno { width: 76%; }
+    .c-sistema { top: 46%; width: 66%; }
+    .c-aviso-acabando { left: 1%; top: 90%; }
+    .c-aviso-entrada { right: 1%; top: 90%; }
+    .c-momento p { font-size: 16px; }
+    .c-ui { padding: 16px; font-size: 14px; }
+    .c-ui-barras li { grid-template-columns: 92px minmax(0, 1fr); }
+    .c-prateleira { gap: 38px; padding-top: 56px; }
+    .c-tabua { gap: 10px; padding: 0 6px; }
+    .c-modulo { width: min(96px, 27vw); gap: 8px; border-radius: 16px; font-size: 14px; }
+    .c-modulo i { width: 36px; height: 36px; }
+    .c-bilhete { left: 4px; font-size: 28px; }
+    .c-folha { padding: 46px 22px 28px 52px; --margem: 32px; }
+    .c-cupom { padding: 30px 20px 22px; font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .c-dia, .c-dia *, .c-folha, .c-folha-ler svg { transition: none !important; }
+}
