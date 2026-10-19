@@ -24,7 +24,7 @@
         } catch (e) {}
     </script>
     <title>ForCondom: a economia do seu condomínio, organizada | MovCode</title>
-    <meta name="description" content="Vizinhos vendem produtos, oferecem serviços e anunciam usados só para quem mora no condomínio. ForCondom, um produto MovCode. Em breve.">
+    <meta name="description" content="ForCondom, da MovCode, chega em breve: vizinhos vendem produtos, oferecem serviços e anunciam usados só para quem mora no condomínio.">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#111214">
     <link rel="canonical" href="https://movcode.com.br/sistema-para-condominio">
@@ -32,7 +32,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="MovCode">
     <meta property="og:title" content="ForCondom: a economia do seu condomínio, organizada | MovCode">
-    <meta property="og:description" content="Vizinhos vendem produtos, oferecem serviços e anunciam usados só para quem mora no condomínio. ForCondom, um produto MovCode. Em breve.">
+    <meta property="og:description" content="ForCondom, da MovCode, chega em breve: vizinhos vendem produtos, oferecem serviços e anunciam usados só para quem mora no condomínio.">
     <meta property="og:url" content="https://movcode.com.br/sistema-para-condominio">
     <meta property="og:image" content="https://movcode.com.br/assets/images/og/movcode-og.png">
     <meta property="og:image:width" content="1200">
@@ -48,10 +48,11 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Geist:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/interna.css">
+    <link rel="stylesheet" href="assets/css/embreve.css">
     <script>
         // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
         try {
@@ -61,51 +62,18 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "SoftwareApplication",
-                "name": "ForCondom",
-                "applicationCategory": "BusinessApplication",
-                "operatingSystem": "Web",
-                "description": "Vizinhos vendem produtos, oferecem serviços e anunciam usados só para quem mora no condomínio. ForCondom, um produto MovCode. Em breve.",
-                "url": "https://movcode.com.br/sistema-para-condominio",
-                "publisher": {
-                    "@type": "ProfessionalService",
-                    "@id": "https://movcode.com.br/#empresa",
-                    "name": "MovCode",
-                    "url": "https://movcode.com.br/"
-                }
-            },
-            {
-                "@type": "FAQPage",
-                "mainEntity": [
-                    {
-                        "@type": "Question",
-                        "name": "Quando o ForCondom fica disponível?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Estamos finalizando. Chame a gente no WhatsApp e você recebe o aviso assim que abrir."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Quem pode ver os anúncios?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Só quem mora no condomínio. Os produtos, os serviços e os usados ficam entre os vizinhos."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Sou síndico. Posso levar para o meu condomínio?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Pode. Chame a gente no WhatsApp, conte sobre o seu condomínio e você fica entre os primeiros avisados."
-                        }
-                    }
-                ]
-            }
-        ]
+        "@type": "SoftwareApplication",
+        "name": "ForCondom",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "ForCondom, da MovCode, chega em breve: vizinhos vendem produtos, oferecem serviços e anunciam usados só para quem mora no condomínio.",
+        "url": "https://movcode.com.br/sistema-para-condominio",
+        "publisher": {
+            "@type": "ProfessionalService",
+            "@id": "https://movcode.com.br/#empresa",
+            "name": "MovCode",
+            "url": "https://movcode.com.br/"
+        }
     }
     </script>
 </head>
@@ -156,7 +124,7 @@
                 </div>
                 <a href="/produtos">Produtos</a>
                 <a href="/sobre">Sobre</a>
-                <a href="#contato">Contato</a>
+                <a href="/#contato">Contato</a>
             </nav>
         </div>
     </header>
@@ -165,126 +133,41 @@
     <div class="cursor-anel" aria-hidden="true"><span></span></div>
 
     <main id="conteudo">
-        <section class="i-hero escuro">
-            <div class="wrap">
-                <div class="i-hero-texto">
-                    <h1 class="h-grande gigante i-titulo">A economia do condomínio, <em>organizada.</em></h1>
-                    <p class="i-hero-sub i-entra">Vizinhos vendem produtos, oferecem serviços e anunciam usados só para quem mora ali. Tudo num lugar só, em vez de perdido no grupo. Chega em breve.</p>
-                    <div class="i-acoes i-entra">
-                        <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando o ForCondom estiver disponível." data-cta="produto_forcondom_hero" data-magnetico data-cursor="bora">Quero ser avisado <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                        <a class="h-caso-link" href="#recursos">Ver os recursos <span aria-hidden="true">↓</span></a>
+        <section class="eb eb-forcondom h-marca-forcondom" aria-labelledby="eb-titulo" data-eb>
+            <i class="eb-chao" aria-hidden="true"></i>
+            <div class="wrap eb-grade">
+                <div class="eb-texto">
+                    <p class="eb-marca"><svg class="eb-icone" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#c2410c"/><path d="M16 30 32 17l16 13v17a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2z" fill="#fff"/><rect x="27" y="35" width="10" height="14" rx="1.5" fill="#c2410c"/></svg><span>ForCondom</span></p>
+                    <h1 id="eb-titulo" class="eb-titulo"><span class="eb-so-leitor">ForCondom: </span>Em&nbsp;breve<em>.</em></h1>
+                    <p class="eb-frase">A&nbsp;economia do&nbsp;condomínio, <em>organizada.</em></p>
+                    <p class="eb-descricao">Vizinhos vendem produtos, oferecem serviços e&nbsp;anunciam usados só&nbsp;para quem mora ali. Tudo num lugar só, em&nbsp;vez de&nbsp;perdido no&nbsp;grupo.</p>
+                    <div class="eb-acoes">
+                        <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando o ForCondom estiver disponível." data-cta="embreve_forcondom" data-magnetico data-cursor="bora">Quero ser avisado <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="eb-link" href="/produtos" data-cta="embreve_forcondom_produtos">Ver os&nbsp;outros produtos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                     </div>
                 </div>
-                <div class="i-fluxo i-entra" aria-hidden="true">
-                    <span class="duo i-fluxo-marca"><i><b></b><b></b></i><i><b></b><b></b></i></span>
-                    <span class="i-aviso"><b></b>Marmita fitness · Torre B<small>agora</small></span>
-                    <span class="i-aviso"><b></b>Recomendado por um vizinho<small>agora</small></span>
-                    <span class="i-aviso"><b></b>Comunicado do síndico fixado<small>agora</small></span>
-                </div>
-            </div>
-            <a href="#conteudo-segue" class="h-rolar i-entra"><span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>Role para conhecer</a>
-        </section>
-
-        <section id="conteudo-segue" class="h-faixa" aria-label="O que o ForCondom organiza">
-            <div class="h-faixa-linha" aria-hidden="true"><span class="item">Produtos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Serviços<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Usados<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Recomendações<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Comunicados<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Produtos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Serviços<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Usados<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Recomendações<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Comunicados<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
-            <div class="h-faixa-linha contorno" aria-hidden="true"><span class="item">Produtos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Serviços<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Usados<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Recomendações<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Comunicados<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Produtos<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Serviços<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Usados<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Recomendações<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span><span class="item">Comunicados<span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span></span></div>
-        </section>
-
-        <section class="h-conversa" aria-labelledby="conversa-titulo">
-            <div class="wrap">
-                <h2 id="conversa-titulo" class="h-grande gigante"><span class="junto">O grupo do prédio</span> <em class="junto">já te avisa.</em></h2>
-                <div class="chat">
-                    <p class="bolha">Alguém do prédio faz bolo de aniversário?<small>09:12</small></p>
-                    <p class="bolha">Vendo bicicleta infantil, quase nova. Torre B.<small>10:47</small></p>
-                    <p class="bolha">Cadê o aviso do síndico? Sumiu no grupo.<small>14:05</small></p>
-                    <p class="bolha nossa">Bora organizar isso?<small>MovCode</small></p>
-                </div>
-            </div>
-        </section>
-
-        <section id="recursos" class="h-servicos escuro" aria-labelledby="recursos-titulo">
-            <div class="h-servicos-pin">
-                <div class="h-servicos-trilho">
-                    <div class="h-servicos-intro">
-                        <h2 id="recursos-titulo" class="h-grande gigante">O condomínio inteiro, <em>num lugar só.</em></h2>
-                        <p>Uma vitrine fechada, só para quem mora ali.</p>
-                    </div>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">01</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M3 9h18M9 20v-6h6v6"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-produto_forcondom-1" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-produto_forcondom-1" startOffset="0" data-repete="marmita · bolo · artesanato · ">marmita · bolo · artesanato · marmita · bolo · artesanato · marmita · bolo · artesanato · marmita · bolo · artesanato · marmita · bolo · artesanato · marmita · bolo · artesanato · </textPath></text></svg></div>
-                        <h3>Vitrine dos vizinhos</h3>
-                        <p>Quem faz marmita, bolo ou artesanato mostra os produtos para o condomínio inteiro.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">02</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-produto_forcondom-2" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-produto_forcondom-2" startOffset="0" data-repete="serviços · vizinhos · perto · ">serviços · vizinhos · perto · serviços · vizinhos · perto · serviços · vizinhos · perto · serviços · vizinhos · perto · serviços · vizinhos · perto · serviços · vizinhos · perto · </textPath></text></svg></div>
-                        <h3>Serviços de quem mora ali</h3>
-                        <p>Os serviços oferecidos pelos próprios moradores, fáceis de achar quando você precisa.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">03</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 19H4.8a1.8 1.8 0 0 1-1.6-2.7L7.2 9.5"/><path d="M11 19h8.2a1.8 1.8 0 0 0 1.6-2.7l-1.2-2.1"/><path d="M14 16l-3 3 3 3"/><path d="M8.3 13.6 7.2 9.5 3 10.6"/><path d="M9.3 5.6l1.2-2a1.8 1.8 0 0 1 3.1 0l4 6.8"/><path d="M13.4 9.6l4.1 1.1 1.1-4.1"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-produto_forcondom-3" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-produto_forcondom-3" startOffset="0" data-repete="usados · desapega · perto · ">usados · desapega · perto · usados · desapega · perto · usados · desapega · perto · usados · desapega · perto · usados · desapega · perto · usados · desapega · perto · </textPath></text></svg></div>
-                        <h3>Desapega entre vizinhos</h3>
-                        <p>Anuncie o que não usa mais para quem mora perto de você.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">04</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-produto_forcondom-4" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-produto_forcondom-4" startOffset="0" data-repete="fechado · só moradores · ">fechado · só moradores · fechado · só moradores · fechado · só moradores · fechado · só moradores · fechado · só moradores · fechado · só moradores · </textPath></text></svg></div>
-                        <h3>Só para moradores</h3>
-                        <p>O que é anunciado fica entre os moradores do condomínio.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">05</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v11H3V10z"/><path d="M7 10l4-7a2 2 0 0 1 3 2l-1 5h6a2 2 0 0 1 2 2.3l-1.4 7A2 2 0 0 1 17.6 21H7"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-produto_forcondom-5" d="M -40 120 C 60 30, 150 30, 190 100 S 330 190, 420 90"/></defs><text><textPath href="#curva-produto_forcondom-5" startOffset="0" data-repete="recomendado · confiança · ">recomendado · confiança · recomendado · confiança · recomendado · confiança · recomendado · confiança · recomendado · confiança · recomendado · confiança · </textPath></text></svg></div>
-                        <h3>Recomendação de vizinho</h3>
-                        <p>Veja quem os vizinhos recomendam antes de contratar.</p>
-                    </article>
-                    <article class="h-card">
-                        <div class="h-card-topo"><span class="h-card-num">06</span><span class="h-card-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.8V5h6v5.8l3 3.2H6z"/><path d="M8 2h8"/></svg></span></div>
-                        <div class="h-card-curva" aria-hidden="true"><svg viewBox="0 0 380 220"><defs><path id="curva-produto_forcondom-6" d="M -30 210 C 80 200, 120 40, 220 40 S 360 -10, 420 20"/></defs><text><textPath href="#curva-produto_forcondom-6" startOffset="0" data-repete="síndico · aviso · fixado · ">síndico · aviso · fixado · síndico · aviso · fixado · síndico · aviso · fixado · síndico · aviso · fixado · síndico · aviso · fixado · síndico · aviso · fixado · </textPath></text></svg></div>
-                        <h3>Comunicados fixados</h3>
-                        <p>O aviso do síndico fica fixado e não se perde no meio das mensagens.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="duvidas" class="h-duvidas" aria-labelledby="duvidas-titulo">
-            <div class="wrap">
-                <h2 id="duvidas-titulo" class="h-grande gigante">Perguntas <em>rápidas.</em></h2>
-                <div class="perguntas">
-                    <details class="pergunta">
-                        <summary>Quando o ForCondom fica disponível?</summary>
-                        <p>Estamos finalizando. Chame a gente no WhatsApp e você recebe o aviso assim que abrir.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Quem pode ver os anúncios?</summary>
-                        <p>Só quem mora no condomínio. Os produtos, os serviços e os usados ficam entre os vizinhos.</p>
-                    </details>
-                    <details class="pergunta">
-                        <summary>Sou síndico. Posso levar para o meu condomínio?</summary>
-                        <p>Pode. Chame a gente no WhatsApp, conte sobre o seu condomínio e você fica entre os primeiros avisados.</p>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <section id="contato" class="h-contato" aria-labelledby="contato-titulo">
-            <div class="wrap">
-                <div class="h-contato-texto">
-                    <h2 id="contato-titulo" class="h-contato-titulo gigante">Quer ser o primeiro?</h2>
-                    <p>Estamos finalizando. Chame a gente no WhatsApp, conte sobre o seu condomínio e avisamos assim que abrir.</p>
-                    <ul class="contato-lista">
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg> Aviso assim que abrir</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg> Direto no seu WhatsApp</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Sem compromisso</li>
-                    </ul>
-                </div>
-                <div class="i-cartao">
-                    <strong>Leve para o seu condomínio</strong>
-                    <p>Morador ou síndico: chame agora e fique entre os primeiros avisados.</p>
-                    <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando o ForCondom estiver disponível." data-cta="produto_forcondom_contato">Quero ser avisado <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                    <small>Um toque e o WhatsApp abre com a mensagem pronta.</small>
+                <div class="eb-arte eb-arte-predio" aria-hidden="true">
+                    <i class="eb-nuvem eb-nuvem-a" data-eb-fundo="-2"></i>
+                    <i class="eb-nuvem eb-nuvem-b" data-eb-fundo="-3"></i>
+                    <svg class="eb-predio" viewBox="0 0 440 500" data-eb-fundo="0.6">
+                        <rect class="eb-predio-fundo" x="0" y="180" width="86" height="310" rx="6"/>
+                        <rect class="eb-predio-fundo" x="340" y="130" width="100" height="360" rx="6"/>
+                        <rect class="eb-predio-janela-fundo" x="12" y="196" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="12" y="224" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="12" y="252" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="12" y="280" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="12" y="308" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="12" y="336" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="12" y="364" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="12" y="392" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="12" y="420" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="36" y="196" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="36" y="224" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="36" y="252" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="36" y="280" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="36" y="308" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="36" y="336" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="36" y="364" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="36" y="392" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="36" y="420" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="60" y="196" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="60" y="224" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="60" y="252" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="60" y="280" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="60" y="308" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="60" y="336" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="60" y="364" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="60" y="392" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="60" y="420" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="352" y="146" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="352" y="174" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="352" y="202" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="352" y="230" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="352" y="258" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="352" y="286" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="352" y="314" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="352" y="342" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="352" y="370" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="352" y="398" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="352" y="426" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="376" y="146" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="376" y="174" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="376" y="202" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="376" y="230" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="376" y="258" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="376" y="286" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="376" y="314" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="376" y="342" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="376" y="370" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="376" y="398" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="376" y="426" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="400" y="146" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="400" y="174" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="400" y="202" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="400" y="230" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="400" y="258" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="400" y="286" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="400" y="314" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="400" y="342" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="400" y="370" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="400" y="398" width="14" height="12" rx="2"/><rect class="eb-predio-janela-fundo" x="400" y="426" width="14" height="12" rx="2"/>
+                        <g class="eb-caixa"><path d="M266 30v22M302 30v22" /><rect x="254" y="8" width="60" height="30" rx="7"/></g>
+                        <path class="eb-antena" d="M132 52V14M120 22h24"/>
+                        <rect class="eb-predio-corpo" x="80" y="62" width="262" height="428" rx="8"/>
+                        <rect class="eb-predio-teto" x="72" y="50" width="278" height="22" rx="6"/>
+                        <rect class="eb-janela" x="98" y="92" width="36" height="34" rx="5" style="--d:0.0s"/><rect class="eb-janela" x="154" y="92" width="36" height="34" rx="5" style="--d:3.5s"/><rect class="eb-janela" x="210" y="92" width="36" height="34" rx="5" style="--d:7.0s"/><rect class="eb-janela" x="266" y="92" width="36" height="34" rx="5" style="--d:2.8s"/><rect class="eb-janela" x="98" y="146" width="36" height="34" rx="5" style="--d:4.9s"/><rect class="eb-janela" x="154" y="146" width="36" height="34" rx="5" style="--d:0.7s"/><rect class="eb-janela" x="210" y="146" width="36" height="34" rx="5" style="--d:4.2s"/><rect class="eb-janela" x="266" y="146" width="36" height="34" rx="5" style="--d:0.0s"/><rect class="eb-janela" x="98" y="200" width="36" height="34" rx="5" style="--d:2.1s"/><rect class="eb-janela" x="154" y="200" width="36" height="34" rx="5" style="--d:5.6s"/><rect class="eb-janela" x="210" y="200" width="36" height="34" rx="5" style="--d:1.4s"/><rect class="eb-janela" x="266" y="200" width="36" height="34" rx="5" style="--d:4.9s"/><rect class="eb-janela" x="98" y="254" width="36" height="34" rx="5" style="--d:7.0s"/><rect class="eb-janela" x="154" y="254" width="36" height="34" rx="5" style="--d:2.8s"/><rect class="eb-janela" x="210" y="254" width="36" height="34" rx="5" style="--d:6.3s"/><rect class="eb-janela" x="266" y="254" width="36" height="34" rx="5" style="--d:2.1s"/><rect class="eb-janela" x="98" y="308" width="36" height="34" rx="5" style="--d:4.2s"/><rect class="eb-janela" x="154" y="308" width="36" height="34" rx="5" style="--d:0.0s"/><rect class="eb-janela" x="210" y="308" width="36" height="34" rx="5" style="--d:3.5s"/><rect class="eb-janela" x="266" y="308" width="36" height="34" rx="5" style="--d:7.0s"/><rect class="eb-janela" x="98" y="362" width="36" height="34" rx="5" style="--d:1.4s"/><rect class="eb-janela" x="154" y="362" width="36" height="34" rx="5" style="--d:4.9s"/><rect class="eb-janela" x="210" y="362" width="36" height="34" rx="5" style="--d:0.7s"/><rect class="eb-janela" x="266" y="362" width="36" height="34" rx="5" style="--d:4.2s"/>
+                        <g class="eb-planta"><rect x="162" y="176" width="20" height="7" rx="2"/><circle cx="167" cy="173" r="6"/><circle cx="176" cy="172" r="7"/></g><g class="eb-planta"><rect x="274" y="284" width="20" height="7" rx="2"/><circle cx="279" cy="281" r="6"/><circle cx="288" cy="280" r="7"/></g><g class="eb-planta"><rect x="106" y="338" width="20" height="7" rx="2"/><circle cx="111" cy="335" r="6"/><circle cx="120" cy="334" r="7"/></g>
+                        <path class="eb-toldo" d="M168 410h86l-8 16h-70z"/>
+                        <rect class="eb-predio-porta" x="182" y="426" width="58" height="64" rx="6"/>
+                        <circle cx="229" cy="458" r="3" fill="#FAF7F2"/>
+                        <g class="eb-arvore"><rect x="372" y="420" width="10" height="70" rx="4"/><circle cx="364" cy="410" r="26"/><circle cx="392" cy="398" r="30"/><circle cx="378" cy="378" r="24"/></g>
+                        <rect class="eb-calcada" x="-30" y="488" width="500" height="12" rx="6"/>
+                    </svg>
+                    <div class="eb-balao eb-balao-a"><span class="eb-balao-foto" style="--c:#F6C9A8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20v-7h12v7"/><path d="M6 13a6 6 0 0 1 12 0"/><path d="M12 4v3"/></svg></span><span><b>Bolo de&nbsp;pote</b><small>Apto 32</small></span><em>R$&nbsp;12</em></div>
+                    <div class="eb-balao eb-balao-b"><span class="eb-balao-foto" style="--c:#CFE3D4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="9" r="2"/><circle cx="17" cy="9" r="2"/><circle cx="10" cy="5" r="2"/><circle cx="14" cy="5" r="2"/><path d="M8 17a4 4 0 0 1 8 0c0 2-2 3-4 3s-4-1-4-3z"/></svg></span><span><b>Passeio com cachorro</b><small>Torre B</small></span></div>
+                    <div class="eb-balao eb-balao-c"><span class="eb-balao-foto" style="--c:#D7DDF0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17 9.5 9H15l3 8M9.5 9 12 17h3"/></svg></span><span><b>Bicicleta infantil</b><small>Apto 71</small></span><em>R$&nbsp;150</em></div>
                 </div>
             </div>
         </section>
@@ -351,5 +234,6 @@
     <script src="assets/js/vendor/lenis.min.js"></script>
     <script src="assets/js/home.js"></script>
     <script src="assets/js/interna.js"></script>
+    <script src="assets/js/embreve.js"></script>
 </body>
 </html>
