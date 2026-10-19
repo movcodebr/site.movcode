@@ -198,23 +198,32 @@ html.sp-travado { overflow: hidden; }
     /* o WhatsApp do negócio fica no canto, na altura da barra; o rodapé da página sobra acima dela */
     .sp-folha { --pv-whats-baixo: 20px; --pv-rodape-baixo: 120px; }
     /* vendo a versão celular: a página de 390px no meio, sobre um fundo pontilhado */
-    /* vendo a versão celular: um celular com a proporção de um de verdade (tela de 390×844 numa
-       moldura de 410×864), rolando por dentro e inteiro na tela. Em tela baixa ele encolhe por
-       inteiro (--kc, calculado no JS) para caber entre o alto da tela e a barra, sem achatar. */
+    /* vendo a versão celular: o site numa tela de 390×848 dentro da moldura do iPhone 17 Pro (SVG de
+       880×1832 com o vão da tela em 38,42 e 804×1748: na escala 390/804 a moldura fica com 427×889),
+       rolando por dentro e inteiro na tela. Em tela baixa o aparelho encolhe por inteiro (--kc,
+       calculado no JS) para caber entre o alto da tela e a barra, sem achatar. */
     .sp-pagina[data-modo="cel"] { position: relative; height: 100svh; overflow: hidden; background: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, .07) 1px, transparent 0) 0 0 / 22px 22px, #0B0C0E; }
     .sp-pagina[data-modo="cel"] .sp-folha {
         --pv-whats-baixo: 16px; --pv-rodape-baixo: 92px;
-        position: absolute; top: var(--cel-topo, 12px); left: 50%; box-sizing: content-box; width: 390px; height: 844px;
-        border: 10px solid #060607; border-radius: 54px; background: #060607;
-        box-shadow: 0 0 0 1.5px #3A3C41, 0 60px 90px -40px rgba(0, 0, 0, .8);
+        position: absolute; top: calc(var(--cel-topo, 12px) + 20.37px * var(--kc, 1)); left: 50%; width: 390px; height: 848px;
+        /* canto mais fechado que o do vão (que é contínuo, como o da Apple) e um contorno preto por baixo
+           da borda da moldura: a tela cobre o vão inteiro, sem fresta nos cantos */
+        border-radius: 53px; background: #060607;
+        box-shadow: 0 0 0 4px #000, 0 60px 90px -40px rgba(0, 0, 0, .8);
         transform: translateX(-50%) scale(var(--kc, 1)); transform-origin: 50% 0;
         overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none;
     }
     .sp-pagina[data-modo="cel"] .sp-folha::-webkit-scrollbar { display: none; }
+    /* a moldura por cima da tela, na mesma escala; não pega cliques nem a rodinha */
+    .sp-pagina[data-modo="cel"]::after {
+        content: ""; position: absolute; top: var(--cel-topo, 12px); left: 50%; z-index: 2; width: 426.87px; height: 888.66px;
+        background: url(../images/iphone-17-pro.svg) center / 100% 100% no-repeat;
+        transform: translateX(-50%) scale(var(--kc, 1)); transform-origin: 50% 0; pointer-events: none;
+    }
     .sp-pagina[data-modo="cel"] .pv { min-height: 100%; }
     /* o topo preso fica sempre na borda de cima da tela do aparelho: arredondado como ela (o desfoque
        de fundo não respeita o recorte arredondado de quem rola) e com a barra de status do celular */
-    .sp-pagina[data-modo="cel"] .pv-top { padding-top: 58px; border-radius: 44px 44px 0 0; }
+    .sp-pagina[data-modo="cel"] .pv-top { padding-top: 58px; border-radius: 53px 53px 0 0; }
 
     .doca {
         left: 50%; bottom: 20px; width: max-content; max-width: calc(100vw - 24px); display: flex; align-items: center; gap: 2px; padding: 6px;
@@ -345,10 +354,11 @@ html.sp-travado { overflow: hidden; }
 /* topo */
 /* preso no alto enquanto a página rola, como num site de verdade */
 .pv-top { position: sticky; top: 0; z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 18px 12px; background: color-mix(in srgb, var(--pv-bg) 88%, transparent); backdrop-filter: blur(10px); }
-/* barra de status do aparelho (só na moldura de celular do computador): hora, ilha da câmera, sinal, Wi-Fi e bateria */
-.pv-status { position: absolute; top: 11px; left: 0; right: 0; height: 36px; display: grid; grid-template-columns: 1fr 124px 1fr; align-items: center; pointer-events: none; }
+/* barra de status do aparelho (só na moldura de celular do computador): hora, sinal, Wi-Fi e bateria dos dois
+   lados da ilha da câmera, que a moldura já desenha (aqui ela só guarda o lugar, no mesmo ponto do SVG) */
+.pv-status { position: absolute; top: 14px; left: 0; right: 0; height: 35px; display: grid; grid-template-columns: 1fr 120px 1fr; align-items: center; pointer-events: none; }
 .pv-relogio { justify-self: center; padding-left: 10px; font: 600 16px/1 -apple-system, BlinkMacSystemFont, "Figtree", system-ui, sans-serif; letter-spacing: -0.01em; }
-.pv-ilha { height: 36px; border-radius: 999px; background: #000; }
+.pv-ilha { height: 35px; }
 .pv-sinais { justify-self: center; display: flex; align-items: center; gap: 6px; padding-right: 8px; }
 .pv-logo { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .pv-logo i { width: 34px; height: 34px; border-radius: 11px; background: var(--ac); color: var(--ac-on); display: grid; place-items: center; font: 800 16px var(--pv-title); font-style: normal; flex-shrink: 0; }
