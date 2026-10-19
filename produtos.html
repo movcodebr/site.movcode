@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CKRK3S37W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        // LGPD: o Analytics só grava cookies depois do "Aceitar" no aviso de cookies (a escolha fica no navegador)
+        gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+        try { if (localStorage.getItem('movcode_cookies') === 'aceito') gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted' }); } catch (e) {}
+        // o cookie dura 400 dias, o máximo que os navegadores aceitam (sem isso o Firefox avisa que cortou a validade)
+        gtag('config', 'G-1CKRK3S37W', { cookie_domain: 'none', cookie_flags: 'SameSite=Lax;Secure', cookie_expires: 34560000 });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Chegando de outra pagina do site: comeca coberto de laranja (transicao)
+        try {
+            if (sessionStorage.getItem('movcode_transicao') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.documentElement.classList.add('chegando');
+            }
+        } catch (e) {}
+    </script>
+    <title>Produtos da MovCode | ForLabs, Lojinha Pronta, ForCondom, ForBarber e Pratuca</title>
+    <meta name="description" content="Os cinco produtos da MovCode: ForLabs (controle de qualidade laboratorial), Lojinha Pronta (loja virtual pronta pra vender), ForCondom (condomínios), ForBarber (barbearias) e Pratuca (cardápio digital).">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#111214">
+    <link rel="canonical" href="https://movcode.com.br/produtos">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MovCode">
+    <meta property="og:title" content="Produtos da MovCode | ForLabs, Lojinha Pronta, ForCondom, ForBarber e Pratuca">
+    <meta property="og:description" content="Os cinco produtos da MovCode: ForLabs (controle de qualidade laboratorial), Lojinha Pronta (loja virtual pronta pra vender), ForCondom (condomínios), ForBarber (barbearias) e Pratuca (cardápio digital).">
+    <meta property="og:url" content="https://movcode.com.br/produtos">
+    <meta property="og:image" content="https://movcode.com.br/assets/images/og/movcode-og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="MovCode: tecnologia do tamanho do seu negócio">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="assets/images/icons/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <!-- Fontes das marcas dos produtos (só as letras usadas). Carrega sem travar a abertura. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Geist:wght@500;700&family=Inter:wght@400;600;700&family=Poppins:wght@500;700&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz%C3%80%C3%81%C3%82%C3%83%C3%87%C3%89%C3%8A%C3%8D%C3%93%C3%94%C3%95%C3%9A%C3%A0%C3%A1%C3%A2%C3%A3%C3%A7%C3%A9%C3%AA%C3%AD%C3%B3%C3%B4%C3%B5%C3%BA0123456789%24.%2C%3A%21%3F%2B-%C2%B7%28%29&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/interna.css">
+    <link rel="stylesheet" href="assets/css/servico.css">
+    <link rel="stylesheet" href="assets/css/produtos.css">
+    <script>
+        // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
+        try {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anima-pre');
+        } catch (e) {}
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Produtos da MovCode",
+        "url": "https://movcode.com.br/produtos",
+        "description": "Os cinco produtos da MovCode: ForLabs (controle de qualidade laboratorial), Lojinha Pronta (loja virtual pronta pra vender), ForCondom (condomínios), ForBarber (barbearias) e Pratuca (cardápio digital).",
+        "inLanguage": "pt-BR",
+        "about": {
+            "@type": "ProfessionalService",
+            "@id": "https://movcode.com.br/#empresa",
+            "name": "MovCode",
+            "url": "https://movcode.com.br/"
+        },
+        "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "ForLabs",
+                    "url": "https://www.forlabs.com.br"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Lojinha Pronta",
+                    "url": "https://lojinhapronta.vercel.app"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "ForCondom",
+                    "url": "https://movcode.com.br/sistema-para-condominio"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "name": "ForBarber",
+                    "url": "https://movcode.com.br/sistema-para-barbearia"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "name": "Pratuca",
+                    "url": "https://movcode.com.br/cardapio-digital"
+                }
+            ]
+        }
+    }
+    </script>
+</head>
+<body class="home interna">
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+    <header class="topo">
+        <div class="wrap">
+            <a href="/" class="marca" aria-label="MovCode, página inicial">
+                <span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>
+                <span>Mov<span class="code">Code</span><span class="ponto">.</span></span>
+            </a>
+            <button class="menu-botao" type="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
+                <svg class="abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            </button>
+            <nav id="menu" class="menu" aria-label="Navegação principal">
+                <div class="menu-item">
+                    <button class="menu-gatilho" type="button" aria-expanded="false" aria-controls="menu-solucoes">Soluções <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+                    <div class="menu-painel" id="menu-solucoes">
+                        <div class="menu-coluna">
+                            <p class="menu-titulo">Serviços</p>
+                            <a href="/criacao-de-sites">Criação de sites</a>
+                            <a href="/sistema-para-mercadinho">Sistema para comércio</a>
+                            <a href="/automacoes">Automações</a>
+                            <a href="/integracoes">Integrações</a>
+                            <a href="/paineis">Painéis</a>
+                            <a href="/consultoria">Consultoria</a>
+                        </div>
+                        <div class="menu-coluna">
+                            <p class="menu-titulo">Produtos</p>
+                            <a href="https://www.forlabs.com.br" target="_blank" rel="noopener">ForLabs <span class="menu-externo" aria-hidden="true">↗</span></a>
+                            <a href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Lojinha Pronta <span class="menu-externo" aria-hidden="true">↗</span></a>
+                            <a href="/sistema-para-condominio">ForCondom <span class="rodape-breve">Em breve</span></a>
+                            <a href="/sistema-para-barbearia">ForBarber <span class="rodape-breve">Em breve</span></a>
+                            <a href="/cardapio-digital">Pratuca <span class="rodape-breve">Em breve</span></a>
+                        </div>
+                        <a class="menu-destaque" href="/sua-pagina">
+                            <span class="menu-destaque-visual" aria-hidden="true">
+                                <span class="menu-palco"><span class="menu-celular"><i class="mc-capa"></i><i class="mc-foto"></i><i class="mc-nome"></i><i class="mc-texto"></i><b class="mc-link"></b><b class="mc-link"></b><b class="mc-whats"></b></span></span>
+                                <span class="menu-cores"><i></i><i></i><i></i><i></i><b></b></span>
+                            </span>
+                            <span class="menu-destaque-texto">
+                                <strong>Sua página</strong>
+                                <span>Monte a prévia da página do seu negócio: escolha as cores, edite os textos e veja como fica no celular.</span>
+                                <em>Montar agora <i aria-hidden="true">→</i></em>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <a href="/produtos" aria-current="page">Produtos</a>
+                <a href="/sobre">Sobre</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-anel" aria-hidden="true"><span></span></div>
+
+    <main id="conteudo">
+        <section class="sv-topo pr-topo" aria-labelledby="pr-titulo">
+            <div class="wrap sv-topo-grade">
+                <h1 id="pr-titulo" class="sv-titulo gigante i-entra">Um&nbsp;produto para cada <em>tipo de&nbsp;negócio.</em></h1>
+                <p class="sv-sub i-entra">Cinco produtos da&nbsp;MovCode, cada um&nbsp;com a&nbsp;cara do&nbsp;próprio site. Dois já&nbsp;estão no&nbsp;ar&nbsp;e&nbsp;três chegam em&nbsp;breve.</p>
+                <div class="sv-acoes i-entra">
+                    <a href="#forlabs" class="btn btn-acao" data-cta="produtos_topo" data-magnetico data-cursor="bora">Conhecer os&nbsp;produtos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                    <a class="sv-link" href="https://wa.me/5516982157266" data-whatsapp="Olá! Vim pela página de produtos da MovCode." data-cta="produtos_topo_whats">Falar com a&nbsp;MovCode</a>
+                </div>
+                <div class="sv-palco pr-palco i-entra">
+                    <div class="pr-tel">
+                        <div class="pr-tel-tela" data-pr-tela>
+                            <div class="pr-status" aria-hidden="true"><b>9:41</b><i></i></div>
+                            <div class="pr-widget" aria-hidden="true"><span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span><span><b>Produtos MovCode</b><small>2 no&nbsp;ar&nbsp;· 3 em&nbsp;breve</small></span></div>
+                            <nav class="pr-apps" aria-label="Os produtos">
+                            <a class="pr-app" href="#forlabs" data-pr-app><span class="pr-icone"><img src="assets/images/marcas/forlabs.svg" alt="" width="40" height="40"></span><span class="pr-app-nome">ForLabs</span></a>
+                            <a class="pr-app" href="#lojinha-pronta" data-pr-app><span class="pr-icone"><span class="pr-ic-lojinha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 5 4.2h14l1.5 4.3"/><path d="M5 8.5v10.3h14V8.5"/><path d="m9.5 13 1.8 1.8 3.4-3.4"/></svg></span></span><span class="pr-app-nome">Lojinha</span></a>
+                            <a class="pr-app" href="#forcondom" data-pr-app><span class="pr-icone"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#c2410c"/><path d="M16 30 32 17l16 13v17a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2z" fill="#fff"/><rect x="27" y="35" width="10" height="14" rx="1.5" fill="#c2410c"/></svg></span><span class="pr-app-nome">ForCondom</span></a>
+                            <a class="pr-app" href="#forbarber" data-pr-app><span class="pr-icone"><span class="pr-ic-poste"><i></i></span></span><span class="pr-app-nome">ForBarber</span></a>
+                            <a class="pr-app" href="#pratuca" data-pr-app><span class="pr-icone"><span class="pr-ic-pratuca"><svg viewBox="0 0 64 56" aria-hidden="true"><g fill="#fff3e5"><circle cx="19" cy="22" r="12"/><circle cx="32" cy="15" r="14"/><circle cx="45" cy="22" r="12"/><rect x="13" y="20" width="38" height="26" rx="9"/></g><path d="M22.5 37.5c6-4.6 13.5-5.6 20-3" fill="none" stroke="#f28c38" stroke-width="4" stroke-linecap="round"/><circle cx="21.5" cy="38.3" r="3" fill="#f28c38"/></svg></span></span><span class="pr-app-nome">Pratuca</span></a>
+                            </nav>
+                            <span class="pr-pontos" aria-hidden="true"><i></i><i></i></span>
+                            <div aria-hidden="true">
+                            <div class="pr-splash h-marca-forlabs" data-pr-splash><span class="h-produto-marca"><img src="assets/images/marcas/forlabs.svg" alt="" width="40" height="40"><span><span>For</span>Labs</span></span><span class="pr-splash-frase">Controle de&nbsp;qualidade laboratorial, <em>num só&nbsp;lugar.</em></span></div>
+                            <div class="pr-splash h-marca-lojinha" data-pr-splash><span class="h-produto-marca"><span class="pr-ic-lojinha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 5 4.2h14l1.5 4.3"/><path d="M5 8.5v10.3h14V8.5"/><path d="m9.5 13 1.8 1.8 3.4-3.4"/></svg></span>Lojinha Pronta</span><span class="pr-splash-frase"><span>Sua loja pronta</span> <span>pra vender</span></span></div>
+                            <div class="pr-splash h-marca-forcondom" data-pr-splash><span class="h-produto-marca"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#c2410c"/><path d="M16 30 32 17l16 13v17a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2z" fill="#fff"/><rect x="27" y="35" width="10" height="14" rx="1.5" fill="#c2410c"/></svg>ForCondom</span><span class="pr-splash-frase">A&nbsp;economia do&nbsp;condomínio, <em>organizada.</em></span></div>
+                            <div class="pr-splash h-marca-forbarber" data-pr-splash><span class="h-produto-marca"><span class="pr-ic-poste"><i></i></span>ForBarber</span><span class="pr-splash-frase">Seu cliente <em>marca sozinho.</em></span></div>
+                            <div class="pr-splash h-marca-pratuca" data-pr-splash><span class="h-produto-marca"><span class="pr-ic-pratuca"><svg viewBox="0 0 64 56" aria-hidden="true"><g fill="#fff3e5"><circle cx="19" cy="22" r="12"/><circle cx="32" cy="15" r="14"/><circle cx="45" cy="22" r="12"/><rect x="13" y="20" width="38" height="26" rx="9"/></g><path d="M22.5 37.5c6-4.6 13.5-5.6 20-3" fill="none" stroke="#f28c38" stroke-width="4" stroke-linecap="round"/><circle cx="21.5" cy="38.3" r="3" fill="#f28c38"/></svg></span>pratuca</span><span class="pr-splash-frase">Seu delivery, <em>sem bagunça.</em></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="forlabs" class="pr-produto h-marca-forlabs" aria-labelledby="forlabs-nome">
+            <div class="wrap pr-produto-grade">
+                <div class="pr-produto-texto">
+                    <div class="pr-produto-topo">
+                        <h2 id="forlabs-nome" class="h-produto-marca"><img src="assets/images/marcas/forlabs.svg" alt="" width="40" height="40"><span><span>For</span>Labs</span></h2>
+                        <em class="h-produto-status">No&nbsp;ar</em>
+                    </div>
+                    <p class="h-produto-frase pr-frase">Controle de&nbsp;qualidade laboratorial, <em>num só&nbsp;lugar.</em></p>
+                    <p class="pr-texto">Sistema de&nbsp;controle de&nbsp;qualidade para laboratórios: testes, análise de&nbsp;cor, laudos em&nbsp;PDF e&nbsp;o&nbsp;histórico de&nbsp;quem fez o&nbsp;quê. Funciona no&nbsp;computador do&nbsp;escritório e&nbsp;no&nbsp;celular da&nbsp;bancada.</p>
+                    <div class="pr-acoes">
+                        <a class="btn btn-acao" href="https://www.forlabs.com.br" target="_blank" rel="noopener" data-cta="produtos_forlabs_site">Abrir forlabs.com.br <span aria-hidden="true">↗</span></a>
+                        <a class="btn h-produto-site" href="https://wa.me/5516982157266" data-whatsapp="Olá! Vim pelo site da MovCode e quero conhecer o ForLabs." data-cta="produtos_forlabs_whats">Quero o&nbsp;ForLabs</a>
+                    </div>
+                </div>
+                    <div class="pr-vitrine fl-cena" data-pr-cena data-passos="4" aria-hidden="true">
+                        <div class="fl-janela">
+                            <div class="fl-barra"><img src="assets/images/marcas/forlabs.svg" alt="" width="40" height="40"><b><span>For</span>Labs</b><i>Teste de&nbsp;cor</i></div>
+                            <div class="fl-corpo">
+                                <div class="fl-cor">
+                                    <small>Amostra 12</small>
+                                    <span class="fl-amostra"></span>
+                                    <span class="fl-escala"><i class="fl-marca" data-ve="1"></i></span>
+                                    <span class="fl-ok" data-ve="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Dentro do&nbsp;padrão</span>
+                                </div>
+                                <div class="fl-historico">
+                                    <small>Histórico</small>
+                                    <ul>
+                                        <li data-ve="2"><b>Ana</b> registrou o&nbsp;teste<span>08:12</span></li>
+                                        <li data-ve="2"><b>Bruno</b> conferiu a&nbsp;cor<span>08:15</span></li>
+                                        <li data-ve="3"><b>Laudo</b> gerado em&nbsp;PDF<span>08:16</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="fl-pdf" data-ve="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg><span><b>laudo-amostra-12.pdf</b><small>pronto para enviar</small></span></div>
+                        </div>
+                        <div class="fl-celular"><small>Bancada</small><span class="fl-amostra"></span><b data-ve="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Enviado</b></div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="lojinha-pronta" class="pr-produto h-marca-lojinha" aria-labelledby="lojinha-pronta-nome">
+            <div class="wrap pr-produto-grade">
+                <div class="pr-produto-texto">
+                    <div class="pr-produto-topo">
+                        <h2 id="lojinha-pronta-nome" class="h-produto-marca"><span class="pr-ic-lojinha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 5 4.2h14l1.5 4.3"/><path d="M5 8.5v10.3h14V8.5"/><path d="m9.5 13 1.8 1.8 3.4-3.4"/></svg></span>Lojinha Pronta</h2>
+                        <em class="h-produto-status">No&nbsp;ar</em>
+                    </div>
+                    <p class="h-produto-frase pr-frase"><span>Sua loja pronta</span> <span>pra&nbsp;vender</span></p>
+                    <p class="pr-texto">Loja virtual que já&nbsp;sai configurada: pagamento pelo Mercado Pago, entrega automática e&nbsp;<span class="pr-junto">e-mails</span> que se&nbsp;mandam&nbsp;sozinhos.</p>
+                    <div class="pr-acoes">
+                        <a class="btn btn-acao" href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener" data-cta="produtos_lojinha_site">Abrir lojinhapronta.vercel.app <span aria-hidden="true">↗</span></a>
+                        <a class="btn h-produto-site" href="https://wa.me/5516982157266" data-whatsapp="Olá! Vim pelo site da MovCode e quero a Lojinha Pronta." data-cta="produtos_lojinha_whats">Quero a&nbsp;Lojinha</a>
+                    </div>
+                </div>
+                    <div class="pr-vitrine lj-cena" data-pr-cena data-passos="4" aria-hidden="true">
+                        <div class="lj-celular">
+                            <div class="lj-topo"><span class="pr-ic-lojinha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5 5 4.2h14l1.5 4.3"/><path d="M5 8.5v10.3h14V8.5"/><path d="m9.5 13 1.8 1.8 3.4-3.4"/></svg></span><b>Sua loja</b><span class="lj-carrinho"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11.5l2-8H6.2"/></svg><em data-ve="1">1</em></span></div>
+                            <div class="lj-grade">
+                                <div class="lj-item"><span class="lj-foto" style="--c:#FF8B7D"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h10v9a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z"/><path d="M15 9h2a2 2 0 0 1 0 4h-2"/></svg></span><b>Caneca</b><small>R$&nbsp;39,90</small></div>
+                                <div class="lj-item lj-escolhido"><span class="lj-foto" style="--c:#7EE2A8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4 4 6l1.5 4L7 9.5V20h10V9.5l1.5.5L20 6l-4-2a4 4 0 0 1-8 0z"/></svg></span><b>Camiseta</b><small>R$&nbsp;69,90</small></div>
+                                <div class="lj-item"><span class="lj-foto" style="--c:#C3D5DB"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l-1 12H7z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></span><b>Ecobag</b><small>R$&nbsp;29,90</small></div>
+                                <div class="lj-item"><span class="lj-foto" style="--c:#FFD08A"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15a8 8 0 0 1 16 0z"/><path d="M12 15h9"/></svg></span><b>Boné</b><small>R$&nbsp;49,90</small></div>
+                            </div>
+                            <div class="lj-pagar" data-ve="2"><span>Pagar com Mercado Pago</span><b data-ve="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pagamento aprovado</b></div>
+                        </div>
+                        <div class="lj-email" data-ve="3"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></i><span><b>Pedido confirmado</b><small>O&nbsp;e-mail saiu sozinho e&nbsp;a&nbsp;entrega é&nbsp;automática.</small></span></div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="forcondom" class="pr-produto h-marca-forcondom" aria-labelledby="forcondom-nome">
+            <div class="wrap pr-produto-grade">
+                <div class="pr-produto-texto">
+                    <div class="pr-produto-topo">
+                        <h2 id="forcondom-nome" class="h-produto-marca"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#c2410c"/><path d="M16 30 32 17l16 13v17a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2z" fill="#fff"/><rect x="27" y="35" width="10" height="14" rx="1.5" fill="#c2410c"/></svg>ForCondom</h2>
+                        <em class="h-produto-status pr-breve">Em&nbsp;breve</em>
+                    </div>
+                    <p class="h-produto-frase pr-frase">A&nbsp;economia do&nbsp;condomínio, <em>organizada.</em></p>
+                    <p class="pr-texto">Vizinhos vendem produtos, oferecem serviços e&nbsp;anunciam usados só&nbsp;para quem mora ali. Tudo num lugar só, em&nbsp;vez de&nbsp;perdido no&nbsp;grupo.</p>
+                    <div class="pr-acoes">
+                        <a class="btn btn-acao" href="/sistema-para-condominio" data-cta="produtos_forcondom_pagina">Conhecer o&nbsp;ForCondom <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="btn h-produto-site" href="https://wa.me/5516982157266" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando o ForCondom estiver disponível." data-cta="produtos_forcondom_whats">Quero ser avisado</a>
+                    </div>
+                </div>
+                    <div class="pr-vitrine fc-cena" data-pr-cena data-passos="4" aria-hidden="true">
+                        <div class="fc-app">
+                            <div class="fc-topo"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#c2410c"/><path d="M16 30 32 17l16 13v17a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2z" fill="#fff"/><rect x="27" y="35" width="10" height="14" rx="1.5" fill="#c2410c"/></svg><b>ForCondom</b><span class="fc-so"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Só&nbsp;para moradores</span></div>
+                            <div class="fc-abas"><i class="on">Vitrine</i><i>Serviços</i><i>Desapega</i></div>
+                            <div class="fc-fixado"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"/><path d="M9 3h6l-1 6 3 3H7l3-3z"/></svg><span><b>Comunicado do&nbsp;síndico</b><small>Fica fixado, não some no&nbsp;meio das mensagens.</small></span></div>
+                            <ul class="fc-lista">
+                                <li data-ve="1"><span class="fc-foto" style="--c:#F6C9A8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20v-7h12v7"/><path d="M6 13a6 6 0 0 1 12 0"/><path d="M12 4v3"/></svg></span><span><b>Bolo de&nbsp;pote</b><small>Vitrine · Apto 32</small></span><em>R$&nbsp;12</em></li>
+                                <li data-ve="2"><span class="fc-foto" style="--c:#CFE3D4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="9" r="2"/><circle cx="17" cy="9" r="2"/><circle cx="10" cy="5" r="2"/><circle cx="14" cy="5" r="2"/><path d="M8 17a4 4 0 0 1 8 0c0 2-2 3-4 3s-4-1-4-3z"/></svg></span><span><b>Passeio com cachorro</b><small>Serviço · Torre B&nbsp;· recomendado por&nbsp;vizinhos</small></span></li>
+                                <li data-ve="3"><span class="fc-foto" style="--c:#D7DDF0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17 9.5 9H15l3 8M9.5 9 12 17h3"/></svg></span><span><b>Bicicleta infantil</b><small>Desapega · Torre B</small></span><em>R$&nbsp;150</em></li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="forbarber" class="pr-produto h-marca-forbarber" aria-labelledby="forbarber-nome">
+            <div class="wrap pr-produto-grade">
+                <div class="pr-produto-texto">
+                    <div class="pr-produto-topo">
+                        <h2 id="forbarber-nome" class="h-produto-marca"><span class="pr-ic-poste"><i></i></span>ForBarber</h2>
+                        <em class="h-produto-status pr-breve">Em&nbsp;breve</em>
+                    </div>
+                    <p class="h-produto-frase pr-frase">Seu cliente <em>marca&nbsp;sozinho.</em></p>
+                    <p class="pr-texto">Agendamento online, site e&nbsp;app com o&nbsp;nome da&nbsp;sua barbearia e&nbsp;um&nbsp;painel com agenda, clientes, equipe e&nbsp;financeiro.</p>
+                    <div class="pr-acoes">
+                        <a class="btn btn-acao" href="/sistema-para-barbearia" data-cta="produtos_forbarber_pagina">Conhecer o&nbsp;ForBarber <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="btn h-produto-site" href="https://wa.me/5516982157266" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando o ForBarber estiver disponível." data-cta="produtos_forbarber_whats">Quero ser avisado</a>
+                    </div>
+                </div>
+                    <div class="pr-vitrine fb-cena" data-pr-cena data-passos="4" aria-hidden="true">
+                        <div class="fb-painel">
+                            <div class="fb-topo"><span class="pr-ic-poste"><i></i></span><b>ForBarber</b><span class="fb-abas"><i class="on">Agenda</i><i>Clientes</i><i>Equipe</i><i>Financeiro</i></span></div>
+                            <div class="fb-agenda">
+                                <div class="fb-horas"><i>14h</i><i>15h</i><i>16h</i><i>17h</i></div>
+                                <div class="fb-col"><b>Rafa</b><span style="--i:0">Corte</span><span style="--i:2">Barba</span></div>
+                                <div class="fb-col"><b>Léo</b><span style="--i:1">Corte</span><span class="fb-novo" data-ve="2" style="--i:2.5">Corte + barba<small>marcado pelo link</small></span></div>
+                            </div>
+                        </div>
+                        <div class="fb-link" data-ve="1">
+                            <b>Escolha o&nbsp;horário</b>
+                            <span class="fb-slots"><i>15:30</i><i class="on">16:30</i><i>17:30</i></span>
+                            <span class="fb-confirmar">Confirmar</span>
+                        </div>
+                        <div class="fb-aviso" data-ve="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>O&nbsp;cliente marcou sozinho.</div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="pratuca" class="pr-produto h-marca-pratuca" aria-labelledby="pratuca-nome">
+            <div class="wrap pr-produto-grade">
+                <div class="pr-produto-texto">
+                    <div class="pr-produto-topo">
+                        <h2 id="pratuca-nome" class="h-produto-marca"><span class="pr-ic-pratuca"><svg viewBox="0 0 64 56" aria-hidden="true"><g fill="#fff3e5"><circle cx="19" cy="22" r="12"/><circle cx="32" cy="15" r="14"/><circle cx="45" cy="22" r="12"/><rect x="13" y="20" width="38" height="26" rx="9"/></g><path d="M22.5 37.5c6-4.6 13.5-5.6 20-3" fill="none" stroke="#f28c38" stroke-width="4" stroke-linecap="round"/><circle cx="21.5" cy="38.3" r="3" fill="#f28c38"/></svg></span>pratuca</h2>
+                        <em class="h-produto-status pr-breve">Em&nbsp;breve</em>
+                    </div>
+                    <p class="h-produto-frase pr-frase">Seu delivery, <em>sem&nbsp;bagunça.</em></p>
+                    <p class="pr-texto">Cardápio digital com link próprio, pedido direto no&nbsp;WhatsApp e&nbsp;um&nbsp;painel para acompanhar cada pedido. Sem&nbsp;comissão.</p>
+                    <div class="pr-acoes">
+                        <a class="btn btn-acao" href="/cardapio-digital" data-cta="produtos_pratuca_pagina">Conhecer o&nbsp;Pratuca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="btn h-produto-site" href="https://wa.me/5516982157266" data-whatsapp="Olá! Vim pelo site da MovCode e quero saber quando o Pratuca estiver disponível." data-cta="produtos_pratuca_whats">Quero ser avisado</a>
+                    </div>
+                </div>
+                    <div class="pr-vitrine pt-cena" data-pr-cena data-passos="4" aria-hidden="true">
+                        <div class="pt-celular">
+                            <b class="pt-titulo">Cardápio de&nbsp;hoje</b>
+                            <ul class="pt-menu">
+                                <li class="pt-escolhido"><span><b>Frango grelhado</b><small>Arroz, feijão e&nbsp;salada</small></span><em>R$&nbsp;22</em><i data-ve="1">2</i></li>
+                                <li><span><b>Marmita fit</b><small>Legumes e&nbsp;frango</small></span><em>R$&nbsp;24</em><i>+</i></li>
+                                <li><span><b>Strogonoff</b><small>Arroz e&nbsp;batata palha</small></span><em>R$&nbsp;23</em><i>+</i></li>
+                            </ul>
+                            <span class="pt-pedir" data-ve="1">Pedir no&nbsp;WhatsApp · R$&nbsp;44</span>
+                        </div>
+                        <div class="pt-zap" data-ve="2"><small>Pedido pelo cardápio</small><p>2x Frango grelhado. Troca o&nbsp;arroz por&nbsp;salada.</p></div>
+                        <div class="pt-painel" data-ve="3"><b>Painel de&nbsp;pedidos</b><span><i>Novo</i>2x Frango grelhado<em>R$&nbsp;44</em></span></div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="contato" class="sv-final pr-final" aria-labelledby="pr-final-titulo">
+            <div class="wrap sv-final-grade">
+                <h2 id="pr-final-titulo" class="sv-titulo gigante">Nenhum é&nbsp;<em>o&nbsp;seu&nbsp;caso?</em></h2>
+                <div class="sv-final-texto">
+                    <p>A&nbsp;MovCode também faz sites e&nbsp;sistemas sob medida. Conte como funciona o&nbsp;seu negócio e&nbsp;a&nbsp;gente responde no&nbsp;mesmo dia&nbsp;útil.</p>
+                    <div class="sv-acoes">
+                        <a href="https://wa.me/5516982157266" class="btn btn-acao" data-whatsapp="Olá! Vim pela página de produtos e quero algo sob medida." data-cta="produtos_final" data-magnetico data-cursor="bora">Falar com a&nbsp;MovCode <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="sv-link" href="/diagnostico" data-cta="produtos_diagnostico">Prefiro um&nbsp;diagnóstico gratuito <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <a href="https://wa.me/5516982157266" class="whats-flutuante" data-whatsapp data-cta="flutuante" aria-label="Falar com a MovCode pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></a>
+
+    <footer class="rodape">
+        <div class="wrap">
+            <div class="rodape-gigante" aria-hidden="true"><span class="duo duo-vivo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>MovCode.</div>
+            <nav class="rodape-links" aria-label="Rodapé">
+                <div>
+                    <strong>Navegar</strong>
+                    <a href="/sobre">Sobre a MovCode</a>
+                    <a href="/produtos">Produtos</a>
+                    <a href="/#como-funciona">Como funciona</a>
+                    <a href="/sua-pagina">Sua página</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/#duvidas">Dúvidas</a>
+                    <a href="/diagnostico">Diagnóstico gratuito</a>
+                </div>
+                <div>
+                    <strong>Serviços</strong>
+                    <a href="/criacao-de-sites">Criação de sites</a>
+                    <a href="/sistema-para-mercadinho">Sistema para comércio</a>
+                    <a href="/automacoes">Automações</a>
+                    <a href="/integracoes">Integrações</a>
+                    <a href="/paineis">Painéis</a>
+                    <a href="/consultoria">Consultoria</a>
+                </div>
+                <div>
+                    <strong>Produtos</strong>
+                    <a href="https://www.forlabs.com.br" target="_blank" rel="noopener">ForLabs <span class="menu-externo" aria-hidden="true">↗</span></a>
+                    <a href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Lojinha Pronta <span class="menu-externo" aria-hidden="true">↗</span></a>
+                    <a href="/sistema-para-condominio">ForCondom <span class="rodape-breve">Em breve</span></a>
+                    <a href="/sistema-para-barbearia">ForBarber <span class="rodape-breve">Em breve</span></a>
+                    <a href="/cardapio-digital">Pratuca <span class="rodape-breve">Em breve</span></a>
+                </div>
+                <div>
+                    <strong>Termos</strong>
+                    <a href="/politica">Política de Privacidade</a>
+                    <a href="/termo">Termos de Uso</a>
+                    <a href="/politica#direitos">Seus direitos (LGPD)</a>
+                    <a href="/politica#seguranca">Segurança dos dados</a>
+                    <button type="button" class="rodape-cookies" data-cookies>Preferências de cookies</button>
+                </div>
+            </nav>
+            <div class="rodape-base">
+                <p class="rodape-legal"><span>MovCode · Tecnologia do tamanho do seu negócio.</span> <span>Ribeirão Preto, SP · <a href="mailto:contato@movcode.com.br">contato@movcode.com.br</a></span></p>
+                <p class="rodape-copia">&copy; <span data-ano>2026</span> MovCode</p>
+                <div class="rodape-sociais">
+                    <a href="https://wa.me/5516982157266" data-whatsapp data-cta="rodape" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></a>
+                    <a href="https://www.instagram.com/mov.code/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+                    <a href="https://github.com/movcodebr" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a>
+                    <a href="mailto:contato@movcode.com.br" aria-label="E-mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/site.js"></script>
+    <script src="assets/js/vendor/gsap.min.js"></script>
+    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/js/vendor/lenis.min.js"></script>
+    <script src="assets/js/home.js"></script>
+    <script src="assets/js/interna.js"></script>
+    <script src="assets/js/produtos.js"></script>
+</body>
+</html>
