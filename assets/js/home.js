@@ -69,7 +69,18 @@
                         }
                         pedacos.appendChild(mascara);
                     });
+                    // palavra presa na tag seguinte ("ao&nbsp;<em>sistema"): entre pecas inline-block o &nbsp;
+                    // nao segura a quebra, entao a palavra e a tag vao juntas num involucro sem quebra
+                    // (dentro da tag a quebra continua normal)
+                    const seguinte = filho.nextSibling;
+                    const ultima = pedacos.lastChild;
                     filho.replaceWith(pedacos);
+                    if (/\u00a0$/.test(filho.textContent) && seguinte?.nodeType === Node.ELEMENT_NODE && seguinte.tagName !== 'BR' && ultima?.classList?.contains('m')) {
+                        const cola = document.createElement('span');
+                        cola.className = 'cola';
+                        ultima.replaceWith(cola);
+                        cola.append(ultima, seguinte);
+                    }
                 } else if (filho.nodeType === Node.ELEMENT_NODE && !filho.classList.contains('duo') && filho.tagName !== 'BR') {
                     percorrer(filho);
                 }
