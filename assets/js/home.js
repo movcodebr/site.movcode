@@ -44,9 +44,10 @@
             [...no.childNodes].forEach((filho) => {
                 if (filho.nodeType === Node.TEXT_NODE) {
                     const pedacos = document.createDocumentFragment();
-                    filho.textContent.split(/(\s+)/).forEach((parte) => {
+                    // só o espaço comum separa: o &nbsp; das quebras de linha segura as palavras juntas
+                    filho.textContent.split(/([ \t\n\r\f]+)/).forEach((parte) => {
                         if (!parte) return;
-                        if (/^\s+$/.test(parte)) {
+                        if (/^[ \t\n\r\f]+$/.test(parte)) {
                             pedacos.appendChild(document.createTextNode(' '));
                             return;
                         }

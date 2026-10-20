@@ -48,10 +48,11 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/site.css">
     <link rel="stylesheet" href="/assets/css/home.css">
     <link rel="stylesheet" href="/assets/css/interna.css">
+    <link rel="stylesheet" href="/assets/css/blog.css">
     <script>
         // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
         try {
@@ -151,77 +152,151 @@
     <div class="i-progresso" aria-hidden="true"></div>
 
     <main id="conteudo">
-        <section class="i-hero escuro i-hero-compacto i-artigo-topo">
+        <section class="i-hero escuro i-hero-compacto bl-guia-topo bl-tom-fiado">
             <div class="wrap">
                 <div class="i-hero-texto">
-                    <h1 class="h-grande gigante i-titulo">Como sair do caderno de fiado sem perder o controle</h1>
-                    <p class="i-hero-sub i-entra">O caderno funciona até o dia em que não funciona. Um passo a passo para organizar o fiado, cobrar sem constrangimento e saber quanto você tem a receber.<br><span class="i-meta">Publicado em <time datetime="2026-10-12">12 de outubro de 2026</time> · 3 min de leitura</span></p>
+                    <a class="bl-voltar i-entra" href="/blog/" data-cta="blog_voltar"><span aria-hidden="true">←</span> Todos os&nbsp;guias</a>
+                    <h1 class="h-grande gigante i-titulo">Como sair do&nbsp;caderno de&nbsp;fiado sem perder o&nbsp;controle</h1>
+                    <p class="i-hero-sub i-entra">O&nbsp;caderno funciona até o&nbsp;dia em&nbsp;que não funciona. Um&nbsp;passo a&nbsp;passo para organizar o&nbsp;fiado, cobrar sem constrangimento e&nbsp;saber quanto você tem a&nbsp;receber.</p>
+                    <p class="bl-meta i-entra">Comércio · Publicado em <time datetime="2026-10-12">12 de&nbsp;outubro de&nbsp;2026</time> · 3 min de&nbsp;leitura</p>
+                </div>
+                <div class="bl-guia-capa bl-cartao-fiado i-entra">
+                        <svg class="bl-ilustra bl-ilustra-fiado" viewBox="0 0 400 300" aria-hidden="true">
+                            <g class="bl-caderno" transform="rotate(-5 172 160)">
+                                <rect class="bl-folha" x="70" y="40" width="204" height="234" rx="10"/>
+                                <g class="bl-pauta"><path d="M84 104h176"/><path d="M84 130h176"/><path d="M84 156h176"/><path d="M84 182h176"/><path d="M84 208h176"/><path d="M84 234h176"/><path d="M84 260h176"/></g>
+                                <path class="bl-margem" d="M96 64v204"/>
+                                <g class="bl-argolas"><circle cx="96" cy="46" r="6"/><circle cx="118" cy="46" r="6"/><circle cx="140" cy="46" r="6"/><circle cx="162" cy="46" r="6"/><circle cx="184" cy="46" r="6"/><circle cx="206" cy="46" r="6"/><circle cx="228" cy="46" r="6"/><circle cx="250" cy="46" r="6"/></g>
+                                <text class="bl-caderno-titulo" x="104" y="92">Fiado</text>
+                                <g class="bl-mao"><text x="104" y="124">Dona Márcia</text><text x="250" y="124" text-anchor="end">R$ 32</text><text x="104" y="150">Seu Jorge</text><text x="250" y="150" text-anchor="end">R$ 18,50</text><path class="bl-risco" d="M100 144h156" style="--d:0.6s"/><text x="104" y="176">Ana, torre B</text><text x="250" y="176" text-anchor="end">R$ 47</text><text x="104" y="202">Zé do gás</text><text x="250" y="202" text-anchor="end">R$ 25</text><path class="bl-risco" d="M100 196h156" style="--d:1.4s"/><text x="104" y="228">Lúcia</text><text x="250" y="228" text-anchor="end">R$ 12</text></g>
+                            </g>
+                            <g transform="translate(270 98) rotate(-50)"><g class="bl-lapis"><rect x="0" y="-5" width="86" height="10" rx="2" fill="#FF5A1F"/><rect x="70" y="-5" width="16" height="10" fill="#FFB08A"/><path d="M0 -5l-14 5 14 5z" fill="#F5D3B0"/><path d="M-9 -1.8L-14 0l5 1.8z" fill="#2A2D34"/></g></g>
+                            <g class="bl-celular">
+                                <rect x="262" y="128" width="104" height="160" rx="16" fill="#111214"/>
+                                <rect x="268" y="134" width="92" height="148" rx="11" fill="#FFFFFF"/>
+                                <text class="bl-celular-titulo" x="278" y="156">A receber</text>
+                                <g class="bl-item" style="--d:0.30s"><circle cx="286" cy="176" r="7"/><path d="M282.5 176l2.5 2.5 4.5-4.5"/><rect x="298" y="172" width="30" height="8" rx="4"/><rect x="336" y="172" width="14" height="8" rx="4" class="bl-item-valor"/></g><g class="bl-item" style="--d:0.55s"><circle cx="286" cy="200" r="7"/><path d="M282.5 200l2.5 2.5 4.5-4.5"/><rect x="298" y="196" width="24" height="8" rx="4"/><rect x="336" y="196" width="14" height="8" rx="4" class="bl-item-valor"/></g><g class="bl-item" style="--d:0.80s"><circle cx="286" cy="224" r="7"/><path d="M282.5 224l2.5 2.5 4.5-4.5"/><rect x="298" y="220" width="32" height="8" rx="4"/><rect x="336" y="220" width="14" height="8" rx="4" class="bl-item-valor"/></g><g class="bl-item" style="--d:1.05s"><circle cx="286" cy="248" r="7"/><path d="M282.5 248l2.5 2.5 4.5-4.5"/><rect x="298" y="244" width="26" height="8" rx="4"/><rect x="336" y="244" width="14" height="8" rx="4" class="bl-item-valor"/></g>
+                            </g>
+                        </svg>
                 </div>
             </div>
         </section>
 
-        <section class="i-artigo">
-            <div class="wrap">
+        <section class="i-artigo bl-leitura">
+            <div class="wrap bl-leitura-grade">
+                <nav class="bl-indice" aria-label="Neste guia">
+                    <p>Neste guia</p>
+                    <ol>
+                        <li><a href="#sinais-de-que-o-caderno-ja-nao-da-conta">Sinais de&nbsp;que o&nbsp;caderno já&nbsp;não dá&nbsp;conta</a></li>
+                        <li><a href="#1-faca-um-retrato-de-hoje">Faça um&nbsp;retrato de&nbsp;hoje</a></li>
+                        <li><a href="#2-combine-regras-simples">Combine regras&nbsp;simples</a></li>
+                        <li><a href="#3-escolha-onde-registrar">Escolha onde&nbsp;registrar</a></li>
+                        <li><a href="#4-registre-na-hora-da-venda">Registre na&nbsp;hora da&nbsp;venda</a></li>
+                        <li><a href="#5-cobre-com-o-extrato-na-mao">Cobre com o&nbsp;extrato na&nbsp;mão</a></li>
+                        <li><a href="#resumindo">Resumindo</a></li>
+                    </ol>
+                </nav>
                 <article>
-                    <p>O caderno de fiado é quase uma instituição no comércio de bairro. Ele funciona, até o dia em que não funciona: a página rasga, a letra não dá para entender, o cliente jura que já pagou e ninguém lembra quem anotou aquela compra.</p>
-                    <p>Sair do caderno não precisa ser um salto no escuro. Dá para fazer em etapas, sem parar o balcão.</p>
-                    <h2>Sinais de que o caderno já não dá conta</h2>
+                    <p>O&nbsp;caderno de&nbsp;fiado é&nbsp;quase uma instituição no&nbsp;comércio de&nbsp;bairro. Ele funciona, até o&nbsp;dia em&nbsp;que não funciona: a&nbsp;página rasga, a&nbsp;letra não dá&nbsp;para entender, o&nbsp;cliente jura que já&nbsp;pagou e&nbsp;ninguém lembra quem anotou aquela&nbsp;compra.</p>
+                    <p>Sair do&nbsp;caderno não precisa ser um&nbsp;salto no&nbsp;escuro. Dá&nbsp;para fazer em&nbsp;etapas, sem parar o&nbsp;balcão.</p>
+                    <h2 id="sinais-de-que-o-caderno-ja-nao-da-conta">Sinais de&nbsp;que o&nbsp;caderno já&nbsp;não dá&nbsp;conta</h2>
                     <ul>
-                        <li>Para saber quanto você tem a receber, é preciso somar página por página.</li>
-                        <li>Volta e meia um cliente discorda do valor anotado.</li>
-                        <li>Só uma pessoa entende as anotações, e quando ela falta ninguém vende fiado.</li>
-                        <li>A cobrança fica sempre para depois, porque dá trabalho levantar quem está atrasado.</li>
+                        <li>Para saber quanto você tem a&nbsp;receber, é&nbsp;preciso somar página por&nbsp;página.</li>
+                        <li>Volta e&nbsp;meia um&nbsp;cliente discorda do&nbsp;valor&nbsp;anotado.</li>
+                        <li>Só&nbsp;uma pessoa entende as&nbsp;anotações, e&nbsp;quando ela falta ninguém vende&nbsp;fiado.</li>
+                        <li>A&nbsp;cobrança fica sempre para depois, porque dá&nbsp;trabalho levantar quem está&nbsp;atrasado.</li>
                     </ul>
-                    <p>Se dois ou mais desses itens soam familiares, vale a pena mudar.</p>
-                    <h2>1. Faça um retrato de hoje</h2>
-                    <p>Antes de qualquer ferramenta, passe a limpo quem deve, quanto e desde quando. É o passo mais chato, mas é ele que mostra o tamanho real do fiado. Muita gente se assusta com o total.</p>
-                    <h2>2. Combine regras simples</h2>
-                    <p>Fiado sem regra vira empréstimo sem prazo. Defina três coisas e conte para a equipe:</p>
+                    <p>Se&nbsp;dois ou&nbsp;mais desses itens soam familiares, vale a&nbsp;pena&nbsp;mudar.</p>
+                    <h2 id="1-faca-um-retrato-de-hoje">1. Faça um&nbsp;retrato de&nbsp;hoje</h2>
+                    <p>Antes de&nbsp;qualquer ferramenta, passe a&nbsp;limpo quem deve, quanto e&nbsp;desde quando. É&nbsp;o&nbsp;passo mais chato, mas é&nbsp;ele que mostra o&nbsp;tamanho real do&nbsp;fiado. Muita gente se&nbsp;assusta com o&nbsp;total.</p>
+                    <h2 id="2-combine-regras-simples">2. Combine regras&nbsp;simples</h2>
+                    <p>Fiado sem regra vira empréstimo sem prazo. Defina três coisas e&nbsp;conte para a&nbsp;equipe:</p>
                     <ul>
-                        <li><strong>Limite por cliente:</strong> até quanto cada um pode ficar devendo.</li>
-                        <li><strong>Prazo de acerto:</strong> por exemplo, todo dia 10 ou a cada quinzena.</li>
-                        <li><strong>Quem pode liberar:</strong> se qualquer pessoa do balcão vende fiado ou só você.</li>
+                        <li><strong>Limite por cliente:</strong> até quanto cada um&nbsp;pode ficar&nbsp;devendo.</li>
+                        <li><strong>Prazo de&nbsp;acerto:</strong> por exemplo, todo dia 10 ou&nbsp;a&nbsp;cada&nbsp;quinzena.</li>
+                        <li><strong>Quem pode liberar:</strong> se&nbsp;qualquer pessoa do&nbsp;balcão vende fiado ou&nbsp;só&nbsp;você.</li>
                     </ul>
-                    <h2>3. Escolha onde registrar</h2>
-                    <p>Há dois caminhos principais, e os dois são melhores que o caderno:</p>
+                    <h2 id="3-escolha-onde-registrar">3. Escolha onde&nbsp;registrar</h2>
+                    <p>Há&nbsp;dois caminhos principais, e&nbsp;os&nbsp;dois são melhores que o&nbsp;caderno:</p>
                     <ul>
-                        <li><strong>Planilha:</strong> não custa nada e resolve para quem tem poucos clientes no fiado. O ponto fraco é que depende de alguém atualizar e não conversa com o caixa nem com o estoque.</li>
-                        <li><strong>Sistema:</strong> registra a venda fiada na hora do caixa, mostra o saldo de cada cliente na tela e lista quem está atrasado. Tem custo e pede um tempo de adaptação, mas acaba com a soma de página por página.</li>
+                        <li><strong>Planilha:</strong> não custa nada e&nbsp;resolve para quem tem poucos clientes no&nbsp;fiado. O&nbsp;ponto fraco é&nbsp;que depende de&nbsp;alguém atualizar e&nbsp;não conversa com o&nbsp;caixa nem com o&nbsp;estoque.</li>
+                        <li><strong>Sistema:</strong> registra a&nbsp;venda fiada na&nbsp;hora do&nbsp;caixa, mostra o&nbsp;saldo de&nbsp;cada cliente na&nbsp;tela e&nbsp;lista quem está atrasado. Tem custo e&nbsp;pede um&nbsp;tempo de&nbsp;adaptação, mas acaba com a&nbsp;soma de&nbsp;página por&nbsp;página.</li>
                     </ul>
-                    <h2>4. Registre na hora da venda</h2>
-                    <p>Essa é a regra de ouro. Anotar depois é como não anotar: no fim do dia ninguém lembra direito. Se o registro acontece junto com a venda, a discussão com o cliente simplesmente desaparece.</p>
-                    <h2>5. Cobre com o extrato na mão</h2>
-                    <p>Uma vez por semana, olhe a lista de quem passou do prazo. Mande uma mensagem educada com o valor, as compras e a data combinada. Com o extrato organizado, a cobrança deixa de ser constrangedora e vira só um lembrete.</p>
-                    <h2>Resumindo</h2>
-                    <p>Retrato de hoje, regras claras, um lugar confiável para registrar, registro na hora e cobrança com dados. Feito isso, o fiado volta a ser o que deveria: uma forma de fidelizar o cliente, não um buraco no caixa.</p>
-                    <p>Se você quer o fiado junto com o estoque e o caixa, conheça o nosso <a href="/sistema-para-mercadinho">sistema para comércio</a>.</p>
+                    <h2 id="4-registre-na-hora-da-venda">4. Registre na&nbsp;hora da&nbsp;venda</h2>
+                    <p>Essa é&nbsp;a&nbsp;regra de&nbsp;ouro. Anotar depois é&nbsp;como não anotar: no&nbsp;fim do&nbsp;dia ninguém lembra direito. Se&nbsp;o&nbsp;registro acontece junto com a&nbsp;venda, a&nbsp;discussão com o&nbsp;cliente simplesmente desaparece.</p>
+                    <h2 id="5-cobre-com-o-extrato-na-mao">5. Cobre com o&nbsp;extrato na&nbsp;mão</h2>
+                    <p>Uma vez por semana, olhe a&nbsp;lista de&nbsp;quem passou do&nbsp;prazo. Mande uma mensagem educada com o&nbsp;valor, as&nbsp;compras e&nbsp;a&nbsp;data combinada. Com o&nbsp;extrato organizado, a&nbsp;cobrança deixa de&nbsp;ser constrangedora e&nbsp;vira só&nbsp;um&nbsp;lembrete.</p>
+                    <h2 id="resumindo">Resumindo</h2>
+                    <p>Retrato de&nbsp;hoje, regras claras, um&nbsp;lugar confiável para registrar, registro na&nbsp;hora e&nbsp;cobrança com dados. Feito isso, o&nbsp;fiado volta a&nbsp;ser o&nbsp;que deveria: uma forma de&nbsp;fidelizar o&nbsp;cliente, não um&nbsp;buraco no&nbsp;caixa.</p>
+                    <p>Se&nbsp;você quer o&nbsp;fiado junto com o&nbsp;estoque e&nbsp;o&nbsp;caixa, conheça o&nbsp;nosso <a href="/sistema-para-mercadinho">sistema para&nbsp;comércio</a>.</p>
                 </article>
             </div>
         </section>
 
-        <section id="leia-tambem" class="h-caso escuro i-lista i-guias" aria-labelledby="leia-tambem-titulo">
+        <section class="bl-guias bl-outros escuro" aria-labelledby="leia-tambem">
             <div class="wrap">
-                <h2 id="leia-tambem-titulo" class="h-grande gigante">Leia <em>também.</em></h2>
-                <ul class="h-lista">
-                    <li class="h-proj">
-                        <a class="h-proj-linha" href="/blog/site-ou-instagram">
-                            <span class="h-proj-num">01</span>
-                            <span class="h-proj-nome">Site ou Instagram: o que o seu negócio precisa?</span>
-                            <p class="h-proj-desc">O Instagram é ótimo para aparecer, mas não é seu. Quando ele basta, quando o site faz falta e por que os dois juntos funcionam melhor.</p>
-                            <span class="h-proj-tipo">Presença online</span>
-                            <span class="h-proj-seta" aria-hidden="true">↗</span>
-                        </a>
-                    </li>
-                    <li class="h-proj">
-                        <a class="h-proj-linha" href="/blog/quanto-custa-um-sistema-proprio">
-                            <span class="h-proj-num">02</span>
-                            <span class="h-proj-nome">Quanto custa ter um sistema próprio?</span>
-                            <p class="h-proj-desc">A resposta honesta é: depende. Veja o que pesa no preço, quais custos continuam depois da entrega e como não gastar à toa.</p>
-                            <span class="h-proj-tipo">Investimento</span>
-                            <span class="h-proj-seta" aria-hidden="true">↗</span>
-                        </a>
-                    </li>
-                </ul>
+                <h2 id="leia-tambem" class="h-grande gigante">Leia <em>também.</em></h2>
+                <div class="bl-grade bl-grade-dois">
+                    <a class="bl-cartao bl-cartao-site" href="/blog/site-ou-instagram" data-cta="blog_guia_site">
+                        <span class="bl-capa">
+                        <svg class="bl-ilustra bl-ilustra-site" viewBox="0 0 400 300" aria-hidden="true">
+                            <g class="bl-janela">
+                                <rect x="24" y="52" width="228" height="178" rx="12" fill="#FFFFFF" stroke="#E3E0DA" stroke-width="2"/>
+                                <path d="M24 64a12 12 0 0 1 12-12h204a12 12 0 0 1 12 12v14H24z" fill="#F1EEE8"/>
+                                <circle cx="40" cy="65" r="4" fill="#FF5F57"/><circle cx="53" cy="65" r="4" fill="#FEBC2E"/><circle cx="66" cy="65" r="4" fill="#28C840"/>
+                                <rect x="84" y="59" width="132" height="12" rx="6" fill="#FFFFFF"/>
+                                <rect x="42" y="96" width="112" height="12" rx="6" fill="#111214"/>
+                                <rect x="42" y="114" width="84" height="12" rx="6" fill="#111214"/>
+                                <rect x="42" y="136" width="104" height="6" rx="3" fill="#C9CCD3"/>
+                                <rect x="42" y="148" width="92" height="6" rx="3" fill="#C9CCD3"/>
+                                <rect class="bl-botao" x="42" y="166" width="72" height="22" rx="11" fill="#FF5A1F"/>
+                                <rect x="168" y="94" width="66" height="94" rx="9" fill="#FFE4D8"/>
+                                <circle cx="190" cy="118" r="8" fill="#FFB08A"/><path d="M172 176l18-24 14 16 10-10 16 18z" fill="#FF8A5B"/>
+                            </g>
+                            <g class="bl-telefone">
+                                <rect x="250" y="84" width="112" height="200" rx="18" fill="#111214"/>
+                                <rect x="256" y="92" width="100" height="184" rx="13" fill="#FFFFFF"/>
+                                <circle cx="276" cy="116" r="11" fill="none" stroke="#FF5A1F" stroke-width="3"/><circle cx="276" cy="116" r="6.5" fill="#FFB08A"/>
+                                <rect x="294" y="108" width="44" height="7" rx="3.5" fill="#111214"/><rect x="294" y="120" width="30" height="6" rx="3" fill="#C9CCD3"/>
+                                <g class="bl-fotos"><rect x="262" y="150" width="30" height="30" rx="3" fill="#FFE4D8"/><rect x="294" y="150" width="30" height="30" rx="3" fill="#E3E7EE"/><rect x="326" y="150" width="30" height="30" rx="3" fill="#FFD3BE"/><rect x="262" y="182" width="30" height="30" rx="3" fill="#DCE9DF"/><rect x="294" y="182" width="30" height="30" rx="3" fill="#FFB08A"/><rect x="326" y="182" width="30" height="30" rx="3" fill="#E3E7EE"/><rect x="262" y="214" width="30" height="30" rx="3" fill="#F4E3C7"/><rect x="294" y="214" width="30" height="30" rx="3" fill="#FFE4D8"/><rect x="326" y="214" width="30" height="30" rx="3" fill="#DCE9DF"/></g>
+                            </g>
+                            <g class="bl-ou"><circle cx="252" cy="58" r="24" fill="#FF5A1F"/><text x="252" y="65" text-anchor="middle">ou</text></g>
+                        </svg>
+                        </span>
+                        <span class="bl-cartao-texto">
+                            <h3 class="bl-cartao-titulo">Site ou&nbsp;Instagram: o&nbsp;que o&nbsp;seu negócio&nbsp;precisa?</h3>
+                            <span class="bl-cartao-resumo">O&nbsp;Instagram é&nbsp;ótimo para aparecer, mas não é&nbsp;seu. Quando ele basta, quando o&nbsp;site faz falta e&nbsp;por que os&nbsp;dois juntos funcionam melhor.</span>
+                            <span class="bl-cartao-pe"><span>Presença online · 2 min de&nbsp;leitura</span><span class="bl-ler">Ler o&nbsp;guia <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+                        </span>
+                    </a>
+                    <a class="bl-cartao bl-cartao-custo" href="/blog/quanto-custa-um-sistema-proprio" data-cta="blog_guia_custo">
+                        <span class="bl-capa">
+                        <svg class="bl-ilustra bl-ilustra-custo" viewBox="0 0 400 300" aria-hidden="true">
+                            <g class="bl-nota" transform="rotate(-3 170 160)">
+                                <path class="bl-papel" d="M86 40h164v226l-10 8-10-8-10 8-10-8-10 8-10-8-10 8-10-8-10 8-10-8-10 8-10-8-10 8-10-8-10 8-10-8-10 8-10-8z"/>
+                                <text class="bl-nota-titulo" x="102" y="76">Orçamento</text>
+                                <path class="bl-pontilhado" d="M102 88H234"/>
+                                <g class="bl-nota-itens"><text x="102" y="112">O sistema</text><path class="bl-pontilhado" d="M166 108H232"/><text x="102" y="138">Hospedagem</text><path class="bl-pontilhado" d="M180 134H232"/><text x="102" y="164">Manutenção</text><path class="bl-pontilhado" d="M182 160H232"/><text x="102" y="190">Ajustes</text><path class="bl-pontilhado" d="M152 186H232"/></g>
+                                <path d="M102 210H234" stroke="#111214" stroke-width="2"/>
+                                <text class="bl-nota-total" x="102" y="236">Total</text>
+                                <text class="bl-depende" x="234" y="240" text-anchor="end">depende</text>
+                            </g>
+                            <g class="bl-etiqueta">
+                                <path d="M300 30v42" stroke="#9AA1B0" stroke-width="2"/>
+                                <path d="M276 72h48l10 16v70a8 8 0 0 1-8 8h-52a8 8 0 0 1-8-8V88z" fill="#FF5A1F"/>
+                                <circle cx="300" cy="86" r="5" fill="#FFF3E5"/>
+                                <text x="300" y="140" text-anchor="middle">?</text>
+                            </g>
+                            <g class="bl-moedas"><ellipse cx="318" cy="262" rx="30" ry="9" fill="#C9962F"/><rect x="288" y="244" width="60" height="18" fill="#E5B44A"/><ellipse cx="318" cy="244" rx="30" ry="9" fill="#F2C46D"/><ellipse cx="318" cy="234" rx="30" ry="9" fill="#C9962F"/><rect x="288" y="216" width="60" height="18" fill="#E5B44A"/><ellipse cx="318" cy="216" rx="30" ry="9" fill="#F2C46D"/></g>
+                        </svg>
+                        </span>
+                        <span class="bl-cartao-texto">
+                            <h3 class="bl-cartao-titulo">Quanto custa ter um&nbsp;sistema&nbsp;próprio?</h3>
+                            <span class="bl-cartao-resumo">A&nbsp;resposta honesta é:&nbsp;depende. Veja o&nbsp;que pesa no&nbsp;preço, quais custos continuam depois da&nbsp;entrega e&nbsp;como não gastar à&nbsp;toa.</span>
+                            <span class="bl-cartao-pe"><span>Investimento · 2 min de&nbsp;leitura</span><span class="bl-ler">Ler o&nbsp;guia <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+                        </span>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -229,7 +304,7 @@
             <div class="wrap">
                 <h2 id="chamada-titulo" class="i-chamada-titulo gigante">Bora resolver?</h2>
                 <div class="i-chamada-texto">
-                    <p>Conte o seu caso. O diagnóstico é gratuito, sem compromisso, e pode ser por chamada ou por mensagem.</p>
+                    <p>Conte o&nbsp;seu caso. O&nbsp;diagnóstico é&nbsp;gratuito, sem compromisso, e&nbsp;pode ser por chamada ou&nbsp;por&nbsp;mensagem.</p>
                     <a href="/diagnostico" class="btn btn-acao" data-cta="blog_como-sair-do-caderno-de-fiado" data-magnetico data-cursor="bora">Pedir diagnóstico grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                 </div>
             </div>
@@ -297,5 +372,6 @@
     <script src="/assets/js/vendor/lenis.min.js"></script>
     <script src="/assets/js/home.js"></script>
     <script src="/assets/js/interna.js"></script>
+    <script src="/assets/js/blog.js"></script>
 </body>
 </html>
