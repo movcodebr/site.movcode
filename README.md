@@ -27,7 +27,7 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 | `/produtos` | `produtos.html` | Os cinco produtos da MovCode (ForLabs, Lojinha Pronta, ForCondom, ForBarber e Pratuca), cada um com a identidade do próprio site e uma demonstração do que faz |
 | `/sua-pagina` | `sua-pagina.html` | Prévia editável da página do negócio (não indexada) |
 | `/blog/` | `blog/index.html` | Índice do blog |
-| `/blog/<guia>` | `blog/<guia>.html` | Guias do blog (fiado, site ou Instagram, custo de um sistema) |
+| `/blog/<artigo>` | `blog/<artigo>.html` | Artigos do blog: os guias e as notícias da semana (gerados por `_blog/gerar.py`) |
 | `/politica` | `politica.html` | Política de Privacidade |
 | `/termo` | `termo.html` | Termos de Uso |
 | — | `404.html` | Página de erro |
@@ -39,7 +39,8 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 ```
 .
 ├── *.html                 páginas do site (uma por URL)
-├── blog/                  índice e guias do blog (caminhos absolutos: /assets/...)
+├── blog/                  índice e artigos do blog (caminhos absolutos: /assets/...)
+├── _blog/                 gerador e dados do blog (não vai para o ar: o Jekyll ignora pastas com _)
 ├── assets/
 │   ├── css/
 │   │   ├── site.css       estilos compartilhados por todas as páginas (cabeçalho com menu, rodapé)
@@ -63,6 +64,17 @@ Sites, lojas virtuais, sistemas de gestão e automações sob medida, do mercadi
 ```
 
 Não há build nem dependências: é HTML, CSS e JavaScript puros.
+
+## Blog
+
+Os artigos ficam em `_blog/artigos.json`. Para publicar um artigo novo, acrescente um item no fim do arquivo e rode, na raiz:
+
+```
+python3 _blog/gerar.py --checar   # confere o arquivo
+python3 _blog/gerar.py            # gera o índice, as páginas dos artigos e atualiza o sitemap
+```
+
+O gerador usa o cabeçalho, o rodapé e o `<head>` do `blog/index.html` atual e só troca o título, a descrição, o endereço, os dados estruturados e o conteúdo. Os campos de cada artigo e as ilustrações disponíveis estão descritos no começo do `_blog/gerar.py`. Toda segunda de manhã uma tarefa agendada escreve um artigo de notícia, roda o gerador e abre um PR.
 
 ## Rodando localmente
 

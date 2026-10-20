@@ -25,6 +25,9 @@ html.anima .home.mostrar-whats .whats-flutuante { transform: scale(1); }
 }
 /* Palavras e letras separadas pelo script para a entrada suave */
 .m { display: inline-block; vertical-align: bottom; }
+/* palavra curta presa na tag seguinte dentro de um titulo dividido (home.js): sem quebra entre elas */
+.cola { white-space: nowrap; }
+.cola > :not(.junto) { white-space: normal; }
 .p, .l { display: inline-block; will-change: transform; }
 
 /* ---------- Abertura (intro) ---------- */

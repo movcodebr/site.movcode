@@ -89,6 +89,43 @@
 @keyframes bl-balanca { 0%, 100% { transform: rotate(6deg); } 50% { transform: rotate(-6deg); } }
 
 
+/* as ilustrações das notícias, uma por assunto */
+.bl-cartao-noticia { --c-fundo: #E9EEF6; }
+.bl-cartao-ia { --c-fundo: #ECE8F7; }
+.bl-cartao-seguranca { --c-fundo: #E1F1E8; }
+.bl-cartao-pagamento { --c-fundo: #FFF0D2; }
+.bl-cartao-conversa { --c-fundo: #DDF3E2; }
+.bl-cartao-busca { --c-fundo: #E6ECF4; }
+.bl-cartao-lei { --c-fundo: #F1EBE2; }
+.bl-sino { transform-box: fill-box; transform-origin: 50% 50%; animation: bl-pulsa 2.2s ease-in-out infinite; }
+.bl-sino-numero { fill: #FFFFFF; font: 800 13px var(--f-texto); }
+.bl-aviso-novo { animation: bl-entra-svg 5s ease infinite; }
+@keyframes bl-entra-svg { 0%, 8% { opacity: 0; transform: translateY(-6px); } 16%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.bl-digita { animation: bl-digita 1.2s ease-in-out infinite; animation-delay: var(--d); }
+@keyframes bl-digita { 0%, 60%, 100% { opacity: 0.3; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+.bl-brilho { transform-box: fill-box; transform-origin: 50% 50%; animation: bl-brilha 2.8s ease-in-out infinite; }
+.bl-brilho-2 { animation-delay: -1.4s; }
+@keyframes bl-brilha { 0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.7; } 50% { transform: scale(1.1) rotate(20deg); opacity: 1; } }
+.bl-senha { fill: #111214; font: 700 12px var(--f-mono); letter-spacing: 1px; }
+.bl-escudo { transform-box: fill-box; transform-origin: 50% 100%; animation: bl-pulsa 3s ease-in-out infinite; }
+.bl-alerta { transform-box: fill-box; transform-origin: 50% 100%; animation: bl-balanca 2.4s ease-in-out infinite; }
+.bl-pago { transform-box: fill-box; transform-origin: 50% 50%; animation: bl-pulsa 2.4s ease-in-out infinite; }
+.bl-msg { animation: bl-entra-svg 6s ease infinite; animation-delay: var(--d); }
+.bl-balao-solto { animation: bl-flutua 4s ease-in-out infinite; }
+.bl-balao-solto-2 { animation-delay: -2s; }
+@keyframes bl-flutua { 50% { transform: translateY(-8px); } }
+.bl-cursor { animation: bl-pisca-cursor 1s steps(1) infinite; }
+@keyframes bl-pisca-cursor { 50% { opacity: 0; } }
+.bl-pino { transform-box: fill-box; transform-origin: 50% 100%; animation: bl-quica 2.4s ease-in-out infinite; }
+@keyframes bl-quica { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-10px); } }
+.bl-carimbo { transform-box: fill-box; transform-origin: 50% 50%; animation: bl-carimba 4s ease-in-out infinite; }
+@keyframes bl-carimba { 0%, 20% { opacity: 0; transform: scale(1.6); } 30%, 90% { opacity: 1; transform: scale(1); } 100% { opacity: 0; } }
+.bl-braco { transform-box: view-box; transform-origin: 318px 92px; animation: bl-pesa 4s ease-in-out infinite; }
+@keyframes bl-pesa { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+/* os outros artigos, embaixo dos três mais novos */
+.bl-grade-mais { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 20px; }
+.bl-grade-mais .bl-cartao-titulo { font-size: clamp(22px, 1.9vw, 30px); }
+
 /* ---------- O guia ---------- */
 .bl-guia-topo .wrap { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); align-items: center; }
 .bl-guia-topo .i-titulo { max-width: 16ch; font-size: clamp(40px, min(5.4vw, 11svh), 88px); }
@@ -112,6 +149,11 @@
 .bl-indice a:hover { color: var(--tinta); }
 .bl-indice a.ativo { border-left-color: var(--laranja); color: var(--tinta); font-weight: 600; }
 .bl-indice a.ativo::before { color: var(--laranja-texto); }
+/* as fontes das notícias, no fim do texto */
+.bl-fontes { display: grid; gap: 10px; margin: 0; padding-left: 22px; font-size: 16px; line-height: 1.5; }
+.bl-fontes li { padding-left: 4px; }
+.bl-fontes li::before { content: none; }
+.bl-fontes a { overflow-wrap: anywhere; }
 /* Leia também */
 .bl-outros { background: var(--noite); color: var(--sobre-noite); }
 .bl-outros .h-grande { margin-bottom: clamp(36px, 5vw, 64px); }
@@ -119,6 +161,7 @@
 
 /* ---------- Telas menores ---------- */
 @media (max-width: 1080px) {
+    .bl-grade-mais { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bl-tradutor { justify-self: start; }
     .bl-guia-topo .wrap { grid-template-columns: minmax(0, 1fr); }
     .bl-guia-capa { max-width: 560px; }
@@ -126,7 +169,7 @@
     .bl-indice { position: static; padding: 20px 22px; border-radius: var(--r-lg); background: #FFFFFF; }
 }
 @media (max-width: 860px) {
-    .bl-grade, .bl-grade-dois { grid-template-columns: minmax(0, 1fr); }
+    .bl-grade, .bl-grade-dois, .bl-grade-mais { grid-template-columns: minmax(0, 1fr); }
     .bl-cartao-grande { grid-row: auto; }
     .bl-cartao-grande .bl-ilustra { max-height: 260px; }
 }
@@ -143,6 +186,7 @@
 /* ---------- Movimento reduzido: tudo já no lugar ---------- */
 @media (prefers-reduced-motion: reduce) {
     .bl-tradutor s::after, .bl-tradutor li > span, .bl-tradutor b, .bl-risco, .bl-lapis, .bl-item, .bl-ou, .bl-fotos, .bl-etiqueta { animation: none !important; }
+    .bl-sino, .bl-aviso-novo, .bl-digita, .bl-brilho, .bl-escudo, .bl-alerta, .bl-pago, .bl-msg, .bl-balao-solto, .bl-cursor, .bl-pino, .bl-carimbo, .bl-braco { animation: none !important; }
     .bl-cartao, .bl-telefone, .bl-janela { transition: none; }
     .bl-risco { stroke-dashoffset: 0; }
 }
