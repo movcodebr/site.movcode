@@ -141,3 +141,27 @@
 
     document.fonts?.ready.then(() => ScrollTrigger.refresh());
 })();
+
+// Politica e Termos: o indice "Nesta pagina" marca a secao que esta sendo lida
+// (fora do bloco acima: funciona tambem sem animacao)
+(() => {
+    const links = [...document.querySelectorAll('.i-legal-indice a')];
+    if (!links.length) return;
+    const secoes = links.map((a) => document.getElementById(a.hash.slice(1))).filter(Boolean);
+    let atual = null;
+    let pedido = false;
+    const medir = () => {
+        pedido = false;
+        let id = secoes[0]?.id;
+        secoes.forEach((s) => { if (s.getBoundingClientRect().top < window.innerHeight * 0.35) id = s.id; });
+        if (id === atual) return;
+        atual = id;
+        links.forEach((a) => {
+            const lendo = a.hash === `#${id}`;
+            a.classList.toggle('ativo', lendo);
+            if (lendo) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+        });
+    };
+    window.addEventListener('scroll', () => { if (!pedido) { pedido = true; requestAnimationFrame(medir); } }, { passive: true });
+    medir();
+})();

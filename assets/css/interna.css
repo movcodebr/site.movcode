@@ -133,12 +133,70 @@ html.anima .i-progresso { display: block; position: fixed; top: 0; left: 0; righ
 .i-artigo strong { color: var(--tinta); }
 .i-artigo a { color: var(--laranja-texto); font-weight: 600; }
 
-/* ---------- Textos legais (Politica e Termos) no layout de leitura ---------- */
-.i-artigo section { display: grid; gap: 14px; }
-.i-legal article { gap: 44px; }
-.i-legal h2 { margin-top: 0; font-size: clamp(26px, 2.6vw, 36px); }
-.i-legal h3 { font: 700 20px/1.2 var(--f-display); color: var(--tinta); }
-.i-artigo .contact-box { display: grid; gap: 6px; padding: 20px 22px; border-radius: var(--r-md); background: var(--realce); }
+/* ---------- Textos legais (Politica e Termos) ----------
+   Topo com o resumo num cartao; embaixo o texto completo e o indice que acompanha */
+.i-legal-topo .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 460px); align-items: center; }
+.i-legal-topo .i-titulo { max-width: 9ch; }
+.i-legal-datas { display: flex; flex-wrap: wrap; gap: 8px; }
+.i-legal-datas span { padding: 7px 14px; border: 1px solid var(--noite-linha); border-radius: var(--r-pill); color: var(--sobre-noite-2); font-size: 14px; }
+.i-legal-topo { padding-bottom: clamp(48px, 7svh, 96px); }
+.i-legal-resumo { display: grid; gap: 12px; padding: clamp(22px, 2vw, 28px); border-radius: var(--r-xl); background: var(--cartao); color: var(--tinta); box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.6); }
+.i-legal-resumo h2 { font: 800 24px/1 var(--f-display); font-stretch: 85%; letter-spacing: -0.025em; }
+.i-legal-resumo ul { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.i-legal-resumo a { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; align-items: start; margin: 0 -12px; padding: 7px 12px; border-radius: var(--r-md); color: var(--tinta-2); font-size: 15px; line-height: 1.35; text-decoration: none; transition: background-color 0.2s ease; }
+.i-legal-resumo a:hover { background: var(--papel); }
+.i-legal-resumo strong { display: block; margin-bottom: 1px; color: var(--tinta); font-size: 16px; }
+.i-legal-icone { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--laranja-tinta); color: var(--laranja-texto); }
+.i-legal-icone svg { width: 20px; height: 20px; }
+.i-legal-resumo small { color: var(--tinta-3); font-size: 13px; }
+
+.i-legal { padding-top: clamp(56px, 7vw, 104px); }
+.i-legal-grade { display: grid; grid-template-columns: 250px minmax(0, 780px); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.i-legal article { gap: 0; font-size: 18px; }
+.i-legal section { position: relative; display: grid; gap: 16px; padding: 48px 0; border-top: 1px solid var(--linha); }
+.i-legal-ancora { position: absolute; top: -56px; }
+.i-legal section:first-child { padding-top: 0; border-top: 0; }
+.i-legal h2 { display: flex; align-items: baseline; gap: 14px; margin: 0 0 4px; font-size: clamp(28px, 2.8vw, 40px); }
+.i-legal-num { flex: none; color: var(--laranja-texto); font: 500 14px/1 var(--f-mono); letter-spacing: 0; transform: translateY(-0.35em); }
+/* o indice "Nesta pagina": numerado, marca a secao que esta sendo lida (interna.js) */
+.i-legal-indice { position: sticky; top: 110px; display: grid; gap: 14px; }
+.i-legal-indice p { margin: 0; color: var(--tinta); font: 700 15px var(--f-texto); }
+.i-legal-indice ol { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; counter-reset: i-legal; }
+.i-legal-indice li { padding-left: 0; counter-increment: i-legal; }
+.i-legal-indice li::before { content: none; }
+.i-legal-indice a { display: grid; grid-template-columns: 26px minmax(0, 1fr); padding: 7px 0 7px 14px; border-left: 2px solid rgba(17, 18, 20, 0.1); color: var(--tinta-3); font-size: 15px; font-weight: 400; line-height: 1.35; text-decoration: none; transition: color 0.2s ease, border-color 0.2s ease; }
+.i-legal-indice a::before { content: counter(i-legal, decimal-leading-zero); color: var(--tinta-3); font: 500 12px/1.9 var(--f-mono); }
+.i-legal-indice a:hover { color: var(--tinta); }
+.i-legal-indice a.ativo { border-left-color: var(--laranja); color: var(--tinta); font-weight: 600; }
+.i-legal-indice a.ativo::before { color: var(--laranja-texto); }
+/* ficha de contato, cartoes (suboperadores, prazos) e listas com check */
+.i-legal-ficha { display: grid; margin: 4px 0 0; border-radius: var(--r-lg); background: var(--cartao); overflow: hidden; }
+.i-legal-ficha div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 18px 24px; border-top: 1px solid var(--linha); font-size: 16px; line-height: 1.5; }
+.i-legal-ficha div:first-child { border-top: 0; }
+.i-legal-ficha dt { color: var(--tinta-3); }
+.i-legal-ficha dd { margin: 0; color: var(--tinta); font-weight: 600; }
+.i-legal .i-legal-cartoes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 4px; }
+.i-legal-cartoes li { display: grid; align-content: start; gap: 6px; padding: 22px 24px; border-radius: var(--r-lg); background: var(--cartao); font-size: 16px; line-height: 1.55; }
+.i-legal-cartoes li::before, .i-legal-checks li::before { content: none; }
+.i-legal-cartoes li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.i-legal-cartoes li > strong { font: 700 18px/1.25 var(--f-display); letter-spacing: -0.01em; }
+.i-legal-cartoes p strong { color: var(--laranja-texto); }
+.i-legal .i-legal-checks li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 12px; padding-left: 0; }
+.i-legal-check { display: grid; place-items: center; width: 26px; height: 26px; margin-top: 0.2em; border-radius: 50%; background: var(--laranja-tinta); color: var(--laranja-texto); }
+.i-legal-check svg { width: 13px; height: 13px; }
+.i-legal .i-legal-direitos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.i-legal .i-legal-direitos li { padding: 20px 22px; border-radius: var(--r-lg); background: var(--cartao); font-size: 16px; line-height: 1.55; }
+.i-legal .i-legal-cookies { justify-self: start; margin-top: 4px; }
+/* fecho: duvidas e o outro documento */
+.i-legal .i-legal-fim { display: grid; justify-items: start; gap: 18px; margin-top: 8px; padding: clamp(28px, 4vw, 48px); border-radius: var(--r-xl); background: var(--noite); color: var(--sobre-noite-2); }
+.i-legal-fim h2 { display: block; color: var(--sobre-noite); font-size: clamp(32px, 3.4vw, 48px); }
+.i-legal-fim h2 em { font-style: normal; color: var(--laranja); }
+.i-legal-fim .i-acoes { margin-top: 6px; }
+.i-legal-fim a.btn-acao { color: var(--laranja-tinta-txt); font-weight: 600; }
+.i-legal-fim a.btn-escuro { color: var(--sobre-noite); font-weight: 600; }
+.i-legal-fim .i-legal-outro { display: inline-flex; align-items: center; gap: 8px; color: var(--sobre-noite); font-size: 16px; text-decoration: none; }
+.i-legal-outro svg { width: 18px; height: 18px; transition: transform 0.25s ease; }
+.i-legal-outro:hover svg { transform: translateX(4px); }
 
 /* ---------- 404: o numero gigante, cada digito maior que o anterior ---------- */
 .i-erro { display: flex; align-items: flex-end; justify-content: center; font: 800 clamp(110px, 16vw, 250px)/0.8 var(--f-display); font-stretch: 75%; letter-spacing: -0.05em; color: var(--laranja); user-select: none; }
@@ -312,6 +370,10 @@ html.anima .i-origem-legendas p { max-width: 36ch; margin: 0 auto; font-size: cl
     .i-simbolo .duo { --w: clamp(110px, min(24vw, 32svh), 200px); }
     .i-trio-grade { grid-template-columns: minmax(0, 1fr); }
     .i-guias .h-proj-linha { grid-template-columns: minmax(0, 1fr) auto; }
+    .i-legal-topo .wrap { grid-template-columns: minmax(0, 1fr); }
+    .i-legal-resumo { max-width: 560px; }
+    .i-legal-grade { grid-template-columns: minmax(0, 1fr); }
+    .i-legal-indice { position: static; padding: 20px 22px; border-radius: var(--r-lg); background: var(--cartao); }
 }
 @media (max-width: 820px) {
     .i-guias .h-proj-nome { font-size: clamp(28px, 7vw, 44px); }
@@ -335,4 +397,9 @@ html.anima .i-origem-legendas p { max-width: 36ch; margin: 0 auto; font-size: cl
     .i-aviso:nth-child(4) { margin-left: 10%; }
     .i-painel-pes { grid-template-columns: minmax(0, 1fr); }
     .i-artigo article { font-size: 18px; }
+    .i-legal article { font-size: 17px; }
+    .i-legal section { padding: 40px 0; }
+    .i-legal .i-legal-cartoes, .i-legal .i-legal-direitos { grid-template-columns: minmax(0, 1fr); }
+    .i-legal-ficha div { grid-template-columns: minmax(0, 1fr); gap: 2px; padding: 16px 20px; }
+    .i-legal-cartoes li, .i-legal .i-legal-direitos li { padding: 18px 20px; }
 }
