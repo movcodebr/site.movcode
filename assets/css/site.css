@@ -223,55 +223,114 @@ body:not(.home) { padding-top: 88px; }
     transition: background-color .2s ease;
 }
 .menu a.menu-destaque:hover { background: var(--cartao); color: var(--tinta); }
-/* Cartao Sua pagina: ao abrir o painel o celular sobe, a pagina se monta
-   (capa, foto, nome sendo digitado, links e WhatsApp) e depois troca de cor
-   sozinha, com a selecao andando pela paleta ao lado, como no editor. */
-.menu-destaque-visual { position: relative; display: grid; place-items: end center; min-height: 214px; overflow: hidden; border-radius: 16px; background: radial-gradient(110% 80% at 30% 100%, color-mix(in srgb, var(--laranja) 55%, var(--noite)) 0%, var(--noite) 70%); }
-.menu-palco { display: block; transform-origin: 50% 100%; }
-.menu-celular { position: relative; display: grid; align-content: start; gap: 6px; width: 112px; height: 192px; margin-bottom: -34px; padding: 10px 8px; border: 5px solid #2A2D33; border-bottom: 0; border-radius: 24px 24px 0 0; background: #FFFFFF; box-shadow: 0 26px 44px -16px rgba(0, 0, 0, 0.7); transform: rotate(-7deg) translateY(6px); transition: transform .55s cubic-bezier(.2, .8, .2, 1); }
-.menu-celular::before { content: ""; position: absolute; top: 4px; left: 50%; width: 26px; height: 4px; margin-left: -13px; border-radius: 4px; background: #2A2D33; }
-.menu-celular i, .menu-celular b { display: block; border-radius: 6px; }
-.mc-capa { height: 36px; margin-top: 4px; background: #FF5A1F linear-gradient(160deg, rgba(255, 255, 255, 0.28), transparent 60%); }
-.mc-foto { width: 26px; height: 26px; margin: -19px 0 0 8px; border-radius: 50% !important; border: 3px solid #FFFFFF; background: #FF5A1F; }
-.mc-nome { position: relative; width: 70%; height: 7px; background: var(--tinta); }
-.mc-nome::after { content: ""; position: absolute; top: -3px; right: -5px; width: 2px; height: 13px; background: var(--laranja); opacity: 0; }
-.mc-texto { width: 88%; height: 5px; background: var(--linha-forte); }
-.mc-link { height: 14px; border: 1.5px solid var(--linha); background: var(--papel); }
-.mc-whats { height: 16px; margin-top: 2px; border-radius: 10px !important; background: var(--verde-whats); }
-/* Paleta do editor: quatro cores e o anel de selecao */
-.menu-cores { position: absolute; top: 12px; right: 12px; display: grid; gap: 6px; padding: 6px; border-radius: var(--r-pill); background: rgba(255, 255, 255, 0.08); }
-.menu-cores i { width: 12px; height: 12px; border-radius: 50%; }
-.menu-cores i:nth-child(1) { background: #FF5A1F; }
-.menu-cores i:nth-child(2) { background: #2563EB; }
-.menu-cores i:nth-child(3) { background: #15803D; }
-.menu-cores i:nth-child(4) { background: #7C3AED; }
-.menu-cores b { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; border: 2px solid #FFFFFF; }
-.menu a.menu-destaque:hover .menu-celular { transform: rotate(0deg) translateY(-6px) scale(1.04); }
+/* Cartao Sua pagina: ao abrir o painel o iPhone sobe com a pagina que o editor monta
+   (o nome sendo digitado, o topo, o botao e a foto). Depois o cursor escolhe cores na
+   barra de ferramentas e a pagina inteira troca de tema; no meio, ela rola ate os precos. */
+@property --mc-cor { syntax: "<color>"; inherits: true; initial-value: #FF5A1F; }
+.menu-destaque-visual { --mc-cor: #FF5A1F; position: relative; display: block; min-height: 214px; overflow: hidden; border-radius: 16px; background: radial-gradient(110% 80% at 30% 100%, color-mix(in srgb, var(--mc-cor) 50%, var(--noite)) 0%, var(--noite) 70%); }
+.menu-palco { position: absolute; top: 20px; left: 50%; width: 138px; margin-left: -69px; transform-origin: 50% 100%; }
+.mc-tel { position: relative; display: block; aspect-ratio: 880 / 1832; transition: transform .55s cubic-bezier(.2, .8, .2, 1); }
+.mc-tel::before { content: ""; position: absolute; inset: 1% 1.4%; border-radius: 20% / 9.7%; box-shadow: 0 30px 50px -18px rgba(0, 0, 0, 0.75); }
+.mc-tel::after { content: ""; position: absolute; inset: 0; z-index: 2; background: url(../images/iphone-17-pro.svg) center / 100% 100% no-repeat; }
+.mc-tela { position: absolute; inset: 1.86% 3.41%; overflow: hidden; border-radius: 15.85% / 7.37%; background: var(--papel); color: var(--tinta); text-align: left; }
+/* faixa de status fixa: a pagina rola por baixo dela (e da ilha do iPhone) */
+.mc-tela::before { content: ""; position: absolute; top: 0; right: 0; left: 0; z-index: 1; height: 20px; background: var(--papel); }
+.mc-rolo { display: block; padding-top: 24px; }
+.mc-topo { display: flex; align-items: center; gap: 5px; padding: 0 9px; }
+.mc-logo { display: grid; place-items: center; flex: none; width: 15px; height: 15px; border-radius: 4px; background: var(--mc-cor); color: #FFFFFF; font: 800 8px/1 var(--f-display); }
+.mc-nome { display: block; max-width: 80px; overflow: hidden; border-right: 1.5px solid transparent; font: 700 8px/1.3 var(--f-texto); white-space: nowrap; }
+.mc-hero { display: grid; justify-items: start; gap: 5px; margin: 7px 6px 0; padding: 10px 9px 9px; border-radius: 11px; background: #111214; color: #FFFFFF; }
+.mc-titulo { display: block; font: 800 15px/0.92 var(--f-display); font-stretch: 85%; letter-spacing: -0.025em; }
+.mc-texto { display: block; color: #B7BAC2; font: 400 6px/1.35 var(--f-texto); }
+.mc-botao { display: inline-flex; align-items: center; height: 15px; margin-top: 2px; padding: 0 8px; border-radius: 99px; background: var(--mc-cor); color: #FFFFFF; font: 700 6px/1 var(--f-texto); }
+.mc-aberto { display: inline-flex; align-items: center; gap: 3px; padding: 3px 6px; border-radius: 99px; background: rgba(255, 255, 255, 0.08); color: #E5E7EB; font: 500 5.5px/1 var(--f-texto); }
+.mc-aberto i { width: 4px; height: 4px; border-radius: 50%; background: #22C55E; }
+.mc-foto { display: grid; place-items: center; height: 72px; margin: 6px 6px 0; border-radius: 11px; background: radial-gradient(120% 110% at 85% 0%, var(--mc-cor), #231A17 75%); color: #FFFFFF; }
+.mc-foto svg { width: 22px; height: 22px; stroke-width: 1.6; }
+.mc-precos { display: grid; margin: 38px 9px 0; }
+.mc-precos-titulo { display: block; margin-bottom: 4px; font: 800 11px/1 var(--f-display); font-stretch: 85%; letter-spacing: -0.02em; }
+.mc-linha { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid var(--linha); color: var(--tinta-2); font: 500 7px/1 var(--f-texto); }
+.mc-linha b { color: var(--mc-cor); font-weight: 700; }
+/* a barra de ferramentas do editor, com as cores; o anel marca a escolhida */
+.mc-barra { position: absolute; left: 50%; bottom: 14px; z-index: 3; display: flex; align-items: center; gap: 7px; width: 120px; height: 26px; margin-left: -60px; padding: 0 9px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 99px; background: #16181D; box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.7); }
+.mc-paleta { flex: none; width: 12px; height: 12px; color: #FFFFFF; }
+.mc-div { flex: none; width: 1px; height: 12px; background: rgba(255, 255, 255, 0.18); }
+.mc-c { flex: none; width: 13px; height: 13px; border-radius: 50%; }
+.mc-c:nth-child(3) { background: #FF5A1F; }
+.mc-c:nth-child(4) { background: #2563EB; }
+.mc-c:nth-child(5) { background: #15803D; }
+.mc-c:nth-child(6) { background: #7C3AED; }
+.mc-anel { position: absolute; top: 50%; left: 34px; width: 17px; height: 17px; margin-top: -8.5px; border: 2px solid #FFFFFF; border-radius: 50%; }
+.mc-cursor { position: absolute; top: 0; left: 0; z-index: 4; width: 16px; height: 16px; transform: translate(112px, -30px); filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5)); }
+.mc-cursor svg { position: relative; display: block; width: 16px; height: 16px; }
+.mc-cursor::before { content: ""; position: absolute; top: -6px; left: -5px; width: 16px; height: 16px; border-radius: 50%; background: rgba(255, 255, 255, 0.55); opacity: 0; }
+.menu a.menu-destaque:hover .mc-tel { transform: translateY(-6px); }
 
-/* A cena roda toda vez que o painel abre */
-.menu-item.aberto .menu-palco { animation: mc-sobe .8s cubic-bezier(.2, .9, .3, 1.2) both; }
-.menu-item.aberto .mc-capa { animation: mc-surge .45s .35s both, mc-tema 6s 2s infinite; }
-.menu-item.aberto .mc-foto { animation: mc-pula .5s .5s cubic-bezier(.3, 1.6, .5, 1) both, mc-tema 6s 2s infinite; }
-.menu-item.aberto .mc-nome { animation: mc-digita .7s .65s steps(9) both; }
-.menu-item.aberto .mc-nome::after { animation: mc-pisca .8s .65s steps(1) 3; }
-.menu-item.aberto .mc-texto { animation: mc-cresce .5s 1.2s ease-out both; }
-.menu-item.aberto .mc-link { animation: mc-desliza .45s 1.35s ease-out both; }
-.menu-item.aberto .mc-link + .mc-link { animation-delay: 1.45s; }
-.menu-item.aberto .mc-whats { animation: mc-pula .5s 1.6s cubic-bezier(.3, 1.6, .5, 1) both, mc-pulso 2s 2.2s infinite; }
-.menu-item.aberto .menu-cores { animation: mc-surge .4s 1.7s both; }
-.menu-item.aberto .menu-cores b { animation: mc-escolhe 6s 2s infinite; }
-@keyframes mc-sobe { from { opacity: 0; transform: translateY(80px) rotate(-10deg); } to { opacity: 1; transform: none; } }
-@keyframes mc-surge { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-@keyframes mc-pula { from { opacity: 0; transform: scale(0.3); } to { opacity: 1; transform: none; } }
-@keyframes mc-digita { from { width: 0; } to { width: 70%; } }
-@keyframes mc-pisca { 0% { opacity: 1; } 50% { opacity: 0; } }
-@keyframes mc-cresce { from { width: 0; } to { width: 88%; } }
-@keyframes mc-desliza { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
-@keyframes mc-pulso { 0%, 55%, 100% { box-shadow: 0 0 0 0 rgba(31, 175, 84, 0.6); } 30% { box-shadow: 0 0 0 8px rgba(31, 175, 84, 0); } }
-@keyframes mc-tema { 0%, 22% { background-color: #FF5A1F; } 25%, 47% { background-color: #2563EB; } 50%, 72% { background-color: #15803D; } 75%, 97% { background-color: #7C3AED; } 100% { background-color: #FF5A1F; } }
-@keyframes mc-escolhe { 0%, 22% { transform: translateY(0); } 25%, 47% { transform: translateY(18px); } 50%, 72% { transform: translateY(36px); } 75%, 97% { transform: translateY(54px); } 100% { transform: translateY(0); } }
+/* abrir: o celular sobe e a pagina se monta; depois o ciclo de 12s (cores e rolagem) */
+.menu-item.aberto .menu-destaque-visual { animation: mc-tema 12s 1.8s infinite; }
+.menu-item.aberto .menu-palco { animation: mc-sobe .8s cubic-bezier(.2, .9, .3, 1.15) both; }
+.menu-item.aberto .mc-logo { animation: mc-pula .4s .4s cubic-bezier(.3, 1.6, .5, 1) both; }
+.menu-item.aberto .mc-hero { animation: mc-surge .5s .7s both; }
+.menu-item.aberto .mc-nome { animation: mc-digita .8s .55s steps(17) both, mc-caret .8s .55s step-end 2; }
+.menu-item.aberto .mc-titulo { animation: mc-surge .5s .9s both; }
+.menu-item.aberto .mc-texto { animation: mc-surge .5s 1s both; }
+.menu-item.aberto .mc-botao { animation: mc-pula .45s 1.1s cubic-bezier(.3, 1.6, .5, 1) both; }
+.menu-item.aberto .mc-aberto { animation: mc-surge .4s 1.2s both; }
+.menu-item.aberto .mc-foto { animation: mc-surge .5s 1.15s both; }
+.menu-item.aberto .mc-barra { animation: mc-barra .5s 1.35s cubic-bezier(.2, .9, .3, 1.15) both; }
+.menu-item.aberto .mc-rolo { animation: mc-rola 12s 1.8s infinite; }
+.menu-item.aberto .mc-anel { animation: mc-anel 12s 1.8s infinite; }
+.menu-item.aberto .mc-cursor { animation: mc-aparece .3s 1.55s both, mc-cursor 12s 1.8s infinite; }
+.menu-item.aberto .mc-cursor::before { animation: mc-toque 12s 1.8s infinite; }
+@keyframes mc-sobe { from { opacity: 0; transform: translateY(70px) rotate(-6deg); } to { opacity: 1; transform: none; } }
+@keyframes mc-surge { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes mc-pula { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: none; } }
+@keyframes mc-digita { from { max-width: 0; } to { max-width: 80px; } }
+@keyframes mc-caret { 0%, 50% { border-right-color: var(--mc-cor); } 25%, 75% { border-right-color: transparent; } }
+@keyframes mc-barra { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes mc-aparece { from { opacity: 0; } to { opacity: 1; } }
+@keyframes mc-tema {
+    0%, 8% { --mc-cor: #FF5A1F; }
+    11%, 33% { --mc-cor: #2563EB; }
+    36%, 58% { --mc-cor: #15803D; }
+    61%, 83% { --mc-cor: #7C3AED; }
+    86%, 100% { --mc-cor: #FF5A1F; }
+}
+@keyframes mc-anel {
+    0%, 8% { transform: translateX(0); }
+    10%, 33% { transform: translateX(20px); }
+    35%, 58% { transform: translateX(40px); }
+    60%, 83% { transform: translateX(60px); }
+    85%, 100% { transform: translateX(0); }
+}
+@keyframes mc-cursor {
+    0%, 2% { transform: translate(112px, -30px); }
+    6% { transform: translate(59px, 12px); }
+    8% { transform: translate(59px, 12px) scale(0.8); }
+    10% { transform: translate(59px, 12px); }
+    17%, 27% { transform: translate(112px, -30px); }
+    31% { transform: translate(79px, 12px); }
+    33% { transform: translate(79px, 12px) scale(0.8); }
+    35% { transform: translate(79px, 12px); }
+    42%, 52% { transform: translate(112px, -30px); }
+    56% { transform: translate(99px, 12px); }
+    58% { transform: translate(99px, 12px) scale(0.8); }
+    60% { transform: translate(99px, 12px); }
+    67%, 77% { transform: translate(112px, -30px); }
+    81% { transform: translate(39px, 12px); }
+    83% { transform: translate(39px, 12px) scale(0.8); }
+    85% { transform: translate(39px, 12px); }
+    92%, 100% { transform: translate(112px, -30px); }
+}
+@keyframes mc-toque {
+    0%, 7.9%, 13%, 32.9%, 38%, 57.9%, 63%, 82.9%, 88%, 100% { opacity: 0; transform: scale(0.3); }
+    8%, 33%, 58%, 83% { opacity: 0.9; transform: scale(0.3); }
+    12%, 37%, 62%, 87% { opacity: 0; transform: scale(1.9); }
+}
+@keyframes mc-rola { 0%, 37% { transform: translateY(0); } 45%, 70% { transform: translateY(-140px); } 78%, 100% { transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) {
-    .menu-destaque-visual *, .menu-destaque-visual *::after { animation: none !important; }
+    .menu-destaque-visual, .menu-destaque-visual *, .menu-destaque-visual *::before, .menu-destaque-visual *::after { animation: none !important; }
+    .mc-cursor { display: none; }
 }
 .menu-destaque-texto { display: grid; align-content: center; gap: 8px; padding: 6px 8px 6px 0; }
 .menu-destaque-texto strong { font: 800 30px/0.95 var(--f-display); font-stretch: 80%; letter-spacing: -0.03em; }
