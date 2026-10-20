@@ -194,8 +194,9 @@ html.anima .i-progresso { display: block; position: fixed; top: 0; left: 0; righ
 .i-legal-fim .i-acoes { margin-top: 6px; }
 .i-legal-fim a.btn-acao { color: var(--laranja-tinta-txt); font-weight: 600; }
 .i-legal-fim a.btn-escuro { color: var(--sobre-noite); font-weight: 600; }
-.i-legal-fim .i-legal-outro { display: inline-flex; align-items: center; gap: 8px; color: var(--sobre-noite); font-size: 16px; text-decoration: none; }
-.i-legal-outro svg { width: 18px; height: 18px; transition: transform 0.25s ease; }
+.i-legal-fim .i-legal-outro { color: var(--sobre-noite); font-size: 16px; text-decoration: none; }
+/* seta junto do texto, mesmo quando o link quebra a linha no celular */
+.i-legal-outro svg { display: inline-block; width: 18px; height: 18px; margin-left: 6px; vertical-align: -4px; transition: transform 0.25s ease; }
 .i-legal-outro:hover svg { transform: translateX(4px); }
 
 /* ---------- 404: o numero gigante, cada digito maior que o anterior ---------- */
