@@ -1,0 +1,148 @@
+/* =========================================================================
+   MovCode — blog (/blog/ e os guias)
+   O índice abre com o tradutor de tecniquês (o termo é riscado e vira
+   português, um de cada vez) e mostra os guias em cartões grandes com uma
+   ilustração cada. O guia abre com a ilustração dele, tem o sumário "Neste
+   guia" que acompanha a leitura (blog.js) e o Leia também em cartões.
+   ========================================================================= */
+
+/* ---------- Índice: o topo e o tradutor ---------- */
+.bl-topo { min-height: 0; padding-bottom: clamp(56px, 8vw, 104px); }
+.bl-topo .i-titulo { max-width: 11ch; }
+.bl-tradutor { justify-self: end; width: 100%; max-width: 540px; padding: 24px 28px 14px; border: 1px solid var(--noite-linha); border-radius: var(--r-xl); background: var(--noite-2); }
+.bl-tradutor-cabeca { display: grid; grid-template-columns: minmax(0, 0.8fr) 22px minmax(0, 1.25fr); gap: 14px; margin: 0; padding-bottom: 12px; border-bottom: 1px solid var(--noite-linha); color: var(--sobre-noite-2); font: 600 14px var(--f-texto); }
+.bl-tradutor-cabeca span:last-child { grid-column: 3; }
+.bl-tradutor ul { display: grid; margin: 0; padding: 0; list-style: none; }
+.bl-tradutor li { display: grid; grid-template-columns: minmax(0, 0.8fr) 22px minmax(0, 1.25fr); align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px dashed var(--noite-linha); }
+.bl-tradutor li:last-child { border-bottom: 0; }
+/* o termo é riscado e o português entra, linha por linha */
+.bl-tradutor s { position: relative; justify-self: start; color: var(--sobre-noite-2); font: 600 16px var(--f-mono); text-decoration: none; }
+.bl-tradutor s::after { content: ""; position: absolute; left: -4px; right: -4px; top: 52%; height: 2px; border-radius: 2px; background: var(--laranja); transform-origin: left; animation: bl-risca 0.45s ease backwards; animation-delay: calc(1.4s + var(--i) * 0.5s); }
+.bl-tradutor li > span { color: var(--laranja); font-weight: 700; animation: bl-entra 0.35s ease backwards; animation-delay: calc(1.6s + var(--i) * 0.5s); }
+.bl-tradutor b { color: var(--sobre-noite); font-size: 17px; font-weight: 600; line-height: 1.3; animation: bl-entra 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; animation-delay: calc(1.7s + var(--i) * 0.5s); }
+@keyframes bl-risca { from { transform: scaleX(0); } }
+@keyframes bl-entra { from { opacity: 0; transform: translateX(-10px); } }
+
+
+/* ---------- Os cartões dos guias ---------- */
+.bl-guias { padding: var(--secao) 0; background: var(--papel); color: var(--tinta); }
+.bl-grade { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: 20px; }
+.bl-grade-dois { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.bl-cartao-grande { grid-row: span 2; }
+.bl-cartao { --c-fundo: #FFE4D8; display: grid; grid-template-rows: minmax(0, 1fr) auto; overflow: hidden; border-radius: var(--r-xl); background: var(--c-fundo); color: var(--tinta); text-decoration: none; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease; }
+.bl-cartao:hover { transform: translateY(-6px); box-shadow: 0 34px 60px -34px rgba(17, 18, 20, 0.4); }
+.bl-cartao:focus-visible { outline: 3px solid var(--laranja); outline-offset: 4px; }
+.bl-cartao-fiado { --c-fundo: #FFE4D8; }
+.bl-cartao-site { --c-fundo: #E6ECF4; }
+.bl-cartao-custo { --c-fundo: #F4E6CC; }
+.bl-capa { display: grid; place-items: center; padding: 26px 26px 0; }
+.bl-ilustra { display: block; width: 100%; height: auto; max-height: 230px; overflow: visible; }
+.bl-cartao-grande .bl-ilustra { max-height: 400px; }
+.bl-cartao-texto { display: grid; align-content: end; gap: 12px; padding: 18px 28px 24px; }
+.bl-cartao-titulo { margin: 0; font: 800 clamp(26px, 2.3vw, 36px)/1 var(--f-display); font-stretch: 80%; letter-spacing: -0.03em; text-wrap: balance; }
+.bl-cartao-grande .bl-cartao-titulo { font-size: clamp(32px, 3.3vw, 54px); }
+.bl-cartao-resumo { max-width: 50ch; color: var(--tinta-2); font-size: 16px; line-height: 1.5; text-wrap: pretty; }
+.bl-cartao-pe { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin-top: 6px; padding-top: 14px; border-top: 1px solid rgba(17, 18, 20, 0.12); color: var(--tinta-2); font: 600 14px var(--f-texto); }
+.bl-ler { display: inline-flex; align-items: center; gap: 6px; color: var(--tinta); }
+.bl-ler svg, .bl-ler span { width: 1em; height: 1em; transition: transform 0.25s ease; }
+.bl-cartao:hover .bl-ler svg, .bl-cartao:hover .bl-ler span { transform: translateX(4px); }
+
+/* o caderno de fiado virando lista no celular */
+.bl-folha { fill: #FFFDF8; stroke: #E8E1D6; stroke-width: 2; }
+.bl-pauta path { stroke: #E3E7EE; stroke-width: 1.5; }
+.bl-margem { stroke: #F2A7A0; stroke-width: 1.5; }
+.bl-argolas circle { fill: none; stroke: #9AA1B0; stroke-width: 3; }
+.bl-caderno-titulo { fill: #2A2D34; font: 700 30px "Caveat", cursive; }
+.bl-mao text { fill: #3A3D45; font: 600 19px "Caveat", cursive; }
+.bl-risco { fill: none; stroke: #D9443B; stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: 160; animation: bl-riscar 6s ease-in-out infinite; animation-delay: var(--d); }
+@keyframes bl-riscar { 0%, 8% { stroke-dashoffset: 160; } 18%, 88% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 160; } }
+.bl-lapis { animation: bl-escreve 1.6s ease-in-out infinite; }
+@keyframes bl-escreve { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(-3px, 2px) rotate(-3deg); } 50% { transform: translate(2px, -1px) rotate(2deg); } 75% { transform: translate(-2px, 1px) rotate(-1deg); } }
+.bl-celular-titulo { fill: #111214; font: 700 11px var(--f-texto); }
+.bl-item circle { fill: #10B981; }
+.bl-item path { fill: none; stroke: #FFFFFF; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.bl-item rect { fill: #E3E7EE; }
+.bl-item .bl-item-valor { fill: #FFB08A; }
+.bl-item { transform-box: fill-box; transform-origin: 0 50%; animation: bl-item 6s ease infinite; animation-delay: var(--d); }
+@keyframes bl-item { 0%, 6% { opacity: 0; transform: translateX(-6px); } 12%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* o site e o Instagram lado a lado */
+.bl-ou text { fill: #FFFFFF; font: 800 19px var(--f-display); }
+.bl-ou { transform-box: fill-box; transform-origin: center; animation: bl-pulsa 2.4s ease-in-out infinite; }
+@keyframes bl-pulsa { 50% { transform: scale(1.1); } }
+.bl-fotos { animation: bl-rola 5s ease-in-out infinite; }
+@keyframes bl-rola { 0%, 30%, 100% { transform: translateY(0); } 50%, 80% { transform: translateY(-8px); } }
+.bl-telefone { transform-box: fill-box; transform-origin: 50% 100%; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.bl-janela { transform-box: fill-box; transform-origin: 50% 100%; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.bl-cartao:hover .bl-telefone { transform: rotate(4deg) translateY(-4px); }
+.bl-cartao:hover .bl-janela { transform: rotate(-2deg); }
+
+/* a notinha de orçamento que termina em "depende" */
+.bl-papel { fill: #FFFFFF; stroke: rgba(17, 18, 20, 0.08); stroke-width: 1.5; }
+.bl-nota-titulo { fill: #111214; font: 800 18px var(--f-display); }
+.bl-nota-itens text { fill: #4A4D55; font: 500 13px var(--f-texto); }
+.bl-pontilhado { stroke: #C9CCD3; stroke-width: 1.5; stroke-dasharray: 2 4; }
+.bl-nota-total { fill: #111214; font: 700 14px var(--f-texto); }
+.bl-depende { fill: #FF5A1F; font: 700 30px "Caveat", cursive; }
+.bl-etiqueta { transform-box: view-box; transform-origin: 300px 30px; animation: bl-balanca 3.2s ease-in-out infinite; }
+.bl-etiqueta text { fill: #FFF3E5; font: 800 44px var(--f-display); }
+@keyframes bl-balanca { 0%, 100% { transform: rotate(6deg); } 50% { transform: rotate(-6deg); } }
+
+
+/* ---------- O guia ---------- */
+.bl-guia-topo .wrap { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); align-items: center; }
+.bl-guia-topo .i-titulo { max-width: 16ch; font-size: clamp(40px, min(5.4vw, 11svh), 88px); }
+.bl-voltar { display: inline-flex; align-items: center; gap: 8px; color: var(--sobre-noite-2); font: 600 15px var(--f-texto); text-decoration: none; transition: color 0.2s ease; }
+.bl-voltar:hover { color: var(--sobre-noite); }
+.bl-voltar span { transition: transform 0.25s ease; }
+.bl-voltar:hover span { transform: translateX(-4px); }
+.bl-meta { margin: -12px 0 0; color: var(--sobre-noite-2); font-size: 15px; }
+.bl-guia-capa { display: grid; place-items: center; padding: 28px; border-radius: var(--r-xl); background: var(--c-fundo); }
+.bl-guia-capa .bl-ilustra { max-height: 340px; }
+/* a leitura com o sumário que acompanha */
+.bl-leitura-grade { display: grid; grid-template-columns: 250px minmax(0, 780px); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.bl-leitura article h2 { scroll-margin-top: 110px; }
+.bl-indice { position: sticky; top: 110px; display: grid; gap: 14px; }
+.bl-indice p { margin: 0; color: var(--tinta); font: 700 15px var(--f-texto); }
+.bl-indice ol { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; counter-reset: bl-indice; }
+.bl-indice li { padding-left: 0; counter-increment: bl-indice; }
+.bl-indice li::before { content: none; }
+.bl-indice a { position: relative; display: grid; grid-template-columns: 26px minmax(0, 1fr); padding: 8px 0 8px 14px; border-left: 2px solid rgba(17, 18, 20, 0.1); color: var(--tinta-3); font-size: 15px; line-height: 1.35; text-decoration: none; transition: color 0.2s ease, border-color 0.2s ease; }
+.bl-indice a::before { content: counter(bl-indice, decimal-leading-zero); color: var(--tinta-3); font: 500 12px/1.9 var(--f-mono); }
+.bl-indice a:hover { color: var(--tinta); }
+.bl-indice a.ativo { border-left-color: var(--laranja); color: var(--tinta); font-weight: 600; }
+.bl-indice a.ativo::before { color: var(--laranja-texto); }
+/* Leia também */
+.bl-outros { background: var(--noite); color: var(--sobre-noite); }
+.bl-outros .h-grande { margin-bottom: clamp(36px, 5vw, 64px); }
+
+
+/* ---------- Telas menores ---------- */
+@media (max-width: 1080px) {
+    .bl-tradutor { justify-self: start; }
+    .bl-guia-topo .wrap { grid-template-columns: minmax(0, 1fr); }
+    .bl-guia-capa { max-width: 560px; }
+    .bl-leitura-grade { grid-template-columns: minmax(0, 1fr); }
+    .bl-indice { position: static; padding: 20px 22px; border-radius: var(--r-lg); background: #FFFFFF; }
+}
+@media (max-width: 860px) {
+    .bl-grade, .bl-grade-dois { grid-template-columns: minmax(0, 1fr); }
+    .bl-cartao-grande { grid-row: auto; }
+    .bl-cartao-grande .bl-ilustra { max-height: 260px; }
+}
+@media (max-width: 640px) {
+    .bl-tradutor { padding: 18px 18px 8px; }
+    .bl-tradutor li, .bl-tradutor-cabeca { grid-template-columns: minmax(0, 0.75fr) 16px minmax(0, 1.25fr); gap: 10px; }
+    .bl-tradutor s { font-size: 14px; }
+    .bl-tradutor b { font-size: 15px; }
+    .bl-capa { padding: 20px 18px 0; }
+    .bl-cartao-texto { padding: 16px 20px 20px; }
+    .bl-guia-capa { padding: 18px; }
+}
+
+/* ---------- Movimento reduzido: tudo já no lugar ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .bl-tradutor s::after, .bl-tradutor li > span, .bl-tradutor b, .bl-risco, .bl-lapis, .bl-item, .bl-ou, .bl-fotos, .bl-etiqueta { animation: none !important; }
+    .bl-cartao, .bl-telefone, .bl-janela { transition: none; }
+    .bl-risco { stroke-dashoffset: 0; }
+}

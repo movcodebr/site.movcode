@@ -48,10 +48,11 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/site.css">
     <link rel="stylesheet" href="/assets/css/home.css">
     <link rel="stylesheet" href="/assets/css/interna.css">
+    <link rel="stylesheet" href="/assets/css/blog.css">
     <script>
         // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
         try {
@@ -155,55 +156,124 @@
     <div class="cursor-anel" aria-hidden="true"><span></span></div>
 
     <main id="conteudo">
-        <section class="i-hero escuro i-hero-compacto">
+        <section class="i-hero escuro bl-topo">
             <div class="wrap">
                 <div class="i-hero-texto">
-                    <h1 class="h-grande gigante i-titulo">Guias <em>sem tecniquês.</em></h1>
-                    <p class="i-hero-sub i-entra">Textos curtos para quem toca um negócio e quer usar a tecnologia a favor.</p>
+                    <h1 class="h-grande gigante i-titulo">Guias <em>sem&nbsp;tecniquês.</em></h1>
+                    <p class="i-hero-sub i-entra">Textos curtos para quem toca um&nbsp;negócio e&nbsp;quer usar a&nbsp;tecnologia a&nbsp;favor.</p>
+                </div>
+                <div class="bl-tradutor i-entra">
+                    <p class="bl-tradutor-cabeca"><span>Tecniquês</span><span>Português</span></p>
+                    <ul>
+                        <li style="--i:0"><s>Deploy</s><span aria-hidden="true">→</span><b>colocar no&nbsp;ar</b></li>
+                        <li style="--i:1"><s>Back-end</s><span aria-hidden="true">→</span><b>a&nbsp;parte que ninguém&nbsp;vê</b></li>
+                        <li style="--i:2"><s>API</s><span aria-hidden="true">→</span><b>um&nbsp;sistema conversando com&nbsp;outro</b></li>
+                        <li style="--i:3"><s>SaaS</s><span aria-hidden="true">→</span><b>sistema que você&nbsp;assina</b></li>
+                        <li style="--i:4"><s>MVP</s><span aria-hidden="true">→</span><b>a&nbsp;primeira versão,&nbsp;enxuta</b></li>
+                        <li style="--i:5"><s>Responsivo</s><span aria-hidden="true">→</span><b>funciona bem no&nbsp;celular</b></li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <section id="guias" class="h-caso escuro i-lista i-guias" aria-label="Guias">
+        <section class="bl-guias" aria-label="Os guias">
             <div class="wrap">
-                <ul class="h-lista">
-                    <li class="h-proj">
-                        <a class="h-proj-linha" href="/blog/como-sair-do-caderno-de-fiado">
-                            <span class="h-proj-num">01</span>
-                            <span class="h-proj-nome">Como sair do caderno de fiado sem perder o controle</span>
-                            <p class="h-proj-desc">O caderno funciona até o dia em que não funciona. Um passo a passo para organizar o fiado, cobrar sem constrangimento e saber quanto você tem a receber.</p>
-                            <span class="h-proj-tipo">Comércio · 3 min</span>
-                            <span class="h-proj-seta" aria-hidden="true">↗</span>
-                        </a>
-                    </li>
-                    <li class="h-proj">
-                        <a class="h-proj-linha" href="/blog/site-ou-instagram">
-                            <span class="h-proj-num">02</span>
-                            <span class="h-proj-nome">Site ou Instagram: o que o seu negócio precisa?</span>
-                            <p class="h-proj-desc">O Instagram é ótimo para aparecer, mas não é seu. Quando ele basta, quando o site faz falta e por que os dois juntos funcionam melhor.</p>
-                            <span class="h-proj-tipo">Presença online · 2 min</span>
-                            <span class="h-proj-seta" aria-hidden="true">↗</span>
-                        </a>
-                    </li>
-                    <li class="h-proj">
-                        <a class="h-proj-linha" href="/blog/quanto-custa-um-sistema-proprio">
-                            <span class="h-proj-num">03</span>
-                            <span class="h-proj-nome">Quanto custa ter um sistema próprio?</span>
-                            <p class="h-proj-desc">A resposta honesta é: depende. Veja o que pesa no preço, quais custos continuam depois da entrega e como não gastar à toa.</p>
-                            <span class="h-proj-tipo">Investimento · 2 min</span>
-                            <span class="h-proj-seta" aria-hidden="true">↗</span>
-                        </a>
-                    </li>
-                </ul>
+                <div class="bl-grade">
+                    <a class="bl-cartao bl-cartao-fiado bl-cartao-grande" href="/blog/como-sair-do-caderno-de-fiado" data-cta="blog_guia_fiado">
+                        <span class="bl-capa">
+                        <svg class="bl-ilustra bl-ilustra-fiado" viewBox="0 0 400 300" aria-hidden="true">
+                            <g class="bl-caderno" transform="rotate(-5 172 160)">
+                                <rect class="bl-folha" x="70" y="40" width="204" height="234" rx="10"/>
+                                <g class="bl-pauta"><path d="M84 104h176"/><path d="M84 130h176"/><path d="M84 156h176"/><path d="M84 182h176"/><path d="M84 208h176"/><path d="M84 234h176"/><path d="M84 260h176"/></g>
+                                <path class="bl-margem" d="M96 64v204"/>
+                                <g class="bl-argolas"><circle cx="96" cy="46" r="6"/><circle cx="118" cy="46" r="6"/><circle cx="140" cy="46" r="6"/><circle cx="162" cy="46" r="6"/><circle cx="184" cy="46" r="6"/><circle cx="206" cy="46" r="6"/><circle cx="228" cy="46" r="6"/><circle cx="250" cy="46" r="6"/></g>
+                                <text class="bl-caderno-titulo" x="104" y="92">Fiado</text>
+                                <g class="bl-mao"><text x="104" y="124">Dona Márcia</text><text x="250" y="124" text-anchor="end">R$ 32</text><text x="104" y="150">Seu Jorge</text><text x="250" y="150" text-anchor="end">R$ 18,50</text><path class="bl-risco" d="M100 144h156" style="--d:0.6s"/><text x="104" y="176">Ana, torre B</text><text x="250" y="176" text-anchor="end">R$ 47</text><text x="104" y="202">Zé do gás</text><text x="250" y="202" text-anchor="end">R$ 25</text><path class="bl-risco" d="M100 196h156" style="--d:1.4s"/><text x="104" y="228">Lúcia</text><text x="250" y="228" text-anchor="end">R$ 12</text></g>
+                            </g>
+                            <g transform="translate(270 98) rotate(-50)"><g class="bl-lapis"><rect x="0" y="-5" width="86" height="10" rx="2" fill="#FF5A1F"/><rect x="70" y="-5" width="16" height="10" fill="#FFB08A"/><path d="M0 -5l-14 5 14 5z" fill="#F5D3B0"/><path d="M-9 -1.8L-14 0l5 1.8z" fill="#2A2D34"/></g></g>
+                            <g class="bl-celular">
+                                <rect x="262" y="128" width="104" height="160" rx="16" fill="#111214"/>
+                                <rect x="268" y="134" width="92" height="148" rx="11" fill="#FFFFFF"/>
+                                <text class="bl-celular-titulo" x="278" y="156">A receber</text>
+                                <g class="bl-item" style="--d:0.30s"><circle cx="286" cy="176" r="7"/><path d="M282.5 176l2.5 2.5 4.5-4.5"/><rect x="298" y="172" width="30" height="8" rx="4"/><rect x="336" y="172" width="14" height="8" rx="4" class="bl-item-valor"/></g><g class="bl-item" style="--d:0.55s"><circle cx="286" cy="200" r="7"/><path d="M282.5 200l2.5 2.5 4.5-4.5"/><rect x="298" y="196" width="24" height="8" rx="4"/><rect x="336" y="196" width="14" height="8" rx="4" class="bl-item-valor"/></g><g class="bl-item" style="--d:0.80s"><circle cx="286" cy="224" r="7"/><path d="M282.5 224l2.5 2.5 4.5-4.5"/><rect x="298" y="220" width="32" height="8" rx="4"/><rect x="336" y="220" width="14" height="8" rx="4" class="bl-item-valor"/></g><g class="bl-item" style="--d:1.05s"><circle cx="286" cy="248" r="7"/><path d="M282.5 248l2.5 2.5 4.5-4.5"/><rect x="298" y="244" width="26" height="8" rx="4"/><rect x="336" y="244" width="14" height="8" rx="4" class="bl-item-valor"/></g>
+                            </g>
+                        </svg>
+                        </span>
+                        <span class="bl-cartao-texto">
+                            <h2 class="bl-cartao-titulo">Como sair do&nbsp;caderno de&nbsp;fiado sem perder o&nbsp;controle</h2>
+                            <span class="bl-cartao-resumo">O&nbsp;caderno funciona até o&nbsp;dia em&nbsp;que não funciona. Um&nbsp;passo a&nbsp;passo para organizar o&nbsp;fiado, cobrar sem constrangimento e&nbsp;saber quanto você tem a&nbsp;receber.</span>
+                            <span class="bl-cartao-pe"><span>Comércio · 3 min de&nbsp;leitura</span><span class="bl-ler">Ler o&nbsp;guia <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+                        </span>
+                    </a>
+                    <a class="bl-cartao bl-cartao-site" href="/blog/site-ou-instagram" data-cta="blog_guia_site">
+                        <span class="bl-capa">
+                        <svg class="bl-ilustra bl-ilustra-site" viewBox="0 0 400 300" aria-hidden="true">
+                            <g class="bl-janela">
+                                <rect x="24" y="52" width="228" height="178" rx="12" fill="#FFFFFF" stroke="#E3E0DA" stroke-width="2"/>
+                                <path d="M24 64a12 12 0 0 1 12-12h204a12 12 0 0 1 12 12v14H24z" fill="#F1EEE8"/>
+                                <circle cx="40" cy="65" r="4" fill="#FF5F57"/><circle cx="53" cy="65" r="4" fill="#FEBC2E"/><circle cx="66" cy="65" r="4" fill="#28C840"/>
+                                <rect x="84" y="59" width="132" height="12" rx="6" fill="#FFFFFF"/>
+                                <rect x="42" y="96" width="112" height="12" rx="6" fill="#111214"/>
+                                <rect x="42" y="114" width="84" height="12" rx="6" fill="#111214"/>
+                                <rect x="42" y="136" width="104" height="6" rx="3" fill="#C9CCD3"/>
+                                <rect x="42" y="148" width="92" height="6" rx="3" fill="#C9CCD3"/>
+                                <rect class="bl-botao" x="42" y="166" width="72" height="22" rx="11" fill="#FF5A1F"/>
+                                <rect x="168" y="94" width="66" height="94" rx="9" fill="#FFE4D8"/>
+                                <circle cx="190" cy="118" r="8" fill="#FFB08A"/><path d="M172 176l18-24 14 16 10-10 16 18z" fill="#FF8A5B"/>
+                            </g>
+                            <g class="bl-telefone">
+                                <rect x="250" y="84" width="112" height="200" rx="18" fill="#111214"/>
+                                <rect x="256" y="92" width="100" height="184" rx="13" fill="#FFFFFF"/>
+                                <circle cx="276" cy="116" r="11" fill="none" stroke="#FF5A1F" stroke-width="3"/><circle cx="276" cy="116" r="6.5" fill="#FFB08A"/>
+                                <rect x="294" y="108" width="44" height="7" rx="3.5" fill="#111214"/><rect x="294" y="120" width="30" height="6" rx="3" fill="#C9CCD3"/>
+                                <g class="bl-fotos"><rect x="262" y="150" width="30" height="30" rx="3" fill="#FFE4D8"/><rect x="294" y="150" width="30" height="30" rx="3" fill="#E3E7EE"/><rect x="326" y="150" width="30" height="30" rx="3" fill="#FFD3BE"/><rect x="262" y="182" width="30" height="30" rx="3" fill="#DCE9DF"/><rect x="294" y="182" width="30" height="30" rx="3" fill="#FFB08A"/><rect x="326" y="182" width="30" height="30" rx="3" fill="#E3E7EE"/><rect x="262" y="214" width="30" height="30" rx="3" fill="#F4E3C7"/><rect x="294" y="214" width="30" height="30" rx="3" fill="#FFE4D8"/><rect x="326" y="214" width="30" height="30" rx="3" fill="#DCE9DF"/></g>
+                            </g>
+                            <g class="bl-ou"><circle cx="252" cy="58" r="24" fill="#FF5A1F"/><text x="252" y="65" text-anchor="middle">ou</text></g>
+                        </svg>
+                        </span>
+                        <span class="bl-cartao-texto">
+                            <h2 class="bl-cartao-titulo">Site ou&nbsp;Instagram: o&nbsp;que o&nbsp;seu negócio&nbsp;precisa?</h2>
+                            <span class="bl-cartao-resumo">O&nbsp;Instagram é&nbsp;ótimo para aparecer, mas não é&nbsp;seu. Quando ele basta, quando o&nbsp;site faz falta e&nbsp;por que os&nbsp;dois juntos funcionam melhor.</span>
+                            <span class="bl-cartao-pe"><span>Presença online · 2 min de&nbsp;leitura</span><span class="bl-ler">Ler o&nbsp;guia <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+                        </span>
+                    </a>
+                    <a class="bl-cartao bl-cartao-custo" href="/blog/quanto-custa-um-sistema-proprio" data-cta="blog_guia_custo">
+                        <span class="bl-capa">
+                        <svg class="bl-ilustra bl-ilustra-custo" viewBox="0 0 400 300" aria-hidden="true">
+                            <g class="bl-nota" transform="rotate(-3 170 160)">
+                                <path class="bl-papel" d="M86 40h164v226l-10 8-10-8-10 8-10-8-10 8-10-8-10 8-10-8-10 8-10-8-10 8-10-8-10 8-10-8-10 8-10-8-10 8-10-8z"/>
+                                <text class="bl-nota-titulo" x="102" y="76">Orçamento</text>
+                                <path class="bl-pontilhado" d="M102 88H234"/>
+                                <g class="bl-nota-itens"><text x="102" y="112">O sistema</text><path class="bl-pontilhado" d="M166 108H232"/><text x="102" y="138">Hospedagem</text><path class="bl-pontilhado" d="M180 134H232"/><text x="102" y="164">Manutenção</text><path class="bl-pontilhado" d="M182 160H232"/><text x="102" y="190">Ajustes</text><path class="bl-pontilhado" d="M152 186H232"/></g>
+                                <path d="M102 210H234" stroke="#111214" stroke-width="2"/>
+                                <text class="bl-nota-total" x="102" y="236">Total</text>
+                                <text class="bl-depende" x="234" y="240" text-anchor="end">depende</text>
+                            </g>
+                            <g class="bl-etiqueta">
+                                <path d="M300 30v42" stroke="#9AA1B0" stroke-width="2"/>
+                                <path d="M276 72h48l10 16v70a8 8 0 0 1-8 8h-52a8 8 0 0 1-8-8V88z" fill="#FF5A1F"/>
+                                <circle cx="300" cy="86" r="5" fill="#FFF3E5"/>
+                                <text x="300" y="140" text-anchor="middle">?</text>
+                            </g>
+                            <g class="bl-moedas"><ellipse cx="318" cy="262" rx="30" ry="9" fill="#C9962F"/><rect x="288" y="244" width="60" height="18" fill="#E5B44A"/><ellipse cx="318" cy="244" rx="30" ry="9" fill="#F2C46D"/><ellipse cx="318" cy="234" rx="30" ry="9" fill="#C9962F"/><rect x="288" y="216" width="60" height="18" fill="#E5B44A"/><ellipse cx="318" cy="216" rx="30" ry="9" fill="#F2C46D"/></g>
+                        </svg>
+                        </span>
+                        <span class="bl-cartao-texto">
+                            <h2 class="bl-cartao-titulo">Quanto custa ter um&nbsp;sistema&nbsp;próprio?</h2>
+                            <span class="bl-cartao-resumo">A&nbsp;resposta honesta é:&nbsp;depende. Veja o&nbsp;que pesa no&nbsp;preço, quais custos continuam depois da&nbsp;entrega e&nbsp;como não gastar à&nbsp;toa.</span>
+                            <span class="bl-cartao-pe"><span>Investimento · 2 min de&nbsp;leitura</span><span class="bl-ler">Ler o&nbsp;guia <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+                        </span>
+                    </a>
+                </div>
             </div>
         </section>
 
         <section class="i-chamada" aria-labelledby="chamada-titulo">
             <div class="wrap">
-                <h2 id="chamada-titulo" class="i-chamada-titulo gigante">Ficou com dúvida?</h2>
+                <h2 id="chamada-titulo" class="i-chamada-titulo gigante">Ficou com&nbsp;dúvida?</h2>
                 <div class="i-chamada-texto">
-                    <p>Pergunte direto para quem desenvolve. A gente responde no mesmo dia útil.</p>
-                    <a href="/#contato" class="btn btn-acao" data-cta="blog_indice" data-magnetico data-cursor="bora">Falar com a MovCode <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                    <p>Pergunte direto para quem desenvolve. A&nbsp;gente responde no&nbsp;mesmo dia&nbsp;útil.</p>
+                    <a href="/#contato" class="btn btn-acao" data-cta="blog_indice" data-magnetico data-cursor="bora">Falar com a&nbsp;MovCode <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                 </div>
             </div>
         </section>
@@ -270,5 +340,6 @@
     <script src="/assets/js/vendor/lenis.min.js"></script>
     <script src="/assets/js/home.js"></script>
     <script src="/assets/js/interna.js"></script>
+    <script src="/assets/js/blog.js"></script>
 </body>
 </html>
