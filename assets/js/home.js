@@ -24,7 +24,8 @@
     // ---------- Rolagem suave ----------
     let lenis = null;
     if (window.Lenis) {
-        lenis = new window.Lenis({ lerp: 0.1 });
+        // cada giro da roda anda um pouco menos que o padrao e freia mais suave (no toque a rolagem e a do aparelho)
+        lenis = new window.Lenis({ lerp: 0.08, wheelMultiplier: 0.8 });
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((tempo) => lenis.raf(tempo * 1000));
         gsap.ticker.lagSmoothing(0);

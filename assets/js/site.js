@@ -209,6 +209,37 @@ document.querySelectorAll('[data-ano]').forEach((el) => {
     el.textContent = new Date().getFullYear();
 });
 
+// Letreiro do rodape: o CSS ja da o tamanho certo com a fonte variavel (largura 75%), mas o
+// Google Fonts manda versoes estaticas mais largas para alguns navegadores (o Opera, por
+// exemplo), e o letreiro passava da borda. Aqui o tamanho e corrigido pela largura medida.
+(() => {
+    const letreiro = document.querySelector('.rodape-gigante');
+    if (!letreiro) return;
+    let larguraVista = 0;
+    const ajustar = () => {
+        letreiro.style.fontSize = '';
+        const faixa = document.createRange();
+        faixa.selectNodeContents(letreiro);
+        const ocupa = faixa.getBoundingClientRect().width;
+        const cabe = letreiro.clientWidth - parseFloat(getComputedStyle(letreiro).paddingRight);
+        // so corrige quando a diferenca passa de 1% (com a fonte variavel o CSS ja acerta)
+        if (ocupa && cabe && Math.abs(ocupa - cabe) / cabe > 0.01) {
+            letreiro.style.fontSize = `${(parseFloat(getComputedStyle(letreiro).fontSize) * cabe) / ocupa}px`;
+        }
+    };
+    document.fonts?.ready.then(ajustar);
+    document.fonts?.addEventListener('loadingdone', ajustar);
+    window.addEventListener('load', ajustar);
+    if (window.ResizeObserver) {
+        // so a largura importa: a altura muda com o proprio ajuste
+        new ResizeObserver(([item]) => {
+            if (Math.round(item.contentRect.width) === larguraVista) return;
+            larguraVista = Math.round(item.contentRect.width);
+            ajustar();
+        }).observe(letreiro.parentElement);
+    }
+})();
+
 const MOVCODE_MOVIMENTO_REDUZIDO = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 // "/" e "/index.html" sao a mesma pagina, assim como "/termo" e "/termo.html"
 const normalizarCaminho = (caminho) => caminho.replace(/index\.html$/, '').replace(/\.html$/, '');
