@@ -77,7 +77,12 @@
     </url>
     <url>
         <loc>https://movcode.com.br/blog/</loc>
-        <lastmod>2026-10-12</lastmod>
+        <lastmod>2026-10-26</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://movcode.com.br/blog/golpe-do-falso-pix-como-o-comerciante-se-protege</loc>
+        <lastmod>2026-10-26</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
