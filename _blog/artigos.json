@@ -63,5 +63,28 @@
         "data": "2026-09-02"
       }
     ]
+  },
+  {
+    "slug": "nota-fiscal-de-servico-muda-para-empresas-do-simples",
+    "titulo": "Nota fiscal de serviço muda para empresas do Simples",
+    "resumo": "Desde 1º de novembro, ME e EPP do Simples que prestam serviço emitem a NFS-e pelo Emissor Nacional. Veja o que mudou e o que fazer.",
+    "tag": "Notícias",
+    "data": "2026-11-02",
+    "ilustracao": "lei",
+    "corpo": "<p>Desde 1º de novembro, as microempresas e empresas de pequeno porte do Simples Nacional que prestam serviço precisam emitir a nota fiscal de serviço por um sistema único do governo, o Emissor Nacional da NFS-e. A regra foi publicada em agosto pelo Comitê Gestor do Simples Nacional e já está valendo. Quem emitia a nota pelo site da prefeitura precisa mudar o caminho.</p>\n<h2>O que mudou</h2>\n<p>A <strong>NFS-e</strong> é a nota fiscal de serviço eletrônica, a nota que salões, oficinas, clínicas, escritórios e outros prestadores emitem quando cobram por um serviço. Até agora, em muitas cidades, ela era emitida no sistema da própria prefeitura, e cada prefeitura tinha o seu.</p>\n<p>Com a Resolução CGSN nº 191, de 4 de agosto de 2026, isso muda para as empresas do Simples. Segundo a Receita Federal, as microempresas (ME) e empresas de pequeno porte (EPP) do Simples Nacional que prestam serviços sujeitos à NFS-e devem usar o <strong>Emissor Nacional da NFS-e</strong> a partir de 1º de novembro de 2026. A data era 1º de setembro e foi adiada pela mesma resolução.</p>\n<p>A Receita explica que a nota pode ser emitida de duas formas:</p>\n<ul>\n<li><strong>Pela aplicação web:</strong> você entra no Portal Nacional da NFS-e pelo navegador e preenche a nota lá.</li>\n<li><strong>Por integração:</strong> o sistema que a empresa já usa para vender ou cobrar envia os dados da nota direto para o Emissor Nacional, sem ninguém precisar digitar de novo. A Receita chama isso de integração via API, que é só o nome técnico para um sistema conversando com outro.</li>\n</ul>\n<p>Um ponto que tem causado confusão: essa mudança <strong>não</strong> traz agora os novos tributos da reforma tributária, a CBS e o IBS. Segundo a Receita, até 31 de dezembro de 2026 as empresas do Simples seguem as regras atuais do regime. As regras da CBS e do IBS só passam a valer para o Simples a partir de 1º de janeiro de 2027.</p>\n<h2>Por que isso importa para quem tem um pequeno negócio</h2>\n<p>Se a sua empresa é do Simples e presta serviço, a nota de serviço agora sai por outro lugar. Isso mexe na rotina de quem emite, no acesso e, em alguns casos, no sistema que você usa.</p>\n<p>O portal Contábeis lembra que estar no Simples, sozinho, não quer dizer que toda operação da empresa precise de nota de serviço. A regra vale para as prestações de serviço sujeitas à NFS-e. Quem só vende mercadoria, por exemplo, não está no centro dessa mudança.</p>\n<p>Para quem usa um sistema de gestão ou um programa de cobrança que emitia a nota automaticamente pela prefeitura, a atenção é maior. Segundo a Receita, a obrigação de usar o Emissor Nacional vale também quando a emissão é feita por um sistema integrado. Se o seu sistema ainda não foi preparado, a nota pode travar justamente na hora de cobrar o cliente.</p>\n<h2>O que fazer agora</h2>\n<ul>\n<li><strong>Confirme com o seu contador se a regra vale para você.</strong> Ela atinge ME e EPP do Simples que prestam serviço com NFS-e. Se você é MEI ou de outro regime, tire a dúvida com ele também.</li>\n<li><strong>Teste o acesso ao Portal Nacional da NFS-e.</strong> Entre, confira se o cadastro da empresa está certo e emita uma nota de teste antes de precisar de uma com pressa.</li>\n<li><strong>Defina quem emite e quem confere as notas.</strong> O Contábeis sugere organizar essa rotina, para que a nota não fique esquecida no meio da mudança.</li>\n<li><strong>Pergunte ao fornecedor do seu sistema se ele já emite pelo Emissor Nacional.</strong> Se a resposta for não, combine um prazo e, enquanto isso, use a aplicação web.</li>\n<li><strong>Veja as orientações da sua prefeitura.</strong> O Portal Nacional da NFS-e pediu que os municípios reforcem a comunicação com as empresas durante a transição.</li>\n<li><strong>Não confunda as datas.</strong> Agora muda só o lugar de emitir a nota. As regras da CBS e do IBS para o Simples ficam para 1º de janeiro de 2027.</li>\n</ul>\n<p>Se o seu sistema precisa passar a conversar com o Emissor Nacional, esse é o tipo de trabalho que fazemos em <a href=\"/integracoes\">integrações</a>.</p>\n<h2>Resumindo</h2>\n<p>Desde 1º de novembro, empresa do Simples que presta serviço emite a nota de serviço pelo Emissor Nacional, pelo navegador ou pelo próprio sistema. Os novos tributos da reforma só entram em 2027. Teste o acesso, alinhe com o contador e confira se o seu sistema já está pronto.</p>",
+    "fontes": [
+      {
+        "titulo": "Simples Nacional: NFS-e Nacional será obrigatória para ME e EPP a partir de 1º de novembro de 2026",
+        "veiculo": "Receita Federal",
+        "url": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/agosto/simples-nacional-nfs-e-nacional-sera-obrigatoria-para-me-e-epp-a-partir-de-1o-de-novembro-de-2026",
+        "data": "2026-08-14"
+      },
+      {
+        "titulo": "NFS-e nacional no Simples será obrigatória a partir de 1º de novembro",
+        "veiculo": "Contábeis",
+        "url": "https://www.contabeis.com.br/noticias/80408/nfs-e-nacional-no-simples-sera-obrigatoria-a-partir-de-1o-de-novembro/",
+        "data": "2026-10-28"
+      }
+    ]
   }
 ]

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CKRK3S37W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        // LGPD: o Analytics só grava cookies depois do "Aceitar" no aviso de cookies (a escolha fica no navegador)
+        gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+        try { if (localStorage.getItem('movcode_cookies') === 'aceito') gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted' }); } catch (e) {}
+        // o cookie dura 400 dias, o máximo que os navegadores aceitam (sem isso o Firefox avisa que cortou a validade)
+        gtag('config', 'G-1CKRK3S37W', { cookie_domain: 'none', cookie_flags: 'SameSite=Lax;Secure', cookie_expires: 34560000 });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Chegando de outra pagina do site: comeca coberto de laranja (transicao)
+        try {
+            if (sessionStorage.getItem('movcode_transicao') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.documentElement.classList.add('chegando');
+            }
+        } catch (e) {}
+    </script>
+    <title>Nota fiscal de serviço muda para empresas do Simples | Blog da MovCode</title>
+    <meta name="description" content="Desde 1º de novembro, ME e EPP do Simples que prestam serviço emitem a NFS-e pelo Emissor Nacional. Veja o que mudou e o que fazer.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#111214">
+    <link rel="canonical" href="https://movcode.com.br/blog/nota-fiscal-de-servico-muda-para-empresas-do-simples">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="MovCode">
+    <meta property="og:title" content="Nota fiscal de serviço muda para empresas do Simples | Blog da MovCode">
+    <meta property="og:description" content="Desde 1º de novembro, ME e EPP do Simples que prestam serviço emitem a NFS-e pelo Emissor Nacional. Veja o que mudou e o que fazer.">
+    <meta property="og:url" content="https://movcode.com.br/blog/nota-fiscal-de-servico-muda-para-empresas-do-simples">
+    <meta property="og:image" content="https://movcode.com.br/assets/images/og/movcode-og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="MovCode: tecnologia do tamanho do seu negócio">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="/assets/images/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/interna.css">
+    <link rel="stylesheet" href="/assets/css/blog.css">
+    <script>
+        // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
+        try {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anima-pre');
+        } catch (e) {}
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Nota fiscal de serviço muda para empresas do Simples",
+        "description": "Desde 1º de novembro, ME e EPP do Simples que prestam serviço emitem a NFS-e pelo Emissor Nacional. Veja o que mudou e o que fazer.",
+        "url": "https://movcode.com.br/blog/nota-fiscal-de-servico-muda-para-empresas-do-simples",
+        "mainEntityOfPage": "https://movcode.com.br/blog/nota-fiscal-de-servico-muda-para-empresas-do-simples",
+        "datePublished": "2026-11-02",
+        "dateModified": "2026-11-02",
+        "inLanguage": "pt-BR",
+        "image": "https://movcode.com.br/assets/images/og/movcode-og.png",
+        "author": {
+            "@type": "Organization",
+            "@id": "https://movcode.com.br/#empresa",
+            "name": "MovCode",
+            "url": "https://movcode.com.br/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://movcode.com.br/assets/images/icons/icon-512.png"
+            }
+        },
+        "publisher": {
+            "@type": "Organization",
+            "@id": "https://movcode.com.br/#empresa",
+            "name": "MovCode",
+            "url": "https://movcode.com.br/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://movcode.com.br/assets/images/icons/icon-512.png"
+            }
+        }
+    }
+    </script>
+</head>
+<body class="home interna">
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+    <header class="topo">
+        <div class="wrap">
+            <a href="/" class="marca" aria-label="MovCode, página inicial">
+                <span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>
+                <span>Mov<span class="code">Code</span><span class="ponto">.</span></span>
+            </a>
+            <button class="menu-botao" type="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
+                <svg class="abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            </button>
+            <nav id="menu" class="menu" aria-label="Navegação principal">
+                <div class="menu-item">
+                    <button class="menu-gatilho" type="button" aria-expanded="false" aria-controls="menu-solucoes">Soluções <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+                    <div class="menu-painel" id="menu-solucoes">
+                        <div class="menu-coluna">
+                            <p class="menu-titulo">Serviços</p>
+                            <a href="/criacao-de-sites">Criação de sites</a>
+                            <a href="/sistema-para-mercadinho">Sistema para comércio</a>
+                            <a href="/automacoes">Automações</a>
+                            <a href="/integracoes">Integrações</a>
+                            <a href="/paineis">Painéis</a>
+                            <a href="/consultoria">Consultoria</a>
+                        </div>
+                        <div class="menu-coluna">
+                            <p class="menu-titulo">Produtos</p>
+                            <a href="https://www.forlabs.com.br" target="_blank" rel="noopener">ForLabs <span class="menu-externo" aria-hidden="true">↗</span></a>
+                            <a href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Lojinha Pronta <span class="menu-externo" aria-hidden="true">↗</span></a>
+                            <a href="/sistema-para-condominio">ForCondom <span class="rodape-breve">Em breve</span></a>
+                            <a href="/sistema-para-barbearia">ForBarber <span class="rodape-breve">Em breve</span></a>
+                            <a href="/cardapio-digital">Pratuca <span class="rodape-breve">Em breve</span></a>
+                        </div>
+                        <a class="menu-destaque" href="/sua-pagina">
+                            <span class="menu-destaque-visual" aria-hidden="true">
+                                <span class="menu-palco"><span class="mc-tel"><span class="mc-tela"><span class="mc-rolo">
+                                    <span class="mc-topo"><b class="mc-logo">B</b><span class="mc-nome">Barbearia do João</span></span>
+                                    <span class="mc-hero"><span class="mc-titulo">Corte e barba no seu horário.</span><span class="mc-texto">Ambiente tranquilo e horário marcado, sem fila.</span><span class="mc-botao">Agendar pelo WhatsApp</span><span class="mc-aberto"><i></i>Aberto hoje até 20h</span></span>
+                                    <span class="mc-foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></svg></span>
+                                    <span class="mc-precos"><span class="mc-precos-titulo">Serviços e preços</span><span class="mc-linha">Corte<b>R$ 40</b></span><span class="mc-linha">Barba<b>R$ 30</b></span><span class="mc-linha">Corte + barba<b>R$ 60</b></span></span>
+                                </span></span></span></span>
+                                <span class="mc-barra"><svg class="mc-paleta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.6-.7 1.6-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.7-1.7 1.7-1.7h2c3 0 5.5-2.5 5.5-5.5C22 6 17.5 2 12 2z"/><circle cx="7.5" cy="10.5" r="1.2"/><circle cx="10.5" cy="6.5" r="1.2"/><circle cx="15.5" cy="7" r="1.2"/></svg><i class="mc-div"></i><i class="mc-c"></i><i class="mc-c"></i><i class="mc-c"></i><i class="mc-c"></i><b class="mc-anel"></b><span class="mc-cursor"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2.5v16.2l4.3-4.1 2.9 6.6 2.6-1.1-2.9-6.5 6-.3z" fill="#FFFFFF" stroke="#111214" stroke-width="1.6" stroke-linejoin="round"/></svg></span></span>
+                            </span>
+                            <span class="menu-destaque-texto">
+                                <strong>Sua página</strong>
+                                <span>Monte a prévia da página do seu negócio: escolha as cores, edite os textos e veja como fica no celular.</span>
+                                <em>Montar agora <i aria-hidden="true">→</i></em>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <a href="/produtos">Produtos</a>
+                <a href="/sobre">Sobre</a>
+                <a href="/#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-anel" aria-hidden="true"><span></span></div>
+
+    <div class="i-progresso" aria-hidden="true"></div>
+
+    <main id="conteudo">
+        <section class="i-hero escuro i-hero-compacto bl-guia-topo">
+            <div class="wrap">
+                <div class="i-hero-texto">
+                    <a class="bl-voltar i-entra" href="/blog/" data-cta="blog_voltar"><span aria-hidden="true">←</span> Voltar ao&nbsp;blog</a>
+                    <h1 class="h-grande gigante i-titulo">Nota fiscal de&nbsp;serviço muda para empresas do&nbsp;Simples</h1>
+                    <p class="i-hero-sub i-entra">Desde 1º de&nbsp;novembro, ME&nbsp;e&nbsp;EPP do&nbsp;Simples que prestam serviço emitem a&nbsp;NFS-e pelo Emissor Nacional. Veja o&nbsp;que mudou e&nbsp;o&nbsp;que&nbsp;fazer.</p>
+                    <p class="bl-meta i-entra">Notícias · Publicado em <time datetime="2026-11-02">2 de&nbsp;novembro de&nbsp;2026</time> · 4 min de&nbsp;leitura</p>
+                </div>
+                <div class="bl-guia-capa bl-cartao-lei i-entra">
+                        <svg class="bl-ilustra bl-ilustra-lei" viewBox="0 0 400 300" aria-hidden="true">
+                            <g transform="rotate(-3 150 160)">
+                                <rect x="60" y="40" width="180" height="232" rx="8" fill="#FFFFFF" stroke="#E3E0DA" stroke-width="2"/>
+                                <rect x="82" y="66" width="110" height="10" rx="5" fill="#111214"/>
+                                <rect x="82" y="96" width="136" height="6" rx="3" fill="#C9CCD3"/><rect x="82" y="108" width="128" height="6" rx="3" fill="#C9CCD3"/><rect x="82" y="120" width="136" height="6" rx="3" fill="#C9CCD3"/>
+                                <rect x="82" y="140" width="120" height="6" rx="3" fill="#C9CCD3"/><rect x="82" y="152" width="136" height="6" rx="3" fill="#C9CCD3"/><rect x="82" y="164" width="96" height="6" rx="3" fill="#C9CCD3"/>
+                                <path d="M82 238c10-12 18 6 28-4s14-8 22 2" fill="none" stroke="#111214" stroke-width="2" stroke-linecap="round"/>
+                                <g class="bl-carimbo"><circle cx="196" cy="226" r="26" fill="none" stroke="#C2410C" stroke-width="4"/><circle cx="196" cy="226" r="18" fill="none" stroke="#C2410C" stroke-width="2"/><path d="M186 226l7 7 13-13" fill="none" stroke="#C2410C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+                            </g>
+                            <g class="bl-balanca-lei">
+                                <path d="M318 70v150M282 230h72" stroke="#111214" stroke-width="5" stroke-linecap="round"/>
+                                <g class="bl-braco"><path d="M276 92h84" stroke="#111214" stroke-width="5" stroke-linecap="round"/>
+                                <path d="M282 92l-16 40h32zM354 92l-16 40h32z" fill="none" stroke="#111214" stroke-width="2"/>
+                                <path d="M262 132a20 8 0 0 0 40 0z" fill="#F2C46D"/><path d="M334 132a20 8 0 0 0 40 0z" fill="#F2C46D"/></g>
+                                <circle cx="318" cy="68" r="7" fill="#111214"/>
+                            </g>
+                        </svg>
+                </div>
+            </div>
+        </section>
+
+        <section class="i-artigo bl-leitura">
+            <div class="wrap bl-leitura-grade">
+                <nav class="bl-indice" aria-label="Neste texto">
+                    <p>Neste texto</p>
+                    <ol>
+                        <li><a href="#o-que-mudou">O&nbsp;que&nbsp;mudou</a></li>
+                        <li><a href="#por-que-isso-importa-para-quem-tem-um-pequeno-negocio">Por que isso importa para quem tem um&nbsp;pequeno&nbsp;negócio</a></li>
+                        <li><a href="#o-que-fazer-agora">O&nbsp;que fazer&nbsp;agora</a></li>
+                        <li><a href="#resumindo">Resumindo</a></li>
+                        <li><a href="#fontes">Fontes</a></li>
+                    </ol>
+                </nav>
+                <article>
+                    <p>Desde 1º de&nbsp;novembro, as&nbsp;microempresas e&nbsp;empresas de&nbsp;pequeno porte do&nbsp;Simples Nacional que prestam serviço precisam emitir a&nbsp;nota fiscal de&nbsp;serviço por um&nbsp;sistema único do&nbsp;governo, o&nbsp;Emissor Nacional da&nbsp;NFS-e. A&nbsp;regra foi publicada em&nbsp;agosto pelo Comitê Gestor do&nbsp;Simples Nacional e&nbsp;já&nbsp;está valendo. Quem emitia a&nbsp;nota pelo site da&nbsp;prefeitura precisa mudar o&nbsp;caminho.</p>
+                    <h2 id="o-que-mudou">O&nbsp;que&nbsp;mudou</h2>
+                    <p>A&nbsp;<strong>NFS-e</strong> é&nbsp;a&nbsp;nota fiscal de&nbsp;serviço eletrônica, a&nbsp;nota que salões, oficinas, clínicas, escritórios e&nbsp;outros prestadores emitem quando cobram por um&nbsp;serviço. Até agora, em&nbsp;muitas cidades, ela era emitida no&nbsp;sistema da&nbsp;própria prefeitura, e&nbsp;cada prefeitura tinha o&nbsp;seu.</p>
+                    <p>Com a&nbsp;Resolução CGSN nº&nbsp;191, de&nbsp;4 de&nbsp;agosto de&nbsp;2026, isso muda para as&nbsp;empresas do&nbsp;Simples. Segundo a&nbsp;Receita Federal, as&nbsp;microempresas (ME) e&nbsp;empresas de&nbsp;pequeno porte (EPP) do&nbsp;Simples Nacional que prestam serviços sujeitos à&nbsp;NFS-e devem usar o&nbsp;<strong>Emissor Nacional da&nbsp;NFS-e</strong> a&nbsp;partir de&nbsp;1º de&nbsp;novembro de&nbsp;2026. A&nbsp;data era 1º de&nbsp;setembro e&nbsp;foi adiada pela mesma resolução.</p>
+                    <p>A&nbsp;Receita explica que a&nbsp;nota pode ser emitida de&nbsp;duas&nbsp;formas:</p>
+                    <ul>
+                        <li><strong>Pela aplicação web:</strong> você entra no&nbsp;Portal Nacional da&nbsp;NFS-e pelo navegador e&nbsp;preenche a&nbsp;nota&nbsp;lá.</li>
+                        <li><strong>Por integração:</strong> o&nbsp;sistema que a&nbsp;empresa já&nbsp;usa para vender ou&nbsp;cobrar envia os&nbsp;dados da&nbsp;nota direto para o&nbsp;Emissor Nacional, sem ninguém precisar digitar de&nbsp;novo. A&nbsp;Receita chama isso de&nbsp;integração via API, que é&nbsp;só&nbsp;o&nbsp;nome técnico para um&nbsp;sistema conversando com&nbsp;outro.</li>
+                    </ul>
+                    <p>Um&nbsp;ponto que tem causado confusão: essa mudança <strong>não</strong> traz agora os&nbsp;novos tributos da&nbsp;reforma tributária, a&nbsp;CBS e&nbsp;o&nbsp;IBS. Segundo a&nbsp;Receita, até 31 de&nbsp;dezembro de&nbsp;2026 as&nbsp;empresas do&nbsp;Simples seguem as&nbsp;regras atuais do&nbsp;regime. As&nbsp;regras da&nbsp;CBS e&nbsp;do&nbsp;IBS só&nbsp;passam a&nbsp;valer para o&nbsp;Simples a&nbsp;partir de&nbsp;1º de&nbsp;janeiro de&nbsp;2027.</p>
+                    <h2 id="por-que-isso-importa-para-quem-tem-um-pequeno-negocio">Por que isso importa para quem tem um&nbsp;pequeno&nbsp;negócio</h2>
+                    <p>Se&nbsp;a&nbsp;sua empresa é&nbsp;do&nbsp;Simples e&nbsp;presta serviço, a&nbsp;nota de&nbsp;serviço agora sai por outro lugar. Isso mexe na&nbsp;rotina de&nbsp;quem emite, no&nbsp;acesso e,&nbsp;em&nbsp;alguns casos, no&nbsp;sistema que você&nbsp;usa.</p>
+                    <p>O&nbsp;portal Contábeis lembra que estar no&nbsp;Simples, sozinho, não quer dizer que toda operação da&nbsp;empresa precise de&nbsp;nota de&nbsp;serviço. A&nbsp;regra vale para as&nbsp;prestações de&nbsp;serviço sujeitas à&nbsp;NFS-e. Quem só&nbsp;vende mercadoria, por exemplo, não está no&nbsp;centro dessa&nbsp;mudança.</p>
+                    <p>Para quem usa um&nbsp;sistema de&nbsp;gestão ou&nbsp;um&nbsp;programa de&nbsp;cobrança que emitia a&nbsp;nota automaticamente pela prefeitura, a&nbsp;atenção é&nbsp;maior. Segundo a&nbsp;Receita, a&nbsp;obrigação de&nbsp;usar o&nbsp;Emissor Nacional vale também quando a&nbsp;emissão é&nbsp;feita por um&nbsp;sistema integrado. Se&nbsp;o&nbsp;seu sistema ainda não foi preparado, a&nbsp;nota pode travar justamente na&nbsp;hora de&nbsp;cobrar o&nbsp;cliente.</p>
+                    <h2 id="o-que-fazer-agora">O&nbsp;que fazer&nbsp;agora</h2>
+                    <ul>
+                        <li><strong>Confirme com o&nbsp;seu contador se&nbsp;a&nbsp;regra vale para você.</strong> Ela atinge ME&nbsp;e&nbsp;EPP do&nbsp;Simples que prestam serviço com NFS-e. Se&nbsp;você é&nbsp;MEI ou&nbsp;de&nbsp;outro regime, tire a&nbsp;dúvida com ele&nbsp;também.</li>
+                        <li><strong>Teste o&nbsp;acesso ao&nbsp;Portal Nacional da&nbsp;NFS-e.</strong> Entre, confira se&nbsp;o&nbsp;cadastro da&nbsp;empresa está certo e&nbsp;emita uma nota de&nbsp;teste antes de&nbsp;precisar de&nbsp;uma com&nbsp;pressa.</li>
+                        <li><strong>Defina quem emite e&nbsp;quem confere as&nbsp;notas.</strong> O&nbsp;Contábeis sugere organizar essa rotina, para que a&nbsp;nota não fique esquecida no&nbsp;meio da&nbsp;mudança.</li>
+                        <li><strong>Pergunte ao&nbsp;fornecedor do&nbsp;seu sistema se&nbsp;ele já&nbsp;emite pelo Emissor Nacional.</strong> Se&nbsp;a&nbsp;resposta for não, combine um&nbsp;prazo e,&nbsp;enquanto isso, use a&nbsp;aplicação&nbsp;web.</li>
+                        <li><strong>Veja as&nbsp;orientações da&nbsp;sua prefeitura.</strong> O&nbsp;Portal Nacional da&nbsp;NFS-e pediu que os&nbsp;municípios reforcem a&nbsp;comunicação com as&nbsp;empresas durante a&nbsp;transição.</li>
+                        <li><strong>Não confunda as&nbsp;datas.</strong> Agora muda só&nbsp;o&nbsp;lugar de&nbsp;emitir a&nbsp;nota. As&nbsp;regras da&nbsp;CBS e&nbsp;do&nbsp;IBS para o&nbsp;Simples ficam para 1º de&nbsp;janeiro de&nbsp;2027.</li>
+                    </ul>
+                    <p>Se&nbsp;o&nbsp;seu sistema precisa passar a&nbsp;conversar com o&nbsp;Emissor Nacional, esse é&nbsp;o&nbsp;tipo de&nbsp;trabalho que fazemos em&nbsp;<a href="/integracoes">integrações</a>.</p>
+                    <h2 id="resumindo">Resumindo</h2>
+                    <p>Desde 1º de&nbsp;novembro, empresa do&nbsp;Simples que presta serviço emite a&nbsp;nota de&nbsp;serviço pelo Emissor Nacional, pelo navegador ou&nbsp;pelo próprio sistema. Os&nbsp;novos tributos da&nbsp;reforma só&nbsp;entram em&nbsp;2027. Teste o&nbsp;acesso, alinhe com o&nbsp;contador e&nbsp;confira se&nbsp;o&nbsp;seu sistema já&nbsp;está&nbsp;pronto.</p>
+                    <h2 id="fontes">Fontes</h2>
+                    <ol class="bl-fontes">
+                        <li><a href="https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/agosto/simples-nacional-nfs-e-nacional-sera-obrigatoria-para-me-e-epp-a-partir-de-1o-de-novembro-de-2026" target="_blank" rel="noopener">Simples Nacional: NFS-e Nacional será obrigatória para ME&nbsp;e&nbsp;EPP a&nbsp;partir de&nbsp;1º de&nbsp;novembro de&nbsp;2026</a>, Receita Federal, 14 de&nbsp;agosto de&nbsp;2026</li>
+                        <li><a href="https://www.contabeis.com.br/noticias/80408/nfs-e-nacional-no-simples-sera-obrigatoria-a-partir-de-1o-de-novembro/" target="_blank" rel="noopener">NFS-e nacional no&nbsp;Simples será obrigatória a&nbsp;partir de&nbsp;1º de&nbsp;novembro</a>, Contábeis, 28 de&nbsp;outubro de&nbsp;2026</li>
+                    </ol>
+                </article>
+            </div>
+        </section>
+
+        <section class="bl-guias bl-outros escuro" aria-labelledby="leia-tambem">
+            <div class="wrap">
+                <h2 id="leia-tambem" class="h-grande gigante">Leia <em>também.</em></h2>
+                <div class="bl-grade bl-grade-dois">
+                    <a class="bl-cartao bl-cartao-seguranca" href="/blog/golpe-do-falso-pix-como-o-comerciante-se-protege" data-cta="blog_artigo_golpe-do-falso-pix-como-o-comerciante-se-protege">
+                        <span class="bl-capa">
+                        <svg class="bl-ilustra bl-ilustra-seguranca" viewBox="0 0 400 300" aria-hidden="true">
+                            <rect x="40" y="70" width="190" height="150" rx="12" fill="#FFFFFF" stroke="#E3E0DA" stroke-width="2"/>
+                            <rect x="58" y="92" width="80" height="8" rx="4" fill="#111214"/>
+                            <rect x="58" y="114" width="154" height="24" rx="6" fill="#F4F4F2"/><text x="68" y="131" class="bl-senha">• • • • • • • •</text>
+                            <rect x="58" y="148" width="154" height="24" rx="6" fill="#F4F4F2"/><rect x="68" y="158" width="58" height="6" rx="3" fill="#C9CCD3"/>
+                            <rect x="58" y="184" width="70" height="20" rx="10" fill="#111214"/>
+                            <g class="bl-escudo">
+                                <path d="M290 54l70 24v54c0 46-30 78-70 94-40-16-70-48-70-94V78z" fill="#1F8A5B"/>
+                                <path d="M290 72l52 18v42c0 34-22 58-52 72z" fill="#25A36C"/>
+                                <rect x="268" y="128" width="44" height="36" rx="6" fill="#FFFFFF"/>
+                                <path d="M278 128v-10a12 12 0 0 1 24 0v10" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+                                <circle cx="290" cy="144" r="5" fill="#1F8A5B"/><rect x="288" y="146" width="4" height="10" rx="2" fill="#1F8A5B"/>
+                            </g>
+                            <g class="bl-alerta"><path d="M200 230l22-38 22 38z" fill="#FFB547"/><rect x="220" y="204" width="4" height="12" rx="2" fill="#111214"/><circle cx="222" cy="222" r="2.5" fill="#111214"/></g>
+                        </svg>
+                        </span>
+                        <span class="bl-cartao-texto">
+                            <h3 class="bl-cartao-titulo">Golpe do&nbsp;falso Pix: como o&nbsp;comerciante se&nbsp;protege</h3>
+                            <span class="bl-cartao-resumo">Casos de&nbsp;outubro mostram lojas perdendo mercadoria por comprovante falso de&nbsp;Pix. Veja o&nbsp;que mudou nas regras e&nbsp;o&nbsp;que fazer no&nbsp;balcão.</span>
+                            <span class="bl-cartao-pe"><span>Notícias · 5 min de&nbsp;leitura</span><span class="bl-ler">Ler <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+                        </span>
+                    </a>
+                    <a class="bl-cartao bl-cartao-fiado" href="/blog/como-sair-do-caderno-de-fiado" data-cta="blog_artigo_como-sair-do-caderno-de-fiado">
+                        <span class="bl-capa">
+                        <svg class="bl-ilustra bl-ilustra-fiado" viewBox="0 0 400 300" aria-hidden="true">
+                            <g class="bl-caderno" transform="rotate(-5 172 160)">
+                                <rect class="bl-folha" x="70" y="40" width="204" height="234" rx="10"/>
+                                <g class="bl-pauta"><path d="M84 104h176"/><path d="M84 130h176"/><path d="M84 156h176"/><path d="M84 182h176"/><path d="M84 208h176"/><path d="M84 234h176"/><path d="M84 260h176"/></g>
+                                <path class="bl-margem" d="M96 64v204"/>
+                                <g class="bl-argolas"><circle cx="96" cy="46" r="6"/><circle cx="118" cy="46" r="6"/><circle cx="140" cy="46" r="6"/><circle cx="162" cy="46" r="6"/><circle cx="184" cy="46" r="6"/><circle cx="206" cy="46" r="6"/><circle cx="228" cy="46" r="6"/><circle cx="250" cy="46" r="6"/></g>
+                                <text class="bl-caderno-titulo" x="104" y="92">Fiado</text>
+                                <g class="bl-mao"><text x="104" y="124">Dona Márcia</text><text x="250" y="124" text-anchor="end">R$ 32</text><text x="104" y="150">Seu Jorge</text><text x="250" y="150" text-anchor="end">R$ 18,50</text><path class="bl-risco" d="M100 144h156" style="--d:0.6s"/><text x="104" y="176">Ana, torre B</text><text x="250" y="176" text-anchor="end">R$ 47</text><text x="104" y="202">Zé do gás</text><text x="250" y="202" text-anchor="end">R$ 25</text><path class="bl-risco" d="M100 196h156" style="--d:1.4s"/><text x="104" y="228">Lúcia</text><text x="250" y="228" text-anchor="end">R$ 12</text></g>
+                            </g>
+                            <g transform="translate(270 98) rotate(-50)"><g class="bl-lapis"><rect x="0" y="-5" width="86" height="10" rx="2" fill="#FF5A1F"/><rect x="70" y="-5" width="16" height="10" fill="#FFB08A"/><path d="M0 -5l-14 5 14 5z" fill="#F5D3B0"/><path d="M-9 -1.8L-14 0l5 1.8z" fill="#2A2D34"/></g></g>
+                            <g class="bl-celular">
+                                <rect x="262" y="128" width="104" height="160" rx="16" fill="#111214"/>
+                                <rect x="268" y="134" width="92" height="148" rx="11" fill="#FFFFFF"/>
+                                <text class="bl-celular-titulo" x="278" y="156">A receber</text>
+                                <g class="bl-item" style="--d:0.30s"><circle cx="286" cy="176" r="7"/><path d="M282.5 176l2.5 2.5 4.5-4.5"/><rect x="298" y="172" width="30" height="8" rx="4"/><rect x="336" y="172" width="14" height="8" rx="4" class="bl-item-valor"/></g><g class="bl-item" style="--d:0.55s"><circle cx="286" cy="200" r="7"/><path d="M282.5 200l2.5 2.5 4.5-4.5"/><rect x="298" y="196" width="24" height="8" rx="4"/><rect x="336" y="196" width="14" height="8" rx="4" class="bl-item-valor"/></g><g class="bl-item" style="--d:0.80s"><circle cx="286" cy="224" r="7"/><path d="M282.5 224l2.5 2.5 4.5-4.5"/><rect x="298" y="220" width="32" height="8" rx="4"/><rect x="336" y="220" width="14" height="8" rx="4" class="bl-item-valor"/></g><g class="bl-item" style="--d:1.05s"><circle cx="286" cy="248" r="7"/><path d="M282.5 248l2.5 2.5 4.5-4.5"/><rect x="298" y="244" width="26" height="8" rx="4"/><rect x="336" y="244" width="14" height="8" rx="4" class="bl-item-valor"/></g>
+                            </g>
+                        </svg>
+                        </span>
+                        <span class="bl-cartao-texto">
+                            <h3 class="bl-cartao-titulo">Como sair do&nbsp;caderno de&nbsp;fiado sem perder o&nbsp;controle</h3>
+                            <span class="bl-cartao-resumo">O&nbsp;caderno funciona até o&nbsp;dia em&nbsp;que não funciona. Um&nbsp;passo a&nbsp;passo para organizar o&nbsp;fiado, cobrar sem constrangimento e&nbsp;saber quanto você tem a&nbsp;receber.</span>
+                            <span class="bl-cartao-pe"><span>Comércio · 3 min de&nbsp;leitura</span><span class="bl-ler">Ler <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="i-chamada" aria-labelledby="chamada-titulo">
+            <div class="wrap">
+                <h2 id="chamada-titulo" class="i-chamada-titulo gigante">Bora resolver?</h2>
+                <div class="i-chamada-texto">
+                    <p>Conte o&nbsp;seu caso. O&nbsp;diagnóstico é&nbsp;gratuito, sem compromisso, e&nbsp;pode ser por chamada ou&nbsp;por&nbsp;mensagem.</p>
+                    <a href="/diagnostico" class="btn btn-acao" data-cta="blog_nota-fiscal-de-servico-muda-para-empresas-do-simples" data-magnetico data-cursor="bora">Pedir diagnóstico grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <a href="https://wa.me/5516982157266" class="whats-flutuante" data-whatsapp data-cta="flutuante" aria-label="Falar com a MovCode pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></a>
+
+    <footer class="rodape">
+        <div class="wrap">
+            <div class="rodape-gigante" aria-hidden="true"><span class="duo duo-vivo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>MovCode.</div>
+            <nav class="rodape-links" aria-label="Rodapé">
+                <div>
+                    <strong>Navegar</strong>
+                    <a href="/sobre">Sobre a MovCode</a>
+                    <a href="/produtos">Produtos</a>
+                    <a href="/#como-funciona">Como funciona</a>
+                    <a href="/sua-pagina">Sua página</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/#duvidas">Dúvidas</a>
+                    <a href="/diagnostico">Diagnóstico gratuito</a>
+                </div>
+                <div>
+                    <strong>Serviços</strong>
+                    <a href="/criacao-de-sites">Criação de sites</a>
+                    <a href="/sistema-para-mercadinho">Sistema para comércio</a>
+                    <a href="/automacoes">Automações</a>
+                    <a href="/integracoes">Integrações</a>
+                    <a href="/paineis">Painéis</a>
+                    <a href="/consultoria">Consultoria</a>
+                </div>
+                <div>
+                    <strong>Produtos</strong>
+                    <a href="https://www.forlabs.com.br" target="_blank" rel="noopener">ForLabs <span class="menu-externo" aria-hidden="true">↗</span></a>
+                    <a href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Lojinha Pronta <span class="menu-externo" aria-hidden="true">↗</span></a>
+                    <a href="/sistema-para-condominio">ForCondom <span class="rodape-breve">Em breve</span></a>
+                    <a href="/sistema-para-barbearia">ForBarber <span class="rodape-breve">Em breve</span></a>
+                    <a href="/cardapio-digital">Pratuca <span class="rodape-breve">Em breve</span></a>
+                </div>
+                <div>
+                    <strong>Termos</strong>
+                    <a href="/politica">Política de Privacidade</a>
+                    <a href="/termo">Termos de Uso</a>
+                    <a href="/politica#direitos">Seus direitos (LGPD)</a>
+                    <a href="/politica#seguranca">Segurança dos dados</a>
+                    <button type="button" class="rodape-cookies" data-cookies>Preferências de cookies</button>
+                </div>
+            </nav>
+            <div class="rodape-base">
+                <p class="rodape-legal"><span>MovCode · Tecnologia do tamanho do seu negócio.</span> <span>Ribeirão Preto, SP · <a href="mailto:contato@movcode.com.br">contato@movcode.com.br</a></span></p>
+                <p class="rodape-copia">&copy; <span data-ano>2026</span> MovCode</p>
+                <div class="rodape-sociais">
+                    <a href="https://wa.me/5516982157266" data-whatsapp data-cta="rodape" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></a>
+                    <a href="https://www.instagram.com/mov.code/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+                    <a href="https://github.com/movcodebr" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a>
+                    <a href="mailto:contato@movcode.com.br" aria-label="E-mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/site.js"></script>
+    <script src="/assets/js/vendor/gsap.min.js"></script>
+    <script src="/assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="/assets/js/vendor/lenis.min.js"></script>
+    <script src="/assets/js/home.js"></script>
+    <script src="/assets/js/interna.js"></script>
+    <script src="/assets/js/blog.js"></script>
+</body>
+</html>

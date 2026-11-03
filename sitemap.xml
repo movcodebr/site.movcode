@@ -77,7 +77,12 @@
     </url>
     <url>
         <loc>https://movcode.com.br/blog/</loc>
-        <lastmod>2026-10-26</lastmod>
+        <lastmod>2026-11-02</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://movcode.com.br/blog/nota-fiscal-de-servico-muda-para-empresas-do-simples</loc>
+        <lastmod>2026-11-02</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
