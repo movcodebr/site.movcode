@@ -6,312 +6,402 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=block" rel="stylesheet">
 <style>
 :root {
-  --laranja: #FF5A1F; --laranja-claro: #FFB08A; --laranja-tinta: #FFE4D8;
-  --noite: #111214; --noite-2: #1D1F23; --papel: #F4F4F2; --tinta: #16181D;
-  --verde: #22C55E; --vermelho: #EF4444;
+  --laranja: #FF5A1F; --laranja-claro: #FFB08A; --laranja-escuro: #B53A0A;
+  --noite: #111214; --noite-2: #1A1C20; --noite-3: #24272D; --linha: rgba(255,255,255,.12);
+  --cinza: #9DA1AA; --verde: #22C55E;
   --f-display: "Bricolage Grotesque", "Figtree", sans-serif;
   --f-texto: "Figtree", sans-serif; --f-mono: "JetBrains Mono", monospace;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--noite); }
 body { font-family: var(--f-texto); color: #fff; -webkit-font-smoothing: antialiased; }
-#palco { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--noite); }
-#fundo { position: absolute; inset: -200px; }
-.bolha { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55; }
-#grade { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,.035) 2px, transparent 2px); background-size: 90px 90px; }
-#flash { position: absolute; inset: 0; background: var(--laranja); opacity: 0; z-index: 30; pointer-events: none; }
+#palco { position: absolute; inset: 0; overflow: hidden; background: var(--noite); }
+
+/* fundo: brilho laranja suave que segue o foco + pontos discretos */
+#brilho { position: absolute; width: 1400px; height: 1400px; left: -160px; top: 80px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,90,31,.38), rgba(255,90,31,.10) 55%, transparent); }
+#pontos { position: absolute; inset: -60px; background-image: radial-gradient(rgba(255,255,255,.07) 2px, transparent 2.5px); background-size: 60px 60px; }
+#vinheta { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 40%, transparent 50%, rgba(0,0,0,.55)); }
+
 #mundo { position: absolute; inset: 0; }
-.cena { position: absolute; inset: 0; opacity: 0; }
-.peca { position: absolute; left: 50%; top: 0; transform-origin: center center; will-change: transform; }
+.cena { position: absolute; inset: 0; visibility: hidden; }
+.abs { position: absolute; }
 
-.gigante { font-family: var(--f-display); font-weight: 800; font-variation-settings: "wdth" 78; letter-spacing: -0.03em; line-height: .9; white-space: nowrap; }
-.media { font-family: var(--f-display); font-weight: 750; font-variation-settings: "wdth" 85; font-size: 84px; line-height: 1; white-space: nowrap; }
-.chip { font-family: var(--f-mono); font-weight: 700; font-size: 40px; letter-spacing: .04em; padding: 18px 30px; border-radius: 999px; white-space: nowrap; }
+/* texto que sobe de trás de uma máscara */
+.mascara { display: block; overflow: hidden; padding-bottom: .08em; }
+.mascara > span { display: inline-block; will-change: transform; }
 
-.carimbo { font-family: var(--f-display); font-weight: 800; font-variation-settings: "wdth" 80; font-size: 170px; color: var(--laranja); border: 14px solid var(--laranja); border-radius: 28px; padding: 6px 40px 18px; background: rgba(17,18,20,.85); letter-spacing: -0.02em; }
-.cartao { background: #fff; color: var(--tinta); border-radius: 44px; box-shadow: 0 40px 80px rgba(0,0,0,.45); }
-.icone svg { display: block; }
+.titulo { font-family: var(--f-display); font-weight: 800; font-variation-settings: "wdth" 90; letter-spacing: -0.025em; line-height: .98; }
+.sub { font-family: var(--f-display); font-weight: 600; font-variation-settings: "wdth" 95; color: var(--cinza); }
+.chip { display: inline-flex; align-items: center; gap: 14px; font-family: var(--f-mono); font-weight: 700; letter-spacing: .05em; text-transform: uppercase; border-radius: 999px; }
+.cartao { background: var(--noite-2); border: 2px solid var(--linha); border-radius: 36px; }
+svg .traco { fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
-#legenda { position: absolute; left: 70px; right: 70px; top: 1290px; height: 200px; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 6px 16px; z-index: 20; }
-#legenda span { font-family: var(--f-texto); font-weight: 800; font-size: 60px; line-height: 1.15; color: #fff; padding: 2px 12px; border-radius: 14px; text-shadow: 0 4px 18px rgba(0,0,0,.6); }
-#legenda span.ja { color: #fff; }
+#faixa { position: absolute; left: 0; right: 0; height: 2200px; top: 0; z-index: 25; pointer-events: none; }
+#faixa i { position: absolute; left: 0; right: 0; }
+#faixa .a { top: 0; height: 2200px; background: var(--laranja); }
+#faixa .b { top: 0; height: 2200px; background: #18191C; }
+
+#particulas { position: absolute; inset: 0; z-index: 24; pointer-events: none; }
+#particulas i { position: absolute; border-radius: 50%; }
+
+#legenda { position: absolute; left: 60px; right: 60px; top: 1300px; height: 200px; display: flex; justify-content: center; align-items: center; gap: 18px; z-index: 30; }
+#legenda span { font-family: var(--f-texto); font-weight: 800; font-size: 68px; line-height: 1.1; padding: 4px 14px 8px; border-radius: 16px; color: #fff; text-shadow: 0 4px 20px rgba(0,0,0,.7); white-space: nowrap; }
 #legenda span.agora { background: var(--laranja); color: #1A0800; text-shadow: none; }
-#legenda span.vem { color: rgba(255,255,255,.55); }
+#legenda span.vem { color: rgba(255,255,255,.45); }
 
-#selo { position: absolute; left: 80px; top: 170px; display: flex; align-items: center; gap: 16px; font-family: var(--f-mono); font-weight: 700; font-size: 30px; letter-spacing: .05em; z-index: 20; }
-#selo img { width: 50px; height: 50px; padding: 10px; border-radius: 13px; background: var(--laranja); }
-#progresso { position: absolute; left: 80px; right: 80px; top: 246px; height: 8px; border-radius: 4px; background: rgba(255,255,255,.14); z-index: 20; overflow: hidden; }
-#progresso i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--laranja); }
+#selo { position: absolute; left: 96px; top: 170px; display: flex; align-items: center; gap: 16px; font-family: var(--f-mono); font-weight: 700; font-size: 28px; letter-spacing: .06em; z-index: 30; }
+#selo img { width: 48px; height: 48px; padding: 10px; border-radius: 13px; background: var(--laranja); }
+#progresso { position: absolute; left: 96px; right: 96px; top: 244px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.12); z-index: 30; overflow: hidden; }
+#progresso i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--laranja); border-radius: 3px; }
 </style>
 </head>
 <body>
 <div id="palco">
-  <div id="fundo">
-    <div class="bolha" id="b1" style="width:760px;height:760px;background:#FF5A1F;"></div>
-    <div class="bolha" id="b2" style="width:640px;height:640px;background:#7C3AED;opacity:.28"></div>
-    <div class="bolha" id="b3" style="width:560px;height:560px;background:#FF9F43;opacity:.35"></div>
-  </div>
-  <div id="grade"></div>
+  <div id="brilho"></div>
+  <div id="pontos"></div>
+  <div id="vinheta"></div>
   <div id="mundo">
 
-    <!-- gancho -->
-    <section class="cena" data-fala="gancho">
-      <div class="peca media" id="g-tem" style="top:470px;color:#B7BAC2">tem empresa no</div>
-      <div class="peca gigante" id="g-simples" style="top:580px;font-size:230px;color:#fff">SIMPLES<span style="color:var(--laranja)">?</span></div>
-      <div class="peca chip" id="g-servico" style="top:860px;background:var(--laranja);color:#1A0800">E PRESTA SERVIÇO</div>
+    <!-- 1. gancho -->
+    <section class="cena" data-cena="gancho">
+      <div class="abs" style="left:96px;top:470px;right:96px">
+        <div class="mascara sub" style="font-size:88px"><span id="g1">Tem empresa no</span></div>
+        <div class="mascara titulo" style="font-size:210px;margin-top:10px"><span id="g2">Simples?</span></div>
+        <svg class="abs" width="620" height="40" viewBox="0 0 620 40" style="left:0;top:330px"><path id="g-sub" class="traco" d="M8 26C160 6 420 6 612 22" stroke="#FF5A1F" stroke-width="14" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+        <div class="mascara" style="margin-top:110px"><span id="g3"><span class="chip" style="font-size:42px;padding:20px 34px;background:var(--laranja);color:#1A0800">e presta serviço</span></span></div>
+      </div>
     </section>
 
-    <!-- mudou -->
-    <section class="cena" data-fala="mudou">
-      <div class="peca icone" id="m-nota" style="top:380px">
-        <svg width="440" height="560" viewBox="0 0 440 560"><rect x="10" y="10" width="420" height="540" rx="36" fill="#fff"/><path d="M330 10v90a20 20 0 0 0 20 20h80" fill="#E3E0DA"/><rect x="60" y="80" width="200" height="28" rx="14" fill="#16181D"/><rect x="60" y="150" width="320" height="18" rx="9" fill="#D9D6CF"/><rect x="60" y="200" width="280" height="18" rx="9" fill="#D9D6CF"/><rect x="60" y="250" width="300" height="18" rx="9" fill="#D9D6CF"/><rect x="60" y="330" width="320" height="2" fill="#E3E0DA"/><rect x="60" y="370" width="120" height="22" rx="11" fill="#9AA1B0"/><rect x="250" y="362" width="130" height="38" rx="10" fill="#FF5A1F"/><text x="60" y="490" font-family="JetBrains Mono" font-weight="700" font-size="44" fill="#16181D">NFS-e</text></svg>
-      </div>
-      <div class="peca carimbo" id="m-mudou" style="top:640px">MUDOU</div>
-    </section>
-
-    <!-- data -->
-    <section class="cena" data-fala="data">
-      <div class="peca" id="d-cal" style="top:330px">
-        <div class="cartao" style="width:560px;overflow:hidden">
-          <div style="background:var(--laranja);color:#1A0800;font-family:var(--f-mono);font-weight:700;font-size:48px;text-align:center;padding:26px 0;letter-spacing:.12em">NOVEMBRO</div>
-          <div style="font-family:var(--f-display);font-weight:800;font-variation-settings:'wdth' 80;font-size:330px;line-height:1;text-align:center;padding:20px 0 50px;letter-spacing:-0.03em">1<sup style="font-size:150px;vertical-align:top;position:relative;top:30px;margin-left:8px">º</sup></div>
-        </div>
-      </div>
-      <div class="peca chip" id="d-emissor" style="top:1040px;background:#fff;color:var(--tinta);font-size:46px">→ EMISSOR NACIONAL</div>
-    </section>
-
-    <!-- troca -->
-    <section class="cena" data-fala="troca">
-      <div class="peca icone" id="t-pref" style="top:400px">
-        <svg width="420" height="420" viewBox="0 0 420 420"><path d="M210 30L380 120H40z" fill="#B7BAC2"/><rect x="50" y="130" width="320" height="24" rx="6" fill="#B7BAC2"/><g fill="#8E929B"><rect x="80" y="170" width="44" height="170" rx="8"/><rect x="160" y="170" width="44" height="170" rx="8"/><rect x="236" y="170" width="44" height="170" rx="8"/><rect x="296" y="170" width="44" height="170" rx="8"/></g><rect x="40" y="350" width="340" height="34" rx="8" fill="#B7BAC2"/></svg>
-      </div>
-      <div class="peca media" id="t-pref-txt" style="top:840px;color:#B7BAC2;font-size:64px">site da prefeitura</div>
-      <div class="peca icone" id="t-x" style="top:380px">
-        <svg width="460" height="460" viewBox="0 0 460 460"><path id="t-x1" d="M60 60L400 400" stroke="#EF4444" stroke-width="44" stroke-linecap="round" fill="none" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><path id="t-x2" d="M400 60L60 400" stroke="#EF4444" stroke-width="44" stroke-linecap="round" fill="none" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
-      </div>
-      <div class="peca" id="t-novo" style="top:380px">
-        <div class="cartao" style="width:620px;padding:56px 40px;text-align:center">
-          <svg width="200" height="200" viewBox="0 0 200 200" style="margin:0 auto 20px"><circle cx="100" cy="100" r="92" fill="#FF5A1F"/><path d="M100 8a92 92 0 0 1 0 184a92 92 0 0 1 0-184M8 100h184M100 8c-50 50-50 134 0 184M100 8c50 50 50 134 0 184" fill="none" stroke="#fff" stroke-width="9"/></svg>
-          <div class="media" style="font-size:76px">Emissor Nacional</div>
-          <div style="font-size:42px;font-weight:600;color:#4A4D55;margin-top:14px">um sistema único do governo</div>
+    <!-- 2. mudou -->
+    <section class="cena" data-cena="mudou">
+      <svg id="m-nota" class="abs" width="520" height="660" viewBox="0 0 520 660" style="left:280px;top:380px">
+        <path class="traco nt" d="M60 20H360L460 120V620Q460 640 440 640H80Q60 640 60 620V40Q60 20 80 20Z" stroke="#fff" stroke-width="8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        <path class="traco nt" d="M360 20V100Q360 120 380 120H460" stroke="#fff" stroke-width="8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        <path class="traco nt" d="M120 110H280" stroke="#FF5A1F" stroke-width="22" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        <path class="traco nt" d="M120 220H400" stroke="#5A5E66" stroke-width="16" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        <path class="traco nt" d="M120 280H360" stroke="#5A5E66" stroke-width="16" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        <path class="traco nt" d="M120 340H390" stroke="#5A5E66" stroke-width="16" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        <path class="traco nt" d="M120 440H400" stroke="#3A3D44" stroke-width="4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        <path class="traco nt" d="M120 510H220" stroke="#5A5E66" stroke-width="16" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        <path class="traco nt" d="M300 510H400" stroke="#FF5A1F" stroke-width="30" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        <text id="m-nfse" x="120" y="590" font-family="JetBrains Mono" font-weight="700" font-size="40" fill="#fff" opacity="0">NFS-e</text>
+      </svg>
+      <div id="m-anel" class="abs" style="left:540px;top:690px;width:0;height:0">
+        <div id="m-onda" style="position:absolute;left:-230px;top:-230px;width:460px;height:460px;border-radius:50%;border:8px solid var(--laranja)"></div>
+        <div id="m-selo" style="position:absolute;left:-210px;top:-210px;width:420px;height:420px;border-radius:50%;background:var(--laranja);display:grid;place-items:center;box-shadow:0 30px 80px rgba(255,90,31,.45)">
+          <span class="titulo" style="font-size:118px;color:#1A0800">MUDOU</span>
         </div>
       </div>
     </section>
 
-    <!-- jeitos -->
-    <section class="cena" data-fala="jeitos">
-      <div class="peca" id="j-nav" style="top:330px;margin-left:-130px">
-        <div class="cartao" style="width:520px;padding:30px 30px;display:flex;align-items:center;gap:26px">
-          <svg width="220" height="170" viewBox="0 0 220 170" style="flex:none;width:150px;height:116px"><rect x="6" y="6" width="208" height="158" rx="18" fill="#F4F4F2" stroke="#16181D" stroke-width="8"/><rect x="6" y="6" width="208" height="42" rx="18" fill="#16181D"/><circle cx="34" cy="27" r="7" fill="#FF5A1F"/><circle cx="56" cy="27" r="7" fill="#FFB547"/><circle cx="78" cy="27" r="7" fill="#22C55E"/><rect x="30" y="72" width="160" height="16" rx="8" fill="#C9CCD3"/><rect x="30" y="102" width="120" height="16" rx="8" fill="#C9CCD3"/><rect x="30" y="132" width="70" height="18" rx="9" fill="#FF5A1F"/></svg>
-          <div class="media" style="font-size:60px">Navegador</div>
+    <!-- 3. data -->
+    <section class="cena" data-cena="data">
+      <div id="d-cal" class="abs" style="left:290px;top:360px;width:500px;border-radius:40px;overflow:hidden;background:#fff;color:#16181D;box-shadow:0 40px 90px rgba(0,0,0,.5)">
+        <div style="background:var(--laranja);color:#1A0800;font-family:var(--f-mono);font-weight:700;font-size:44px;letter-spacing:.14em;text-align:center;padding:26px 0">NOVEMBRO</div>
+        <div class="titulo" style="font-size:300px;text-align:center;padding:30px 0 40px;line-height:1">1<span style="font-size:130px;vertical-align:top;position:relative;top:26px;margin-left:6px">º</span></div>
+      </div>
+      <div class="abs" style="left:0;right:0;top:1000px;text-align:center">
+        <div class="mascara"><span id="d-chip"><span class="chip" style="font-size:44px;padding:22px 36px;background:#fff;color:#16181D">Emissor Nacional</span></span></div>
+      </div>
+      <svg class="abs" width="20" height="90" viewBox="0 0 20 90" style="left:530px;top:900px"><path id="d-fio" class="traco" d="M10 4V86" stroke="#FF5A1F" stroke-width="8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+    </section>
+
+    <!-- 4. troca -->
+    <section class="cena" data-cena="troca1">
+      <div id="t-a" class="abs cartao" style="left:96px;right:96px;top:420px;height:250px;display:flex;align-items:center;gap:44px;padding:0 50px">
+        <svg width="150" height="150" viewBox="0 0 150 150" style="flex:none">
+          <path class="traco ta" d="M75 14L136 46H14Z" stroke="#9DA1AA" stroke-width="7" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+          <path class="traco ta" d="M30 62V112M60 62V112M90 62V112M120 62V112" stroke="#9DA1AA" stroke-width="9" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+          <path class="traco ta" d="M12 132H138" stroke="#9DA1AA" stroke-width="9" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        </svg>
+        <div><div class="chip" style="font-size:28px;color:var(--cinza)">Antes, em muitas cidades</div><div class="titulo" style="font-size:76px;margin-top:10px;color:#D6D8DD">Site da prefeitura</div></div>
+        <div id="t-risco" style="position:absolute;left:40px;right:40px;top:122px;height:8px;border-radius:4px;background:#EF4444;transform-origin:left center;transform:scaleX(0)"></div>
+      </div>
+      <svg class="abs" width="60" height="150" viewBox="0 0 60 150" style="left:510px;top:690px"><path id="t-seta" class="traco" d="M30 6V136M10 114L30 138L50 114" stroke="#FF5A1F" stroke-width="9" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+      <div id="t-b" class="abs" style="left:96px;right:96px;top:860px;height:270px;display:flex;align-items:center;gap:44px;padding:0 50px;background:#fff;color:#16181D;border-radius:36px;box-shadow:0 30px 70px rgba(0,0,0,.45)">
+        <svg width="150" height="150" viewBox="0 0 150 150" style="flex:none">
+          <circle cx="75" cy="75" r="66" fill="#FF5A1F"/>
+          <path class="traco tb" d="M75 9A66 66 0 0 1 75 141A66 66 0 0 1 75 9M9 75H141M75 9C40 44 40 106 75 141M75 9C110 44 110 106 75 141" stroke="#fff" stroke-width="7" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        </svg>
+        <div><div class="chip" style="font-size:28px;color:var(--laranja-escuro)">Agora</div><div class="titulo" style="font-size:80px;margin-top:10px">Emissor Nacional</div><div style="font-size:36px;font-weight:600;color:#4A4D55;margin-top:8px">um sistema único do governo</div></div>
+      </div>
+    </section>
+
+    <!-- 5. jeitos -->
+    <section class="cena" data-cena="jeitos">
+      <div class="abs" style="left:96px;right:96px;top:380px;text-align:center">
+        <div class="mascara titulo" style="font-size:88px"><span id="j-tit">Dois jeitos de emitir</span></div>
+      </div>
+      <div id="j-a" class="abs cartao" style="left:96px;top:560px;width:420px;height:470px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px">
+        <svg width="220" height="170" viewBox="0 0 220 170">
+          <path class="traco ja" d="M26 8H194Q212 8 212 26V144Q212 162 194 162H26Q8 162 8 144V26Q8 8 26 8Z" stroke="#fff" stroke-width="8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+          <path class="traco ja" d="M8 50H212" stroke="#fff" stroke-width="8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+          <path class="traco ja" d="M34 29H36M56 29H58M78 29H80" stroke="#FF5A1F" stroke-width="12" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+          <path class="traco ja" d="M40 88H180M40 118H140" stroke="#5A5E66" stroke-width="12" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        </svg>
+        <div class="titulo" style="font-size:62px">Navegador</div>
+      </div>
+      <div id="j-b" class="abs cartao" style="left:564px;top:560px;width:420px;height:470px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px">
+        <svg width="220" height="170" viewBox="0 0 220 170">
+          <path class="traco jb" d="M26 8H194Q212 8 212 26V112Q212 130 194 130H26Q8 130 8 112V26Q8 8 26 8Z" stroke="#fff" stroke-width="8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+          <path class="traco jb" d="M110 130V156M64 160H156" stroke="#fff" stroke-width="8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+          <path class="traco jb" d="M110 41A28 28 0 1 1 110 97A28 28 0 1 1 110 41M110 30V40M110 98V108M71 69H81M139 69H149" stroke="#FF5A1F" stroke-width="10" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        </svg>
+        <div class="titulo" style="font-size:62px">Seu sistema</div>
+      </div>
+      <div id="j-ou" class="abs" style="left:540px;top:795px;width:0;height:0"><div style="position:absolute;left:-58px;top:-58px;width:116px;height:116px;border-radius:50%;background:var(--laranja);color:#1A0800;display:grid;place-items:center;border:8px solid var(--noite)"><span class="titulo" style="font-size:52px">ou</span></div></div>
+    </section>
+
+    <!-- 6. calma -->
+    <section class="cena" data-cena="calma">
+      <div class="abs" style="left:96px;right:96px;top:400px;text-align:center">
+        <div class="mascara"><span id="c-chip"><span class="chip" style="font-size:36px;padding:18px 32px;border:3px solid var(--linha);color:#fff">Reforma tributária · CBS e IBS</span></span></div>
+      </div>
+      <div id="c-caixa" class="abs" style="left:150px;right:150px;top:560px;height:330px;display:flex;justify-content:center;align-items:center">
+        <div class="titulo" style="font-size:300px;display:flex;line-height:1">
+          <span>202</span>
+          <span style="display:inline-block;height:300px;overflow:hidden;color:var(--laranja)"><span id="c-rolo" style="display:block"><span style="display:block;height:300px;color:#fff">6</span><span style="display:block;height:300px">7</span></span></span>
         </div>
       </div>
-      <div class="peca gigante" id="j-ou" style="top:700px;font-size:110px;color:var(--laranja)">ou</div>
-      <div class="peca" id="j-sis" style="top:830px;margin-left:130px">
-        <div class="cartao" style="width:520px;padding:30px 30px;display:flex;align-items:center;gap:26px">
-          <svg width="220" height="170" viewBox="0 0 220 170" style="flex:none;width:150px;height:116px"><rect x="6" y="6" width="208" height="130" rx="18" fill="#16181D"/><rect x="80" y="136" width="60" height="18" fill="#16181D"/><rect x="50" y="152" width="120" height="12" rx="6" fill="#16181D"/><g transform="translate(110 71)"><circle r="30" fill="none" stroke="#FF5A1F" stroke-width="14"/><g fill="#FF5A1F"><rect x="-8" y="-50" width="16" height="22" rx="4"/><rect x="-8" y="28" width="16" height="22" rx="4"/><rect x="-50" y="-8" width="22" height="16" rx="4"/><rect x="28" y="-8" width="22" height="16" rx="4"/></g></g></svg>
-          <div class="media" style="font-size:60px">Seu sistema</div>
+      <div class="abs" style="left:96px;right:96px;top:930px;text-align:center">
+        <div class="mascara sub" style="font-size:62px"><span id="c-txt">no Simples, só a partir de janeiro</span></div>
+      </div>
+    </section>
+
+    <!-- 7. fazer -->
+    <section class="cena" data-cena="fazer0">
+      <div class="abs" style="left:96px;right:96px;top:360px">
+        <div class="mascara titulo" style="font-size:96px"><span id="f-tit">O que fazer <span style="color:var(--laranja)">agora</span></span></div>
+      </div>
+      <div class="abs" style="left:96px;right:96px;top:540px;display:flex;flex-direction:column;gap:28px">
+        <div class="f-item cartao" style="height:180px;display:flex;align-items:center;gap:36px;padding:0 40px"><span class="f-num titulo" style="flex:none;width:96px;height:96px;border-radius:28px;background:var(--noite-3);display:grid;place-items:center;font-size:54px">1</span><span class="titulo" style="font-size:64px">Fale com o contador</span><svg class="f-ok" width="80" height="80" viewBox="0 0 80 80" style="margin-left:auto;flex:none"><circle cx="40" cy="40" r="38" fill="#22C55E" opacity="0"/><path class="traco" d="M22 41L35 54L59 28" stroke="#fff" stroke-width="9" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div>
+        <div class="f-item cartao" style="height:180px;display:flex;align-items:center;gap:36px;padding:0 40px"><span class="f-num titulo" style="flex:none;width:96px;height:96px;border-radius:28px;background:var(--noite-3);display:grid;place-items:center;font-size:54px">2</span><span class="titulo" style="font-size:64px">Emita uma nota teste</span><svg class="f-ok" width="80" height="80" viewBox="0 0 80 80" style="margin-left:auto;flex:none"><circle cx="40" cy="40" r="38" fill="#22C55E" opacity="0"/><path class="traco" d="M22 41L35 54L59 28" stroke="#fff" stroke-width="9" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div>
+        <div class="f-item cartao" style="height:180px;display:flex;align-items:center;gap:36px;padding:0 40px"><span class="f-num titulo" style="flex:none;width:96px;height:96px;border-radius:28px;background:var(--noite-3);display:grid;place-items:center;font-size:54px">3</span><span class="titulo" style="font-size:64px">Seu sistema está pronto?</span><svg class="f-ok" width="80" height="80" viewBox="0 0 80 80" style="margin-left:auto;flex:none"><circle cx="40" cy="40" r="38" fill="#22C55E" opacity="0"/><path class="traco" d="M22 41L35 54L59 28" stroke="#fff" stroke-width="9" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div>
+      </div>
+    </section>
+
+    <!-- 8. fim -->
+    <section class="cena" data-cena="fim1">
+      <div class="abs" style="left:0;right:0;top:380px;display:flex;flex-direction:column;align-items:center">
+        <img id="e-logo" src="logo.svg" alt="" style="width:220px;height:220px;padding:44px;border-radius:56px;background:var(--laranja);display:block;box-shadow:0 30px 80px rgba(255,90,31,.4)">
+        <div class="mascara titulo" style="font-size:150px;margin-top:40px"><span id="e-nome">MovCode</span></div>
+        <div class="mascara" style="margin-top:20px"><span id="e-link"><span class="chip" style="font-size:44px;padding:22px 38px;background:rgba(255,255,255,.08);border:3px solid var(--linha);text-transform:none">movcode.com.br/blog</span></span></div>
+        <div id="e-btn" style="margin-top:50px;position:relative;height:110px;width:400px">
+          <div id="e-seguir" class="chip" style="position:absolute;inset:0;justify-content:center;font-size:44px;background:var(--laranja);color:#1A0800">Seguir</div>
+          <div id="e-seguindo" class="chip" style="position:absolute;inset:0;justify-content:center;font-size:44px;background:#fff;color:#16181D;opacity:0">Seguindo ✓</div>
         </div>
       </div>
-    </section>
-
-    <!-- calma -->
-    <section class="cena" data-fala="calma">
-      <div class="peca chip" id="c-reforma" style="top:400px;background:rgba(255,255,255,.1);color:#fff;border:3px solid rgba(255,255,255,.2)">CBS + IBS NO SIMPLES</div>
-      <div class="peca" id="c-ano" style="top:540px;height:300px;overflow:hidden;width:760px">
-        <div id="c-rolo" class="gigante" style="font-size:300px;text-align:center;color:#fff;line-height:300px">2026<br><span style="color:var(--laranja)">2027</span></div>
-      </div>
-      <div class="peca media" id="c-so" style="top:900px;color:#B7BAC2;font-size:70px">só a partir de janeiro</div>
-    </section>
-
-    <!-- fazer -->
-    <section class="cena" data-fala="fazer">
-      <div class="peca media" id="f-tit" style="top:320px;font-size:90px">O que fazer <span style="color:var(--laranja)">agora</span></div>
-      <div class="peca" id="f-1" style="top:500px"><div class="cartao" style="width:820px;padding:34px 40px;display:flex;align-items:center;gap:34px"><span class="ck"></span><span class="media" style="font-size:66px">Fale com o contador</span></div></div>
-      <div class="peca" id="f-2" style="top:700px"><div class="cartao" style="width:820px;padding:34px 40px;display:flex;align-items:center;gap:34px"><span class="ck"></span><span class="media" style="font-size:66px">Emita uma nota teste</span></div></div>
-      <div class="peca" id="f-3" style="top:900px"><div class="cartao" style="width:820px;padding:34px 40px;display:flex;align-items:center;gap:34px"><span class="ck"></span><span class="media" style="font-size:66px">Sistema já está pronto?</span></div></div>
-    </section>
-
-    <!-- fim -->
-    <section class="cena" data-fala="fim">
-      <div class="peca" id="e-logo" style="top:360px"><img src="logo.svg" alt="" style="width:240px;height:240px;padding:46px;border-radius:60px;background:var(--laranja);display:block"></div>
-      <div class="peca gigante" id="e-nome" style="top:650px;font-size:150px">MovCode</div>
-      <div class="peca chip" id="e-link" style="top:830px;background:var(--laranja);color:#1A0800;font-size:50px;padding:24px 40px">movcode.com.br/blog</div>
-      <div class="peca chip" id="e-segue" style="top:990px;background:#fff;color:var(--tinta);font-size:44px">+ SEGUIR</div>
+      <svg id="e-mao" class="abs" width="110" height="130" viewBox="0 0 110 130" style="left:0;top:0;opacity:0;z-index:5"><path d="M34 10Q34 2 42 2Q50 2 50 10V58L56 54Q64 50 70 56L76 62Q84 58 90 64L94 70Q102 68 106 76V98Q106 126 78 126H52Q38 126 30 114L6 78Q2 70 10 66Q18 62 24 70L34 84Z" fill="#fff" stroke="#16181D" stroke-width="5" stroke-linejoin="round"/></svg>
     </section>
 
   </div>
-  <div id="flash"></div>
+  <div id="particulas"></div>
+  <div id="faixa"><i class="a"></i><i class="b"></i></div>
   <div id="selo"><img src="logo.svg" alt=""><span>MOVCODE · NOTÍCIAS</span></div>
   <div id="progresso"><i></i></div>
   <div id="legenda"></div>
 </div>
 <script>
 const T = window.TEMPO;
-const BPM = window.BPM || 118, BATIDA = 60 / BPM;
+const BATIDA = 60 / (window.BPM || 108);
 const DUR = T.duracao;
 const fala = Object.fromEntries(T.falas.map(f => [f.id, f]));
 const W = (id, i) => fala[id].palavras[i].de;
 const $ = id => document.getElementById(id);
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-const outCubic = p => 1 - Math.pow(1 - p, 3);
-const outBack = p => { const c = 1.9; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
-const k = (t, de, dur = 0.4, ease = outCubic) => ease(clamp((t - de) / dur));
+const expo = p => p >= 1 ? 1 : 1 - Math.pow(2, -10 * p);
+const cubic = p => 1 - Math.pow(1 - p, 3);
+const mola = p => p <= 0 ? 0 : p >= 1 ? 1 : 1 - Math.exp(-6 * p) * Math.cos(9 * p);
+const prog = (t, de, dur, e = expo) => e(clamp((t - de) / dur));
 
-// check verde dentro dos cartões
-document.querySelectorAll('.ck').forEach(c => c.outerHTML = '<svg class="ck" width="96" height="96" viewBox="0 0 96 96" style="flex:none"><circle cx="48" cy="48" r="46" fill="#22C55E"/><path d="M26 50l15 15 30-32" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>');
+const mostra = (el, t, de, dur = 0.7) => { el.style.transform = `translateY(${110 * (1 - prog(t, de, dur))}%)`; };
+const desenha = (els, t, de, dur = 0.6, passo = 0.08) => [...els].forEach((e, i) => e.style.strokeDashoffset = 1 - prog(t, de + i * passo, dur, cubic));
+const escala = (el, t, de, dur = 0.6, base = 0) => { const p = clamp((t - de) / dur); const s = base + (1 - base) * mola(p); el.style.transform = `scale(${s})`; el.style.opacity = p > 0 ? 1 : 0; };
 
-function pos(el, { x = 0, y = 0, s = 1, r = 0, o = 1, blur = 0 }) {
-  el.style.transform = `translateX(-50%) translate(${x}px, ${y}px) scale(${s}) rotate(${r}deg)`;
-  el.style.opacity = o;
-  el.style.filter = blur ? `blur(${blur}px)` : '';
-}
-// entrada com estalo: escala de 0 a 1 passando do ponto
-function pop(el, t, de, extra = {}) {
-  const p = clamp((t - de) / 0.42);
-  pos(el, { s: p <= 0 ? 0 : outBack(p), o: p > 0 ? 1 : 0, ...extra });
-}
-function sobe(el, t, de, extra = {}) {
-  const p = k(t, de, 0.45);
-  pos(el, { y: 90 * (1 - p), o: p, blur: 12 * (1 - p), ...extra });
-}
-
+// cenas e janelas: cada cena começa na sua fala e vai até a próxima cena
 const cenas = [...document.querySelectorAll('.cena')];
-const ordem = cenas.map(c => c.dataset.fala);
-function janela(id) {
-  const i = ordem.indexOf(id);
-  const de = i === 0 ? 0 : fala[id].de - 0.22;
-  const ate = i === ordem.length - 1 ? DUR + 1 : fala[ordem[i + 1]].de - 0.22;
-  return [de, ate];
-}
+const inicios = cenas.map((c, i) => i === 0 ? 0 : fala[c.dataset.cena].de - 0.25);
 
-const cenaFn = {
+const anima = {
   gancho(t) {
     const f = fala.gancho;
-    sobe($('g-tem'), t, f.de);
-    const p = clamp((t - W('gancho', 3) + 0.08) / 0.5);
-    pos($('g-simples'), { s: p > 0 ? 1.6 - 0.6 * outCubic(p) : 0, o: p > 0 ? 1 : 0, r: -4 * (1 - outCubic(p)) });
-    pop($('g-servico'), t, W('gancho', 5), { r: -3 });
+    mostra($('g1'), t, f.de - 0.1);
+    mostra($('g2'), t, W('gancho', 3) - 0.18, 0.8);
+    $('g-sub').style.strokeDashoffset = 1 - prog(t, W('gancho', 3) + 0.15, 0.55, cubic);
+    mostra($('g3'), t, W('gancho', 5) - 0.1);
   },
   mudou(t) {
-    const f = fala.mudou;
-    const p = k(t, f.de - 0.2, 0.5);
-    pos($('m-nota'), { x: 700 * (1 - p), r: 12 * (1 - p), o: 1, s: 1 + 0.02 * Math.sin((t - f.de) * 3) });
-    const q = clamp((t - W('mudou', 7) + 0.04) / 0.28);
-    pos($('m-mudou'), { s: q <= 0 ? 0 : 2.6 - 1.6 * outCubic(q), r: -9, o: q > 0 ? 1 : 0 });
+    const f = fala.mudou, alvo = W('mudou', 7) - 0.03;
+    desenha(document.querySelectorAll('#m-nota .nt'), t, f.de - 0.2, 0.7, 0.12);
+    $('m-nfse').setAttribute('opacity', prog(t, f.de + 0.9, 0.4));
+    const recua = prog(t, alvo, 0.5);
+    $('m-nota').style.transform = `scale(${1 - 0.12 * recua})`;
+    $('m-nota').style.opacity = 1 - 0.65 * recua;
+    escala($('m-selo'), t, alvo, 0.8);
+    const o = clamp((t - alvo) / 0.9);
+    $('m-onda').style.transform = `scale(${0.9 + 0.9 * cubic(o)})`;
+    $('m-onda').style.opacity = o > 0 ? 1 - o : 0;
   },
   data(t) {
     const f = fala.data;
-    const p = k(t, f.de - 0.15, 0.55, outBack);
-    const el = $('d-cal');
-    el.style.transform = `translateX(-50%) perspective(1400px) rotateX(${(1 - clamp(p)) * -80}deg) scale(${0.8 + 0.2 * p})`;
-    el.style.opacity = clamp((t - f.de + 0.15) / 0.2);
-    pop($('d-emissor'), t, W('data', 10));
+    const p = clamp((t - f.de + 0.15) / 0.9);
+    $('d-cal').style.transform = `translateY(${-160 * (1 - mola(p))}px)`;
+    $('d-cal').style.opacity = clamp(p * 4);
+    $('d-fio').style.strokeDashoffset = 1 - prog(t, W('data', 9) - 0.2, 0.35, cubic);
+    mostra($('d-chip'), t, W('data', 10) - 0.06);
   },
-  troca(t) {
-    const f = fala.troca, xt = W('troca', 7), novo = W('troca', 8);
-    const sai = k(t, novo - 0.05, 0.35);
-    pos($('t-pref'), { s: (0.6 + 0.4 * k(t, f.de - 0.15, 0.45, outBack)) * (1 - 0.5 * sai), o: clamp((t - f.de + 0.15) / 0.2) * (1 - sai), y: -200 * sai });
-    pos($('t-pref-txt'), { o: k(t, f.de + 0.3, 0.3) * (1 - sai), y: 30 * (1 - k(t, f.de + 0.3, 0.3)) });
-    pos($('t-x'), { o: 1 - sai, y: -200 * sai, s: 1 - 0.5 * sai });
-    $('t-x1').style.strokeDashoffset = 1 - k(t, xt - 0.1, 0.18);
-    $('t-x2').style.strokeDashoffset = 1 - k(t, xt + 0.06, 0.18);
-    const p = clamp((t - novo) / 0.5);
-    pos($('t-novo'), { y: 260 * (1 - outCubic(p)), s: p > 0 ? 0.7 + 0.3 * outBack(p) : 0.7, o: p > 0 ? clamp(p * 3) : 0 });
+  troca1(t) {
+    const f = fala.troca1, g = fala.troca2;
+    const p = clamp((t - f.de + 0.1) / 0.8);
+    $('t-a').style.transform = `translateX(${-120 * (1 - mola(p))}px)`;
+    $('t-a').style.opacity = clamp(p * 3) * (1 - 0.6 * prog(t, g.de - 0.3, 0.5));
+    desenha(document.querySelectorAll('#t-a .ta'), t, f.de, 0.6, 0.1);
+    $('t-risco').style.transform = `scaleX(${prog(t, W('troca1', 9) + 0.2, 0.45, cubic)})`;
+    $('t-seta').style.strokeDashoffset = 1 - prog(t, g.de - 0.35, 0.4, cubic);
+    const q = clamp((t - g.de + 0.06) / 0.8);
+    $('t-b').style.transform = `translateY(${80 * (1 - mola(q))}px) scale(${0.94 + 0.06 * mola(q)})`;
+    $('t-b').style.opacity = clamp(q * 4);
+    desenha(document.querySelectorAll('#t-b .tb'), t, g.de + 0.1, 0.9);
   },
   jeitos(t) {
-    pop($('j-nav'), t, W('jeitos', 4) - 0.1, { r: -4 });
-    sobe($('j-ou'), t, W('jeitos', 5) - 0.05);
-    pop($('j-sis'), t, W('jeitos', 8) - 0.1, { r: 4 });
+    const f = fala.jeitos;
+    mostra($('j-tit'), t, f.de - 0.15);
+    const a = W('jeitos', 4) - 0.25, b = W('jeitos', 8) - 0.12;
+    [[$('j-a'), a, '#j-a .ja'], [$('j-b'), b, '#j-b .jb']].forEach(([el, de, sel]) => {
+      const p = clamp((t - de) / 0.8);
+      el.style.transform = `translateY(${100 * (1 - mola(p))}px)`;
+      el.style.opacity = clamp(p * 4);
+      el.style.borderColor = t > de ? 'rgba(255,90,31,.55)' : '';
+      desenha(document.querySelectorAll(sel), t, de + 0.1, 0.6, 0.1);
+    });
+    escala($('j-ou'), t, W('jeitos', 5) - 0.05, 0.6);
   },
   calma(t) {
-    const f = fala.calma;
-    sobe($('c-reforma'), t, f.de);
-    const a = k(t, f.de + 0.25, 0.4);
-    pos($('c-ano'), { o: a, s: 0.85 + 0.15 * a });
-    const r = k(t, W('calma', 12) - 0.12, 0.35, outBack);
-    $('c-rolo').style.transform = `translateY(${-300 * r}px)`;
-    sobe($('c-so'), t, W('calma', 12) + 0.2);
+    const f = fala.calma, alvo = W('calma', 12) - 0.03;
+    mostra($('c-chip'), t, f.de - 0.1);
+    const p = clamp((t - f.de - 0.3) / 0.8);
+    $('c-caixa').style.opacity = clamp(p * 3);
+    $('c-caixa').style.transform = `scale(${0.9 + 0.1 * mola(p)})`;
+    $('c-rolo').style.transform = `translateY(${-300 * mola(clamp((t - alvo + 0.1) / 0.7))}px)`;
+    mostra($('c-txt'), t, alvo + 0.3);
   },
-  fazer(t) {
-    sobe($('f-tit'), t, fala.fazer.de - 0.1);
-    [[1, 4], [2, 9], [3, 14]].forEach(([n, w]) => {
-      const de = W('fazer', w) - 0.1;
-      const p = k(t, de, 0.45, outBack);
-      pos($('f-' + n), { x: 900 * (1 - clamp(p)), o: clamp((t - de) / 0.1), r: 3 * (1 - clamp(p)) });
-      $('f-' + n).querySelector('path').style.strokeDashoffset = 1 - k(t, de + 0.3, 0.3);
+  fazer0(t) {
+    mostra($('f-tit'), t, fala.fazer0.de - 0.15);
+    document.querySelectorAll('.f-item').forEach((el, i) => {
+      const f = fala['fazer' + (i + 1)];
+      const p = clamp((t - f.de + 0.1) / 0.8);
+      el.style.transform = `translateX(${-140 * (1 - mola(p))}px)`;
+      el.style.opacity = clamp(p * 4);
+      const ok = prog(t, f.ate - 0.15, 0.35, cubic);
+      el.querySelector('circle').setAttribute('opacity', ok);
+      el.querySelector('.f-ok path').style.strokeDashoffset = 1 - prog(t, f.ate - 0.05, 0.35, cubic);
+      el.querySelector('.f-num').style.background = ok > 0.5 ? 'var(--laranja)' : 'var(--noite-3)';
+      el.querySelector('.f-num').style.color = ok > 0.5 ? '#1A0800' : '#fff';
     });
   },
-  fim(t) {
-    const f = fala.fim;
-    const p = clamp((t - f.de + 0.1) / 0.6);
-    pos($('e-logo'), { s: p > 0 ? outBack(p) : 0, r: -180 * (1 - outCubic(p)), o: p > 0 ? 1 : 0 });
-    sobe($('e-nome'), t, f.de + 0.2);
-    pop($('e-link'), t, W('fim', 5) - 0.1);
-    const s = clamp((t - W('fim', 8)) / 0.42);
-    pos($('e-segue'), { s: s > 0 ? outBack(s) * (1 + 0.05 * Math.max(0, Math.sin((t - W('fim', 8)) * Math.PI * 2 / BATIDA))) : 0, o: s > 0 ? 1 : 0 });
+  fim1(t) {
+    const f = fala.fim1, g = fala.fim2;
+    escala($('e-logo'), t, f.de - 0.15, 0.9);
+    mostra($('e-nome'), t, f.de + 0.1);
+    mostra($('e-link'), t, W('fim1', 5) - 0.1);
+    escala($('e-btn'), t, g.de - 0.2, 0.7);
+    // a mão vem de baixo e toca no botão
+    const toque = g.de + 0.9;
+    const m = prog(t, g.de, 0.8, cubic);
+    const mao = $('e-mao');
+    mao.style.opacity = clamp((t - g.de) / 0.2) * (1 - prog(t, toque + 0.8, 0.4));
+    const aperta = t > toque && t < toque + 0.18 ? 0.88 : 1;
+    mao.style.transform = `translate(${560 + 120 * (1 - m)}px, ${1030 + 300 * (1 - m)}px) scale(${aperta})`;
+    const virou = prog(t, toque + 0.05, 0.3);
+    $('e-seguindo').style.opacity = virou;
+    $('e-seguir').style.opacity = 1 - virou;
   },
 };
 
-// legenda: blocos de até 4 palavras, a palavra falada em destaque
+// partículas nos impactos (sempre as mesmas, sorteio fixo)
+const pt = $('particulas');
+const impactos = T.efeitos.filter(e => e.tipo === 'impacto').map(e => e.t);
+let semente = 11; const rnd = () => (semente = (semente * 16807) % 2147483647) / 2147483647;
+const grupos = impactos.map(() => Array.from({ length: 26 }, () => { const i = document.createElement('i'); pt.appendChild(i); return { el: i, ang: rnd() * Math.PI * 2, vel: 380 + rnd() * 520, tam: 10 + rnd() * 18, cor: rnd() > 0.35 ? '#FF5A1F' : '#fff' }; }));
+const centros = [[540, 690], [600, 720]];
+
+// faixa de transição: sobe cobrindo a tela e sai por cima, a cena troca no meio
+const faixaA = document.querySelector('#faixa .a'), faixaB = document.querySelector('#faixa .b');
+function faixa(t) {
+  let y = 2200, yb = 2200;
+  for (let i = 1; i < inicios.length; i++) {
+    const meio = inicios[i], d = t - meio;
+    if (d > -0.32 && d < 0.32) {
+      const p = (d + 0.32) / 0.64; // 0..1
+      y = 2200 - 4400 * cubic(p);
+      yb = 2200 - 4400 * cubic(clamp(p - 0.12));
+    }
+  }
+  faixaA.style.transform = `translateY(${y}px)`;
+  faixaB.style.transform = `translateY(${yb}px)`;
+}
+
+// legenda: até 3 palavras por vez
 const blocos = [];
 for (const f of T.falas) {
   let atual = [];
   f.palavras.forEach((p, i) => {
     atual.push(p);
-    const fimFrase = /[.?!:,]$/.test(p.t) && atual.length >= 2;
-    if (atual.length === 4 || fimFrase || i === f.palavras.length - 1) { blocos.push(atual); atual = []; }
+    if (atual.length === 3 || (/[.?!:,]$/.test(p.t) && atual.length >= 2) || i === f.palavras.length - 1) { blocos.push(atual); atual = []; }
   });
 }
-const leg = $('legenda');
 let blocoAtual = null;
 function legenda(t) {
-  const b = blocos.find((b, i) => t >= b[0].de - 0.05 && t < (blocos[i + 1] ? Math.min(blocos[i + 1][0].de - 0.05, b[b.length - 1].ate + 0.6) : b[b.length - 1].ate + 0.6));
-  if (b !== blocoAtual) {
-    leg.innerHTML = b ? b.map(p => `<span>${p.t}</span>`).join('') : '';
-    blocoAtual = b;
+  let b = null;
+  for (let i = 0; i < blocos.length; i++) {
+    const ini = blocos[i][0].de - 0.04, prox = blocos[i + 1] ? blocos[i + 1][0].de - 0.04 : Infinity;
+    const fim = Math.min(prox, blocos[i][blocos[i].length - 1].ate + 0.5);
+    if (t >= ini && t < fim) b = blocos[i];
   }
+  const leg = $('legenda');
+  if (b !== blocoAtual) { leg.innerHTML = b ? b.map(p => `<span>${p.t}</span>`).join('') : ''; blocoAtual = b; }
   if (!b) return;
-  const p = k(t, b[0].de - 0.05, 0.18, outBack);
-  leg.style.transform = `scale(${0.9 + 0.1 * p})`;
-  leg.querySelectorAll('span').forEach((s, i) => {
-    s.className = t >= b[i].ate ? 'ja' : t >= b[i].de ? 'agora' : 'vem';
-  });
+  const p = prog(t, b[0].de - 0.04, 0.25);
+  leg.style.transform = `translateY(${16 * (1 - p)}px)`;
+  leg.style.opacity = p;
+  leg.querySelectorAll('span').forEach((s, i) => s.className = t >= b[i].de && t < b[i].ate + 0.02 ? 'agora' : t < b[i].de ? 'vem' : '');
 }
 
-const impactos = T.efeitos.filter(e => e.tipo === 'impacto').map(e => e.t);
-const trocas = T.efeitos.filter(e => e.tipo === 'whoosh').map(e => e.t);
-
 window.render = function (t) {
-  // fundo vivo, pulsando no ritmo da trilha
-  const bat = (t % BATIDA) / BATIDA;
-  const pulso = Math.exp(-bat * 5);
-  $('b1').style.transform = `translate(${200 + 160 * Math.sin(t * 0.5)}px, ${300 + 220 * Math.cos(t * 0.37)}px) scale(${1 + 0.06 * pulso})`;
-  $('b2').style.transform = `translate(${700 + 140 * Math.cos(t * 0.42)}px, ${1300 + 180 * Math.sin(t * 0.3)}px)`;
-  $('b3').style.transform = `translate(${600 + 200 * Math.sin(t * 0.33 + 2)}px, ${700 + 160 * Math.sin(t * 0.45)}px) scale(${1 + 0.05 * pulso})`;
-  $('grade').style.transform = `translateY(${(t * 30) % 90}px)`;
+  // fundo calmo: o brilho respira com a batida e desliza devagar
+  const pulso = Math.exp(-((t % BATIDA) / BATIDA) * 6);
+  $('brilho').style.transform = `translate(${60 * Math.sin(t * 0.35)}px, ${80 * Math.cos(t * 0.27)}px) scale(${1 + 0.04 * pulso})`;
+  $('pontos').style.transform = `translateY(${(t * 18) % 60}px)`;
 
-  // tremida e clarão nos impactos
-  let tremor = 0, clarao = 0;
-  for (const i of impactos) { const d = t - i; if (d >= 0 && d < 0.35) { tremor = Math.max(tremor, 1 - d / 0.35); } if (d >= 0 && d < 0.25) clarao = Math.max(clarao, 0.5 * (1 - d / 0.25)); }
-  $('flash').style.opacity = clarao;
-  // empurrão de câmera nas trocas de cena
-  let zoom = 1;
-  for (const w of trocas) { const d = t - w; if (d >= 0 && d < 0.5) zoom = Math.max(zoom, 1 + 0.06 * (1 - outCubic(d / 0.5))); }
-  const tx = tremor ? Math.sin(t * 90) * 18 * tremor : 0, ty = tremor ? Math.cos(t * 77) * 14 * tremor : 0;
-  $('mundo').style.transform = `translate(${tx}px, ${ty}px) scale(${zoom})`;
+  // tremida curta nos impactos
+  let tremor = 0;
+  for (const i of impactos) { const d = t - i; if (d >= 0 && d < 0.3) tremor = Math.max(tremor, 1 - d / 0.3); }
+  $('mundo').style.transform = tremor ? `translate(${Math.sin(t * 95) * 14 * tremor}px, ${Math.cos(t * 83) * 10 * tremor}px)` : '';
 
-  for (const c of cenas) {
-    const [de, ate] = janela(c.dataset.fala);
-    const ativa = t >= de && t < ate;
-    if (!ativa) { c.style.opacity = 0; continue; }
-    const ent = clamp((t - de) / 0.22), sai = clamp((ate - t) / 0.22);
-    const ultima = c === cenas[cenas.length - 1];
-    c.style.opacity = Math.min(ent, ultima ? 1 : sai);
-    c.style.transform = `translateX(${(1 - outCubic(ent)) * 160 - (ultima ? 0 : (1 - sai) * 160)}px)`;
-    c.style.filter = (1 - ent) + (ultima ? 0 : 1 - sai) > 0.01 ? `blur(${((1 - ent) + (ultima ? 0 : 1 - sai)) * 14}px)` : '';
-    cenaFn[c.dataset.fala](t);
-  }
+  // cena da vez
+  let atual = 0;
+  inicios.forEach((ini, i) => { if (t >= ini) atual = i; });
+  cenas.forEach((c, i) => {
+    c.style.visibility = i === atual ? 'visible' : 'hidden';
+    if (i === atual) {
+      // leve aproximação contínua para a cena não ficar parada
+      const desde = t - inicios[i];
+      c.style.transform = `scale(${1.03 - 0.03 * cubic(clamp(desde / 4))})`;
+      anima[c.dataset.cena](t);
+    }
+  });
+
+  grupos.forEach((g, n) => {
+    const d = t - impactos[n];
+    g.forEach(q => {
+      if (d < 0 || d > 0.9) { q.el.style.opacity = 0; return; }
+      const r = q.vel * cubic(d / 0.9);
+      const [cx, cy] = centros[n] || [540, 700];
+      q.el.style.cssText = `width:${q.tam}px;height:${q.tam}px;background:${q.cor};left:${cx + Math.cos(q.ang) * r - q.tam / 2}px;top:${cy + Math.sin(q.ang) * r - q.tam / 2}px;opacity:${1 - d / 0.9};transform:scale(${1 - d / 0.9})`;
+    });
+  });
+
+  faixa(t);
   legenda(t);
   $('progresso').querySelector('i').style.width = clamp(t / DUR) * 100 + '%';
 };

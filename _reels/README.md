@@ -33,11 +33,14 @@ NODE_PATH=$(npm root -g) node _reels/render.js /tmp/reels/<slug> /tmp/reels/brut
 ffmpeg -i /tmp/reels/bruto.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -ar 48000 -c:a aac -b:a 192k -movflags +faststart /tmp/reels/reels-<data>-<slug>.mp4
 ```
 
-Dicas que já funcionaram:
+Dicas que já funcionaram (o Kaique achou a primeira versão rápida demais e as animações simples e tortas):
 
-- Fala curta e direta, uns 30 segundos no total. Uma ideia por cena e pouco texto na tela: a legenda de baixo já mostra o que a voz diz.
+- Ritmo calmo: `"velocidade": 1.3` no roteiro e pausas de 0,35 a 0,6 s entre as falas. Quebre frases longas em falas separadas (uma ideia por fala, até umas 12 palavras). O total fica entre 35 e 50 segundos, perto de 2,7 palavras por segundo.
+- A legenda mostra no máximo 3 palavras por vez, com a palavra falada em destaque.
+- Animação caprichada, nada torto: tudo alinhado, sem rotação. Texto sobe de trás de uma máscara (`mostra`), desenhos de linha se traçam na tela (`desenha`), cartões entram com mola (`mola`), troca de cena com a faixa laranja que atravessa a tela, partículas e uma tremida curta só no ponto alto. Um ícone ou desenho por cena, pouco texto grande.
 - Números e siglas por extenso no `tts` ("primeiro de novembro", "dois mil e vinte e sete"); na `legenda`, do jeito que se escreve.
 - A marca vai no `tts` como "Mov Code".
-- Efeitos sonoros fora das palavras: whoosh uns 0,38 s antes da fala, pop uns 0,06 s antes da palavra.
+- Efeitos sonoros fora das palavras: whoosh uns 0,4 s antes da fala, pop uns 0,06 s antes da palavra.
 - Para conferir a voz sem ouvir, transcreva `audio.wav` com o faster-whisper (modelo "small") e compare com o roteiro.
-- Deixe as bordas livres: o Instagram cobre o topo, a lateral direita e a parte de baixo. As peças ficam entre y 300 e 1200, e a legenda em y 1290.
+- Deixe as bordas livres: o Instagram cobre o topo, a lateral direita e a parte de baixo. As peças ficam entre y 340 e 1200, e a legenda em y 1300.
+- O render leva uns 10 minutos para 45 segundos de vídeo: rode em segundo plano.

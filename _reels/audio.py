@@ -29,7 +29,7 @@ def reamostrar(x, de, para):
 def falar(texto):
     caminho = pasta / "_fala.wav"
     with wave.open(str(caminho), "wb") as w:
-        voz.synthesize_wav(texto, w, SynthesisConfig(length_scale=0.88, noise_scale=0.6, noise_w_scale=0.7))
+        voz.synthesize_wav(texto, w, SynthesisConfig(length_scale=roteiro.get("velocidade", 1.0), noise_scale=0.6, noise_w_scale=0.7))
     with wave.open(str(caminho), "rb") as w:
         sr = w.getframerate()
         x = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768
