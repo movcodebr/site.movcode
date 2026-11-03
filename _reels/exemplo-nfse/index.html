@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Reels NFS-e</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=block" rel="stylesheet">
+<style>
+:root {
+  --laranja: #FF5A1F; --laranja-claro: #FFB08A; --laranja-tinta: #FFE4D8;
+  --noite: #111214; --noite-2: #1D1F23; --papel: #F4F4F2; --tinta: #16181D;
+  --verde: #22C55E; --vermelho: #EF4444;
+  --f-display: "Bricolage Grotesque", "Figtree", sans-serif;
+  --f-texto: "Figtree", sans-serif; --f-mono: "JetBrains Mono", monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--noite); }
+body { font-family: var(--f-texto); color: #fff; -webkit-font-smoothing: antialiased; }
+#palco { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--noite); }
+#fundo { position: absolute; inset: -200px; }
+.bolha { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55; }
+#grade { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,.035) 2px, transparent 2px); background-size: 90px 90px; }
+#flash { position: absolute; inset: 0; background: var(--laranja); opacity: 0; z-index: 30; pointer-events: none; }
+#mundo { position: absolute; inset: 0; }
+.cena { position: absolute; inset: 0; opacity: 0; }
+.peca { position: absolute; left: 50%; top: 0; transform-origin: center center; will-change: transform; }
+
+.gigante { font-family: var(--f-display); font-weight: 800; font-variation-settings: "wdth" 78; letter-spacing: -0.03em; line-height: .9; white-space: nowrap; }
+.media { font-family: var(--f-display); font-weight: 750; font-variation-settings: "wdth" 85; font-size: 84px; line-height: 1; white-space: nowrap; }
+.chip { font-family: var(--f-mono); font-weight: 700; font-size: 40px; letter-spacing: .04em; padding: 18px 30px; border-radius: 999px; white-space: nowrap; }
+
+.carimbo { font-family: var(--f-display); font-weight: 800; font-variation-settings: "wdth" 80; font-size: 170px; color: var(--laranja); border: 14px solid var(--laranja); border-radius: 28px; padding: 6px 40px 18px; background: rgba(17,18,20,.85); letter-spacing: -0.02em; }
+.cartao { background: #fff; color: var(--tinta); border-radius: 44px; box-shadow: 0 40px 80px rgba(0,0,0,.45); }
+.icone svg { display: block; }
+
+#legenda { position: absolute; left: 70px; right: 70px; top: 1290px; height: 200px; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 6px 16px; z-index: 20; }
+#legenda span { font-family: var(--f-texto); font-weight: 800; font-size: 60px; line-height: 1.15; color: #fff; padding: 2px 12px; border-radius: 14px; text-shadow: 0 4px 18px rgba(0,0,0,.6); }
+#legenda span.ja { color: #fff; }
+#legenda span.agora { background: var(--laranja); color: #1A0800; text-shadow: none; }
+#legenda span.vem { color: rgba(255,255,255,.55); }
+
+#selo { position: absolute; left: 80px; top: 170px; display: flex; align-items: center; gap: 16px; font-family: var(--f-mono); font-weight: 700; font-size: 30px; letter-spacing: .05em; z-index: 20; }
+#selo img { width: 50px; height: 50px; padding: 10px; border-radius: 13px; background: var(--laranja); }
+#progresso { position: absolute; left: 80px; right: 80px; top: 246px; height: 8px; border-radius: 4px; background: rgba(255,255,255,.14); z-index: 20; overflow: hidden; }
+#progresso i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--laranja); }
+</style>
+</head>
+<body>
+<div id="palco">
+  <div id="fundo">
+    <div class="bolha" id="b1" style="width:760px;height:760px;background:#FF5A1F;"></div>
+    <div class="bolha" id="b2" style="width:640px;height:640px;background:#7C3AED;opacity:.28"></div>
+    <div class="bolha" id="b3" style="width:560px;height:560px;background:#FF9F43;opacity:.35"></div>
+  </div>
+  <div id="grade"></div>
+  <div id="mundo">
+
+    <!-- gancho -->
+    <section class="cena" data-fala="gancho">
+      <div class="peca media" id="g-tem" style="top:470px;color:#B7BAC2">tem empresa no</div>
+      <div class="peca gigante" id="g-simples" style="top:580px;font-size:230px;color:#fff">SIMPLES<span style="color:var(--laranja)">?</span></div>
+      <div class="peca chip" id="g-servico" style="top:860px;background:var(--laranja);color:#1A0800">E PRESTA SERVIÇO</div>
+    </section>
+
+    <!-- mudou -->
+    <section class="cena" data-fala="mudou">
+      <div class="peca icone" id="m-nota" style="top:380px">
+        <svg width="440" height="560" viewBox="0 0 440 560"><rect x="10" y="10" width="420" height="540" rx="36" fill="#fff"/><path d="M330 10v90a20 20 0 0 0 20 20h80" fill="#E3E0DA"/><rect x="60" y="80" width="200" height="28" rx="14" fill="#16181D"/><rect x="60" y="150" width="320" height="18" rx="9" fill="#D9D6CF"/><rect x="60" y="200" width="280" height="18" rx="9" fill="#D9D6CF"/><rect x="60" y="250" width="300" height="18" rx="9" fill="#D9D6CF"/><rect x="60" y="330" width="320" height="2" fill="#E3E0DA"/><rect x="60" y="370" width="120" height="22" rx="11" fill="#9AA1B0"/><rect x="250" y="362" width="130" height="38" rx="10" fill="#FF5A1F"/><text x="60" y="490" font-family="JetBrains Mono" font-weight="700" font-size="44" fill="#16181D">NFS-e</text></svg>
+      </div>
+      <div class="peca carimbo" id="m-mudou" style="top:640px">MUDOU</div>
+    </section>
+
+    <!-- data -->
+    <section class="cena" data-fala="data">
+      <div class="peca" id="d-cal" style="top:330px">
+        <div class="cartao" style="width:560px;overflow:hidden">
+          <div style="background:var(--laranja);color:#1A0800;font-family:var(--f-mono);font-weight:700;font-size:48px;text-align:center;padding:26px 0;letter-spacing:.12em">NOVEMBRO</div>
+          <div style="font-family:var(--f-display);font-weight:800;font-variation-settings:'wdth' 80;font-size:330px;line-height:1;text-align:center;padding:20px 0 50px;letter-spacing:-0.03em">1<sup style="font-size:150px;vertical-align:top;position:relative;top:30px;margin-left:8px">º</sup></div>
+        </div>
+      </div>
+      <div class="peca chip" id="d-emissor" style="top:1040px;background:#fff;color:var(--tinta);font-size:46px">→ EMISSOR NACIONAL</div>
+    </section>
+
+    <!-- troca -->
+    <section class="cena" data-fala="troca">
+      <div class="peca icone" id="t-pref" style="top:400px">
+        <svg width="420" height="420" viewBox="0 0 420 420"><path d="M210 30L380 120H40z" fill="#B7BAC2"/><rect x="50" y="130" width="320" height="24" rx="6" fill="#B7BAC2"/><g fill="#8E929B"><rect x="80" y="170" width="44" height="170" rx="8"/><rect x="160" y="170" width="44" height="170" rx="8"/><rect x="236" y="170" width="44" height="170" rx="8"/><rect x="296" y="170" width="44" height="170" rx="8"/></g><rect x="40" y="350" width="340" height="34" rx="8" fill="#B7BAC2"/></svg>
+      </div>
+      <div class="peca media" id="t-pref-txt" style="top:840px;color:#B7BAC2;font-size:64px">site da prefeitura</div>
+      <div class="peca icone" id="t-x" style="top:380px">
+        <svg width="460" height="460" viewBox="0 0 460 460"><path id="t-x1" d="M60 60L400 400" stroke="#EF4444" stroke-width="44" stroke-linecap="round" fill="none" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><path id="t-x2" d="M400 60L60 400" stroke="#EF4444" stroke-width="44" stroke-linecap="round" fill="none" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+      </div>
+      <div class="peca" id="t-novo" style="top:380px">
+        <div class="cartao" style="width:620px;padding:56px 40px;text-align:center">
+          <svg width="200" height="200" viewBox="0 0 200 200" style="margin:0 auto 20px"><circle cx="100" cy="100" r="92" fill="#FF5A1F"/><path d="M100 8a92 92 0 0 1 0 184a92 92 0 0 1 0-184M8 100h184M100 8c-50 50-50 134 0 184M100 8c50 50 50 134 0 184" fill="none" stroke="#fff" stroke-width="9"/></svg>
+          <div class="media" style="font-size:76px">Emissor Nacional</div>
+          <div style="font-size:42px;font-weight:600;color:#4A4D55;margin-top:14px">um sistema único do governo</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- jeitos -->
+    <section class="cena" data-fala="jeitos">
+      <div class="peca" id="j-nav" style="top:330px;margin-left:-130px">
+        <div class="cartao" style="width:520px;padding:30px 30px;display:flex;align-items:center;gap:26px">
+          <svg width="220" height="170" viewBox="0 0 220 170" style="flex:none;width:150px;height:116px"><rect x="6" y="6" width="208" height="158" rx="18" fill="#F4F4F2" stroke="#16181D" stroke-width="8"/><rect x="6" y="6" width="208" height="42" rx="18" fill="#16181D"/><circle cx="34" cy="27" r="7" fill="#FF5A1F"/><circle cx="56" cy="27" r="7" fill="#FFB547"/><circle cx="78" cy="27" r="7" fill="#22C55E"/><rect x="30" y="72" width="160" height="16" rx="8" fill="#C9CCD3"/><rect x="30" y="102" width="120" height="16" rx="8" fill="#C9CCD3"/><rect x="30" y="132" width="70" height="18" rx="9" fill="#FF5A1F"/></svg>
+          <div class="media" style="font-size:60px">Navegador</div>
+        </div>
+      </div>
+      <div class="peca gigante" id="j-ou" style="top:700px;font-size:110px;color:var(--laranja)">ou</div>
+      <div class="peca" id="j-sis" style="top:830px;margin-left:130px">
+        <div class="cartao" style="width:520px;padding:30px 30px;display:flex;align-items:center;gap:26px">
+          <svg width="220" height="170" viewBox="0 0 220 170" style="flex:none;width:150px;height:116px"><rect x="6" y="6" width="208" height="130" rx="18" fill="#16181D"/><rect x="80" y="136" width="60" height="18" fill="#16181D"/><rect x="50" y="152" width="120" height="12" rx="6" fill="#16181D"/><g transform="translate(110 71)"><circle r="30" fill="none" stroke="#FF5A1F" stroke-width="14"/><g fill="#FF5A1F"><rect x="-8" y="-50" width="16" height="22" rx="4"/><rect x="-8" y="28" width="16" height="22" rx="4"/><rect x="-50" y="-8" width="22" height="16" rx="4"/><rect x="28" y="-8" width="22" height="16" rx="4"/></g></g></svg>
+          <div class="media" style="font-size:60px">Seu sistema</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- calma -->
+    <section class="cena" data-fala="calma">
+      <div class="peca chip" id="c-reforma" style="top:400px;background:rgba(255,255,255,.1);color:#fff;border:3px solid rgba(255,255,255,.2)">CBS + IBS NO SIMPLES</div>
+      <div class="peca" id="c-ano" style="top:540px;height:300px;overflow:hidden;width:760px">
+        <div id="c-rolo" class="gigante" style="font-size:300px;text-align:center;color:#fff;line-height:300px">2026<br><span style="color:var(--laranja)">2027</span></div>
+      </div>
+      <div class="peca media" id="c-so" style="top:900px;color:#B7BAC2;font-size:70px">só a partir de janeiro</div>
+    </section>
+
+    <!-- fazer -->
+    <section class="cena" data-fala="fazer">
+      <div class="peca media" id="f-tit" style="top:320px;font-size:90px">O que fazer <span style="color:var(--laranja)">agora</span></div>
+      <div class="peca" id="f-1" style="top:500px"><div class="cartao" style="width:820px;padding:34px 40px;display:flex;align-items:center;gap:34px"><span class="ck"></span><span class="media" style="font-size:66px">Fale com o contador</span></div></div>
+      <div class="peca" id="f-2" style="top:700px"><div class="cartao" style="width:820px;padding:34px 40px;display:flex;align-items:center;gap:34px"><span class="ck"></span><span class="media" style="font-size:66px">Emita uma nota teste</span></div></div>
+      <div class="peca" id="f-3" style="top:900px"><div class="cartao" style="width:820px;padding:34px 40px;display:flex;align-items:center;gap:34px"><span class="ck"></span><span class="media" style="font-size:66px">Sistema já está pronto?</span></div></div>
+    </section>
+
+    <!-- fim -->
+    <section class="cena" data-fala="fim">
+      <div class="peca" id="e-logo" style="top:360px"><img src="logo.svg" alt="" style="width:240px;height:240px;padding:46px;border-radius:60px;background:var(--laranja);display:block"></div>
+      <div class="peca gigante" id="e-nome" style="top:650px;font-size:150px">MovCode</div>
+      <div class="peca chip" id="e-link" style="top:830px;background:var(--laranja);color:#1A0800;font-size:50px;padding:24px 40px">movcode.com.br/blog</div>
+      <div class="peca chip" id="e-segue" style="top:990px;background:#fff;color:var(--tinta);font-size:44px">+ SEGUIR</div>
+    </section>
+
+  </div>
+  <div id="flash"></div>
+  <div id="selo"><img src="logo.svg" alt=""><span>MOVCODE · NOTÍCIAS</span></div>
+  <div id="progresso"><i></i></div>
+  <div id="legenda"></div>
+</div>
+<script>
+const T = window.TEMPO;
+const BPM = window.BPM || 118, BATIDA = 60 / BPM;
+const DUR = T.duracao;
+const fala = Object.fromEntries(T.falas.map(f => [f.id, f]));
+const W = (id, i) => fala[id].palavras[i].de;
+const $ = id => document.getElementById(id);
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const outCubic = p => 1 - Math.pow(1 - p, 3);
+const outBack = p => { const c = 1.9; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
+const k = (t, de, dur = 0.4, ease = outCubic) => ease(clamp((t - de) / dur));
+
+// check verde dentro dos cartões
+document.querySelectorAll('.ck').forEach(c => c.outerHTML = '<svg class="ck" width="96" height="96" viewBox="0 0 96 96" style="flex:none"><circle cx="48" cy="48" r="46" fill="#22C55E"/><path d="M26 50l15 15 30-32" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>');
+
+function pos(el, { x = 0, y = 0, s = 1, r = 0, o = 1, blur = 0 }) {
+  el.style.transform = `translateX(-50%) translate(${x}px, ${y}px) scale(${s}) rotate(${r}deg)`;
+  el.style.opacity = o;
+  el.style.filter = blur ? `blur(${blur}px)` : '';
+}
+// entrada com estalo: escala de 0 a 1 passando do ponto
+function pop(el, t, de, extra = {}) {
+  const p = clamp((t - de) / 0.42);
+  pos(el, { s: p <= 0 ? 0 : outBack(p), o: p > 0 ? 1 : 0, ...extra });
+}
+function sobe(el, t, de, extra = {}) {
+  const p = k(t, de, 0.45);
+  pos(el, { y: 90 * (1 - p), o: p, blur: 12 * (1 - p), ...extra });
+}
+
+const cenas = [...document.querySelectorAll('.cena')];
+const ordem = cenas.map(c => c.dataset.fala);
+function janela(id) {
+  const i = ordem.indexOf(id);
+  const de = i === 0 ? 0 : fala[id].de - 0.22;
+  const ate = i === ordem.length - 1 ? DUR + 1 : fala[ordem[i + 1]].de - 0.22;
+  return [de, ate];
+}
+
+const cenaFn = {
+  gancho(t) {
+    const f = fala.gancho;
+    sobe($('g-tem'), t, f.de);
+    const p = clamp((t - W('gancho', 3) + 0.08) / 0.5);
+    pos($('g-simples'), { s: p > 0 ? 1.6 - 0.6 * outCubic(p) : 0, o: p > 0 ? 1 : 0, r: -4 * (1 - outCubic(p)) });
+    pop($('g-servico'), t, W('gancho', 5), { r: -3 });
+  },
+  mudou(t) {
+    const f = fala.mudou;
+    const p = k(t, f.de - 0.2, 0.5);
+    pos($('m-nota'), { x: 700 * (1 - p), r: 12 * (1 - p), o: 1, s: 1 + 0.02 * Math.sin((t - f.de) * 3) });
+    const q = clamp((t - W('mudou', 7) + 0.04) / 0.28);
+    pos($('m-mudou'), { s: q <= 0 ? 0 : 2.6 - 1.6 * outCubic(q), r: -9, o: q > 0 ? 1 : 0 });
+  },
+  data(t) {
+    const f = fala.data;
+    const p = k(t, f.de - 0.15, 0.55, outBack);
+    const el = $('d-cal');
+    el.style.transform = `translateX(-50%) perspective(1400px) rotateX(${(1 - clamp(p)) * -80}deg) scale(${0.8 + 0.2 * p})`;
+    el.style.opacity = clamp((t - f.de + 0.15) / 0.2);
+    pop($('d-emissor'), t, W('data', 10));
+  },
+  troca(t) {
+    const f = fala.troca, xt = W('troca', 7), novo = W('troca', 8);
+    const sai = k(t, novo - 0.05, 0.35);
+    pos($('t-pref'), { s: (0.6 + 0.4 * k(t, f.de - 0.15, 0.45, outBack)) * (1 - 0.5 * sai), o: clamp((t - f.de + 0.15) / 0.2) * (1 - sai), y: -200 * sai });
+    pos($('t-pref-txt'), { o: k(t, f.de + 0.3, 0.3) * (1 - sai), y: 30 * (1 - k(t, f.de + 0.3, 0.3)) });
+    pos($('t-x'), { o: 1 - sai, y: -200 * sai, s: 1 - 0.5 * sai });
+    $('t-x1').style.strokeDashoffset = 1 - k(t, xt - 0.1, 0.18);
+    $('t-x2').style.strokeDashoffset = 1 - k(t, xt + 0.06, 0.18);
+    const p = clamp((t - novo) / 0.5);
+    pos($('t-novo'), { y: 260 * (1 - outCubic(p)), s: p > 0 ? 0.7 + 0.3 * outBack(p) : 0.7, o: p > 0 ? clamp(p * 3) : 0 });
+  },
+  jeitos(t) {
+    pop($('j-nav'), t, W('jeitos', 4) - 0.1, { r: -4 });
+    sobe($('j-ou'), t, W('jeitos', 5) - 0.05);
+    pop($('j-sis'), t, W('jeitos', 8) - 0.1, { r: 4 });
+  },
+  calma(t) {
+    const f = fala.calma;
+    sobe($('c-reforma'), t, f.de);
+    const a = k(t, f.de + 0.25, 0.4);
+    pos($('c-ano'), { o: a, s: 0.85 + 0.15 * a });
+    const r = k(t, W('calma', 12) - 0.12, 0.35, outBack);
+    $('c-rolo').style.transform = `translateY(${-300 * r}px)`;
+    sobe($('c-so'), t, W('calma', 12) + 0.2);
+  },
+  fazer(t) {
+    sobe($('f-tit'), t, fala.fazer.de - 0.1);
+    [[1, 4], [2, 9], [3, 14]].forEach(([n, w]) => {
+      const de = W('fazer', w) - 0.1;
+      const p = k(t, de, 0.45, outBack);
+      pos($('f-' + n), { x: 900 * (1 - clamp(p)), o: clamp((t - de) / 0.1), r: 3 * (1 - clamp(p)) });
+      $('f-' + n).querySelector('path').style.strokeDashoffset = 1 - k(t, de + 0.3, 0.3);
+    });
+  },
+  fim(t) {
+    const f = fala.fim;
+    const p = clamp((t - f.de + 0.1) / 0.6);
+    pos($('e-logo'), { s: p > 0 ? outBack(p) : 0, r: -180 * (1 - outCubic(p)), o: p > 0 ? 1 : 0 });
+    sobe($('e-nome'), t, f.de + 0.2);
+    pop($('e-link'), t, W('fim', 5) - 0.1);
+    const s = clamp((t - W('fim', 8)) / 0.42);
+    pos($('e-segue'), { s: s > 0 ? outBack(s) * (1 + 0.05 * Math.max(0, Math.sin((t - W('fim', 8)) * Math.PI * 2 / BATIDA))) : 0, o: s > 0 ? 1 : 0 });
+  },
+};
+
+// legenda: blocos de até 4 palavras, a palavra falada em destaque
+const blocos = [];
+for (const f of T.falas) {
+  let atual = [];
+  f.palavras.forEach((p, i) => {
+    atual.push(p);
+    const fimFrase = /[.?!:,]$/.test(p.t) && atual.length >= 2;
+    if (atual.length === 4 || fimFrase || i === f.palavras.length - 1) { blocos.push(atual); atual = []; }
+  });
+}
+const leg = $('legenda');
+let blocoAtual = null;
+function legenda(t) {
+  const b = blocos.find((b, i) => t >= b[0].de - 0.05 && t < (blocos[i + 1] ? Math.min(blocos[i + 1][0].de - 0.05, b[b.length - 1].ate + 0.6) : b[b.length - 1].ate + 0.6));
+  if (b !== blocoAtual) {
+    leg.innerHTML = b ? b.map(p => `<span>${p.t}</span>`).join('') : '';
+    blocoAtual = b;
+  }
+  if (!b) return;
+  const p = k(t, b[0].de - 0.05, 0.18, outBack);
+  leg.style.transform = `scale(${0.9 + 0.1 * p})`;
+  leg.querySelectorAll('span').forEach((s, i) => {
+    s.className = t >= b[i].ate ? 'ja' : t >= b[i].de ? 'agora' : 'vem';
+  });
+}
+
+const impactos = T.efeitos.filter(e => e.tipo === 'impacto').map(e => e.t);
+const trocas = T.efeitos.filter(e => e.tipo === 'whoosh').map(e => e.t);
+
+window.render = function (t) {
+  // fundo vivo, pulsando no ritmo da trilha
+  const bat = (t % BATIDA) / BATIDA;
+  const pulso = Math.exp(-bat * 5);
+  $('b1').style.transform = `translate(${200 + 160 * Math.sin(t * 0.5)}px, ${300 + 220 * Math.cos(t * 0.37)}px) scale(${1 + 0.06 * pulso})`;
+  $('b2').style.transform = `translate(${700 + 140 * Math.cos(t * 0.42)}px, ${1300 + 180 * Math.sin(t * 0.3)}px)`;
+  $('b3').style.transform = `translate(${600 + 200 * Math.sin(t * 0.33 + 2)}px, ${700 + 160 * Math.sin(t * 0.45)}px) scale(${1 + 0.05 * pulso})`;
+  $('grade').style.transform = `translateY(${(t * 30) % 90}px)`;
+
+  // tremida e clarão nos impactos
+  let tremor = 0, clarao = 0;
+  for (const i of impactos) { const d = t - i; if (d >= 0 && d < 0.35) { tremor = Math.max(tremor, 1 - d / 0.35); } if (d >= 0 && d < 0.25) clarao = Math.max(clarao, 0.5 * (1 - d / 0.25)); }
+  $('flash').style.opacity = clarao;
+  // empurrão de câmera nas trocas de cena
+  let zoom = 1;
+  for (const w of trocas) { const d = t - w; if (d >= 0 && d < 0.5) zoom = Math.max(zoom, 1 + 0.06 * (1 - outCubic(d / 0.5))); }
+  const tx = tremor ? Math.sin(t * 90) * 18 * tremor : 0, ty = tremor ? Math.cos(t * 77) * 14 * tremor : 0;
+  $('mundo').style.transform = `translate(${tx}px, ${ty}px) scale(${zoom})`;
+
+  for (const c of cenas) {
+    const [de, ate] = janela(c.dataset.fala);
+    const ativa = t >= de && t < ate;
+    if (!ativa) { c.style.opacity = 0; continue; }
+    const ent = clamp((t - de) / 0.22), sai = clamp((ate - t) / 0.22);
+    const ultima = c === cenas[cenas.length - 1];
+    c.style.opacity = Math.min(ent, ultima ? 1 : sai);
+    c.style.transform = `translateX(${(1 - outCubic(ent)) * 160 - (ultima ? 0 : (1 - sai) * 160)}px)`;
+    c.style.filter = (1 - ent) + (ultima ? 0 : 1 - sai) > 0.01 ? `blur(${((1 - ent) + (ultima ? 0 : 1 - sai)) * 14}px)` : '';
+    cenaFn[c.dataset.fala](t);
+  }
+  legenda(t);
+  $('progresso').querySelector('i').style.width = clamp(t / DUR) * 100 + '%';
+};
+window.DURACAO = DUR;
+render(0);
+</script>
+</body>
+</html>

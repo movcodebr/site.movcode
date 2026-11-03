@@ -1,0 +1,171 @@
+{
+ "bpm": 118,
+ "final": 2.6,
+ "falas": [
+  {
+   "id": "gancho",
+   "tts": "Tem empresa no Simples e presta serviço?",
+   "legenda": "Tem empresa no Simples e presta serviço?",
+   "pausa": 0.15
+  },
+  {
+   "id": "mudou",
+   "tts": "Então presta atenção: a sua nota fiscal mudou.",
+   "legenda": "Então presta atenção: a sua nota fiscal mudou.",
+   "pausa": 0.3
+  },
+  {
+   "id": "data",
+   "tts": "Desde primeiro de novembro, a nota de serviço sai pelo Emissor Nacional.",
+   "legenda": "Desde 1º de novembro, a nota de serviço sai pelo Emissor Nacional.",
+   "pausa": 0.25
+  },
+  {
+   "id": "troca",
+   "tts": "Em muitas cidades, era no site da prefeitura. Agora, é num sistema único do governo.",
+   "legenda": "Em muitas cidades, era no site da prefeitura. Agora, é num sistema único do governo.",
+   "pausa": 0.25
+  },
+  {
+   "id": "jeitos",
+   "tts": "Dá pra emitir pelo navegador, ou direto do sistema da sua empresa.",
+   "legenda": "Dá pra emitir pelo navegador, ou direto do sistema da sua empresa.",
+   "pausa": 0.3
+  },
+  {
+   "id": "calma",
+   "tts": "E calma: os impostos novos da reforma só chegam ao Simples em dois mil e vinte e sete.",
+   "legenda": "E calma: os impostos novos da reforma só chegam ao Simples em 2027.",
+   "pausa": 0.3
+  },
+  {
+   "id": "fazer",
+   "tts": "O que fazer agora? Fale com o seu contador. Emita uma nota de teste. E pergunte se o seu sistema já está pronto.",
+   "legenda": "O que fazer agora? Fale com o seu contador. Emita uma nota de teste. E pergunte se o seu sistema já está pronto.",
+   "pausa": 0.3
+  },
+  {
+   "id": "fim",
+   "tts": "A explicação completa está no blog da Mov Code. Segue a gente pra não perder a próxima.",
+   "legenda": "A explicação completa está no blog da MovCode. Segue a gente pra não perder a próxima.",
+   "pausa": 0.1
+  }
+ ],
+ "efeitos": [
+  {
+   "fala": "gancho",
+   "tipo": "impacto",
+   "desloca": -0.05
+  },
+  {
+   "fala": "gancho",
+   "tipo": "pop",
+   "palavra": 3,
+   "desloca": -0.06
+  },
+  {
+   "fala": "mudou",
+   "tipo": "whoosh",
+   "desloca": -0.38
+  },
+  {
+   "fala": "mudou",
+   "tipo": "impacto",
+   "palavra": 7
+  },
+  {
+   "fala": "data",
+   "tipo": "whoosh",
+   "desloca": -0.38
+  },
+  {
+   "fala": "data",
+   "tipo": "pop",
+   "palavra": 1,
+   "desloca": -0.06
+  },
+  {
+   "fala": "data",
+   "tipo": "pop",
+   "palavra": 10,
+   "desloca": -0.06
+  },
+  {
+   "fala": "troca",
+   "tipo": "whoosh",
+   "desloca": -0.38
+  },
+  {
+   "fala": "troca",
+   "tipo": "tique",
+   "palavra": 7
+  },
+  {
+   "fala": "troca",
+   "tipo": "pop",
+   "palavra": 8,
+   "desloca": -0.06
+  },
+  {
+   "fala": "jeitos",
+   "tipo": "whoosh",
+   "desloca": -0.38
+  },
+  {
+   "fala": "jeitos",
+   "tipo": "pop",
+   "palavra": 4,
+   "desloca": -0.06
+  },
+  {
+   "fala": "jeitos",
+   "tipo": "pop",
+   "palavra": 8,
+   "desloca": -0.06
+  },
+  {
+   "fala": "calma",
+   "tipo": "whoosh",
+   "desloca": -0.38
+  },
+  {
+   "fala": "calma",
+   "tipo": "impacto",
+   "palavra": 12
+  },
+  {
+   "fala": "fazer",
+   "tipo": "whoosh",
+   "desloca": -0.38
+  },
+  {
+   "fala": "fazer",
+   "tipo": "pop",
+   "palavra": 4,
+   "desloca": -0.06
+  },
+  {
+   "fala": "fazer",
+   "tipo": "pop",
+   "palavra": 9,
+   "desloca": -0.06
+  },
+  {
+   "fala": "fazer",
+   "tipo": "pop",
+   "palavra": 14,
+   "desloca": -0.06
+  },
+  {
+   "fala": "fim",
+   "tipo": "whoosh",
+   "desloca": -0.38
+  },
+  {
+   "fala": "fim",
+   "tipo": "pop",
+   "palavra": 9,
+   "desloca": -0.06
+  }
+ ]
+}
