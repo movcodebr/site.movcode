@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CKRK3S37W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        // LGPD: o Analytics só grava cookies depois do "Aceitar" no aviso de cookies (a escolha fica no navegador)
+        gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+        try { if (localStorage.getItem('movcode_cookies') === 'aceito') gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted' }); } catch (e) {}
+        // o cookie dura 400 dias, o máximo que os navegadores aceitam (sem isso o Firefox avisa que cortou a validade)
+        gtag('config', 'G-1CKRK3S37W', { cookie_domain: 'none', cookie_flags: 'SameSite=Lax;Secure', cookie_expires: 34560000 });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Chegando de outra pagina do site: comeca coberto de laranja (transicao)
+        try {
+            if (sessionStorage.getItem('movcode_transicao') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.documentElement.classList.add('chegando');
+            }
+        } catch (e) {}
+    </script>
+    <title>Golpe do QR Code trocado: proteja o Pix da sua loja | Blog da MovCode</title>
+    <meta name="description" content="A Febraban alertou para QR Codes falsos colados sobre os verdadeiros. Veja como o golpe funciona e o que fazer antes da Black Friday.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#111214">
+    <link rel="canonical" href="https://movcode.com.br/blog/golpe-do-qr-code-trocado-proteja-o-pix-da-sua-loja">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="MovCode">
+    <meta property="og:title" content="Golpe do QR Code trocado: proteja o Pix da sua loja | Blog da MovCode">
+    <meta property="og:description" content="A Febraban alertou para QR Codes falsos colados sobre os verdadeiros. Veja como o golpe funciona e o que fazer antes da Black Friday.">
+    <meta property="og:url" content="https://movcode.com.br/blog/golpe-do-qr-code-trocado-proteja-o-pix-da-sua-loja">
+    <meta property="og:image" content="https://movcode.com.br/assets/images/og/movcode-og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="MovCode: tecnologia do tamanho do seu negócio">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/images/icons/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="/assets/images/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/interna.css">
+    <link rel="stylesheet" href="/assets/css/blog.css">
+    <script>
+        // Antes de pintar: esconde o titulo para o script revelar (so com movimento)
+        try {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anima-pre');
+        } catch (e) {}
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Golpe do QR Code trocado: proteja o Pix da sua loja",
+        "description": "A Febraban alertou para QR Codes falsos colados sobre os verdadeiros. Veja como o golpe funciona e o que fazer antes da Black Friday.",
+        "url": "https://movcode.com.br/blog/golpe-do-qr-code-trocado-proteja-o-pix-da-sua-loja",
+        "mainEntityOfPage": "https://movcode.com.br/blog/golpe-do-qr-code-trocado-proteja-o-pix-da-sua-loja",
+        "datePublished": "2026-11-09",
+        "dateModified": "2026-11-09",
+        "inLanguage": "pt-BR",
+        "image": "https://movcode.com.br/assets/images/og/movcode-og.png",
+        "author": {
+            "@type": "Organization",
+            "@id": "https://movcode.com.br/#empresa",
+            "name": "MovCode",
+            "url": "https://movcode.com.br/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://movcode.com.br/assets/images/icons/icon-512.png"
+            }
+        },
+        "publisher": {
+            "@type": "Organization",
+            "@id": "https://movcode.com.br/#empresa",
+            "name": "MovCode",
+            "url": "https://movcode.com.br/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://movcode.com.br/assets/images/icons/icon-512.png"
+            }
+        }
+    }
+    </script>
+</head>
+<body class="home interna">
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+    <header class="topo">
+        <div class="wrap">
+            <a href="/" class="marca" aria-label="MovCode, página inicial">
+                <span class="duo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>
+                <span>Mov<span class="code">Code</span><span class="ponto">.</span></span>
+            </a>
+            <button class="menu-botao" type="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
+                <svg class="abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            </button>
+            <nav id="menu" class="menu" aria-label="Navegação principal">
+                <div class="menu-item">
+                    <button class="menu-gatilho" type="button" aria-expanded="false" aria-controls="menu-solucoes">Soluções <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+                    <div class="menu-painel" id="menu-solucoes">
+                        <div class="menu-coluna">
+                            <p class="menu-titulo">Serviços</p>
+                            <a href="/criacao-de-sites">Criação de sites</a>
+                            <a href="/sistema-para-mercadinho">Sistema para comércio</a>
+                            <a href="/automacoes">Automações</a>
+                            <a href="/integracoes">Integrações</a>
+                            <a href="/paineis">Painéis</a>
+                            <a href="/consultoria">Consultoria</a>
+                        </div>
+                        <div class="menu-coluna">
+                            <p class="menu-titulo">Produtos</p>
+                            <a href="https://www.forlabs.com.br" target="_blank" rel="noopener">ForLabs <span class="menu-externo" aria-hidden="true">↗</span></a>
+                            <a href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Lojinha Pronta <span class="menu-externo" aria-hidden="true">↗</span></a>
+                            <a href="/sistema-para-condominio">ForCondom <span class="rodape-breve">Em breve</span></a>
+                            <a href="/sistema-para-barbearia">ForBarber <span class="rodape-breve">Em breve</span></a>
+                            <a href="/cardapio-digital">Pratuca <span class="rodape-breve">Em breve</span></a>
+                        </div>
+                        <a class="menu-destaque" href="/sua-pagina">
+                            <span class="menu-destaque-visual" aria-hidden="true">
+                                <span class="menu-palco"><span class="mc-tel"><span class="mc-tela"><span class="mc-rolo">
+                                    <span class="mc-topo"><b class="mc-logo">B</b><span class="mc-nome">Barbearia do João</span></span>
+                                    <span class="mc-hero"><span class="mc-titulo">Corte e barba no seu horário.</span><span class="mc-texto">Ambiente tranquilo e horário marcado, sem fila.</span><span class="mc-botao">Agendar pelo WhatsApp</span><span class="mc-aberto"><i></i>Aberto hoje até 20h</span></span>
+                                    <span class="mc-foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></svg></span>
+                                    <span class="mc-precos"><span class="mc-precos-titulo">Serviços e preços</span><span class="mc-linha">Corte<b>R$ 40</b></span><span class="mc-linha">Barba<b>R$ 30</b></span><span class="mc-linha">Corte + barba<b>R$ 60</b></span></span>
+                                </span></span></span></span>
+                                <span class="mc-barra"><svg class="mc-paleta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.6-.7 1.6-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.7-1.7 1.7-1.7h2c3 0 5.5-2.5 5.5-5.5C22 6 17.5 2 12 2z"/><circle cx="7.5" cy="10.5" r="1.2"/><circle cx="10.5" cy="6.5" r="1.2"/><circle cx="15.5" cy="7" r="1.2"/></svg><i class="mc-div"></i><i class="mc-c"></i><i class="mc-c"></i><i class="mc-c"></i><i class="mc-c"></i><b class="mc-anel"></b><span class="mc-cursor"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2.5v16.2l4.3-4.1 2.9 6.6 2.6-1.1-2.9-6.5 6-.3z" fill="#FFFFFF" stroke="#111214" stroke-width="1.6" stroke-linejoin="round"/></svg></span></span>
+                            </span>
+                            <span class="menu-destaque-texto">
+                                <strong>Sua página</strong>
+                                <span>Monte a prévia da página do seu negócio: escolha as cores, edite os textos e veja como fica no celular.</span>
+                                <em>Montar agora <i aria-hidden="true">→</i></em>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <a href="/produtos">Produtos</a>
+                <a href="/sobre">Sobre</a>
+                <a href="/#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-anel" aria-hidden="true"><span></span></div>
+
+    <div class="i-progresso" aria-hidden="true"></div>
+
+    <main id="conteudo">
+        <section class="i-hero escuro i-hero-compacto bl-guia-topo">
+            <div class="wrap">
+                <div class="i-hero-texto">
+                    <a class="bl-voltar i-entra" href="/blog/" data-cta="blog_voltar"><span aria-hidden="true">←</span> Voltar ao&nbsp;blog</a>
+                    <h1 class="h-grande gigante i-titulo">Golpe do&nbsp;QR&nbsp;Code trocado: proteja o&nbsp;Pix da&nbsp;sua&nbsp;loja</h1>
+                    <p class="i-hero-sub i-entra">A&nbsp;Febraban alertou para QR&nbsp;Codes falsos colados sobre os&nbsp;verdadeiros. Veja como o&nbsp;golpe funciona e&nbsp;o&nbsp;que fazer antes da&nbsp;Black&nbsp;Friday.</p>
+                    <p class="bl-meta i-entra">Notícias · Publicado em <time datetime="2026-11-09">9 de&nbsp;novembro de&nbsp;2026</time> · 4 min de&nbsp;leitura</p>
+                </div>
+                <div class="bl-guia-capa bl-cartao-seguranca i-entra">
+                        <svg class="bl-ilustra bl-ilustra-seguranca" viewBox="0 0 400 300" aria-hidden="true">
+                            <rect x="40" y="70" width="190" height="150" rx="12" fill="#FFFFFF" stroke="#E3E0DA" stroke-width="2"/>
+                            <rect x="58" y="92" width="80" height="8" rx="4" fill="#111214"/>
+                            <rect x="58" y="114" width="154" height="24" rx="6" fill="#F4F4F2"/><text x="68" y="131" class="bl-senha">• • • • • • • •</text>
+                            <rect x="58" y="148" width="154" height="24" rx="6" fill="#F4F4F2"/><rect x="68" y="158" width="58" height="6" rx="3" fill="#C9CCD3"/>
+                            <rect x="58" y="184" width="70" height="20" rx="10" fill="#111214"/>
+                            <g class="bl-escudo">
+                                <path d="M290 54l70 24v54c0 46-30 78-70 94-40-16-70-48-70-94V78z" fill="#1F8A5B"/>
+                                <path d="M290 72l52 18v42c0 34-22 58-52 72z" fill="#25A36C"/>
+                                <rect x="268" y="128" width="44" height="36" rx="6" fill="#FFFFFF"/>
+                                <path d="M278 128v-10a12 12 0 0 1 24 0v10" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+                                <circle cx="290" cy="144" r="5" fill="#1F8A5B"/><rect x="288" y="146" width="4" height="10" rx="2" fill="#1F8A5B"/>
+                            </g>
+                            <g class="bl-alerta"><path d="M200 230l22-38 22 38z" fill="#FFB547"/><rect x="220" y="204" width="4" height="12" rx="2" fill="#111214"/><circle cx="222" cy="222" r="2.5" fill="#111214"/></g>
+                        </svg>
+                </div>
+            </div>
+        </section>
+
+        <section class="i-artigo bl-leitura">
+            <div class="wrap bl-leitura-grade">
+                <nav class="bl-indice" aria-label="Neste texto">
+                    <p>Neste texto</p>
+                    <ol>
+                        <li><a href="#o-que-esta-acontecendo">O&nbsp;que está acontecendo</a></li>
+                        <li><a href="#por-que-isso-importa-para-quem-tem-um-pequeno-negocio">Por que isso importa para quem tem um&nbsp;pequeno&nbsp;negócio</a></li>
+                        <li><a href="#o-que-fazer-agora">O&nbsp;que fazer&nbsp;agora</a></li>
+                        <li><a href="#resumindo">Resumindo</a></li>
+                        <li><a href="#fontes">Fontes</a></li>
+                    </ol>
+                </nav>
+                <article>
+                    <p>Em&nbsp;20 de&nbsp;outubro, a&nbsp;Febraban, a&nbsp;federação que reúne os&nbsp;bancos, fez um&nbsp;alerta sobre um&nbsp;golpe que mira o&nbsp;pagamento por QR&nbsp;Code. Criminosos trocam o&nbsp;código verdadeiro por um&nbsp;falso, e&nbsp;o&nbsp;Pix que deveria cair na&nbsp;conta da&nbsp;loja vai para a&nbsp;conta de&nbsp;uma quadrilha. Com a&nbsp;Black Friday chegando, vale olhar com atenção para o&nbsp;QR&nbsp;Code do&nbsp;seu&nbsp;balcão.</p>
+                    <h2 id="o-que-esta-acontecendo">O&nbsp;que está acontecendo</h2>
+                    <p>O&nbsp;golpe tem até nome: <strong>quishing</strong>, uma mistura de&nbsp;QR&nbsp;Code com phishing, que é&nbsp;a&nbsp;"pescaria" de&nbsp;dados pela internet. Segundo a&nbsp;Febraban, o&nbsp;criminoso adultera ou&nbsp;cria um&nbsp;QR&nbsp;Code falso para direcionar o&nbsp;pagamento para contas controladas por&nbsp;ele.</p>
+                    <p>Nas lojas físicas, o&nbsp;truque é&nbsp;simples. De&nbsp;acordo com o&nbsp;alerta, golpistas colam adesivos com QR&nbsp;Codes falsos por cima dos códigos verdadeiros em&nbsp;bares, restaurantes, feiras, estacionamentos e&nbsp;outros pontos comerciais. O&nbsp;cliente acha que está pagando o&nbsp;estabelecimento, mas o&nbsp;dinheiro vai direto para o&nbsp;golpista.</p>
+                    <p>O&nbsp;alerta também cita boletos impressos e&nbsp;sites falsos que imitam lojas conhecidas. A&nbsp;Febraban lembra que o&nbsp;código falso pode substituir o&nbsp;verdadeiro sem que o&nbsp;resto da&nbsp;página ou&nbsp;do&nbsp;papel mude, o&nbsp;que torna a&nbsp;troca difícil de&nbsp;perceber.</p>
+                    <h2 id="por-que-isso-importa-para-quem-tem-um-pequeno-negocio">Por que isso importa para quem tem um&nbsp;pequeno&nbsp;negócio</h2>
+                    <p>Quando o&nbsp;adesivo falso está no&nbsp;seu balcão, quem paga a&nbsp;conta é&nbsp;você. O&nbsp;cliente pagou, mas o&nbsp;dinheiro não entrou. Começa a&nbsp;discussão sobre quem deve o&nbsp;quê, e&nbsp;a&nbsp;loja ainda corre o&nbsp;risco de&nbsp;ficar com a&nbsp;fama de&nbsp;golpe.</p>
+                    <p>A&nbsp;época também pede atenção. O&nbsp;Procon do&nbsp;Distrito Federal está preparando uma operação especial para fiscalizar lojas físicas e&nbsp;virtuais durante a&nbsp;Black Friday. Segundo o&nbsp;órgão, foram 14.722 reclamações sobre compras presenciais e&nbsp;pela internet entre janeiro e&nbsp;27 de&nbsp;outubro de&nbsp;2026. Movimento maior no&nbsp;caixa significa mais gente pagando com pressa, e&nbsp;é&nbsp;nessa pressa que o&nbsp;golpe&nbsp;passa.</p>
+                    <p>A&nbsp;orientação da&nbsp;Febraban para quem paga é&nbsp;conferir, no&nbsp;aplicativo do&nbsp;banco, o&nbsp;nome de&nbsp;quem vai receber e&nbsp;o&nbsp;valor antes de&nbsp;confirmar. Raphael Mielle, diretor de&nbsp;Serviços e&nbsp;Segurança da&nbsp;federação, resume: essa verificação simples pode revelar a&nbsp;adulteração antes que o&nbsp;dinheiro seja transferido. Para o&nbsp;lojista, isso vira uma oportunidade: se&nbsp;o&nbsp;cliente souber qual nome deve aparecer, ele mesmo ajuda a&nbsp;barrar o&nbsp;golpe.</p>
+                    <h2 id="o-que-fazer-agora">O&nbsp;que fazer&nbsp;agora</h2>
+                    <ul>
+                        <li><strong>Confira seus QR&nbsp;Codes impressos todo dia.</strong> Passe a&nbsp;mão no&nbsp;display do&nbsp;balcão, nas mesas e&nbsp;nos cardápios. Desconfie de&nbsp;qualquer adesivo por cima, borda levantada ou&nbsp;código diferente do&nbsp;original.</li>
+                        <li><strong>Prefira o&nbsp;QR&nbsp;Code gerado na&nbsp;hora.</strong> O&nbsp;código que sai da&nbsp;maquininha ou&nbsp;do&nbsp;sistema de&nbsp;caixa para cada venda, já&nbsp;com o&nbsp;valor, é&nbsp;bem mais difícil de&nbsp;trocar do&nbsp;que um&nbsp;papel colado no&nbsp;balcão.</li>
+                        <li><strong>Mostre ao&nbsp;cliente o&nbsp;nome que deve aparecer.</strong> Uma plaquinha simples, como "Ao&nbsp;pagar, confira se&nbsp;aparece o&nbsp;nome da&nbsp;nossa empresa", ajuda o&nbsp;cliente a&nbsp;fazer a&nbsp;checagem que a&nbsp;Febraban recomenda.</li>
+                        <li><strong>Só&nbsp;libere a&nbsp;mercadoria com o&nbsp;dinheiro na&nbsp;conta.</strong> Confirme o&nbsp;recebimento no&nbsp;aplicativo ou&nbsp;no&nbsp;extrato, não pela tela do&nbsp;celular do&nbsp;cliente.</li>
+                        <li><strong>Se&nbsp;um&nbsp;cliente pagou para a&nbsp;conta errada, oriente rápido.</strong> A&nbsp;Febraban recomenda procurar o&nbsp;banco na&nbsp;hora, relatar o&nbsp;golpe e&nbsp;pedir a&nbsp;devolução pelo MED, o&nbsp;Mecanismo Especial de&nbsp;Devolução do&nbsp;Banco Central. Registrar boletim de&nbsp;ocorrência e&nbsp;guardar comprovantes também ajuda. A&nbsp;devolução não é&nbsp;garantida: depende da&nbsp;análise do&nbsp;caso e&nbsp;de&nbsp;ainda haver dinheiro na&nbsp;conta do&nbsp;golpista.</li>
+                        <li><strong>Venda on-line só&nbsp;pelos canais oficiais.</strong> Divulgue o&nbsp;endereço certo do&nbsp;seu site e&nbsp;das suas redes, porque a&nbsp;Febraban também alerta para sites falsos que imitam lojas conhecidas.</li>
+                    </ul>
+                    <h2 id="resumindo">Resumindo</h2>
+                    <p>O&nbsp;golpe do&nbsp;QR&nbsp;Code trocado desvia o&nbsp;Pix do&nbsp;cliente para a&nbsp;conta de&nbsp;criminosos, muitas vezes com um&nbsp;simples adesivo. Antes da&nbsp;Black Friday, revise seus códigos, prefira os&nbsp;gerados na&nbsp;hora, ensine o&nbsp;cliente a&nbsp;conferir o&nbsp;nome da&nbsp;loja e&nbsp;só&nbsp;entregue a&nbsp;mercadoria com o&nbsp;dinheiro na&nbsp;conta.</p>
+                    <h2 id="fontes">Fontes</h2>
+                    <ol class="bl-fontes">
+                        <li><a href="https://www.spacemoney.com.br/educacao-financeira/golpe-qr-code-falso-febraban" target="_blank" rel="noopener">Febraban alerta para fraude com QR&nbsp;Code adulterado</a>, SpaceMoney, 20 de&nbsp;outubro de&nbsp;2026</li>
+                        <li><a href="https://www.jornaldocomercio.com/economia/2026/10/1267712-golpe-do-qr-code-pode-desviar-pagamentos-por-boleto-e-pix.html" target="_blank" rel="noopener">Golpe do&nbsp;QR&nbsp;Code pode desviar pagamentos por boleto e&nbsp;Pix</a>, Jornal do&nbsp;Comércio, 21 de&nbsp;outubro de&nbsp;2026</li>
+                        <li><a href="https://vozdosmunicipios.com.br/2026/10/23/febraban-alerta-para-golpes-em-pagamento-por-qr-code/" target="_blank" rel="noopener">Febraban alerta para golpes em&nbsp;pagamento por QR&nbsp;Code</a>, A&nbsp;Voz dos Municípios, 23 de&nbsp;outubro de&nbsp;2026</li>
+                        <li><a href="https://jornaldebrasilia.com.br/brasilia/black-friday-procon-df-alerta-para-golpes-e-precos-maquiados-nas-promocoes/" target="_blank" rel="noopener">Black Friday: Procon-DF alerta para golpes e&nbsp;preços maquiados nas promoções</a>, Jornal de&nbsp;Brasília, 8 de&nbsp;novembro de&nbsp;2026</li>
+                    </ol>
+                </article>
+            </div>
+        </section>
+
+        <section class="bl-guias bl-outros escuro" aria-labelledby="leia-tambem">
+            <div class="wrap">
+                <h2 id="leia-tambem" class="h-grande gigante">Leia <em>também.</em></h2>
+                <div class="bl-grade bl-grade-dois">
+                    <a class="bl-cartao bl-cartao-lei" href="/blog/nota-fiscal-de-servico-muda-para-empresas-do-simples" data-cta="blog_artigo_nota-fiscal-de-servico-muda-para-empresas-do-simples">
+                        <span class="bl-capa">
+                        <svg class="bl-ilustra bl-ilustra-lei" viewBox="0 0 400 300" aria-hidden="true">
+                            <g transform="rotate(-3 150 160)">
+                                <rect x="60" y="40" width="180" height="232" rx="8" fill="#FFFFFF" stroke="#E3E0DA" stroke-width="2"/>
+                                <rect x="82" y="66" width="110" height="10" rx="5" fill="#111214"/>
+                                <rect x="82" y="96" width="136" height="6" rx="3" fill="#C9CCD3"/><rect x="82" y="108" width="128" height="6" rx="3" fill="#C9CCD3"/><rect x="82" y="120" width="136" height="6" rx="3" fill="#C9CCD3"/>
+                                <rect x="82" y="140" width="120" height="6" rx="3" fill="#C9CCD3"/><rect x="82" y="152" width="136" height="6" rx="3" fill="#C9CCD3"/><rect x="82" y="164" width="96" height="6" rx="3" fill="#C9CCD3"/>
+                                <path d="M82 238c10-12 18 6 28-4s14-8 22 2" fill="none" stroke="#111214" stroke-width="2" stroke-linecap="round"/>
+                                <g class="bl-carimbo"><circle cx="196" cy="226" r="26" fill="none" stroke="#C2410C" stroke-width="4"/><circle cx="196" cy="226" r="18" fill="none" stroke="#C2410C" stroke-width="2"/><path d="M186 226l7 7 13-13" fill="none" stroke="#C2410C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+                            </g>
+                            <g class="bl-balanca-lei">
+                                <path d="M318 70v150M282 230h72" stroke="#111214" stroke-width="5" stroke-linecap="round"/>
+                                <g class="bl-braco"><path d="M276 92h84" stroke="#111214" stroke-width="5" stroke-linecap="round"/>
+                                <path d="M282 92l-16 40h32zM354 92l-16 40h32z" fill="none" stroke="#111214" stroke-width="2"/>
+                                <path d="M262 132a20 8 0 0 0 40 0z" fill="#F2C46D"/><path d="M334 132a20 8 0 0 0 40 0z" fill="#F2C46D"/></g>
+                                <circle cx="318" cy="68" r="7" fill="#111214"/>
+                            </g>
+                        </svg>
+                        </span>
+                        <span class="bl-cartao-texto">
+                            <h3 class="bl-cartao-titulo">Nota fiscal de&nbsp;serviço muda para empresas do&nbsp;Simples</h3>
+                            <span class="bl-cartao-resumo">Desde 1º de&nbsp;novembro, ME&nbsp;e&nbsp;EPP do&nbsp;Simples que prestam serviço emitem a&nbsp;NFS-e pelo Emissor Nacional. Veja o&nbsp;que mudou e&nbsp;o&nbsp;que fazer.</span>
+                            <span class="bl-cartao-pe"><span>Notícias · 4 min de&nbsp;leitura</span><span class="bl-ler">Ler <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+                        </span>
+                    </a>
+                    <a class="bl-cartao bl-cartao-seguranca" href="/blog/golpe-do-falso-pix-como-o-comerciante-se-protege" data-cta="blog_artigo_golpe-do-falso-pix-como-o-comerciante-se-protege">
+                        <span class="bl-capa">
+                        <svg class="bl-ilustra bl-ilustra-seguranca" viewBox="0 0 400 300" aria-hidden="true">
+                            <rect x="40" y="70" width="190" height="150" rx="12" fill="#FFFFFF" stroke="#E3E0DA" stroke-width="2"/>
+                            <rect x="58" y="92" width="80" height="8" rx="4" fill="#111214"/>
+                            <rect x="58" y="114" width="154" height="24" rx="6" fill="#F4F4F2"/><text x="68" y="131" class="bl-senha">• • • • • • • •</text>
+                            <rect x="58" y="148" width="154" height="24" rx="6" fill="#F4F4F2"/><rect x="68" y="158" width="58" height="6" rx="3" fill="#C9CCD3"/>
+                            <rect x="58" y="184" width="70" height="20" rx="10" fill="#111214"/>
+                            <g class="bl-escudo">
+                                <path d="M290 54l70 24v54c0 46-30 78-70 94-40-16-70-48-70-94V78z" fill="#1F8A5B"/>
+                                <path d="M290 72l52 18v42c0 34-22 58-52 72z" fill="#25A36C"/>
+                                <rect x="268" y="128" width="44" height="36" rx="6" fill="#FFFFFF"/>
+                                <path d="M278 128v-10a12 12 0 0 1 24 0v10" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+                                <circle cx="290" cy="144" r="5" fill="#1F8A5B"/><rect x="288" y="146" width="4" height="10" rx="2" fill="#1F8A5B"/>
+                            </g>
+                            <g class="bl-alerta"><path d="M200 230l22-38 22 38z" fill="#FFB547"/><rect x="220" y="204" width="4" height="12" rx="2" fill="#111214"/><circle cx="222" cy="222" r="2.5" fill="#111214"/></g>
+                        </svg>
+                        </span>
+                        <span class="bl-cartao-texto">
+                            <h3 class="bl-cartao-titulo">Golpe do&nbsp;falso Pix: como o&nbsp;comerciante se&nbsp;protege</h3>
+                            <span class="bl-cartao-resumo">Casos de&nbsp;outubro mostram lojas perdendo mercadoria por comprovante falso de&nbsp;Pix. Veja o&nbsp;que mudou nas regras e&nbsp;o&nbsp;que fazer no&nbsp;balcão.</span>
+                            <span class="bl-cartao-pe"><span>Notícias · 5 min de&nbsp;leitura</span><span class="bl-ler">Ler <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="i-chamada" aria-labelledby="chamada-titulo">
+            <div class="wrap">
+                <h2 id="chamada-titulo" class="i-chamada-titulo gigante">Bora resolver?</h2>
+                <div class="i-chamada-texto">
+                    <p>Conte o&nbsp;seu caso. O&nbsp;diagnóstico é&nbsp;gratuito, sem compromisso, e&nbsp;pode ser por chamada ou&nbsp;por&nbsp;mensagem.</p>
+                    <a href="/diagnostico" class="btn btn-acao" data-cta="blog_golpe-do-qr-code-trocado-proteja-o-pix-da-sua-loja" data-magnetico data-cursor="bora">Pedir diagnóstico grátis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <a href="https://wa.me/5516982157266" class="whats-flutuante" data-whatsapp data-cta="flutuante" aria-label="Falar com a MovCode pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></a>
+
+    <footer class="rodape">
+        <div class="wrap">
+            <div class="rodape-gigante" aria-hidden="true"><span class="duo duo-vivo" aria-hidden="true"><i><b></b><b></b></i><i><b></b><b></b></i></span>MovCode.</div>
+            <nav class="rodape-links" aria-label="Rodapé">
+                <div>
+                    <strong>Navegar</strong>
+                    <a href="/sobre">Sobre a MovCode</a>
+                    <a href="/produtos">Produtos</a>
+                    <a href="/#como-funciona">Como funciona</a>
+                    <a href="/sua-pagina">Sua página</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/#duvidas">Dúvidas</a>
+                    <a href="/diagnostico">Diagnóstico gratuito</a>
+                </div>
+                <div>
+                    <strong>Serviços</strong>
+                    <a href="/criacao-de-sites">Criação de sites</a>
+                    <a href="/sistema-para-mercadinho">Sistema para comércio</a>
+                    <a href="/automacoes">Automações</a>
+                    <a href="/integracoes">Integrações</a>
+                    <a href="/paineis">Painéis</a>
+                    <a href="/consultoria">Consultoria</a>
+                </div>
+                <div>
+                    <strong>Produtos</strong>
+                    <a href="https://www.forlabs.com.br" target="_blank" rel="noopener">ForLabs <span class="menu-externo" aria-hidden="true">↗</span></a>
+                    <a href="https://lojinhapronta.vercel.app" target="_blank" rel="noopener">Lojinha Pronta <span class="menu-externo" aria-hidden="true">↗</span></a>
+                    <a href="/sistema-para-condominio">ForCondom <span class="rodape-breve">Em breve</span></a>
+                    <a href="/sistema-para-barbearia">ForBarber <span class="rodape-breve">Em breve</span></a>
+                    <a href="/cardapio-digital">Pratuca <span class="rodape-breve">Em breve</span></a>
+                </div>
+                <div>
+                    <strong>Termos</strong>
+                    <a href="/politica">Política de Privacidade</a>
+                    <a href="/termo">Termos de Uso</a>
+                    <a href="/politica#direitos">Seus direitos (LGPD)</a>
+                    <a href="/politica#seguranca">Segurança dos dados</a>
+                    <button type="button" class="rodape-cookies" data-cookies>Preferências de cookies</button>
+                </div>
+            </nav>
+            <div class="rodape-base">
+                <p class="rodape-legal"><span>MovCode · Tecnologia do tamanho do seu negócio.</span> <span>Ribeirão Preto, SP · <a href="mailto:contato@movcode.com.br">contato@movcode.com.br</a></span></p>
+                <p class="rodape-copia">&copy; <span data-ano>2026</span> MovCode</p>
+                <div class="rodape-sociais">
+                    <a href="https://wa.me/5516982157266" data-whatsapp data-cta="rodape" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.24 8.23z"/></svg></a>
+                    <a href="https://www.instagram.com/mov.code/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+                    <a href="https://github.com/movcodebr" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a>
+                    <a href="mailto:contato@movcode.com.br" aria-label="E-mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/site.js"></script>
+    <script src="/assets/js/vendor/gsap.min.js"></script>
+    <script src="/assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="/assets/js/vendor/lenis.min.js"></script>
+    <script src="/assets/js/home.js"></script>
+    <script src="/assets/js/interna.js"></script>
+    <script src="/assets/js/blog.js"></script>
+</body>
+</html>
