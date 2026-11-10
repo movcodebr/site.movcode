@@ -8,8 +8,6 @@
 .sv-titulo { margin: 0; font-size: clamp(44px, 6.2vw, 100px); line-height: 0.9; letter-spacing: -0.035em; text-wrap: balance; }
 .sv-titulo em { font-style: normal; }
 .sv-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; }
-.sv-link { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 3px; border-bottom: 1.5px solid currentColor; color: inherit; font: 600 16px var(--f-texto); text-decoration: none; }
-.sv-link span, .sv-link svg { width: 1em; height: 1em; transition: transform 0.25s ease; }
 .sv-link:hover span { transform: translateY(3px); }
 .sv-link:hover svg { transform: translateX(4px); }
 .sv-sub { margin: 24px 0 34px; max-width: 44ch; font-size: clamp(17px, 1.35vw, 19px); line-height: 1.55; text-wrap: pretty; }

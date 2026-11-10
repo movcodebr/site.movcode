@@ -9,8 +9,7 @@
 .s-titulo { margin: 0; font-size: clamp(44px, 6.2vw, 100px); line-height: 0.9; letter-spacing: -0.035em; text-wrap: balance; }
 .s-titulo em { font-style: normal; color: var(--laranja-texto); }
 .s-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; }
-.s-link { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 3px; border-bottom: 1.5px solid currentColor; color: var(--tinta); font: 600 16px var(--f-texto); text-decoration: none; }
-.s-link span { transition: transform 0.25s ease; }
+.s-link { color: var(--tinta); }
 .s-link:hover span { transform: translateX(4px); }
 
 /* Peças do site de exemplo, usadas no topo e na anatomia */
@@ -202,6 +201,8 @@
 .s-btn-claro { background: var(--sobre-noite); color: var(--noite); }
 .s-btn-claro:hover { background: var(--laranja); color: var(--laranja-tinta-txt); }
 .s-caminho-nota { margin-top: 12px; font-size: 14px; opacity: 0.75; }
+/* sobre o laranja a nota precisa de mais tinta para passar de 4,5:1 */
+.s-caminho-pronta .s-caminho-nota { opacity: 0.9; }
 
 
 /* ---------- 4. Perguntas abertas ---------- */

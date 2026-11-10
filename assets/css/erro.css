@@ -51,6 +51,8 @@
 /* cada coisa é posicionada pelo centro (--x, --y) com o próprio tamanho (--w, --h).
    Sem transform: assim os olhos que brilham no escuro conseguem ficar por cima da escuridão */
 .l-obj { position: absolute; left: var(--x); top: var(--y); width: calc(var(--w) * var(--k)); height: calc(var(--h) * var(--k)); margin: calc(var(--h) * var(--k) / -2) 0 0 calc(var(--w) * var(--k) / -2); padding: 0; border: 0; background: none; color: inherit; font: inherit; }
+/* objetos pequenos (pilha, rato): area de toque minima de 24px sem mudar o desenho */
+.l-obj::after { content: ""; position: absolute; inset: 50% auto auto 50%; width: max(100%, 32px); height: max(100%, 32px); transform: translate(-50%, -50%); }
 button.l-obj, .l-gato, .l-caneca { cursor: pointer; }
 .l-fundo button:focus-visible { outline: 2px dashed #FFE08A; outline-offset: 5px; border-radius: 6px; }
 

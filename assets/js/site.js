@@ -122,10 +122,12 @@ document.querySelectorAll('[data-servico]').forEach((link) => {
     window.addEventListener('scroll', () => {
         const y = window.scrollY;
         const descendo = y > ultimoY && y > 240;
-        const segurando = document.body.classList.contains('menu-aberto') || topo?.querySelector('.menu-item.aberto');
+        const segurando = document.body.classList.contains('menu-aberto') || topo?.querySelector('.menu-item.aberto') || (topo?.contains(document.activeElement) && document.activeElement.matches(':focus-visible'));
         topo?.classList.toggle('escondido', descendo && !segurando);
         ultimoY = y;
     }, { passive: true });
+    // Foco de teclado dentro do cabecalho escondido: ele volta para a tela (WCAG 2.4.11)
+    topo?.addEventListener('focusin', () => topo.classList.remove('escondido'));
 
     if (!botao || !menu) {
         return;
@@ -144,7 +146,11 @@ document.querySelectorAll('[data-servico]').forEach((link) => {
     });
     menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', fechar));
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') fechar();
+        if (event.key !== 'Escape' || !document.body.classList.contains('menu-aberto')) return;
+        // o foco nao pode ficar preso num item que acabou de sumir: volta para o botao
+        const focoNoMenu = menu.contains(document.activeElement);
+        fechar();
+        if (focoNoMenu) botao.focus();
     });
     document.addEventListener('click', (event) => {
         if (document.body.classList.contains('menu-aberto') && !menu.contains(event.target) && !botao.contains(event.target)) {
@@ -157,6 +163,42 @@ document.querySelectorAll('[data-servico]').forEach((link) => {
 // WhatsApp ja preenchido.
 document.querySelectorAll('[data-lead-form]').forEach((form) => {
     const erro = form.querySelector('.form-erro');
+    const campoNome = form.querySelector('[name="nome"]');
+    const grupoServico = form.querySelector('.opcoes');
+    if (erro) erro.id = erro.id || `form-erro-${Math.random().toString(36).slice(2, 8)}`;
+
+    // Confirmacao depois do envio: o WhatsApp abre em outra aba, entao a pagina
+    // avisa o que aconteceu e oferece o link de novo caso nada tenha aberto.
+    const ok = document.createElement('p');
+    ok.className = 'form-ok';
+    ok.setAttribute('role', 'status');
+    ok.hidden = true;
+    form.querySelector('.form-nota')?.before(ok);
+
+    // marca (ou desmarca) um campo com problema e liga a mensagem a ele
+    const marcar = (alvo, invalido) => {
+        if (!alvo) return;
+        if (invalido) {
+            alvo.setAttribute('aria-invalid', 'true');
+            if (erro) alvo.setAttribute('aria-describedby', erro.id);
+        } else {
+            alvo.removeAttribute('aria-invalid');
+            if (erro && alvo.getAttribute('aria-describedby') === erro.id) alvo.removeAttribute('aria-describedby');
+        }
+    };
+    const botaoServico = () => form.querySelector('.opcoes-botao') || grupoServico;
+    const limparSeOk = () => {
+        const faltaNome = !String(campoNome?.value || '').trim();
+        const faltaServico = !form.querySelector('[name="servico"]:checked');
+        if (!faltaNome) marcar(campoNome, false);
+        if (!faltaServico) {
+            marcar(botaoServico(), false);
+            grupoServico?.classList.remove('invalido');
+        }
+        if (erro && !faltaNome && !faltaServico) erro.hidden = true;
+    };
+    campoNome?.addEventListener('input', limparSeOk);
+    form.addEventListener('change', limparSeOk);
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -167,10 +209,21 @@ document.querySelectorAll('[data-lead-form]').forEach((form) => {
         const servico = String(dados.get('servico') || '').trim();
         const mensagem = String(dados.get('mensagem') || '').trim();
 
+        marcar(campoNome, !nome);
+        marcar(botaoServico(), !servico);
+        grupoServico?.classList.toggle('invalido', !servico);
+
         if (!nome || !servico) {
-            if (erro) erro.hidden = false;
+            ok.hidden = true;
+            if (erro) {
+                // a mensagem diz exatamente o que falta
+                erro.textContent = !nome && !servico
+                    ? 'Falta o seu nome e escolher o que você precisa.'
+                    : !nome ? 'Falta o seu nome para a gente saber com quem fala.' : 'Escolha o que você precisa na lista.';
+                erro.hidden = false;
+            }
             if (!nome) {
-                form.querySelector('[name="nome"]')?.focus();
+                campoNome?.focus();
             } else if (form.querySelector('.opcoes-botao')) {
                 form.querySelector('.opcoes-menu')?.abrirMenu();
             } else {
@@ -199,6 +252,9 @@ document.querySelectorAll('[data-lead-form]').forEach((form) => {
 
         if (janela) {
             janela.opener = null;
+            ok.innerHTML = 'Pronto! Sua mensagem abriu no&nbsp;WhatsApp, é&nbsp;só tocar em enviar. Não abriu? <a target="_blank" rel="noopener">Abrir o&nbsp;WhatsApp de&nbsp;novo</a>.';
+            ok.querySelector('a').href = url;
+            ok.hidden = false;
         } else {
             window.location.href = url;
         }

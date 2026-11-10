@@ -274,7 +274,9 @@ html.anima .h-escala-progresso {
 .h-card-icone { width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; background: var(--noite); color: var(--laranja); transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
 .h-card-icone svg { width: 28px; height: 28px; }
 .h-card h3 { margin-top: auto; font: 800 clamp(30px, 2.8vw, 44px)/0.95 var(--f-display); font-stretch: 85%; letter-spacing: -0.03em; }
-.h-card p { color: var(--sobre-noite-2); transition: color .35s ease; }
+/* o titulo fica no pe do card: a descricao reserva duas linhas para os titulos
+   de uma mesma fileira ficarem na mesma altura (1 ou 2 linhas de texto) */
+.h-card p { min-height: 3.2em; min-height: 2lh; color: var(--sobre-noite-2); transition: color .35s ease; }
 /* Texto curvo atravessando o card (onda ou diagonal, alternados) */
 .h-card { position: relative; overflow: hidden; }
 .h-card > :not(.h-card-curva) { position: relative; z-index: 1; }
@@ -469,7 +471,8 @@ html.anima .h-escala-progresso {
     border: 1px solid var(--p-linha);
     transition: border-color .3s ease, transform .3s ease;
 }
-.h-breve-card:hover { border-color: var(--p-acento); transform: translateY(-4px); }
+/* o cartao nao e um link (os links sao os de dentro): so a borda acompanha, sem "levantar" */
+.h-breve-card:focus-within, .h-breve-card:has(a:hover) { border-color: var(--p-acento); }
 .h-breve-topo { margin-bottom: 6px; }
 .h-breve-selo { flex: none; padding: 4px 10px; border-radius: var(--r-pill); background: var(--p-selo-fundo); color: var(--p-selo-txt); font: 700 11px var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; }
 .h-breve-card .h-produto-marca { line-height: 1; }

@@ -19,6 +19,12 @@
     --laranja-tinta: #FFE4D8;   /* fundo de alerta pequeno (ex.: repor) */
     --sobre-primaria-2: #C9CBD1;    /* texto secundario sobre fundo grafite — 10,9:1 */
 
+    /* Estados (sempre com texto ou icone junto: a cor nunca fala sozinha) */
+    --erro: #B42318;            /* sobre branco — 6,6:1 */
+    --erro-fundo: #FEF3F2;
+    --sucesso: #067647;         /* sobre branco — 5,6:1 */
+    --sucesso-fundo: #ECFDF3;
+
     /* Superficies */
     --papel: #F4F4F2;
     --cartao: #FFFFFF;
@@ -117,6 +123,17 @@ section[id] { scroll-margin-top: 96px; }
 .escuro .btn-linha { border-color: var(--noite-linha); color: var(--sobre-noite); }
 .escuro .btn-linha:hover { border-color: var(--sobre-noite); }
 .btn-pequeno { min-height: 42px; padding: 9px 18px; font-size: 15px; }
+
+/* ---------- Link com seta (terciario) ----------
+   Um so componente para "Ver um dia no balcao ↓", "Ver os outros produtos →" etc.
+   Cada pagina so decide para onde a seta anda no hover. */
+:is(.sv-link, .eb-link, .c-link, .s-link) { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 3px; border-bottom: 1.5px solid currentColor; color: inherit; font: 600 16px var(--f-texto); text-decoration: none; }
+:is(.sv-link, .eb-link, .c-link) :is(span, svg) { width: 1em; height: 1em; transition: transform .25s ease; }
+.s-link span { transition: transform .25s ease; }
+/* Links de texto soltos: area de toque de pelo menos 44px de altura (WCAG 2.5.8)
+   sem mudar o desenho, com uma camada invisivel em volta do texto */
+:is(.sv-link, .eb-link, .c-link, .s-link, .h-caso-link, .h-breve-avise, .bl-voltar) { position: relative; }
+:is(.sv-link, .eb-link, .c-link, .s-link, .h-caso-link, .h-breve-avise, .bl-voltar)::after { content: ""; position: absolute; inset: -12px -6px; }
 
 /* ---------- Cabecalho: capsula flutuante ---------- */
 .topo {
@@ -549,10 +566,11 @@ html.chegando body::before {
     border: 1.5px solid var(--linha);
     border-radius: var(--r-sm);
     padding: 13px 14px;
-    transition: border-color .2s ease, background-color .2s ease;
+    transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
 }
 .campo textarea { resize: vertical; min-height: 92px; }
 .campo input::placeholder, .campo textarea::placeholder { color: var(--tinta-3); }
+.campo :is(input, select, textarea):hover { border-color: var(--linha-forte); }
 .campo input:focus, .campo select:focus, .campo textarea:focus { outline: none; border-color: var(--primaria); background: var(--cartao); }
 .opcoes { display: flex; flex-wrap: wrap; gap: 8px; border: 0; padding: 0; margin: 0; }
 .opcoes legend { font-size: 15px; font-weight: 700; margin-bottom: 8px; padding: 0; }
@@ -624,7 +642,17 @@ html.chegando body::before {
 .form .opcoes.opcoes-menu input:checked + span { background: var(--realce); border-color: transparent; color: var(--tinta); }
 .form .opcoes.opcoes-menu input:checked + span::before { border-color: var(--laranja); background: radial-gradient(circle, var(--laranja) 0 40%, transparent 45%); }
 .form .opcoes.opcoes-menu input:focus-visible + span { outline: 3px solid var(--primaria); outline-offset: -3px; }
-.form-erro { color: #B42318; font-size: 15px; font-weight: 600; }
+.form-erro { display: flex; align-items: flex-start; gap: 8px; color: var(--erro); font-size: 15px; font-weight: 600; line-height: 1.4; }
+.form-erro[hidden], .form-ok[hidden] { display: none; }
+.form-erro::before { content: "!"; flex: none; display: grid; place-items: center; width: 20px; height: 20px; margin-top: 0.5px; border-radius: 50%; background: var(--erro); color: #fff; font: 800 13px/1 var(--f-texto); }
+/* campo com problema: borda e fundo de erro (alem da mensagem) */
+.campo :is(input, textarea)[aria-invalid="true"], .opcoes-botao[aria-invalid="true"] { border-color: var(--erro); background: var(--erro-fundo); }
+.opcoes.invalido:not(.opcoes-menu) span { border-color: var(--erro); }
+/* foco dos campos: alem da borda escura, um anel suave (o foco nao some no campo com erro) */
+.campo :is(input, select, textarea):focus, .opcoes-botao:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--primaria) 14%, transparent); }
+.campo :is(input, textarea)[aria-invalid="true"]:focus, .opcoes-botao[aria-invalid="true"]:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--erro) 22%, transparent); }
+.form-ok { padding: 12px 14px; border-radius: var(--r-sm); background: var(--sucesso-fundo); color: var(--sucesso); font-size: 15px; font-weight: 600; line-height: 1.45; }
+.form-ok a { color: inherit; }
 .form .btn { width: 100%; }
 .form-nota { font-size: 13px; color: var(--tinta-3); line-height: 1.5; }
 .form-nota a { color: var(--tinta-2); }

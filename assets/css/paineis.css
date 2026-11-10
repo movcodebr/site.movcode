@@ -97,7 +97,7 @@
 .pa-w-vis { flex: 1; display: grid; align-content: center; gap: 12px; min-height: 150px; margin-bottom: 18px; padding: 16px; border-radius: 16px; background: #171D2A; font-size: 14px; }
 .pa-w h3 { margin: 0; font: 800 21px/1.1 var(--f-display); font-stretch: 90%; letter-spacing: -0.02em; }
 .pa-w p { margin: 8px 0 0; color: #A7B0C2; font-size: 15px; line-height: 1.55; }
-.pa-w-numeros { display: flex; gap: 28px; }
+.pa-w-numeros { display: flex; flex-wrap: wrap; gap: 12px clamp(16px, 5vw, 28px); }
 .pa-w-numeros span { display: grid; gap: 2px; }
 .pa-w-numeros small, .pa-estoque small, .pa-mini-cel small { color: #8A94A8; font-size: 12px; font-weight: 600; }
 .pa-w-numeros b { font: 800 26px/1 var(--f-display); font-variant-numeric: tabular-nums; }
@@ -177,4 +177,6 @@
 @media (prefers-reduced-motion: reduce) {
     .pa-vivo i, .pa-girando svg, .pa-total span i, .pa-mesa[data-passo="1"] .pa-fonte svg { animation: none; }
     .pa-folha, .pa-total, .pa-fonte, .pa-passo { transition: none; }
+    /* sem a rolagem guiada, todos os passos ficam legiveis */
+    .pa-passo { opacity: 1; }
 }

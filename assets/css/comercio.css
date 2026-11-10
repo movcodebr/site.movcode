@@ -10,8 +10,6 @@
 .c-titulo { margin: 0; font-size: clamp(44px, 6.2vw, 100px); line-height: 0.9; letter-spacing: -0.035em; text-wrap: balance; }
 .c-titulo em { font-style: normal; }
 .c-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; }
-.c-link { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 3px; border-bottom: 1.5px solid currentColor; color: inherit; font: 600 16px var(--f-texto); text-decoration: none; }
-.c-link span, .c-link svg { width: 1em; height: 1em; transition: transform 0.25s ease; }
 .c-link:hover span { transform: translateY(3px); }
 .c-link:hover svg { transform: translateX(4px); }
 /* botão escuro sobre o laranja (topo e fechamento) */
@@ -115,7 +113,7 @@
 .c-ui-topo small { padding: 4px 10px; border-radius: 999px; background: #F2F1EE; color: #50535B; font-size: 12px; font-weight: 600; }
 .c-ui-lista { margin: 0; padding: 0; list-style: none; }
 .c-ui-lista li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid #EEECE8; }
-.c-ui-lista small { color: #8A8D94; font: 600 12px var(--f-mono); }
+.c-ui-lista small { color: var(--tinta-3); font: 600 12px var(--f-mono); }
 .c-ui-lista b { font-weight: 700; white-space: nowrap; }
 .c-ui-pe { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 4px; padding-top: 12px; border-top: 1px dashed #D9D6CF; color: #50535B; }
 .c-ui-pe b { color: #16181D; font: 800 20px var(--f-display); white-space: nowrap; }
@@ -135,7 +133,7 @@
 .c-ui-alerta-leve { background: #F6F5F2; color: #50535B; }
 .c-ui-pedidos li, .c-ui-conta li { grid-template-columns: minmax(0, 1fr) auto; }
 .c-status { padding: 4px 10px; border-radius: 999px; font-size: 12px; font-style: normal; font-weight: 700; white-space: nowrap; }
-.c-status-ok { background: #DDF1E4; color: #15803D; }
+.c-status-ok { background: #DDF1E4; color: #166534; }
 .c-status-falta { background: #FFF0C7; color: #7A5200; }
 .c-status-novo { background: #EEF0F4; color: #50535B; }
 .c-ui-barras { display: grid; gap: 12px; margin: 6px 0 0; padding: 0; list-style: none; }

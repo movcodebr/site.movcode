@@ -152,7 +152,11 @@ html.anima .i-progresso { display: block; position: fixed; top: 0; left: 0; righ
 
 .i-legal { padding-top: clamp(56px, 7vw, 104px); }
 .i-legal-grade { display: grid; grid-template-columns: 250px minmax(0, 780px); gap: clamp(32px, 6vw, 96px); align-items: start; }
-.i-legal article { gap: 0; font-size: 18px; }
+/* coluna minmax(0, 1fr) e quebra de palavra longa (e-mail, "manutencao/hospedagem"):
+   sem isso, em 320px o texto empurrava a pagina para o lado */
+.i-legal article { grid-template-columns: minmax(0, 1fr); gap: 0; font-size: 18px; overflow-wrap: break-word; }
+.i-legal article > * { min-width: 0; }
+.i-legal-fim .btn { max-width: 100%; overflow-wrap: break-word; text-align: center; }
 .i-legal section { position: relative; display: grid; gap: 16px; padding: 48px 0; border-top: 1px solid var(--linha); }
 .i-legal-ancora { position: absolute; top: -56px; }
 .i-legal section:first-child { padding-top: 0; border-top: 0; }
@@ -213,8 +217,8 @@ html.anima .i-progresso { display: block; position: fixed; top: 0; left: 0; righ
 .i-origem-palavra { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.25em; font: 800 clamp(72px, 14vw, 230px)/0.86 var(--f-display); font-stretch: 75%; letter-spacing: -0.05em; }
 .i-origem-antes { font-size: 0.4em; color: var(--tinta-2); }
 /* os pingos dos dois "i" se encostam com o espacamento apertado da fonte */
-.i-origem-ii { display: inline-block; color: var(--laranja); letter-spacing: 0.02em; }
-.i-origem-depois em { font-style: normal; color: var(--laranja); }
+.i-origem-ii { display: inline-block; color: var(--logo-code); letter-spacing: 0.02em; }
+.i-origem-depois em { font-style: normal; color: var(--logo-code); }
 .i-origem-legendas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px) clamp(32px, 5vw, 72px); margin: 0; padding: 0; list-style: none; }
 .i-origem-legendas p { max-width: 34em; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.5; text-wrap: pretty; }
 
@@ -250,7 +254,7 @@ html.anima .i-origem-legendas p { max-width: 36ch; margin: 0 auto; font-size: cl
 /* No que a gente acredita: a frase em letra gigante e o porque embaixo */
 .i-acredita { background: var(--papel); color: var(--tinta); padding: var(--secao) 0; }
 .i-acredita-frase { max-width: 15ch; font-size: clamp(48px, 7.4vw, 128px); font-stretch: 75%; letter-spacing: -0.045em; }
-.i-acredita-frase em { font-style: normal; color: var(--laranja); }
+.i-acredita-frase em { font-style: normal; color: var(--logo-code); }
 .i-acredita-texto { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 64px); max-width: 1040px; margin-top: clamp(40px, 6vw, 80px); }
 .i-acredita-texto p { color: var(--tinta-2); font-size: clamp(18px, 1.5vw, 22px); line-height: 1.55; text-wrap: pretty; }
 
@@ -334,7 +338,6 @@ html.anima .i-origem-legendas p { max-width: 36ch; margin: 0 auto; font-size: cl
 .i-entregas .h-grande { margin-bottom: clamp(40px, 6vw, 72px); }
 .i-entregas-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .i-entrega { display: grid; gap: 14px; align-content: start; padding: clamp(26px, 3vw, 40px); border: 1px solid var(--noite-linha); border-radius: var(--r-xl); background: var(--noite-2); transition: border-color 0.3s ease, transform 0.3s ease; }
-.i-entrega:hover { border-color: color-mix(in srgb, var(--laranja) 60%, transparent); transform: translateY(-4px); }
 .i-entrega-icone { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 8px; border-radius: 16px; background: var(--laranja); color: var(--noite); }
 .i-entrega-icone svg { width: 26px; height: 26px; }
 .i-entrega h3 { font: 800 clamp(32px, 3.4vw, 52px)/0.95 var(--f-display); font-stretch: 78%; letter-spacing: -0.035em; }

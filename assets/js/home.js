@@ -38,8 +38,19 @@
     function dividir(el, modo) {
         if (!el || el.dataset.dividido) return el;
         el.dataset.dividido = modo;
-        if (!el.getAttribute('aria-label')) {
-            el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+        // As pecas ficam aria-hidden; o leitor de tela le o texto inteiro.
+        // aria-label so vale em titulos: em <p>/<div> ele e proibido e ignorado,
+        // entao nesses o texto vai num trecho so para leitor de tela.
+        const texto = el.textContent.replace(/\s+/g, ' ').trim();
+        let leitor = null;
+        if (el.closest('[aria-hidden="true"]') || el.getAttribute('aria-label')) {
+            // ja escondido ou ja nomeado
+        } else if (/^H[1-6]$/.test(el.tagName)) {
+            el.setAttribute('aria-label', texto);
+        } else {
+            leitor = document.createElement('span');
+            leitor.className = 'sr';
+            leitor.textContent = texto;
         }
         const percorrer = (no) => {
             [...no.childNodes].forEach((filho) => {
@@ -88,6 +99,7 @@
             });
         };
         percorrer(el);
+        if (leitor) el.appendChild(leitor);
         return el;
     }
 

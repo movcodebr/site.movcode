@@ -23,8 +23,6 @@
 .eb .btn-acao { background: var(--p-botao); color: var(--p-botao-txt); }
 .eb .btn-acao:hover { background: var(--p-botao-hover); }
 .eb :focus-visible { outline-color: var(--p-foco); }
-.eb-link { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 3px; border-bottom: 1.5px solid currentColor; color: inherit; font: 600 16px var(--f-texto); text-decoration: none; }
-.eb-link svg, .eb-link span { width: 1em; height: 1em; transition: transform 0.25s ease; }
 .eb-link:hover svg, .eb-link:hover span { transform: translateX(4px); }
 
 /* a cena */
