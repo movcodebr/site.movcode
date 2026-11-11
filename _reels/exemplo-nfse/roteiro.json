@@ -1,61 +1,92 @@
 {
- "bpm": 118,
- "final": 2.6,
+ "bpm": 108,
+ "velocidade": 1.3,
+ "final": 3.0,
  "falas": [
   {
    "id": "gancho",
    "tts": "Tem empresa no Simples e presta serviço?",
    "legenda": "Tem empresa no Simples e presta serviço?",
-   "pausa": 0.15
+   "pausa": 0.45
   },
   {
    "id": "mudou",
    "tts": "Então presta atenção: a sua nota fiscal mudou.",
    "legenda": "Então presta atenção: a sua nota fiscal mudou.",
-   "pausa": 0.3
+   "pausa": 0.6
   },
   {
    "id": "data",
    "tts": "Desde primeiro de novembro, a nota de serviço sai pelo Emissor Nacional.",
    "legenda": "Desde 1º de novembro, a nota de serviço sai pelo Emissor Nacional.",
-   "pausa": 0.25
+   "pausa": 0.6
   },
   {
-   "id": "troca",
-   "tts": "Em muitas cidades, era no site da prefeitura. Agora, é num sistema único do governo.",
-   "legenda": "Em muitas cidades, era no site da prefeitura. Agora, é num sistema único do governo.",
-   "pausa": 0.25
+   "id": "troca1",
+   "tts": "Em muitas cidades, ela era feita no site da prefeitura.",
+   "legenda": "Em muitas cidades, ela era feita no site da prefeitura.",
+   "pausa": 0.35
+  },
+  {
+   "id": "troca2",
+   "tts": "Agora, é num sistema único do governo.",
+   "legenda": "Agora, é num sistema único do governo.",
+   "pausa": 0.6
   },
   {
    "id": "jeitos",
    "tts": "Dá pra emitir pelo navegador, ou direto do sistema da sua empresa.",
    "legenda": "Dá pra emitir pelo navegador, ou direto do sistema da sua empresa.",
-   "pausa": 0.3
+   "pausa": 0.6
   },
   {
    "id": "calma",
    "tts": "E calma: os impostos novos da reforma só chegam ao Simples em dois mil e vinte e sete.",
    "legenda": "E calma: os impostos novos da reforma só chegam ao Simples em 2027.",
-   "pausa": 0.3
+   "pausa": 0.6
   },
   {
-   "id": "fazer",
-   "tts": "O que fazer agora? Fale com o seu contador. Emita uma nota de teste. E pergunte se o seu sistema já está pronto.",
-   "legenda": "O que fazer agora? Fale com o seu contador. Emita uma nota de teste. E pergunte se o seu sistema já está pronto.",
-   "pausa": 0.3
+   "id": "fazer0",
+   "tts": "O que fazer agora?",
+   "legenda": "O que fazer agora?",
+   "pausa": 0.35
   },
   {
-   "id": "fim",
-   "tts": "A explicação completa está no blog da Mov Code. Segue a gente pra não perder a próxima.",
-   "legenda": "A explicação completa está no blog da MovCode. Segue a gente pra não perder a próxima.",
+   "id": "fazer1",
+   "tts": "Fale com o seu contador.",
+   "legenda": "Fale com o seu contador.",
+   "pausa": 0.35
+  },
+  {
+   "id": "fazer2",
+   "tts": "Emita uma nota de teste.",
+   "legenda": "Emita uma nota de teste.",
+   "pausa": 0.35
+  },
+  {
+   "id": "fazer3",
+   "tts": "E pergunte se o seu sistema já está pronto.",
+   "legenda": "E pergunte se o seu sistema já está pronto.",
+   "pausa": 0.6
+  },
+  {
+   "id": "fim1",
+   "tts": "A explicação completa está no blog da Mov Code.",
+   "legenda": "A explicação completa está no blog da MovCode.",
+   "pausa": 0.35
+  },
+  {
+   "id": "fim2",
+   "tts": "Segue a gente pra não perder a próxima.",
+   "legenda": "Segue a gente pra não perder a próxima.",
    "pausa": 0.1
   }
  ],
  "efeitos": [
   {
    "fala": "gancho",
-   "tipo": "impacto",
-   "desloca": -0.05
+   "tipo": "whoosh",
+   "desloca": -0.4
   },
   {
    "fala": "gancho",
@@ -66,23 +97,18 @@
   {
    "fala": "mudou",
    "tipo": "whoosh",
-   "desloca": -0.38
+   "desloca": -0.4
   },
   {
    "fala": "mudou",
    "tipo": "impacto",
-   "palavra": 7
+   "palavra": 7,
+   "desloca": -0.03
   },
   {
    "fala": "data",
    "tipo": "whoosh",
-   "desloca": -0.38
-  },
-  {
-   "fala": "data",
-   "tipo": "pop",
-   "palavra": 1,
-   "desloca": -0.06
+   "desloca": -0.4
   },
   {
    "fala": "data",
@@ -91,25 +117,25 @@
    "desloca": -0.06
   },
   {
-   "fala": "troca",
+   "fala": "troca1",
    "tipo": "whoosh",
-   "desloca": -0.38
+   "desloca": -0.4
   },
   {
-   "fala": "troca",
+   "fala": "troca1",
    "tipo": "tique",
-   "palavra": 7
+   "palavra": 9,
+   "desloca": 0.25
   },
   {
-   "fala": "troca",
+   "fala": "troca2",
    "tipo": "pop",
-   "palavra": 8,
    "desloca": -0.06
   },
   {
    "fala": "jeitos",
    "tipo": "whoosh",
-   "desloca": -0.38
+   "desloca": -0.4
   },
   {
    "fala": "jeitos",
@@ -126,46 +152,44 @@
   {
    "fala": "calma",
    "tipo": "whoosh",
-   "desloca": -0.38
+   "desloca": -0.4
   },
   {
    "fala": "calma",
    "tipo": "impacto",
-   "palavra": 12
+   "palavra": 12,
+   "desloca": -0.03
   },
   {
-   "fala": "fazer",
+   "fala": "fazer0",
    "tipo": "whoosh",
-   "desloca": -0.38
+   "desloca": -0.4
   },
   {
-   "fala": "fazer",
+   "fala": "fazer1",
    "tipo": "pop",
-   "palavra": 4,
    "desloca": -0.06
   },
   {
-   "fala": "fazer",
+   "fala": "fazer2",
    "tipo": "pop",
-   "palavra": 9,
    "desloca": -0.06
   },
   {
-   "fala": "fazer",
+   "fala": "fazer3",
    "tipo": "pop",
-   "palavra": 14,
    "desloca": -0.06
   },
   {
-   "fala": "fim",
+   "fala": "fim1",
    "tipo": "whoosh",
-   "desloca": -0.38
+   "desloca": -0.4
   },
   {
-   "fala": "fim",
+   "fala": "fim2",
    "tipo": "pop",
-   "palavra": 9,
-   "desloca": -0.06
+   "palavra": 0,
+   "desloca": 0.5
   }
  ]
 }

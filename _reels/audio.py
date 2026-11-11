@@ -1,6 +1,7 @@
-"""Gera a narração (Piper), a trilha e os efeitos de um Reels a partir de roteiro.json.
+"""Gera a narração, a trilha e os efeitos de um Reels a partir de roteiro.json.
 
-Uso: ~/reels-venv/bin/python _reels/audio.py <pasta-do-reels> <voz.onnx>
+Uso: ~/reels-venv/bin/python _reels/audio.py <pasta-do-reels> <voz>
+<voz> é "kokoro:pm_alex" (Kokoro, sotaque brasileiro mais natural; também pm_santa e pf_dora) ou o caminho de uma voz Piper (.onnx).
 Lê <pasta>/roteiro.json e grava <pasta>/audio.wav e <pasta>/tempo.json (início e fim de cada fala e palavra).
 
 roteiro.json: {"bpm": 118, "falas": [{"id": "gancho", "tts": "...", "legenda": "...", "pausa": 0.2}], "efeitos": [{"fala": "gancho", "tipo": "impacto", "palavra": 3}]}
@@ -12,11 +13,9 @@ import wave
 from pathlib import Path
 
 import numpy as np
-from piper import PiperVoice, SynthesisConfig
 
 SR = 48000
 pasta = Path(sys.argv[1])
-voz = PiperVoice.load(sys.argv[2])
 roteiro = json.loads((pasta / "roteiro.json").read_text(encoding="utf-8"))
 rng = np.random.default_rng(7)
 
@@ -26,15 +25,35 @@ def reamostrar(x, de, para):
     return np.interp(np.linspace(0, len(x) - 1, n), np.arange(len(x)), x)
 
 
+if sys.argv[2].startswith("kokoro:"):
+    import types
+    import espeakng_loader
+    from phonemizer.backend.espeak.wrapper import EspeakWrapper
+    EspeakWrapper.set_library(espeakng_loader.get_library_path())
+    EspeakWrapper.set_data_path(espeakng_loader.get_data_path())
+    sys.modules.setdefault("spacy", types.ModuleType("spacy"))  # só o inglês usa; o português não
+    from kokoro import KPipeline
+    kokoro, kokoro_voz = KPipeline(lang_code="p"), sys.argv[2].split(":", 1)[1]
+else:
+    from piper import PiperVoice, SynthesisConfig
+    kokoro, voz = None, PiperVoice.load(sys.argv[2])
+
+
 def falar(texto):
+    if kokoro:
+        x = np.concatenate([a.numpy() for _, _, a in kokoro(texto, voice=kokoro_voz, speed=roteiro.get("velocidade_kokoro", 0.95))])
+        return aparar(reamostrar(x, 24000, SR))
     caminho = pasta / "_fala.wav"
     with wave.open(str(caminho), "wb") as w:
-        voz.synthesize_wav(texto, w, SynthesisConfig(length_scale=0.88, noise_scale=0.6, noise_w_scale=0.7))
+        voz.synthesize_wav(texto, w, SynthesisConfig(length_scale=roteiro.get("velocidade", 1.0), noise_scale=0.6, noise_w_scale=0.7))
     with wave.open(str(caminho), "rb") as w:
         sr = w.getframerate()
         x = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768
     caminho.unlink()
-    x = reamostrar(x, sr, SR)
+    return aparar(reamostrar(x, sr, SR))
+
+
+def aparar(x):
     # corta o silêncio das pontas
     vivo = np.where(np.abs(x) > 0.02)[0]
     if len(vivo):
