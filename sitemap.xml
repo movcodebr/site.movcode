@@ -77,7 +77,12 @@
     </url>
     <url>
         <loc>https://movcode.com.br/blog/</loc>
-        <lastmod>2026-11-02</lastmod>
+        <lastmod>2026-11-09</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://movcode.com.br/blog/golpe-do-qr-code-trocado-proteja-o-pix-da-sua-loja</loc>
+        <lastmod>2026-11-09</lastmod>
         <priority>0.6</priority>
     </url>
     <url>

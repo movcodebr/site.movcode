@@ -86,5 +86,40 @@
         "data": "2026-10-28"
       }
     ]
+  },
+  {
+    "slug": "golpe-do-qr-code-trocado-proteja-o-pix-da-sua-loja",
+    "titulo": "Golpe do QR Code trocado: proteja o Pix da sua loja",
+    "resumo": "A Febraban alertou para QR Codes falsos colados sobre os verdadeiros. Veja como o golpe funciona e o que fazer antes da Black Friday.",
+    "tag": "Notícias",
+    "data": "2026-11-09",
+    "ilustracao": "seguranca",
+    "corpo": "<p>Em 20 de outubro, a Febraban, a federação que reúne os bancos, fez um alerta sobre um golpe que mira o pagamento por QR Code. Criminosos trocam o código verdadeiro por um falso, e o Pix que deveria cair na conta da loja vai para a conta de uma quadrilha. Com a Black Friday chegando, vale olhar com atenção para o QR Code do seu balcão.</p>\n<h2>O que está acontecendo</h2>\n<p>O golpe tem até nome: <strong>quishing</strong>, uma mistura de QR Code com phishing, que é a \"pescaria\" de dados pela internet. Segundo a Febraban, o criminoso adultera ou cria um QR Code falso para direcionar o pagamento para contas controladas por ele.</p>\n<p>Nas lojas físicas, o truque é simples. De acordo com o alerta, golpistas colam adesivos com QR Codes falsos por cima dos códigos verdadeiros em bares, restaurantes, feiras, estacionamentos e outros pontos comerciais. O cliente acha que está pagando o estabelecimento, mas o dinheiro vai direto para o golpista.</p>\n<p>O alerta também cita boletos impressos e sites falsos que imitam lojas conhecidas. A Febraban lembra que o código falso pode substituir o verdadeiro sem que o resto da página ou do papel mude, o que torna a troca difícil de perceber.</p>\n<h2>Por que isso importa para quem tem um pequeno negócio</h2>\n<p>Quando o adesivo falso está no seu balcão, quem paga a conta é você. O cliente pagou, mas o dinheiro não entrou. Começa a discussão sobre quem deve o quê, e a loja ainda corre o risco de ficar com a fama de golpe.</p>\n<p>A época também pede atenção. O Procon do Distrito Federal está preparando uma operação especial para fiscalizar lojas físicas e virtuais durante a Black Friday. Segundo o órgão, foram 14.722 reclamações sobre compras presenciais e pela internet entre janeiro e 27 de outubro de 2026. Movimento maior no caixa significa mais gente pagando com pressa, e é nessa pressa que o golpe passa.</p>\n<p>A orientação da Febraban para quem paga é conferir, no aplicativo do banco, o nome de quem vai receber e o valor antes de confirmar. Raphael Mielle, diretor de Serviços e Segurança da federação, resume: essa verificação simples pode revelar a adulteração antes que o dinheiro seja transferido. Para o lojista, isso vira uma oportunidade: se o cliente souber qual nome deve aparecer, ele mesmo ajuda a barrar o golpe.</p>\n<h2>O que fazer agora</h2>\n<ul>\n<li><strong>Confira seus QR Codes impressos todo dia.</strong> Passe a mão no display do balcão, nas mesas e nos cardápios. Desconfie de qualquer adesivo por cima, borda levantada ou código diferente do original.</li>\n<li><strong>Prefira o QR Code gerado na hora.</strong> O código que sai da maquininha ou do sistema de caixa para cada venda, já com o valor, é bem mais difícil de trocar do que um papel colado no balcão.</li>\n<li><strong>Mostre ao cliente o nome que deve aparecer.</strong> Uma plaquinha simples, como \"Ao pagar, confira se aparece o nome da nossa empresa\", ajuda o cliente a fazer a checagem que a Febraban recomenda.</li>\n<li><strong>Só libere a mercadoria com o dinheiro na conta.</strong> Confirme o recebimento no aplicativo ou no extrato, não pela tela do celular do cliente.</li>\n<li><strong>Se um cliente pagou para a conta errada, oriente rápido.</strong> A Febraban recomenda procurar o banco na hora, relatar o golpe e pedir a devolução pelo MED, o Mecanismo Especial de Devolução do Banco Central. Registrar boletim de ocorrência e guardar comprovantes também ajuda. A devolução não é garantida: depende da análise do caso e de ainda haver dinheiro na conta do golpista.</li>\n<li><strong>Venda on-line só pelos canais oficiais.</strong> Divulgue o endereço certo do seu site e das suas redes, porque a Febraban também alerta para sites falsos que imitam lojas conhecidas.</li>\n</ul>\n<h2>Resumindo</h2>\n<p>O golpe do QR Code trocado desvia o Pix do cliente para a conta de criminosos, muitas vezes com um simples adesivo. Antes da Black Friday, revise seus códigos, prefira os gerados na hora, ensine o cliente a conferir o nome da loja e só entregue a mercadoria com o dinheiro na conta.</p>",
+    "fontes": [
+      {
+        "titulo": "Febraban alerta para fraude com QR Code adulterado",
+        "veiculo": "SpaceMoney",
+        "url": "https://www.spacemoney.com.br/educacao-financeira/golpe-qr-code-falso-febraban",
+        "data": "2026-10-20"
+      },
+      {
+        "titulo": "Golpe do QR Code pode desviar pagamentos por boleto e Pix",
+        "veiculo": "Jornal do Comércio",
+        "url": "https://www.jornaldocomercio.com/economia/2026/10/1267712-golpe-do-qr-code-pode-desviar-pagamentos-por-boleto-e-pix.html",
+        "data": "2026-10-21"
+      },
+      {
+        "titulo": "Febraban alerta para golpes em pagamento por QR Code",
+        "veiculo": "A Voz dos Municípios",
+        "url": "https://vozdosmunicipios.com.br/2026/10/23/febraban-alerta-para-golpes-em-pagamento-por-qr-code/",
+        "data": "2026-10-23"
+      },
+      {
+        "titulo": "Black Friday: Procon-DF alerta para golpes e preços maquiados nas promoções",
+        "veiculo": "Jornal de Brasília",
+        "url": "https://jornaldebrasilia.com.br/brasilia/black-friday-procon-df-alerta-para-golpes-e-precos-maquiados-nas-promocoes/",
+        "data": "2026-11-08"
+      }
+    ]
   }
 ]
