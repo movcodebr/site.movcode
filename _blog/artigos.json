@@ -121,5 +121,28 @@
         "data": "2026-11-08"
       }
     ]
+  },
+  {
+    "slug": "metade-dos-pequenos-negocios-ja-usa-ia-como-comecar",
+    "titulo": "Metade dos pequenos negócios já usa IA: como começar",
+    "resumo": "Pesquisa do Sebrae mostra que 8 em cada 10 pequenos negócios usam ou pretendem usar IA no marketing. Veja os números e como começar com segurança.",
+    "tag": "Notícias",
+    "data": "2026-11-16",
+    "ilustracao": "ia",
+    "corpo": "<p>Em 9 de novembro, o Sebrae divulgou a 13ª edição da pesquisa Pulso dos Pequenos Negócios. Ela mostra que cerca de metade dos pequenos negócios do país já usou inteligência artificial no marketing ou na comunicação. Se você ainda não começou, não está sozinho, mas o grupo dos que já usam está crescendo.</p>\n<h2>O que a pesquisa mostrou</h2>\n<p>A <strong>inteligência artificial</strong>, ou IA, é o tipo de ferramenta que escreve textos, cria imagens e responde perguntas a partir de um pedido simples, como se você conversasse com ela. A pesquisa do Sebrae perguntou como os donos de pequenos negócios usam essas ferramentas para divulgar a empresa e falar com os clientes.</p>\n<p>Os números, segundo o Sebrae:</p>\n<ul>\n<li>Quase 30% dos empreendedores usam IA com frequência no marketing ou na comunicação, e cerca de 20% já fizeram testes.</li>\n<li>Outros 29% ainda não usam, mas pretendem usar em breve. Somando todo mundo, são 8 em cada 10 pequenos negócios.</li>\n<li>Só 14% não usam e não pretendem usar.</li>\n</ul>\n<p>Entre quem já usa, o que mais aparece é a criação de imagens e vídeos, citada por 74%. Depois vem a produção de textos para e-mails, posts e anúncios, com 65%. Melhorar campanhas de anúncios aparece em terceiro, com 27%.</p>\n<p>Há diferenças entre os tamanhos de negócio. Os microempreendedores individuais, os MEIs, usam um pouco mais a IA para imagens e vídeos (76%, contra 72% das micro e pequenas empresas). Já as micro e pequenas empresas usam mais para textos (67%, contra 63%) e para anúncios (33%, contra 21%).</p>\n<h2>Por que isso importa para quem tem um pequeno negócio</h2>\n<p>O presidente do Sebrae, Décio Lima, disse que os pequenos empreendedores já entenderam que a IA pode ajudar a compensar a falta de dinheiro e de pessoal. Na prática, é uma ajuda para quem cuida de tudo sozinho: o post do dia, a descrição do produto, a resposta para o cliente.</p>\n<p>Ele também fez um alerta. Segundo o Sebrae, muitos empreendedores ainda têm dúvidas sobre como usar a IA de forma estratégica, ética e sem riscos. \"A falta de orientação pode gerar insegurança e abrir oportunidade para erros\", disse Lima.</p>\n<p>Ou seja: não é preciso correr atrás de tudo, mas vale aprender o básico antes que o concorrente aprenda primeiro.</p>\n<h2>O que fazer agora</h2>\n<ul>\n<li><strong>Comece por uma tarefa só.</strong> Escolha a que mais toma seu tempo, como escrever as legendas da semana ou descrever produtos, e teste a IA só nela.</li>\n<li><strong>Dê contexto no pedido.</strong> Diga o que o seu negócio vende, para quem e em que tom. Quanto mais claro o pedido, melhor a resposta.</li>\n<li><strong>Revise tudo antes de publicar.</strong> A IA pode errar preço, horário ou informação. Confira e ajuste o texto para soar como você.</li>\n<li><strong>Cuidado com dados de clientes.</strong> Evite colar nome, telefone, CPF ou conversas de clientes nessas ferramentas.</li>\n<li><strong>Aprenda com quem ensina de graça.</strong> O Sebrae tem trilhas de cursos sobre IA para pequenos negócios, e o programa Negócio em dIA, do Google com Sebrae, Itaú Unibanco e Tera, oferece capacitação gratuita.</li>\n<li><strong>Olhe além do marketing.</strong> A pesquisa fala de divulgação, mas a mesma lógica serve para tarefas repetitivas do dia a dia. Se esse for o seu caso, veja o que dá para fazer com <a href=\"/automacoes\">automações</a>.</li>\n</ul>\n<h2>Resumindo</h2>\n<p>Metade dos pequenos negócios já usa IA para divulgar a empresa, e 8 em cada 10 usam ou pretendem usar. O uso mais comum é criar imagens, vídeos e textos. Comece pequeno, revise o que a ferramenta entrega e procure orientação para usar com segurança.</p>",
+    "fontes": [
+      {
+        "titulo": "Oito em cada 10 pequenos negócios já usam ou planejam usar IA para marketing e comunicação",
+        "veiculo": "Agência Sebrae de Notícias",
+        "url": "https://ce.agenciasebrae.com.br/dados/oito-em-cada-10-pequenos-negocios-ja-usam-ou-planejam-usar-ia-para-marketing-e-comunicacao/",
+        "data": "2026-11-11"
+      },
+      {
+        "titulo": "IA já é usada ou está nos planos de 80% dos pequenos negócios",
+        "veiculo": "Contábeis",
+        "url": "https://www.contabeis.com.br/noticias/80747/ia-ja-e-usada-ou-esta-nos-planos-de-80-dos-pequenos-negocios/",
+        "data": "2026-11-10"
+      }
+    ]
   }
 ]

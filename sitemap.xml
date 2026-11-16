@@ -77,7 +77,12 @@
     </url>
     <url>
         <loc>https://movcode.com.br/blog/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-16</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://movcode.com.br/blog/metade-dos-pequenos-negocios-ja-usa-ia-como-comecar</loc>
+        <lastmod>2026-11-16</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
