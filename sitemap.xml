@@ -77,7 +77,12 @@
     </url>
     <url>
         <loc>https://movcode.com.br/blog/</loc>
-        <lastmod>2026-11-16</lastmod>
+        <lastmod>2026-11-23</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://movcode.com.br/blog/black-friday-o-que-o-procon-cobra-da-sua-loja</loc>
+        <lastmod>2026-11-23</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
